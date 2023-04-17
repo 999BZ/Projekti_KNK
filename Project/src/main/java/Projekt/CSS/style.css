@@ -6,3 +6,7 @@
 .nav-button:hover{
     -fx-text-fill: #273c75;
 }
+
+.nav-button-active{
+    -fx-text-fill: #273c75;
+}

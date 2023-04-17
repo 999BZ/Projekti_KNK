@@ -13,4 +13,9 @@
       <module name="Projekt" target="19" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Projekt" options="--add-exports java.xml/com.sun.org.apache.xalan.internal.xsltc.compiler.util=com.example.projekt" />
+    </option>
+  </component>
 </project>
