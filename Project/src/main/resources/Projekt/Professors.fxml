@@ -22,9 +22,9 @@
          </children></AnchorPane>
    </center>
    <left>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="402.0" prefWidth="180.0" snapToPixel="false" style="-fx-background-color: #8c7ae6;" stylesheets="@../../java/Projekt/CSS/style.css" BorderPane.alignment="CENTER">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="402.0" prefWidth="180.0" snapToPixel="false" style="-fx-background-color: #8c7ae6;" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="homeBtn" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openHome" styleClass="nav-button" stylesheets="@../../java/Projekt/CSS/style.css" text="Home" textAlignment="CENTER" textFill="#8c7ae6">
+            <Button fx:id="homeBtn" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openHome" styleClass="nav-button" stylesheets="@../CSS/style.css" text="Home" textAlignment="CENTER" textFill="#8c7ae6">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -35,7 +35,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="classesBtn" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openClasses" styleClass="nav-button" stylesheets="@../../java/Projekt/CSS/style.css" text="Classes" textAlignment="CENTER">
+            <Button fx:id="classesBtn" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openClasses" styleClass="nav-button" stylesheets="@../CSS/style.css" text="Classes" textAlignment="CENTER">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -46,7 +46,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="professorsBtn" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" stylesheets="@../../java/Projekt/CSS/style.css" text="Professors" textAlignment="CENTER">
+            <Button fx:id="professorsBtn" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" stylesheets="@../CSS/style.css" text="Professors" textAlignment="CENTER">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
