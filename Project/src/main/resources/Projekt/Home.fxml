@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Projekt.Main_Controller">
+<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Main_Controller">
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #dcdde1;">
          <children>

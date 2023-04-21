@@ -1,4 +1,4 @@
-package Projekt;
+package Controllers;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -19,7 +19,7 @@ public class Main_Controller {
     private Parent root;
 
     public void openHome(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Projekt/Home.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root,stage.getHeight(),stage.getWidth());
         if(stage.isMaximized()){
@@ -36,7 +36,7 @@ public class Main_Controller {
     }
 
     public void openClasses(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Classes.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Projekt/Classes.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root,stage.getHeight(),stage.getWidth());
         if(stage.isMaximized()){
@@ -53,7 +53,7 @@ public class Main_Controller {
     }
 
     public void openProfessors(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Professors.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Projekt/Professors.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root,stage.getHeight(),stage.getWidth());
         if(stage.isMaximized()){
