@@ -7,8 +7,8 @@ module com.example.test {
     requires java.sql;
 
     opens com.example.test to javafx.fxml;
-    opens Projekt to javafx.fxml;
-    exports Projekt to javafx.graphics;
+    opens Main to javafx.fxml;
+    exports Main to javafx.graphics;
     exports com.example.test;
     exports Controllers to javafx.graphics;
     opens Controllers to javafx.fxml;

@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="482.0" prefWidth="637.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="482.0" prefWidth="637.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeDraftController">
    <left>
       <VBox prefHeight="482.0" prefWidth="170.0" styleClass="nav-container" BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="74.0" prefWidth="176.0">
                <children>
-                  <ImageView fitHeight="72.0" fitWidth="90.0" layoutX="40.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="nav-logo">
+                  <ImageView fx:id="photo" fitHeight="72.0" fitWidth="90.0" layoutX="40.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="nav-logo">
                      <image>
                         <Image url="@../Images/logo.png" />
                      </image>
