@@ -1,7 +1,6 @@
-package Service;
+package Services;
 
 import Models.User;
-import Models.UserProfile;
 import Repository.userRepository;
 
 import java.sql.SQLException;

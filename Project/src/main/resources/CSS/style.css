@@ -1,12 +1,35 @@
-.nav-button{
-    -fx-background-color: none;
-    -fx-text-fill: #dcdde1;
-    -fx-font-size: 20;
+.root {
+    -fx-background-color: #DBD3D8;
 }
-.nav-button:hover{
+
+.nav-logo {
+    -fx-alignment: center;
+}
+
+.nav-button {
+    -fx-background-color: #02315E;
+    -fx-text-fill: #dcdde1;
+    -fx-background-radius: 50px;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 10;
+}
+.nav-button-image{
+
+    -fx-pref-width: 20px;
+    -fx-pref-height: 20px;
+}
+
+
+.nav-button:hover {
     -fx-text-fill: #273c75;
 }
 
-.nav-button-active{
+.nav-button-active {
     -fx-text-fill: #273c75;
+}
+
+.nav-container {
+    -fx-spacing: 10px ;
+
+    -fx-background-color: #1B1F47;
 }

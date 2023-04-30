@@ -2,7 +2,7 @@ package Repository;
 
 
 import Models.User;
-import Service.ConnectionUtil;
+import Services.ConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
