@@ -1,19 +1,39 @@
 CREATE DATABASE LEMS;
 
-DROP DATABASE easyeval;
+#DROP DATABASE LEMS;
+
 USE LEMS;
+
+CREATE TABLE Users(
+	U_ID INT NOT NULL AUTO_INCREMENT,
+    Email VARCHAR (100),
+    Salted_password VARCHAR(256),
+    Salt VARCHAR(32) NOT NULL,
+    Position VARCHAR (50),
+    PRIMARY KEY (U_ID)
+);
+
+CREATE TABLE Admins (
+	A_ID INT NOT NULL,
+    A_Name VARCHAR(50),
+    A_Surname VARCHAR(50),
+    A_Phone VARCHAR(50),
+    A_UID INT NOT NULL,
+    PRIMARY KEY (A_ID),
+    FOREIGN KEY (A_UID) REFERENCES Users(U_ID) ON DELETE CASCADE
+);
 
 CREATE TABLE Students (
 	S_ID INT NOT NULL,
     S_Name VARCHAR(50),
     S_Surname VARCHAR(50),
     S_Birthday Date,
-    S_Email VARCHAR(100),
-    S_Password VARCHAR(50),
     S_Phone VARCHAR(50),
     S_Adresa VARCHAR(50),
     S_GLevel INT,
-    PRIMARY KEY (S_ID)
+    S_UID INT NOT NULL,
+    PRIMARY KEY (S_ID),
+    FOREIGN KEY (S_UID) REFERENCES Users(U_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE Teacher (
@@ -21,11 +41,11 @@ CREATE TABLE Teacher (
     T_Name VARCHAR(50),
     T_Surname VARCHAR(50),
     T_Birthday Date,
-    T_Email VARCHAR(100),
-    T_Password VARCHAR(50),
     T_Phone VARCHAR(50),
     T_Adresa VARCHAR(50),
-    PRIMARY KEY (T_ID)
+    T_UID INT NOT NULL,
+    PRIMARY KEY (T_ID),
+    FOREIGN KEY (T_UID) REFERENCES Users(U_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE Enrollment(
@@ -55,7 +75,7 @@ CREATE TABLE Assignments (
     A_MaxPoints INT,
     A_Weight FLOAT,
     PRIMARY KEY (A_ID),
-    FOREIGN KEY (Course_ID) REFERENCES Courses (Course_ID)
+    FOREIGN KEY (Course_ID) REFERENCES Courses (Course_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE Grades(
@@ -77,3 +97,4 @@ CREATE TABLE Attendance(
     PRIMARY KEY (Att_ID),
     FOREIGN KEY (S_ID) REFERENCES Students(S_ID) ON DELETE CASCADE
 );
+
