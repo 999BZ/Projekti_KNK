@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="482.0" prefWidth="170.0" styleClass="nav-container" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="74.0" prefWidth="176.0">
+         <children>
+            <ImageView fitHeight="159.0" fitWidth="166.0" layoutX="6.0" layoutY="-42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/logo1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane prefHeight="50.0" prefWidth="170.0">
+         <children>
+            <Button alignment="BASELINE_LEFT" layoutX="21.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="129.0" styleClass="nav-button" text="Students">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0">
+                     <image>
+                        <Image url="@../Images/students.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <Pane prefHeight="46.0" prefWidth="170.0">
+         <children>
+            <Button alignment="BASELINE_LEFT" layoutX="21.0" layoutY="1.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" styleClass="nav-button" text="Courses">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0">
+                     <image>
+                        <Image url="@../Images/courses.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <Pane prefHeight="52.0" prefWidth="170.0">
+         <children>
+            <Button alignment="BASELINE_LEFT" layoutX="21.0" layoutY="4.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" styleClass="nav-button" text="Assignments">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0">
+                     <image>
+                        <Image url="@../Images/assignment.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <Pane prefHeight="202.0" prefWidth="170.0">
+         <children>
+            <Button alignment="BASELINE_LEFT" layoutX="36.0" layoutY="163.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="99.0" style="-fx-font-size: 10;" styleClass="nav-button" text="Log Out">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="19.0">
+                     <image>
+                        <Image url="@../Images/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</VBox>

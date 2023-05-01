@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-public class Main_Controller {
+public class MainController {
 
     private Stage stage;
     private Scene scene;

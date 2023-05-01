@@ -22,7 +22,7 @@
 
 
 .nav-button:hover {
-    -fx-text-fill: #273c75;
+    -fx-background-color: #2F70AF;
 }
 
 .nav-button-active {
@@ -31,6 +31,20 @@
 
 .nav-container {
     -fx-spacing: 10px ;
-
     -fx-background-color: #1B1F47;
+}
+
+.table-view .column-header {
+    -fx-background-color: #1B1F47;
+    -fx-text-fill: white;
+    -fx-padding: 8px;
+    -fx-alignment: center-left;
+    -fx-border-width: 0 0 2 0;
+}
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+.button {
+    -fx-background-color: #4C5D8B;
+    -fx-text-fill: white;
 }
