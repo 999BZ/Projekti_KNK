@@ -15,7 +15,7 @@ public class PasswordHasher {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_LENGTH];
         random.nextBytes(salt);
-        return Base64.getEncoder().encodeToString(salt);
+        return new String(salt);
     }
 
     public static String generateSaltedHash(String password, String salt) {
@@ -35,13 +35,8 @@ public class PasswordHasher {
     }
 
     public static boolean compareSaltedHash(String password, String salt, String saltedHash) {
-        byte[] expectedHash = new byte[HASH_LENGTH];
-        for (int i = 0; i < HASH_LENGTH; i++) {
-            int index = (SALT_LENGTH + i) * 2;
-            expectedHash[i] = (byte) Integer.parseInt(saltedHash.substring(index, index + 2), 16);
-        }
-        byte[] actualHash = hashWithSalt(password, salt);
-        return MessageDigest.isEqual(expectedHash, actualHash);
+        String e = generateSaltedHash(password, salt);
+        return saltedHash.equals(e);
     }
 
     private static byte[] hashWithSalt(String password, String salt) {

@@ -13,8 +13,8 @@ import java.sql.SQLException;
 public class userRepository {
 
     public static User insert(RegisterUser user) throws SQLException {
-        String UserSql = "INSERT INTO Users (Email, Salted_Password,Salt,U_Position) VALUES (?, ?, ?, ?)";
-        String StudentSql="INSERT INTO Students (S_ID,S_Name, S_Surname,S_Birthdate,S_Phone,S_Address,S_GLevel,S_UID) VALUES (1,?, ?, ?, ?, ?, ?,5)";
+        String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position) VALUES (?, ?, ?, ?)";
+        String StudentSql="INSERT INTO Students (S_Name, S_Surname, S_Birthdate, S_Phone, S_Address, S_GLevel, S_UID) VALUES (?, ?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
 
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement UserStatement = connection.prepareStatement(UserSql)
@@ -32,6 +32,7 @@ public class userRepository {
             StudentStatement.setString(4, user.getPhone());
             StudentStatement.setString(5, user.getAddress());
             StudentStatement.setInt(6, user.getYear());
+            StudentStatement.setString(7, user.getEmail());
             StudentStatement.executeUpdate();
 
         }catch (SQLException ex) {
@@ -42,7 +43,7 @@ public class userRepository {
     }
 
     public static User getByEmail(String Email) throws SQLException {
-        String sql = "SELECT * FROM Users WHERE Email=?";
+        String sql = "SELECT * FROM Users WHERE Email = ?";
         try (Connection connection = ConnectionUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, Email);
