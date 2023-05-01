@@ -36,7 +36,7 @@ public class MainController {
     }
 
     public void openClasses(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/Classes.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/Courses.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root,stage.getHeight(),stage.getWidth());
         if(stage.isMaximized()){

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="482.0" prefWidth="170.0" styleClass="nav-container" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="navbar" prefHeight="482.0" prefWidth="170.0" styleClass="nav-container" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SideNavController">
    <children>
       <Pane prefHeight="74.0" prefWidth="176.0">
          <children>
@@ -19,7 +19,7 @@
       </Pane>
       <Pane prefHeight="50.0" prefWidth="170.0">
          <children>
-            <Button alignment="BASELINE_LEFT" layoutX="21.0" layoutY="3.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="129.0" styleClass="nav-button" text="Students">
+            <Button fx:id="studentsButton" alignment="BASELINE_LEFT" layoutX="21.0" layoutY="3.0" mnemonicParsing="false" onAction="#goToStudents" prefHeight="29.0" prefWidth="129.0" styleClass="nav-button" text="Students">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="24.0">
                      <image>
@@ -32,7 +32,7 @@
       </Pane>
       <Pane prefHeight="46.0" prefWidth="170.0">
          <children>
-            <Button alignment="BASELINE_LEFT" layoutX="21.0" layoutY="1.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" styleClass="nav-button" text="Courses">
+            <Button fx:id="coursesButton" alignment="BASELINE_LEFT" layoutX="21.0" layoutY="1.0" mnemonicParsing="false" onAction="#goToCourses" prefHeight="45.0" prefWidth="129.0" styleClass="nav-button" text="Courses">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="24.0">
                      <image>
@@ -45,7 +45,7 @@
       </Pane>
       <Pane prefHeight="52.0" prefWidth="170.0">
          <children>
-            <Button alignment="BASELINE_LEFT" layoutX="21.0" layoutY="4.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" styleClass="nav-button" text="Assignments">
+            <Button fx:id="assignmentsButton" alignment="BASELINE_LEFT" layoutX="21.0" layoutY="4.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" styleClass="nav-button" text="Assignments">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="24.0">
                      <image>

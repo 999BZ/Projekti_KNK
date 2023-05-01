@@ -48,3 +48,9 @@
     -fx-background-color: #4C5D8B;
     -fx-text-fill: white;
 }
+.courses #coursesButton,.students #studentsButton,.assignments #assignmentsButton  {
+    -fx-border-width: 3px;
+    -fx-border-radius: 50;
+    -fx-border-color: #e5f4f9;
+}
+
