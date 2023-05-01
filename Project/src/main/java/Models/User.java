@@ -2,47 +2,57 @@ package Models;
 
 public class User {
 
-    private int id;
-    private String username;
-    private String saltedPassword;
-    private String salt;
+    private int ID;
+    private String Email;
+    private String SaltedPassword;
+    private String Salt;
+    private String Position;
 
-    public User(int id, String username, String saltedPassword, String salt){
-        this.id=id;
-        this.username = username;
-        this.saltedPassword = saltedPassword;
-        this.salt = salt;
+    public User(int ID, String email, String saltedPassword, String salt, String position) {
+        this.ID = ID;
+        Email = email;
+        SaltedPassword = saltedPassword;
+        Salt = salt;
+        Position = position;
     }
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public String getUsername() {
-        return username;
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
     }
 
     public String getSaltedPassword() {
-        return saltedPassword;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+        return SaltedPassword;
     }
 
     public void setSaltedPassword(String saltedPassword) {
-        this.saltedPassword = saltedPassword;
+        SaltedPassword = saltedPassword;
+    }
+
+    public String getSalt() {
+        return Salt;
     }
 
     public void setSalt(String salt) {
-        this.salt = salt;
+        Salt = salt;
+    }
+
+    public String getPosition() {
+        return Position;
+    }
+
+    public void setPosition(String position) {
+        Position = position;
     }
 }

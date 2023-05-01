@@ -9,7 +9,7 @@ CREATE TABLE Users(
     Email VARCHAR (100),
     Salted_password VARCHAR(256),
     Salt VARCHAR(32) NOT NULL,
-    Position VARCHAR (50),
+    U_Position VARCHAR (50),
     PRIMARY KEY (U_ID)
 );
 
@@ -67,34 +67,12 @@ CREATE TABLE Courses(
     FOREIGN KEY (T_ID) REFERENCES Teacher(T_ID) ON DELETE CASCADE
 );
 
-CREATE TABLE Assignments (
-    A_ID INT NOT NULL,
-    Course_ID INT NOT NULL,
-    A_Name VARCHAR(255),
-    A_Deadline DATE,
-    A_MaxPoints INT,
-    A_Weight FLOAT,
-    PRIMARY KEY (A_ID),
-    FOREIGN KEY (Course_ID) REFERENCES Courses (Course_ID) ON DELETE CASCADE
-);
-
 CREATE TABLE Grades(
 	G_ID INT NOT NULL,
     S_ID INT NOT NULL,
     A_ID INT NOT NULL,
     G_Value INT,
     PRIMARY KEY (G_ID),
-    FOREIGN KEY (S_ID) REFERENCES Students(S_ID) ON DELETE CASCADE,
-    FOREIGN KEY (A_ID) REFERENCES Assignments(A_ID) ON DELETE CASCADE
-);
-
-CREATE TABLE Attendance(
-	Att_ID INT NOT NULL,
-    S_ID INT NOT NULL,
-    Course_ID INT NOT NULL,
-	Att_Date Date,
-    Att_Status BOOLEAN,
-    PRIMARY KEY (Att_ID),
     FOREIGN KEY (S_ID) REFERENCES Students(S_ID) ON DELETE CASCADE
 );
 
