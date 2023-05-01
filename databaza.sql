@@ -19,7 +19,7 @@ CREATE TABLE Users(
 #ALTER TABLE Users auto_increment = 0;
 
 CREATE TABLE Admins (
-	A_ID INT NOT NULL,
+	A_ID INT NOT NULL AUTO_INCREMENT,
     A_Name VARCHAR(50),
     A_Surname VARCHAR(50),
     A_Phone VARCHAR(50),
@@ -30,7 +30,7 @@ CREATE TABLE Admins (
 #SELECT * FROM Admins;
 
 CREATE TABLE Students (
-	S_ID INT NOT NULL,
+	S_ID INT NOT NULL AUTO_INCREMENT,
     S_Name VARCHAR(50),
     S_Surname VARCHAR(50),
     S_Birthdate Date,
@@ -46,7 +46,7 @@ CREATE TABLE Students (
 #DELETE FROM USERS WHERE U_ID = 1;
 
 CREATE TABLE Teacher (
-	T_ID INT NOT NULL,
+	T_ID INT NOT NULL AUTO_INCREMENT,
     T_Name VARCHAR(50),
     T_Surname VARCHAR(50),
     T_Birthdate Date,
