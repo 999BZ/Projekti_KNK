@@ -26,7 +26,7 @@ public class SideNavController  {
         @FXML
         private void goToHome() {
             // Load the Home page FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Home.fxml"));
             try {
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
@@ -39,7 +39,7 @@ public class SideNavController  {
 
         @FXML
         private void goToCourses() {
-            // Load the Profile page FXML file
+            // Load the Courses page FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Courses.fxml"));
             try {
                 Parent root = loader.load();
@@ -53,7 +53,7 @@ public class SideNavController  {
 
         @FXML
         private void goToStudents() {
-            // Load the Settings page FXML file
+            // Load the Students page FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Students.fxml"));
             try {
                 Parent root = loader.load();
@@ -63,7 +63,10 @@ public class SideNavController  {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
+
+
 
 
 }

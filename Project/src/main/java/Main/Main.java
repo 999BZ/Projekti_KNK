@@ -14,7 +14,7 @@ public class Main extends Application {
         );
 
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("FootyScore");
+        stage.setTitle("Lower Education Managment System");
         stage.setScene(scene);
         stage.show();
     }

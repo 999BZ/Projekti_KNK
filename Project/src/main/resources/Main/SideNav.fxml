@@ -10,7 +10,7 @@
    <children>
       <Pane prefHeight="74.0" prefWidth="176.0">
          <children>
-            <ImageView fitHeight="159.0" fitWidth="166.0" layoutX="6.0" layoutY="-42.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="159.0" fitWidth="166.0" layoutX="6.0" layoutY="-42.0" onMouseClicked="#goToHome" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/logo1.png" />
                </image>
