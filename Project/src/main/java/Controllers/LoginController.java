@@ -20,6 +20,7 @@ public class LoginController {
         String email = this.txtEmail.getText();
         String password = this.pwdPassword.getText();
         try{
+            System.out.println("Log-in -> UserAuth");
             User user = UserAuthService.login(email,password);
             if(user == null){
                 System.out.println("Username or password is incorrect!");

@@ -55,4 +55,6 @@ public class User {
     public void setPosition(String position) {
         Position = position;
     }
+
 }
+

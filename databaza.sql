@@ -27,9 +27,9 @@ CREATE TABLE Students (
 	S_ID INT NOT NULL,
     S_Name VARCHAR(50),
     S_Surname VARCHAR(50),
-    S_Birthday Date,
+    S_Birthdate Date,
     S_Phone VARCHAR(50),
-    S_Adresa VARCHAR(50),
+    S_Address VARCHAR(50),
     S_GLevel INT,
     S_UID INT NOT NULL,
     PRIMARY KEY (S_ID),
@@ -40,9 +40,9 @@ CREATE TABLE Teacher (
 	T_ID INT NOT NULL,
     T_Name VARCHAR(50),
     T_Surname VARCHAR(50),
-    T_Birthday Date,
+    T_Birthdate Date,
     T_Phone VARCHAR(50),
-    T_Adresa VARCHAR(50),
+    T_Address VARCHAR(50),
     T_UID INT NOT NULL,
     PRIMARY KEY (T_ID),
     FOREIGN KEY (T_UID) REFERENCES Users(U_ID) ON DELETE CASCADE
@@ -76,3 +76,4 @@ CREATE TABLE Grades(
     FOREIGN KEY (S_ID) REFERENCES Students(S_ID) ON DELETE CASCADE
 );
 
+#SELECT * FROM USERS;
