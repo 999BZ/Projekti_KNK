@@ -23,18 +23,18 @@ public class UserAuthService {
     }
 
     public static User register(String Name, String Surname,String Birthdate,String Phone,String Address, int Year, String Email,String password) throws SQLException {
-        User user = userRepository.getByEmail(Email);
-        if(user != null){
+        User CheckUser = userRepository.getByEmail(Email);
+        if(CheckUser != null){
             //throw a new ResourceAlreadyExistError
             return null;
         }
         String salt = PasswordHasher.generateSalt();
         String saltedPasswordHash = PasswordHasher.generateSaltedHash(password,salt);
         System.out.println("Trying to Register!");
-        user = userRepository.insert(new RegisterUser(1,Email,saltedPasswordHash,salt,"Students",Name,Surname,Birthdate,Phone,Address,Year));
+        User NewUser = userRepository.insert(new RegisterUser(1,Email,saltedPasswordHash,salt,"Students",Name,Surname,Birthdate,Phone,Address,Year));
 
 //        UserProfileRepository.insert(new UserProfile(0,user.getId(),firstname,lastname,age));
-        return user;
+        return NewUser;
 
 
     }
