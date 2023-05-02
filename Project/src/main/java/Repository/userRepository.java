@@ -1,7 +1,8 @@
 package Repository;
 
 
-import Models.RegisterUser;
+import Models.StudentUser;
+import Models.TeacherUser;
 import Models.User;
 import Services.ConnectionUtil;
 
@@ -12,34 +13,66 @@ import java.sql.SQLException;
 
 public class userRepository {
 
-    public static User insert(RegisterUser user) throws SQLException {
-        String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position) VALUES (?, ?, ?, ?)";
-        String StudentSql="INSERT INTO Students (S_Name, S_Surname, S_Birthdate, S_Phone, S_Address, S_GLevel, S_UID) VALUES (?, ?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
+    public static User insert(User user) throws SQLException {
+        if(user instanceof StudentUser student){
+            String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position) VALUES (?, ?, ?, ?)";
+            String StudentSql="INSERT INTO Students (S_Name, S_Surname, S_Birthdate, S_Phone, S_Address, S_GLevel, S_UID) VALUES (?, ?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
 
-        try(Connection connection = ConnectionUtil.getConnection();
-            PreparedStatement UserStatement = connection.prepareStatement(UserSql)
-        ) {
-            UserStatement.setString(1, user.getEmail());
-            UserStatement.setString(2, user.getSaltedPassword());
-            UserStatement.setString(3, user.getSalt());
-            UserStatement.setString(4, user.getPosition());
-            UserStatement.executeUpdate();
-            PreparedStatement StudentStatement = connection.prepareStatement(StudentSql);
+            try(Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement UserStatement = connection.prepareStatement(UserSql)
+            ) {
+                UserStatement.setString(1, student.getEmail());
+                UserStatement.setString(2, student.getSaltedPassword());
+                UserStatement.setString(3, student.getSalt());
+                UserStatement.setString(4, student.getPosition());
+                UserStatement.executeUpdate();
+                PreparedStatement StudentStatement = connection.prepareStatement(StudentSql);
 
-            StudentStatement.setString(1, user.getName());
-            StudentStatement.setString(2, user.getSurname());
-            StudentStatement.setString(3, user.getBirthdate());
-            StudentStatement.setString(4, user.getPhone());
-            StudentStatement.setString(5, user.getAddress());
-            StudentStatement.setInt(6, user.getYear());
-            StudentStatement.setString(7, user.getEmail());
-            StudentStatement.executeUpdate();
+                StudentStatement.setString(1, student.getName());
+                StudentStatement.setString(2, student.getSurname());
+                StudentStatement.setString(3, student.getBirthdate());
+                StudentStatement.setString(4, student.getPhone());
+                StudentStatement.setString(5, student.getAddress());
+                StudentStatement.setInt(6, student.getYear());
+                StudentStatement.setString(7, student.getEmail());
+                StudentStatement.executeUpdate();
 
-        }catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            }catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            return userRepository.getByEmail(user.getEmail());
+        }else if(user instanceof TeacherUser teacher){
+            String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position) VALUES (?, ?, ?, ?)";
+            String StudentSql="INSERT INTO Teacher (T_Name, T_Surname, T_Birthdate, T_Phone, T_Address, S_UID) VALUES (?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
+
+            try(Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement UserStatement = connection.prepareStatement(UserSql)
+            ) {
+                UserStatement.setString(1, teacher.getEmail());
+                UserStatement.setString(2, teacher.getSaltedPassword());
+                UserStatement.setString(3, teacher.getSalt());
+                UserStatement.setString(4, teacher.getPosition());
+                UserStatement.executeUpdate();
+                PreparedStatement StudentStatement = connection.prepareStatement(StudentSql);
+
+                StudentStatement.setString(1, teacher.getName());
+                StudentStatement.setString(2, teacher.getSurname());
+                StudentStatement.setString(3, teacher.getBirthdate());
+                StudentStatement.setString(4, teacher.getPhone());
+                StudentStatement.setString(5, teacher.getAddress());
+                StudentStatement.setString(6, teacher.getEmail());
+                StudentStatement.executeUpdate();
+
+            }catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            return userRepository.getByEmail(user.getEmail());
         }
 
-        return userRepository.getByEmail(user.getEmail());
+        return null;
+
     }
 
     public static User getByEmail(String Email) throws SQLException {

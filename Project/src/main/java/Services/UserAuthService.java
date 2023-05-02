@@ -1,6 +1,7 @@
 package Services;
 
-import Models.RegisterUser;
+import Models.StudentUser;
+import Models.TeacherUser;
 import Models.User;
 import Repository.userRepository;
 
@@ -22,7 +23,7 @@ public class UserAuthService {
         return null;
     }
 
-    public static User register(String Name, String Surname, String Birthdate, String Phone, String Address, int Year, String Email, String password) throws SQLException {
+    public static User register(String Name, String Surname, String Birthdate, String Phone, String Address, int Year, String Email, String password,String Position) throws SQLException {
         User CheckUser = userRepository.getByEmail(Email);
         if(CheckUser != null){
             //throw a new ResourceAlreadyExistError
@@ -31,11 +32,11 @@ public class UserAuthService {
         String salt = PasswordHasher.generateSalt();
         String saltedPasswordHash = PasswordHasher.generateSaltedHash(password,salt);
         System.out.println("Trying to Register!");
-        User NewUser = userRepository.insert(new RegisterUser(1, Email, saltedPasswordHash, salt,"Students", Name, Surname, Birthdate, Phone, Address, Year));
-
-//        UserProfileRepository.insert(new UserProfile(0,user.getId(),firstname,lastname,age));
-        return NewUser;
-
+        if(Position.equals("Student")) {
+            return userRepository.insert(new StudentUser(1,Email, saltedPasswordHash, salt, "Student", Name, Surname, Birthdate, Phone, Address, Year));
+        }else{
+            return userRepository.insert(new TeacherUser(1,Email, saltedPasswordHash, salt, "Teacher", Name, Surname, Birthdate, Phone, Address));
+        }
 
     }
 

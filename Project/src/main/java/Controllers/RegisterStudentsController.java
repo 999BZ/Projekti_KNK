@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class RegisterController implements Initializable {
+public class RegisterStudentsController implements Initializable {
     @FXML
     private TextField txtName;
     @FXML
@@ -58,7 +58,7 @@ public class RegisterController implements Initializable {
                     System.out.println("ALL GOOD");
                     try{
                         System.out.println("Register -> AuthService");
-                        User user = UserAuthService.register(name, surname, birthdate, phone, address, year, email, password);
+                        User user = UserAuthService.register(name, surname, birthdate, phone, address, year, email, password,"Student");
                         if (user != null){
                             System.out.println("User Registered");
                             this.txtName.setText("");

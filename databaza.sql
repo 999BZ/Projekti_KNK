@@ -8,7 +8,7 @@ CREATE TABLE Users(
 	U_ID INT NOT NULL AUTO_INCREMENT,
     Email VARCHAR (100),
     Salted_Password VARCHAR(256),
-    Salt VARCHAR(44) NOT NULL,
+    Salt VARCHAR(32) NOT NULL,
     U_Position VARCHAR (50),
     PRIMARY KEY (U_ID)
 );

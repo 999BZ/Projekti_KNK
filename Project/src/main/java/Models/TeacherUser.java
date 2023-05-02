@@ -1,22 +1,20 @@
 package Models;
 
-public class RegisterUser extends User {
+public class TeacherUser extends User {
 
     private String Name;
     private String Surname;
     private String Birthdate;
     private String Phone;
     private String Address;
-    private int Year;
 
-    public RegisterUser(int ID, String email, String saltedPassword, String salt, String position, String name, String surname, String birthdate, String phone, String address, int year) {
+    public TeacherUser(int ID, String email, String saltedPassword, String salt, String position, String name, String surname, String birthdate, String phone, String address) {
         super(ID, email, saltedPassword, salt, position);
         Name = name;
         Surname = surname;
         Birthdate = birthdate;
         Phone = phone;
         Address = address;
-        Year = year;
     }
 
     public String getName() {
@@ -59,11 +57,4 @@ public class RegisterUser extends User {
         Address = address;
     }
 
-    public int getYear() {
-        return Year;
-    }
-
-    public void setYear(int year) {
-        Year = year;
-    }
 }
