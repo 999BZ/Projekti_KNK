@@ -7,21 +7,33 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: url('..\Images\LEMS.png'); -fx-background-color: #8c7ae6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
 
-   <children>
-      <Label layoutX="160.0" layoutY="145.0" text="Username:" />
-      <Label layoutX="162.0" layoutY="189.0" text="Password:" />
-      <TextField fx:id="txtEmail" layoutX="222.0" layoutY="141.0" />
-      <PasswordField fx:id="pwdPassword" layoutX="223.0" layoutY="185.0" />
-      <Button layoutX="320.0" layoutY="233.0" mnemonicParsing="false" onAction="#cancelClick" text="Cancel" />
-      <Button fx:id="lognBtn" layoutX="223.0" layoutY="233.0" mnemonicParsing="false" onAction="#loginClick" text="Log in" />
-      <ImageView fitHeight="125.0" fitWidth="149.0" layoutX="223.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/logo.png" />
-         </image>
-      </ImageView>
+<BorderPane styleClass="nav-container" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+   <center>
+      <AnchorPane prefHeight="400.0" prefWidth="433.0" style="-fx-background-image: url('..\Images\LEMS.png'); -fx-background-color: #fff;">
       
-   </children>
-</AnchorPane>
+         <children>
+            <Label layoutX="102.0" layoutY="125.0" text="Username:" />
+            <Label layoutX="104.0" layoutY="171.0" text="Password:" />
+            <TextField fx:id="txtEmail" layoutX="182.0" layoutY="121.0" />
+            <PasswordField fx:id="pwdPassword" layoutX="182.0" layoutY="167.0" />
+            <Button layoutX="280.0" layoutY="253.0" mnemonicParsing="false" onAction="#cancelClick" text="Cancel" />
+            <Button fx:id="lognBtn" layoutX="182.0" layoutY="253.0" mnemonicParsing="false" onAction="#loginClick" text="Log in" />
+            
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="75.0" fitWidth="160.0" layoutX="33.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/logo1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

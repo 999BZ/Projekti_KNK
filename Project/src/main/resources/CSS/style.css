@@ -48,9 +48,71 @@
     -fx-background-color: #4C5D8B;
     -fx-text-fill: white;
 }
+.spec-button {
+    -fx-background-color: linear-gradient(#4C5D8B, #1B1F47);
+    -fx-background-radius: 30;
+    -fx-text-fill: white;
+}
+.spec-button:hover{
+    -fx-background-color: linear-gradient(#8a98ff, #b9c9fe);
+}
+.spec-button:pressed{
+    -fx-background-color: linear-gradient(#5264ae, #8a98ff);
+}
 .courses #coursesButton,.students #studentsButton,.assignments #assignmentsButton  {
     -fx-border-width: 3px;
     -fx-border-radius: 50;
     -fx-border-color: #e5f4f9;
+}
+.card {
+    -fx-background-color: #AEB6BF;
+    -fx-background-radius: 10;
+}
+.textInput {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 7;
+    -fx-border-color: #284c97;
+    -fx-border-radius: 7;
+    -fx-font-family: Arial;
+    -fx-padding: 5;
+}
+.textInput:focused {
+    -fx-border-color: #1E90FF;
+    -fx-border-width: 2;
+}
+
+.date-picker  {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 7;
+    -fx-border-color: #284c97;
+    -fx-border-radius: 7;
+    -fx-font-family: Arial;
+}
+.date-picker > .text-field {
+    -fx-background-radius: 7;
+}
+.date-picker > .arrow-button {
+    -fx-background-radius: 7;
+}
+.spinner  {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 7;
+    -fx-border-color: #284c97;
+    -fx-border-radius: 7;
+    -fx-font-family: Arial;
+}
+.spinner > .text-field {
+    -fx-background-radius: 7;
+}
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+    -fx-background-color: #333333;
+}
+.card-header {
+    -fx-background-color: #02315E;
+    -fx-text-fill: #dcdde1;
+    -fx-background-radius: 15px;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 20;
 }
 
