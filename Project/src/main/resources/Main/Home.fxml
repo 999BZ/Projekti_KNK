@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
     <left>
@@ -11,7 +12,10 @@
    <center>
       <AnchorPane prefHeight="482.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="284.0" layoutY="232.0" text="Home" />
+            <Label layoutX="149.0" layoutY="241.0" text="Welcome Blendi Zeqiri">
+               <font>
+                  <Font name="Century Gothic Bold" size="28.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </center>
