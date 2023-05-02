@@ -1,71 +1,67 @@
 package Controllers;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.prefs.Preferences;
 
-import javafx.event.ActionEvent;
+import Services.ConnectionUtil;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainController {
+    @FXML
+    private Label userName;
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    public void initialize() {
+        Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+        String name = prefs.get("name", "");
+        userName.setText(name);
 
-    public void openHome(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/Home.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root,stage.getHeight(),stage.getWidth());
-        if(stage.isMaximized()){
-            stage.setMaximized(true);
-            Screen screen = Screen.getPrimary();
-            Rectangle2D bounds = screen.getVisualBounds();
-            stage.setX(bounds.getMinX());
-            stage.setY(bounds.getMinY());
-            stage.setWidth(bounds.getWidth());
-            stage.setHeight(bounds.getHeight());
+        // Get the user ID from the preferences
+        int userId = prefs.getInt("userId", 0);
+
+        // Perform a database query to get the name of the user
+        String userNameFromDB = "";
+        try {
+            // Create a connection to the database
+            Connection connection = ConnectionUtil.getConnection();
+
+            // Create a prepared statement to retrieve the user name based on the user ID
+            PreparedStatement statement = connection.prepareStatement("SELECT COALESCE( a.a_name, t.t_name, s.s_name) AS name\n" +
+                    "FROM users u\n" +
+                    "LEFT JOIN admins a ON u.u_id = a.a_uid\n" +
+                    "LEFT JOIN teacher t ON u.u_id = t.t_uid\n" +
+                    "LEFT JOIN students s ON u.u_id = s.s_uid\n" +
+                    "WHERE u.u_id = ?\n");
+            statement.setInt(1, userId);
+
+            // Execute the query and retrieve the result set
+            ResultSet resultSet = statement.executeQuery();
+
+            // Retrieve the user name from the result set
+            if (resultSet.next()) {
+                userNameFromDB = resultSet.getString("name");
+            }
+
+            // Close the database connection and statement
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        stage.setScene(scene);
-        stage.show();
-    }
 
-    public void openClasses(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/Courses.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root,stage.getHeight(),stage.getWidth());
-        if(stage.isMaximized()){
-            stage.setMaximized(true);
-            Screen screen = Screen.getPrimary();
-            Rectangle2D bounds = screen.getVisualBounds();
-            stage.setX(bounds.getMinX());
-            stage.setY(bounds.getMinY());
-            stage.setWidth(bounds.getWidth());
-            stage.setHeight(bounds.getHeight());
-        }
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void openProfessors(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Main/Professors.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root,stage.getHeight(),stage.getWidth());
-        if(stage.isMaximized()){
-            stage.setMaximized(true);
-            Screen screen = Screen.getPrimary();
-            Rectangle2D bounds = screen.getVisualBounds();
-            stage.setX(bounds.getMinX());
-            stage.setY(bounds.getMinY());
-            stage.setWidth(bounds.getWidth());
-            stage.setHeight(bounds.getHeight());
-        }
-        stage.setScene(scene);
-        stage.show();
+        // Set the user name to the label text
+        userName.setText(userNameFromDB);
     }
 }

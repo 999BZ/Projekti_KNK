@@ -12,10 +12,15 @@
    <center>
       <AnchorPane prefHeight="482.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="149.0" layoutY="241.0" text="Welcome Blendi Zeqiri">
+            <Label layoutX="149.0" layoutY="241.0" text="Welcome">
                <font>
                   <Font name="Century Gothic Bold" size="28.0" />
                </font></Label>
+            <Label fx:id="userName" layoutX="300.0" layoutY="241.0">
+               <font>
+                  <Font name="Century Gothic Bold" size="28.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

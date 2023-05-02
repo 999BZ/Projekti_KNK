@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import Services.UserAuthService;
 import javafx.stage.Stage;
+import java.util.prefs.Preferences;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -33,6 +34,9 @@ public class LoginController {
                 return;
             }
             else {
+                Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
+                preferences.putInt("userId", user.getID());
+                preferences.put("name", user.getEmail());
                 isLoginSuccessful = true;
             }
             System.out.println("User is correct!");
@@ -40,14 +44,11 @@ public class LoginController {
 
         }
         if (isLoginSuccessful) {
-            // Create a new scene for the home page
             Parent homePageParent = FXMLLoader.load(getClass().getResource("/Main/Home.fxml"));
             Scene homePageScene = new Scene(homePageParent);
 
-            // Get the stage information
             Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
-            // Set the new scene on the stage
             window.setScene(homePageScene);
             window.show();
         }
