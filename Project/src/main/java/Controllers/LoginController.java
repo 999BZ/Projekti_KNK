@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.User;
+import Services.WindowSizeUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import Services.UserAuthService;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import java.util.prefs.Preferences;
 
@@ -57,5 +59,18 @@ public class LoginController {
     private void cancelClick(ActionEvent e){
         this.txtEmail.setText("");
         this.pwdPassword.setText("");
+    }
+
+    @FXML
+    private BorderPane rootPane;
+    @FXML
+    public void initialize() {
+        // Load the previous window size from preferences
+        WindowSizeUtils.loadWindowSize("loginWindow", rootPane);
+    }
+    @FXML
+    public void handleWindowClose() {
+        // Save the current window size to preferences when it is closed
+        WindowSizeUtils.saveWindowSize("loginWindow", rootPane);
     }
 }

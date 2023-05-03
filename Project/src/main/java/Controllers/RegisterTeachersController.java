@@ -2,10 +2,12 @@ package Controllers;
 
 import Models.User;
 import Services.UserAuthService;
+import Services.WindowSizeUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -88,6 +90,18 @@ public class RegisterTeachersController{
         this.txtAddress.setText("");
         this.txtEmail.setText("");
         this.pwdPassword.setText("");
+    }
+    @FXML
+    private BorderPane rootPane;
+    @FXML
+    public void initialize() {
+        // Load the previous window size from preferences
+        WindowSizeUtils.loadWindowSize("loginWindow", rootPane);
+    }
+    @FXML
+    public void handleWindowClose() {
+        // Save the current window size to preferences when it is closed
+        WindowSizeUtils.saveWindowSize("loginWindow", rootPane);
     }
 
 

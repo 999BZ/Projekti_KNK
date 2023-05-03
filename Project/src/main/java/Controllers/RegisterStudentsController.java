@@ -1,11 +1,13 @@
 package Controllers;
 
+import Services.WindowSizeUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import Models.User;
 import Services.UserAuthService;
+import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -96,6 +98,18 @@ public class RegisterStudentsController implements Initializable {
         this.txtYear.getValueFactory().setValue(0);
         this.txtEmail.setText("");
         this.pwdPassword.setText("");
+    }
+    @FXML
+    private BorderPane rootPane;
+    @FXML
+    public void initialize() {
+        // Load the previous window size from preferences
+        WindowSizeUtils.loadWindowSize("loginWindow", rootPane);
+    }
+    @FXML
+    public void handleWindowClose() {
+        // Save the current window size to preferences when it is closed
+        WindowSizeUtils.saveWindowSize("loginWindow", rootPane);
     }
 
 

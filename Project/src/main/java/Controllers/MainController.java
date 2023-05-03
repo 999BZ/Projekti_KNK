@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
 import Services.ConnectionUtil;
+import Services.WindowSizeUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -15,17 +16,29 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainController {
     @FXML
     private Label userName;
+    private double previousWidth;
+    private double previousHeight;
+
+    @FXML
+    private BorderPane rootPane;
+
 
     public void initialize() {
+
+
         Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
-        String name = prefs.get("name", "");
-        userName.setText(name);
+
+
+            WindowSizeUtils.loadWindowSize("loginWindow", rootPane);
+
+
 
         // Get the user ID from the preferences
         int userId = prefs.getInt("userId", 0);
@@ -62,6 +75,11 @@ public class MainController {
         }
 
         // Set the user name to the label text
-        userName.setText(userNameFromDB);
+        userName.setText("Welcome "+userNameFromDB);
     }
+    @FXML
+    public void handleWindowClose() {
+        WindowSizeUtils.saveWindowSize("loginWindow", rootPane);
+    }
+
 }

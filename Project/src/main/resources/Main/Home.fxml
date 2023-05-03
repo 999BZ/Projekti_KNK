@@ -5,18 +5,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
     <left>
         <fx:include source="SideNav.fxml" styleClass="home" />
     </left>
    <center>
       <AnchorPane prefHeight="482.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="149.0" layoutY="241.0" text="Welcome">
-               <font>
-                  <Font name="Century Gothic Bold" size="28.0" />
-               </font></Label>
-            <Label fx:id="userName" layoutX="300.0" layoutY="241.0">
+            <Label fx:id="userName" alignment="CENTER" contentDisplay="CENTER" layoutX="145.0" layoutY="223.0" prefHeight="36.0" prefWidth="310.0" AnchorPane.bottomAnchor="223.39999999999998" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="144.60000000000002" AnchorPane.topAnchor="223.0">
                <font>
                   <Font name="Century Gothic Bold" size="28.0" />
                </font>

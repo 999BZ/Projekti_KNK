@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<BorderPane fx:id="rootPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CoursesController">
    <center>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #dcdde1;">
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;">
          <children>
             <Label layoutX="219.0" layoutY="164.0" style="-fx-background-color: none;" text="Courses">
                <font>
