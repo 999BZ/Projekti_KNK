@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="571.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterStudentsController">
+<BorderPane fx:id="rootPane" prefHeight="571.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StudentsController">
    <left>
       <fx:include source="SideNav.fxml" styleClass="students" />
    </left>
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../CSS/style.css">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="662.0" stylesheets="@../CSS/style.css">
          <children>
-            <TableView layoutX="291.0" layoutY="11.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="291.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="studentsTable" layoutX="19.0" prefHeight="412.0" prefWidth="623.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Name" />
-                  <TableColumn prefWidth="75.0" text="Surname" />
-                  <TableColumn prefWidth="75.0" text="Age" />
-                  <TableColumn prefWidth="84.0" text="Grade Level" />
+                  <TableColumn fx:id="name" prefWidth="65.60003662109375" text="Name" />
+                  <TableColumn fx:id="surname" prefWidth="67.99999237060547" text="Surname" />
+                  <TableColumn fx:id="birthdate" prefWidth="68.0" text="Birthday" />
+                  <TableColumn fx:id="year" prefWidth="84.80001831054688" text="Grade Level" />
+                  <TableColumn fx:id="phone" prefWidth="104.7999267578125" text="Phone Number" />
+                  <TableColumn fx:id="email" prefWidth="163.20004272460938" text="Email" />
+                  <TableColumn fx:id="address" prefWidth="61.5999755859375" text="Address" />
                </columns>
             </TableView>
+<<<<<<< Updated upstream
             <AnchorPane layoutY="-9.0" styleClass="card" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="336.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="registerBtn" layoutX="62.0" layoutY="357.0" mnemonicParsing="false" onAction="#registerClick" styleClass="spec-button" text="Register" AnchorPane.bottomAnchor="17.4" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="142.8" AnchorPane.topAnchor="357.0" />
@@ -114,7 +108,16 @@
                   </Label>
                </children>
             </AnchorPane>
+=======
+            <Button fx:id="addStudentButton" layoutX="529.0" layoutY="423.0" mnemonicParsing="false" onAction="#goToAddStudents" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Student" />
+>>>>>>> Stashed changes
          </children>
       </AnchorPane>
    </center>
+   <right>
+      <AnchorPane BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <AnchorPane BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
