@@ -23,10 +23,10 @@ public class UserAuthService {
         return null;
     }
 
-    public static User register(String Name, String Surname, String Birthdate, String Phone, String Address, int Year, String Email, String password,String Position) throws SQLException {
+    public static User register(String Name, String Surname, String Birthdate, String Phone, String Address, int Year, String Email, String password, String Position) throws SQLException {
         User CheckUser = userRepository.getByEmail(Email);
         if(CheckUser != null){
-            //throw a new ResourceAlreadyExistError
+            System.out.println("User already exists.");
             return null;
         }
         String salt = PasswordHasher.generateSalt();
@@ -35,11 +35,7 @@ public class UserAuthService {
         if(Position.equals("Student")) {
             return userRepository.insert(new StudentUser(1,Email, saltedPasswordHash, salt, "Student", Name, Surname, Birthdate, Phone, Address, Year));
         }else{
-            return userRepository.insert(new TeacherUser(1,Email, saltedPasswordHash, salt, "Teacher", Name, Surname, Birthdate, Phone, Address));
+            return userRepository.insert(new TeacherUser(1,Email, saltedPasswordHash, salt, "Teacher", Name, Surname, Birthdate, Phone, Address, Year));
         }
-
     }
-
-
-
 }

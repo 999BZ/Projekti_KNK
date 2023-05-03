@@ -31,18 +31,12 @@ public class MainController {
 
 
     public void initialize() {
-
-
         Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
 
-
-            WindowSizeUtils.loadWindowSize("loginWindow", rootPane);
-
-
+        WindowSizeUtils.loadWindowSize("loginWindow", rootPane);
 
         // Get the user ID from the preferences
         int userId = prefs.getInt("userId", 0);
-
         // Perform a database query to get the name of the user
         String userNameFromDB = "";
         try {
@@ -75,11 +69,10 @@ public class MainController {
         }
 
         // Set the user name to the label text
-        userName.setText("Welcome "+userNameFromDB);
+        userName.setText("Welcome " + userNameFromDB);
     }
     @FXML
     public void handleWindowClose() {
         WindowSizeUtils.saveWindowSize("loginWindow", rootPane);
     }
-
 }

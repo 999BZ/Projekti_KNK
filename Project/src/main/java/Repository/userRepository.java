@@ -44,7 +44,7 @@ public class userRepository {
             return userRepository.getByEmail(user.getEmail());
         }else if(user instanceof TeacherUser teacher){
             String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position) VALUES (?, ?, ?, ?)";
-            String StudentSql="INSERT INTO Teacher (T_Name, T_Surname, T_Birthdate, T_Phone, T_Address, S_UID) VALUES (?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
+            String TeacherSql = "INSERT INTO Teachers (T_Name, T_Surname, T_Birthdate, T_Phone, T_Address, T_Grade, T_UID) VALUES (?, ?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
 
             try(Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement UserStatement = connection.prepareStatement(UserSql)
@@ -54,16 +54,16 @@ public class userRepository {
                 UserStatement.setString(3, teacher.getSalt());
                 UserStatement.setString(4, teacher.getPosition());
                 UserStatement.executeUpdate();
-                PreparedStatement StudentStatement = connection.prepareStatement(StudentSql);
 
-                StudentStatement.setString(1, teacher.getName());
-                StudentStatement.setString(2, teacher.getSurname());
-                StudentStatement.setString(3, teacher.getBirthdate());
-                StudentStatement.setString(4, teacher.getPhone());
-                StudentStatement.setString(5, teacher.getAddress());
-                StudentStatement.setString(6, teacher.getEmail());
-                StudentStatement.executeUpdate();
-
+                PreparedStatement TeacherStatement = connection.prepareStatement(TeacherSql);
+                TeacherStatement.setString(1, teacher.getName());
+                TeacherStatement.setString(2, teacher.getSurname());
+                TeacherStatement.setString(3, teacher.getBirthdate());
+                TeacherStatement.setString(4, teacher.getPhone());
+                TeacherStatement.setString(5, teacher.getAddress());
+                TeacherStatement.setInt(6, teacher.getYear());
+                TeacherStatement.setString(7, teacher.getEmail());
+                TeacherStatement.executeUpdate();
             }catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }

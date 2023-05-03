@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class RegisterTeachersController{
+public class RegisterTeachersController implements Initializable {
     @FXML
     private TextField txtName;
     @FXML
@@ -25,9 +25,13 @@ public class RegisterTeachersController{
     @FXML
     private TextField txtPhone;
     @FXML
+    private Spinner<Integer> txtYear;
+
+    public void initialize(URL url, ResourceBundle rb) {
+        txtYear.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 12, 0));
+    }
+    @FXML
     private TextField txtAddress;
-
-
     @FXML
     private TextField txtEmail;
 
@@ -41,7 +45,7 @@ public class RegisterTeachersController{
         if(email.matches(emailRegex)){
             if(!this.pwdPassword.getText().isEmpty() && !this.txtName.getText().isEmpty() && !this.txtSurname.getText().isEmpty() &&
                     !(this.DateBirthdate.getValue() == null) && !this.txtPhone.getText().isEmpty() &&
-                    !this.txtAddress.getText().isEmpty()){
+                    !this.txtAddress.getText().isEmpty() && this.txtYear.getValue() != 0){
                 String password = this.pwdPassword.getText();
                 if(password.length() > 7){
                     String name = this.txtName.getText();
@@ -51,10 +55,11 @@ public class RegisterTeachersController{
                     String birthdate = tempBirthdate.format(formatter);
                     String phone = this.txtPhone.getText();
                     String address = this.txtAddress.getText();
+                    int year = this.txtYear.getValue();
                     System.out.println("ALL GOOD");
-                    try{
+                    try {
                         System.out.println("Register -> AuthService");
-                        User user = UserAuthService.register(name, surname, birthdate, phone, address, 0, email, password,"Teacher");
+                        User user = UserAuthService.register(name, surname, birthdate, phone, address, year, email, password,"Teacher");
                         if (user != null){
                             System.out.println("User Registered");
                             this.txtName.setText("");
@@ -62,11 +67,12 @@ public class RegisterTeachersController{
                             this.DateBirthdate.setValue(null);
                             this.txtPhone.setText("");
                             this.txtAddress.setText("");
+                            this.txtYear.getValueFactory().setValue(0);
                             this.txtEmail.setText("");
                             this.pwdPassword.setText("");
                         }
                     }catch (SQLException sqlException) {
-
+                        System.out.println("Teacher couldn't register.");
                     }
                 }else{
                     System.out.println("Password is too short!");
@@ -74,7 +80,6 @@ public class RegisterTeachersController{
             }else{
                 System.out.println("Please fill all text fields");
             }
-
         }else{
             System.out.println("Please check your email and try again!");
         }
@@ -88,6 +93,7 @@ public class RegisterTeachersController{
         this.DateBirthdate.setValue(null);
         this.txtPhone.setText("");
         this.txtAddress.setText("");
+        this.txtYear.getValueFactory().setValue(0);
         this.txtEmail.setText("");
         this.pwdPassword.setText("");
     }
@@ -103,6 +109,4 @@ public class RegisterTeachersController{
         // Save the current window size to preferences when it is closed
         WindowSizeUtils.saveWindowSize("loginWindow", rootPane);
     }
-
-
 }

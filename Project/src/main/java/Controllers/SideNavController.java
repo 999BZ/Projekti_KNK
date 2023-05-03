@@ -66,7 +66,18 @@ public class SideNavController  {
 
         }
 
-
+        @FXML
+        private void goToTeachers() {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Teachers.fxml"));
+            try {
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) navbar.getScene().getWindow();
+                stage.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
 
 }

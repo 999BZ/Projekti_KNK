@@ -34,7 +34,7 @@
             </AnchorPane>
             <AnchorPane>
                <children>
-                  <Button fx:id="studentsButton1" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToStudents" prefHeight="29.0" prefWidth="129.0" styleClass="nav-button" text="Teachers" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
+                  <Button fx:id="studentsButton1" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToTeachers" prefHeight="29.0" prefWidth="129.0" styleClass="nav-button" text="Teachers" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                            <image>

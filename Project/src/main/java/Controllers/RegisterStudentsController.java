@@ -58,7 +58,7 @@ public class RegisterStudentsController implements Initializable {
                     String address = this.txtAddress.getText();
                     int year = this.txtYear.getValue();
                     System.out.println("ALL GOOD");
-                    try{
+                    try {
                         System.out.println("Register -> AuthService");
                         User user = UserAuthService.register(name, surname, birthdate, phone, address, year, email, password,"Student");
                         if (user != null){
@@ -73,7 +73,7 @@ public class RegisterStudentsController implements Initializable {
                             this.pwdPassword.setText("");
                         }
                     }catch (SQLException sqlException) {
-
+                        System.out.println("Student couldn't register.");
                     }
                 }else{
                     System.out.println("Password is too short!");
@@ -81,7 +81,6 @@ public class RegisterStudentsController implements Initializable {
             }else{
                 System.out.println("Please fill all text fields");
             }
-
         }else{
             System.out.println("Please check your email and try again!");
         }
