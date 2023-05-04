@@ -56,7 +56,7 @@
 .spec-button:pressed{
     -fx-background-color: linear-gradient(#5264ae, #8a98ff);
 }
-.courses #coursesButton,.students #studentsButton,.assignments #assignmentsButton  {
+.courses #coursesButton,.students #studentsButton,.assignments #assignmentsButton, .teachers #teachersButton {
     -fx-border-width: 3px;
     -fx-border-radius: 50;
     -fx-border-color: #e5f4f9;
@@ -112,3 +112,19 @@
     -fx-padding: 10px 20px;
     -fx-font-size: 20;
 }
+
+.confirmation-dialog {
+    -fx-background-color: white;
+    -fx-border-color: #284c97;
+    -fx-border-width: 2px;
+}
+
+.confirmation-dialog .header-panel {
+    -fx-background-color: #284c97;
+    -fx-text-fill: white;
+}
+
+.confirmation-dialog .content-panel {
+    -fx-padding: 20px;
+}
+

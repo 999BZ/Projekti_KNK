@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -13,9 +15,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SideNavController  {
+
     @FXML
     private VBox navbar;
     private Stage stage;
@@ -78,6 +82,31 @@ public class SideNavController  {
                 e.printStackTrace();
             }
         }
+
+    @FXML
+    private void goToLogin() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Log Out");
+        alert.setContentText("Do you want to end your session and log out?");
+        alert.getDialogPane().getStyleClass().add("confirmation-dialog");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Login.fxml"));
+            try {
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) navbar.getScene().getWindow();
+                stage.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // User chose cancel, do nothing
+        }
+    }
+
 
 
 }

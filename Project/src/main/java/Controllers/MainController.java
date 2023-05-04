@@ -47,7 +47,7 @@ public class MainController {
             PreparedStatement statement = connection.prepareStatement("SELECT COALESCE( a.a_name, t.t_name, s.s_name) AS name\n" +
                     "FROM users u\n" +
                     "LEFT JOIN admins a ON u.u_id = a.a_uid\n" +
-                    "LEFT JOIN teacher t ON u.u_id = t.t_uid\n" +
+                    "LEFT JOIN teachers t ON u.u_id = t.t_uid\n" +
                     "LEFT JOIN students s ON u.u_id = s.s_uid\n" +
                     "WHERE u.u_id = ?\n");
             statement.setInt(1, userId);

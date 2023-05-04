@@ -77,7 +77,7 @@ public class TeachersController {
             String name = rs.getString("T_Name");
             String surname = rs.getString("T_Surname");
             String birthdate = rs.getString("T_Birthdate");
-            int year = rs.getInt("T_GLevel");
+            int year = rs.getInt("T_Grade");
             String phone = rs.getString("T_Phone");
             String address = rs.getString("T_Address");
             int gradeLevel = rs.getInt("T_Grade");
