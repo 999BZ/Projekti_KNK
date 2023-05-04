@@ -24,7 +24,7 @@
                   <TableColumn fx:id="address" prefWidth="61.5999755859375" text="Address" />
                </columns>
             </TableView>
-            <Button fx:id="addStudentButton" layoutX="529.0" layoutY="423.0" mnemonicParsing="false" onAction="#goToAddStudents" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Teacher" />
+            <Button fx:id="addStudentButton" layoutX="529.0" layoutY="423.0" mnemonicParsing="false" onAction="#goToAddStudents" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Student" />
          </children>
       </AnchorPane>
    </center>

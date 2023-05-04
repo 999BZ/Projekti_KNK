@@ -98,18 +98,6 @@ public class RegisterStudentsController implements Initializable {
         this.txtEmail.setText("");
         this.pwdPassword.setText("");
     }
-    @FXML
-    private BorderPane rootPane;
-    @FXML
-    public void initialize() {
-        // Load the previous window size from preferences
-        WindowSizeUtils.loadWindowSize("loginWindow", rootPane);
-    }
-    @FXML
-    public void handleWindowClose() {
-        // Save the current window size to preferences when it is closed
-        WindowSizeUtils.saveWindowSize("loginWindow", rootPane);
-    }
 
 
 }
