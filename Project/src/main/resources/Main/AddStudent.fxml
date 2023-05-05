@@ -20,7 +20,7 @@
         <fx:include source="SideNav.fxml" styleClass="students" />
     </left>
     <center>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="600.0" stylesheets="@../CSS/style.css">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="637.0" stylesheets="@../CSS/style.css">
             <children>
                 <AnchorPane layoutX="152.0" layoutY="8.0" prefHeight="461.0" prefWidth="295.0" styleClass="card" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="8.0">
                     <children>
@@ -111,17 +111,17 @@
                         </AnchorPane>
                             </children>
                         </GridPane>
-                  <Label layoutX="70.0" prefHeight="22.0" prefWidth="154.0" styleClass="card-header" text="Register a Student">
+                  <Label layoutX="89.0" prefHeight="37.0" prefWidth="154.0" styleClass="card-header" text="Register a Student">
                      <font>
                         <Font name="Microsoft Tai Le" size="14.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="profilePic" fitHeight="84.0" fitWidth="135.0" layoutX="105.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profilePic" fitHeight="84.0" fitWidth="135.0" layoutX="124.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/person.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="100.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic" />
+                  <Button layoutX="119.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic" />
                     </children>
                 </AnchorPane>
             </children>

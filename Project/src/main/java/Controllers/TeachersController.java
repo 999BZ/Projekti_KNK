@@ -78,7 +78,6 @@ public class TeachersController {
             String birthdate = rs.getString("T_Birthdate");
             String phone = rs.getString("T_Phone");
             String address = rs.getString("T_Address");
-            int gradeLevel = rs.getInt("T_Grade");
             String email = rs.getString("email");
             String salted_password = rs.getString("salted_password");
             String salt = rs.getString("salt");

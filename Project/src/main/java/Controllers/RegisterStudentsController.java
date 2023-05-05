@@ -148,6 +148,7 @@ public class RegisterStudentsController implements Initializable {
         this.txtYear.getValueFactory().setValue(0);
         this.txtEmail.setText("");
         this.pwdPassword.setText("");
+        this.profilePic.setImage(null);
     }
 
 

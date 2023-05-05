@@ -38,7 +38,6 @@ public class LoginController {
             else {
                 Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
                 preferences.putInt("userId", user.getID());
-                preferences.put("name", user.getEmail());
                 isLoginSuccessful = true;
             }
             System.out.println("User is correct!");

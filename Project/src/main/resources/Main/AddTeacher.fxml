@@ -4,8 +4,9 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -17,11 +18,9 @@
     <center>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
             <children>
-                <AnchorPane layoutX="168.0" styleClass="card" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="168.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane layoutX="168.0" layoutY="-33.0" prefHeight="475.0" prefWidth="264.0" styleClass="card" AnchorPane.bottomAnchor="-32.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="168.0" AnchorPane.topAnchor="-33.0">
                     <children>
-                        <Button fx:id="registerBtnT" layoutX="62.0" layoutY="357.0" mnemonicParsing="false" onAction="#registerClick" styleClass="spec-button" text="Register" AnchorPane.bottomAnchor="17.4" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="142.8" AnchorPane.topAnchor="357.0" />
-                        <Button fx:id="cancelBtnT" layoutX="150.0" layoutY="357.0" mnemonicParsing="false" onAction="#cancelClick" styleClass="spec-button" text="Cancel" />
-                        <GridPane layoutX="3.0" layoutY="69.0" prefHeight="274.0" prefWidth="258.0" AnchorPane.bottomAnchor="56.60000000000002" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="2.6000000000000227" AnchorPane.topAnchor="69.0">
+                        <GridPane layoutX="14.0" layoutY="155.0" prefHeight="319.0" prefWidth="230.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="155.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -37,6 +36,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
                                 <Label text="Name:" GridPane.rowIndex="1" />
@@ -69,12 +69,7 @@
                                         <TextField fx:id="txtAddress" prefHeight="28.0" prefWidth="112.0" promptText="Address..." styleClass="textInput" />
                                     </children>
                                 </AnchorPane>
-                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="46.0" text="Year:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                <AnchorPane prefHeight="36.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                    <children>
-                                        <Spinner fx:id="txtYear" layoutX="18.0" prefHeight="28.0" prefWidth="112.0" />
-                                    </children>
-                                </AnchorPane>
+                                <AnchorPane prefHeight="36.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                 <Label text="Email:" GridPane.rowIndex="7" />
                                 <AnchorPane GridPane.rowIndex="8">
                                     <children>
@@ -91,13 +86,29 @@
                                         <PasswordField fx:id="pwdPassword" layoutX="17.0" layoutY="1.0" prefHeight="28.0" prefWidth="112.0" promptText="*********" styleClass="textInput" />
                                     </children>
                                 </AnchorPane>
+                        <AnchorPane GridPane.rowIndex="10">
+                           <children>
+                                    <Button fx:id="registerBtnT" layoutX="40.0" layoutY="1.0" mnemonicParsing="false" onAction="#registerClick" styleClass="spec-button" text="Register" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="10">
+                           <children>
+                                    <Button fx:id="cancelBtnT" layoutX="44.0" layoutY="1.0" mnemonicParsing="false" onAction="#cancelClick" styleClass="spec-button" text="Cancel" />
+                           </children>
+                        </AnchorPane>
                             </children>
                         </GridPane>
-                        <Label layoutX="48.0" layoutY="14.0" styleClass="card-header" text="Add a Teacher" AnchorPane.bottomAnchor="334.8" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="48.80000000000001" AnchorPane.topAnchor="14.0">
+                        <Label layoutX="59.0" prefHeight="26.0" prefWidth="156.0" styleClass="card-header" text="Register a Teacher">
                             <font>
-                                <Font size="22.0" />
+                                <Font name="Microsoft New Tai Lue" size="14.0" />
                             </font>
                         </Label>
+                  <ImageView fx:id="profilePic" fitHeight="87.0" fitWidth="134.0" layoutX="94.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/person.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="91.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic" />
                     </children>
                 </AnchorPane>
             </children>

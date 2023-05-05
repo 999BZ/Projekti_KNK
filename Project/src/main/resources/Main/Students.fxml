@@ -28,10 +28,4 @@
          </children>
       </AnchorPane>
    </center>
-   <right>
-      <AnchorPane BorderPane.alignment="CENTER" />
-   </right>
-   <bottom>
-      <AnchorPane BorderPane.alignment="CENTER" />
-   </bottom>
 </BorderPane>

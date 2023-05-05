@@ -7,15 +7,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class RegisterTeachersController  {
+    private Stage primaryStage;
     @FXML
     private TextField txtName;
     @FXML
@@ -31,10 +38,50 @@ public class RegisterTeachersController  {
 
     @FXML
     private PasswordField pwdPassword;
+    @FXML
+    private ImageView profilePic;
     private String imagePath;
+
+    File selectedFile;
+    @FXML
+    private void handleImageUploadButton(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+        );
+        selectedFile = fileChooser.showOpenDialog(primaryStage);
+        if (selectedFile != null) {
+            Image newImage = new Image(selectedFile.toURI().toString());
+            profilePic.setImage(newImage);
+        }
+    }
 
     @FXML
     private void registerClick(ActionEvent e){
+        if (selectedFile != null) {
+            try {
+                String fileName = selectedFile.getName();
+                String extension = fileName.substring(fileName.lastIndexOf("."));
+                String newFileName = UUID.randomUUID().toString() + extension;
+                imagePath = "src/main/resources/Images/ProfilePics/" + newFileName;
+                File destination = new File(imagePath);
+                InputStream source = new FileInputStream(selectedFile);
+                OutputStream output = new FileOutputStream(destination);
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = source.read(buffer)) > 0) {
+                    output.write(buffer, 0, length);
+                }
+                source.close();
+                output.close();
+                System.out.println("Writing file to " + imagePath);
+            } catch (IOException ex) {
+                System.out.println("Error saving image: " + ex.getMessage());
+            }
+        }
+
+
         String email = this.txtEmail.getText();
         String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
         if(email.matches(emailRegex)){

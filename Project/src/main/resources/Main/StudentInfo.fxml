@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="735.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StudentInfoController">
+
+<left>
+<fx:include source="SideNav.fxml" styleClass="students" />
+</left>
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="510.0" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
+         <children>
+            <TableView layoutX="331.0" layoutY="28.0" prefHeight="374.0" prefWidth="148.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Subject" />
+                <TableColumn prefWidth="75.0" text="Grade" />
+              </columns>
+            </TableView>
+            <GridPane layoutX="26.0" layoutY="8.0" prefHeight="374.0" prefWidth="285.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="173.6000244140625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="0.0" prefWidth="27.199975585937494" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="fullName" styleClass="profile-info" text="Full Name" GridPane.rowIndex="6" />
+                  <Label prefHeight="19.0" prefWidth="154.0" styleClass="profile-info" text="Parent's Phone Number:" GridPane.rowIndex="7" />
+                  <Label fx:id="phone" text="Phone" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label styleClass="profile-info" text="Grade Level:" GridPane.rowIndex="8" />
+                  <Label fx:id="gradeLvl" text="Grade" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <AnchorPane prefHeight="130.0" prefWidth="139.0" GridPane.rowIndex="1" GridPane.rowSpan="4">
+                     <children>
+                        <ImageView fx:id="profilePic" fitHeight="127.0" fitWidth="124.0" layoutX="68.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" styleClass="profile-pic">
+                           <image>
+                              <Image url="@../Images/person.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="77.0" layoutY="-19.0" styleClass="card-header" text="Student Info" />
+                     </children>
+                  </AnchorPane>
+                  <Label styleClass="profile-info" text="Email:" GridPane.rowIndex="9" />
+                  <Label fx:id="email" text="Email" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Label styleClass="profile-info" text="Birthday:" GridPane.rowIndex="10" />
+                  <Label fx:id="birthday" text="bd" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <Label styleClass="profile-info" text="Address:" GridPane.rowIndex="11" />
+                  <Label fx:id="address" text="address" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
