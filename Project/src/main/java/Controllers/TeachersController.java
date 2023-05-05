@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.StudentUser;
+import Models.TeacherUser;
 import Services.ConnectionUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,7 +39,7 @@ public class TeachersController {
     }
 
     @FXML
-    private TableView<StudentUser> studentsTable;
+    private TableView<TeacherUser> teachersTable;
 
     @FXML
     private TableColumn<StudentUser, String> name;
@@ -49,8 +50,6 @@ public class TeachersController {
     @FXML
     private TableColumn<StudentUser, String> birthdate;
 
-    @FXML
-    private TableColumn<StudentUser, Integer> year;
     @FXML
     private TableColumn<StudentUser, Integer> id;
 
@@ -63,12 +62,12 @@ public class TeachersController {
     @FXML
     private TableColumn<StudentUser, String> address;
 
-    private ObservableList<StudentUser> studentsList = FXCollections.observableArrayList();
+    private ObservableList<TeacherUser> teachersList = FXCollections.observableArrayList();
     public void initialize() throws SQLException {
         Connection conn = ConnectionUtil.getConnection();
-        PreparedStatement stmt =  conn.prepareStatement("SELECT Teachers.T_id, Teachers.T_Name, Teachers.t_Surname, Teachers.T_Birthdate, Teachers.T_Phone, Teachers.T_Address, Teachers.T_Grade, Users.email, Users.salted_password, Users.Salt, Users.u_position\n" +
-                "            FROM Teachers\n" +
-                "            INNER JOIN Users ON Teachers.T_UID = Users.U_ID;");
+        PreparedStatement stmt =  conn.prepareStatement("SELECT Teachers.T_id, Teachers.T_Name, Teachers.t_Surname, Teachers.T_Birthdate, Teachers.T_Phone, Teachers.T_Address, Users.email, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
+                "FROM Teachers\n" +
+                "INNER JOIN Users ON Teachers.T_UID = Users.U_ID;");
         ResultSet rs = stmt.executeQuery();
 
         // Loop through the result set and create a Student object for each row
@@ -77,7 +76,6 @@ public class TeachersController {
             String name = rs.getString("T_Name");
             String surname = rs.getString("T_Surname");
             String birthdate = rs.getString("T_Birthdate");
-            int year = rs.getInt("T_Grade");
             String phone = rs.getString("T_Phone");
             String address = rs.getString("T_Address");
             int gradeLevel = rs.getInt("T_Grade");
@@ -85,20 +83,20 @@ public class TeachersController {
             String salted_password = rs.getString("salted_password");
             String salt = rs.getString("salt");
             String position = rs.getString("u_position");
+            String profile_pics = rs.getString("u_profileimg");
 
-            StudentUser student = new StudentUser(id,  email,  salted_password,  salt,  position,  name,  surname,  birthdate,  phone,  address, year);
-            studentsList.add(student);
+            TeacherUser teacher = new TeacherUser(id,  email,  salted_password,  salt,  position, profile_pics,  name,  surname,  birthdate,  phone,  address);
+            teachersList.add(teacher);
 
 
             this.name.setCellValueFactory(new PropertyValueFactory<>("Name"));
             this.surname.setCellValueFactory(new PropertyValueFactory<>("Surname"));
             this.birthdate.setCellValueFactory(new PropertyValueFactory<>("Birthdate"));
-            this.year.setCellValueFactory(new PropertyValueFactory<>("Year"));
             this.phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
             this.email.setCellValueFactory(new PropertyValueFactory<>("Email"));
             this.address.setCellValueFactory(new PropertyValueFactory<>("Address"));
 
-            studentsTable.setItems(studentsList);
+            teachersTable.setItems(teachersList);
 
 
         }

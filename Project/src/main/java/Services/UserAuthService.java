@@ -23,7 +23,7 @@ public class UserAuthService {
         return null;
     }
 
-    public static User register(String Name, String Surname, String Birthdate, String Phone, String Address, int Year, String Email, String password, String Position) throws SQLException {
+    public static User registerStudent(String Name, String Surname, String Birthdate, String Phone, String Address, int Year, String Email, String password, String Position, String ProfileImg) throws SQLException {
         User CheckUser = userRepository.getByEmail(Email);
         if(CheckUser != null){
             System.out.println("User already exists.");
@@ -32,10 +32,21 @@ public class UserAuthService {
         String salt = PasswordHasher.generateSalt();
         String saltedPasswordHash = PasswordHasher.generateSaltedHash(password,salt);
         System.out.println("Trying to Register!");
-        if(Position.equals("Student")) {
-            return userRepository.insert(new StudentUser(1,Email, saltedPasswordHash, salt, "Student", Name, Surname, Birthdate, Phone, Address, Year));
-        }else{
-            return userRepository.insert(new TeacherUser(1,Email, saltedPasswordHash, salt, "Teacher", Name, Surname, Birthdate, Phone, Address, Year));
+            return userRepository.insert(new StudentUser(1,Email, saltedPasswordHash, salt, "Student",ProfileImg, Name, Surname, Birthdate, Phone, Address, Year));
+
+    }
+    public static User registerTeacher(String Name, String Surname, String Birthdate, String Phone, String Address, String Email, String password, String Position, String ProfileImg) throws SQLException {
+        User CheckUser = userRepository.getByEmail(Email);
+        if(CheckUser != null){
+            System.out.println("User already exists.");
+            return null;
         }
+        String salt = PasswordHasher.generateSalt();
+        String saltedPasswordHash = PasswordHasher.generateSaltedHash(password,salt);
+        System.out.println("Trying to Register!");
+
+
+            return userRepository.insert(new TeacherUser(1,Email, saltedPasswordHash, salt, "Teacher", ProfileImg, Name,  Surname, Birthdate, Phone, Address));
+
     }
 }

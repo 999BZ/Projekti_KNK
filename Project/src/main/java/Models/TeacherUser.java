@@ -7,16 +7,14 @@ public class TeacherUser extends User {
     private String Birthdate;
     private String Phone;
     private String Address;
-    private int Year;
 
-    public TeacherUser(int ID, String email, String saltedPassword, String salt, String position, String name, String surname, String birthdate, String phone, String address, int Year) {
-        super(ID, email, saltedPassword, salt, position);
+    public TeacherUser(int ID, String email, String saltedPassword, String salt, String position, String profilePic, String name, String surname, String birthdate, String phone, String address) {
+        super(ID, email, saltedPassword, salt, position, profilePic);
         Name = name;
         Surname = surname;
         Birthdate = birthdate;
         Phone = phone;
         Address = address;
-        this.Year = Year;
     }
 
     public String getName() {
@@ -59,11 +57,5 @@ public class TeacherUser extends User {
         Address = address;
     }
 
-    public int getYear() {
-        return Year;
-    }
 
-    public void setYear(int year) {
-        Year = year;
-    }
 }

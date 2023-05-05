@@ -54,7 +54,7 @@ public class StudentsController {
     private ObservableList<StudentUser> studentsList = FXCollections.observableArrayList();
     public void initialize() throws SQLException {
         Connection conn = ConnectionUtil.getConnection();
-        PreparedStatement stmt =  conn.prepareStatement("SELECT Students.S_id, Students.S_Name, Students.S_Surname, Students.S_Birthdate, Students.S_Phone, Students.S_Address, Students.S_GLevel, Users.email, Users.salted_password, Users.Salt, Users.u_position\n" +
+        PreparedStatement stmt =  conn.prepareStatement("SELECT Students.S_id, Students.S_Name, Students.S_Surname, Students.S_Birthdate, Students.S_Phone, Students.S_Address, Students.S_GLevel, Users.email, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
                 "            FROM Students\n" +
                 "            INNER JOIN Users ON Students.S_UID = Users.U_ID;");
         ResultSet rs = stmt.executeQuery();
@@ -73,8 +73,9 @@ public class StudentsController {
             String salted_password = rs.getString("salted_password");
             String salt = rs.getString("salt");
             String position = rs.getString("u_position");
+            String profile_pic = rs.getString("u_profileimg");
 
-            StudentUser student = new StudentUser(id,  email,  salted_password,  salt,  position,  name,  surname,  birthdate,  phone,  address, year);
+            StudentUser student = new StudentUser(id,  email,  salted_password,  salt,  position, profile_pic,  name,  surname,  birthdate,  phone,  address, year);
             studentsList.add(student);
 
 

@@ -7,13 +7,15 @@ public class User {
     private String SaltedPassword;
     private String Salt;
     private String Position;
+    private String ProfileImg;
 
-    public User(int ID, String email, String saltedPassword, String salt, String position) {
+    public User(int ID, String email, String saltedPassword, String salt, String position, String profileImg) {
         this.ID = ID;
         Email = email;
         SaltedPassword = saltedPassword;
         Salt = salt;
         Position = position;
+        ProfileImg = profileImg;
     }
 
     public int getID() {
@@ -54,6 +56,14 @@ public class User {
 
     public void setPosition(String position) {
         Position = position;
+    }
+
+    public String getProfileImg() {
+        return ProfileImg;
+    }
+
+    public void setProfileImg(String profileImg) {
+        ProfileImg = profileImg;
     }
 
 }

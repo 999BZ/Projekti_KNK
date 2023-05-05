@@ -13,15 +13,14 @@
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="662.0" stylesheets="@../CSS/style.css">
          <children>
-            <TableView fx:id="studentsTable" layoutX="19.0" prefHeight="412.0" prefWidth="623.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="teachersTable" layoutX="19.0" prefHeight="412.0" prefWidth="526.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <columns>
-                  <TableColumn fx:id="name" prefWidth="65.60003662109375" text="Name" />
-                  <TableColumn fx:id="surname" prefWidth="67.99999237060547" text="Surname" />
-                  <TableColumn fx:id="birthdate" prefWidth="68.0" text="Birthday" />
-                  <TableColumn fx:id="year" prefWidth="84.80001831054688" text="Grade Level" />
-                  <TableColumn fx:id="phone" prefWidth="104.7999267578125" text="Phone Number" />
-                  <TableColumn fx:id="email" prefWidth="163.20004272460938" text="Email" />
-                  <TableColumn fx:id="address" prefWidth="61.5999755859375" text="Address" />
+                  <TableColumn fx:id="name" prefWidth="74.39995956420898" text="Name" />
+                  <TableColumn fx:id="surname" prefWidth="72.0" text="Surname" />
+                  <TableColumn fx:id="birthdate" prefWidth="64.79998779296875" text="Birthday" />
+                  <TableColumn fx:id="phone" prefWidth="131.20005798339844" text="Phone Number" />
+                  <TableColumn fx:id="email" prefWidth="192.79998779296875" text="Email" />
+                  <TableColumn fx:id="address" prefWidth="91.20001220703125" text="Address" />
                </columns>
             </TableView>
             <Button fx:id="addStudentButton" layoutX="529.0" layoutY="423.0" mnemonicParsing="false" onAction="#goToAddTeachers" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Teacher" />

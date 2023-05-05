@@ -15,7 +15,7 @@ public class userRepository {
 
     public static User insert(User user) throws SQLException {
         if(user instanceof StudentUser student){
-            String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position) VALUES (?, ?, ?, ?)";
+            String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position, U_ProfileImg) VALUES (?, ?, ?, ?, ?)";
             String StudentSql="INSERT INTO Students (S_Name, S_Surname, S_Birthdate, S_Phone, S_Address, S_GLevel, S_UID) VALUES (?, ?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
 
             try(Connection connection = ConnectionUtil.getConnection();
@@ -25,6 +25,7 @@ public class userRepository {
                 UserStatement.setString(2, student.getSaltedPassword());
                 UserStatement.setString(3, student.getSalt());
                 UserStatement.setString(4, student.getPosition());
+                UserStatement.setString(5, student.getProfileImg());
                 UserStatement.executeUpdate();
                 PreparedStatement StudentStatement = connection.prepareStatement(StudentSql);
 
@@ -43,8 +44,8 @@ public class userRepository {
 
             return userRepository.getByEmail(user.getEmail());
         }else if(user instanceof TeacherUser teacher){
-            String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position) VALUES (?, ?, ?, ?)";
-            String TeacherSql = "INSERT INTO Teachers (T_Name, T_Surname, T_Birthdate, T_Phone, T_Address, T_Grade, T_UID) VALUES (?, ?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
+            String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position,  U_ProfileImg) VALUES (?, ?, ?, ?, ?)";
+            String TeacherSql = "INSERT INTO Teachers (T_Name, T_Surname, T_Birthdate, T_Phone, T_Address, T_UID) VALUES (?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
 
             try(Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement UserStatement = connection.prepareStatement(UserSql)
@@ -53,6 +54,8 @@ public class userRepository {
                 UserStatement.setString(2, teacher.getSaltedPassword());
                 UserStatement.setString(3, teacher.getSalt());
                 UserStatement.setString(4, teacher.getPosition());
+                UserStatement.setString(5, teacher.getProfileImg());
+
                 UserStatement.executeUpdate();
 
                 PreparedStatement TeacherStatement = connection.prepareStatement(TeacherSql);
@@ -61,8 +64,7 @@ public class userRepository {
                 TeacherStatement.setString(3, teacher.getBirthdate());
                 TeacherStatement.setString(4, teacher.getPhone());
                 TeacherStatement.setString(5, teacher.getAddress());
-                TeacherStatement.setInt(6, teacher.getYear());
-                TeacherStatement.setString(7, teacher.getEmail());
+                TeacherStatement.setString(6, teacher.getEmail());
                 TeacherStatement.executeUpdate();
             }catch (SQLException ex) {
                 System.out.println(ex.getMessage());
@@ -86,7 +88,8 @@ public class userRepository {
                 String saltedHash = resultSet.getString("Salted_password");
                 String salt = resultSet.getString("Salt");
                 String User_Position = resultSet.getString("U_Position");
-                return new User(ID, Email, saltedHash, salt,User_Position);
+                String User_ProfileImg = resultSet.getString("U_ProfileImg");
+                return new User(ID, Email, saltedHash, salt,User_Position, User_ProfileImg);
             } else {
                 return null;
             }

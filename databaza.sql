@@ -9,7 +9,7 @@ CREATE TABLE Users(
     Salted_Password VARCHAR(256),
     Salt VARCHAR(44) NOT NULL,
     U_Position VARCHAR (50),
-	U_ProfileImg VARCHAR(50),
+	U_ProfileImg VARCHAR(100),
     PRIMARY KEY (U_ID)
 );
 
