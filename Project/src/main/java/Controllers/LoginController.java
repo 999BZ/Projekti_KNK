@@ -28,6 +28,7 @@ public class LoginController {
     private void loginClick(ActionEvent e) throws IOException {
         String email = this.txtEmail.getText();
         String password = this.pwdPassword.getText();
+        String position = "Admin";
         try{
             System.out.println("Log-in -> UserAuth");
             User user = UserAuthService.login(email,password);
@@ -39,13 +40,21 @@ public class LoginController {
                 Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
                 preferences.putInt("userId", user.getID());
                 isLoginSuccessful = true;
+                position = user.getPosition();
             }
             System.out.println("User is correct!");
         }catch (SQLException sqlException) {
 
         }
         if (isLoginSuccessful) {
-            Parent homePageParent = FXMLLoader.load(getClass().getResource("/Main/Home.fxml"));
+            Parent homePageParent;
+            if(position == "Teacher"){
+                homePageParent = FXMLLoader.load(getClass().getResource("/Main/TeacherHome.fxml"));
+            } else if (position == "Student"){
+                homePageParent = FXMLLoader.load(getClass().getResource("/Main/StudentHome.fxml"));
+            } else {
+                homePageParent = FXMLLoader.load(getClass().getResource("/Main/Home.fxml"));
+            }
             Scene homePageScene = new Scene(homePageParent);
 
             Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();

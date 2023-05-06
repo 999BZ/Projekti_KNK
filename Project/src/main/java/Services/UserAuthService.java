@@ -46,7 +46,7 @@ public class UserAuthService {
         System.out.println("Trying to Register!");
 
 
-            return userRepository.insert(new TeacherUser(1,Email, saltedPasswordHash, salt, "Teacher", ProfileImg, Name,  Surname, Birthdate, Phone, Address));
+        return userRepository.insert(new TeacherUser(1,Email, saltedPasswordHash, salt, "Teacher", ProfileImg, Name,  Surname, Birthdate, Phone, Address));
 
     }
 }
