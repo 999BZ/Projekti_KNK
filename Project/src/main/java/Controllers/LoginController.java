@@ -47,15 +47,9 @@ public class LoginController {
 
         }
         if (isLoginSuccessful) {
-            Parent homePageParent;
-            if(position == "Teacher"){
-                homePageParent = FXMLLoader.load(getClass().getResource("/Main/TeacherHome.fxml"));
-            } else if (position == "Student"){
-                homePageParent = FXMLLoader.load(getClass().getResource("/Main/StudentHome.fxml"));
-            } else {
-                homePageParent = FXMLLoader.load(getClass().getResource("/Main/Home.fxml"));
-            }
-            Scene homePageScene = new Scene(homePageParent);
+            Parent home = FXMLLoader.load(getClass().getResource("/Main/Home.fxml"));
+
+            Scene homePageScene = new Scene(home,WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
 
             Stage window = (Stage) ((Node) e.getSource()).getScene().getWindow();
 

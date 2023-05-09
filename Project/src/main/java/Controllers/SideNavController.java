@@ -1,5 +1,6 @@
 package Controllers;
 
+import Services.WindowSizeUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,7 +34,7 @@ public class SideNavController  {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Home.fxml"));
             try {
                 Parent root = loader.load();
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
                 Stage stage = (Stage) navbar.getScene().getWindow();
                 stage.setScene(scene);
             } catch (IOException e) {
@@ -47,7 +48,7 @@ public class SideNavController  {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Courses.fxml"));
             try {
                 Parent root = loader.load();
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root,WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
                 Stage stage = (Stage) navbar.getScene().getWindow();
                 stage.setScene(scene);
             } catch (IOException e) {
@@ -61,7 +62,7 @@ public class SideNavController  {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Students.fxml"));
             try {
                 Parent root = loader.load();
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root,WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
                 Stage stage = (Stage) navbar.getScene().getWindow();
                 stage.setScene(scene);
             } catch (IOException e) {
@@ -75,7 +76,7 @@ public class SideNavController  {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Teachers.fxml"));
             try {
                 Parent root = loader.load();
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
                 Stage stage = (Stage) navbar.getScene().getWindow();
                 stage.setScene(scene);
             } catch (IOException e) {
@@ -96,7 +97,7 @@ public class SideNavController  {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Login.fxml"));
             try {
                 Parent root = loader.load();
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root,WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
                 Stage stage = (Stage) navbar.getScene().getWindow();
                 stage.setScene(scene);
             } catch (IOException e) {

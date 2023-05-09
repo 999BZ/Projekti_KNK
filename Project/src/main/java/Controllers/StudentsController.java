@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.StudentUser;
 import Services.ConnectionUtil;
+import Services.WindowSizeUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -108,8 +109,8 @@ public class StudentsController {
             Parent root = loader.load();
             StudentInfoController controller = loader.getController();
             controller.setStudent(student);
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
+            Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
+            Stage stage = (Stage) rootPane.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -124,7 +125,7 @@ public class StudentsController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/AddStudent.fxml"));
         try {
             Parent root = loader.load();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
             Stage stage = (Stage) rootPane.getScene().getWindow();
             stage.setScene(scene);
         } catch (IOException e) {
