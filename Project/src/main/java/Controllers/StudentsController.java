@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.StudentUser;
+import Models.TeacherStudent;
 import Services.ConnectionUtil;
 import Services.WindowSizeUtils;
 import javafx.collections.FXCollections;
@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,42 +16,39 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.sql.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class StudentsController {
     @FXML
     private BorderPane rootPane;
 
     @FXML
-    private TableView<StudentUser> studentsTable;
+    private TableView<TeacherStudent> studentsTable;
 
     @FXML
-    private TableColumn<StudentUser, String> name;
+    private TableColumn<TeacherStudent, String> name;
 
     @FXML
-    private TableColumn<StudentUser, String> surname;
+    private TableColumn<TeacherStudent, String> surname;
 
     @FXML
-    private TableColumn<StudentUser, String> birthdate;
+    private TableColumn<TeacherStudent, String> birthdate;
 
     @FXML
-    private TableColumn<StudentUser, Integer> year;
+    private TableColumn<TeacherStudent, Integer> year;
     @FXML
-    private TableColumn<StudentUser, Integer> id;
+    private TableColumn<TeacherStudent, Integer> id;
 
     @FXML
-    private TableColumn<StudentUser, String> phone;
+    private TableColumn<TeacherStudent, String> phone;
 
     @FXML
-    private TableColumn<StudentUser, String> email;
+    private TableColumn<TeacherStudent, String> email;
 
     @FXML
-    private TableColumn<StudentUser, String> address;
+    private TableColumn<TeacherStudent, String> address;
 
-    private ObservableList<StudentUser> studentsList = FXCollections.observableArrayList();
+    private ObservableList<TeacherStudent> studentsList = FXCollections.observableArrayList();
 
     public void initialize() throws SQLException {
         Connection conn = ConnectionUtil.getConnection();
@@ -77,7 +73,7 @@ public class StudentsController {
             String position = rs.getString("u_position");
             String profile_pic = rs.getString("u_profileimg");
 
-            StudentUser student = new StudentUser(id, email, salted_password, salt, position, profile_pic, name, surname, birthdate, phone, address, year);
+            TeacherStudent student = new TeacherStudent(id, email, salted_password, salt, position, profile_pic, name, surname, birthdate, phone, address, year);
             studentsList.add(student);
 
 
@@ -93,7 +89,7 @@ public class StudentsController {
 
             studentsTable.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2) { // double click
-                    StudentUser selectedStudent = studentsTable.getSelectionModel().getSelectedItem();
+                    TeacherStudent selectedStudent = studentsTable.getSelectionModel().getSelectedItem();
                     if (selectedStudent != null) {
                         showStudentInfo(selectedStudent);
                     }
@@ -103,7 +99,7 @@ public class StudentsController {
         }
     }
 
-    private void showStudentInfo(StudentUser student) {
+    private void showStudentInfo(TeacherStudent student) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/StudentInfo.fxml"));
             Parent root = loader.load();

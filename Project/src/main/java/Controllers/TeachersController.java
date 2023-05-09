@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.StudentUser;
+import Models.TeacherStudent;
 import Models.TeacherUser;
 import Services.ConnectionUtil;
 import Services.WindowSizeUtils;
@@ -43,37 +43,37 @@ public class TeachersController {
     private TableView<TeacherUser> teachersTable;
 
     @FXML
-    private TableColumn<StudentUser, String> name;
+    private TableColumn<TeacherStudent, String> name;
 
     @FXML
-    private TableColumn<StudentUser, String> surname;
+    private TableColumn<TeacherStudent, String> surname;
 
     @FXML
-    private TableColumn<StudentUser, String> birthdate;
+    private TableColumn<TeacherStudent, String> birthdate;
 
     @FXML
-    private TableColumn<StudentUser, Integer> id;
+    private TableColumn<TeacherStudent, Integer> id;
 
     @FXML
-    private TableColumn<StudentUser, String> phone;
+    private TableColumn<TeacherStudent, String> phone;
 
     @FXML
-    private TableColumn<StudentUser, String> email;
+    private TableColumn<TeacherStudent, String> email;
 
     @FXML
-    private TableColumn<StudentUser, String> address;
+    private TableColumn<TeacherStudent, String> address;
 
     private ObservableList<TeacherUser> teachersList = FXCollections.observableArrayList();
     public void initialize() throws SQLException {
         Connection conn = ConnectionUtil.getConnection();
-        PreparedStatement stmt =  conn.prepareStatement("SELECT  Teachers.T_Name, Teachers.t_Surname, Teachers.T_Birthdate, Teachers.T_Phone, Teachers.T_Address, Users.email, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
+        PreparedStatement stmt =  conn.prepareStatement("SELECT  Teachers.T_Name, Teachers.t_Surname, Teachers.T_Birthdate, Teachers.T_Phone, Teachers.T_Address, Users.email,Users.U_ID, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
                 "FROM Teachers\n" +
                 "INNER JOIN Users ON Teachers.T_UID = Users.U_ID;");
         ResultSet rs = stmt.executeQuery();
 
         // Loop through the result set and create a Student object for each row
         while (rs.next()) {
-            int id = rs.getInt("T_ID");
+            int id = rs.getInt("U_ID");
             String name = rs.getString("T_Name");
             String surname = rs.getString("T_Surname");
             String birthdate = rs.getString("T_Birthdate");
@@ -99,6 +99,30 @@ public class TeachersController {
             teachersTable.setItems(teachersList);
 
 
+            teachersTable.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2) { // double click
+                    TeacherUser selectedTeacher = teachersTable.getSelectionModel().getSelectedItem();
+                    if (selectedTeacher != null) {
+                        showTeacherInfo(teacher);
+                    }
+                }
+            });
+        }
+
+    }
+    private void showTeacherInfo(TeacherUser teacher) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/TeacherInfo.fxml"));
+            Parent root = loader.load();
+            TeacherInfoController controller = loader.getController();
+            controller.setTeacher(teacher);
+            Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 }

@@ -1,6 +1,6 @@
 package Models;
 
-public class StudentUser extends User {
+public class TeacherStudent extends User {
 
     private String Name;
     private String Surname;
@@ -9,7 +9,7 @@ public class StudentUser extends User {
     private String Address;
     private int Year;
 
-    public StudentUser(int ID, String email, String saltedPassword, String salt, String position, String profilePic, String name, String surname, String birthdate, String phone, String address, int year) {
+    public TeacherStudent(int ID, String email, String saltedPassword, String salt, String position, String profilePic, String name, String surname, String birthdate, String phone, String address, int year) {
         super(ID, email, saltedPassword, salt, position, profilePic);
         Name = name;
         Surname = surname;

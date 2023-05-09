@@ -1,15 +1,11 @@
 package Repository;
 
 
-import Models.StudentUser;
 import Models.Subject;
-import Models.TeacherUser;
-import Models.User;
 import Services.ConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class subjectRepository {

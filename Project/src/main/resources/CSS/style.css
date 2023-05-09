@@ -91,17 +91,17 @@
     -fx-border-width: 2;
 }
 
-.date-picker  {
+.date-picker-pers  {
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 7;
     -fx-border-color: #284c97;
     -fx-border-radius: 7;
     -fx-font-family: Arial;
 }
-.date-picker > .text-field {
+.date-picker-pers > .text-field {
     -fx-background-radius: 7;
 }
-.date-picker > .arrow-button {
+.date-picker-pers > .arrow-button {
     -fx-background-radius: 7;
 }
 .spinner  {
@@ -120,7 +120,7 @@
 }
 .card-header {
     -fx-background-color: #02315E;
-    -fx-text-fill: #dcdde1;
+    -fx-text-fill: white;
     -fx-background-radius: 15px;
     -fx-padding: 10px 20px;
 }

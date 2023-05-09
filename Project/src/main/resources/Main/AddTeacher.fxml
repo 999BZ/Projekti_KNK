@@ -18,7 +18,7 @@
     <center>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
             <children>
-                <AnchorPane layoutX="168.0" layoutY="-33.0" prefHeight="475.0" prefWidth="264.0" styleClass="card" AnchorPane.bottomAnchor="-32.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="168.0" AnchorPane.topAnchor="-33.0">
+                <AnchorPane layoutX="143.0" layoutY="-44.0" prefHeight="487.0" prefWidth="320.0" styleClass="card" AnchorPane.bottomAnchor="-32.0" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="-44.0">
                     <children>
                         <GridPane layoutX="14.0" layoutY="155.0" prefHeight="319.0" prefWidth="230.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="155.0">
                             <columnConstraints>
@@ -98,17 +98,17 @@
                         </AnchorPane>
                             </children>
                         </GridPane>
-                        <Label layoutX="59.0" prefHeight="26.0" prefWidth="156.0" styleClass="card-header" text="Register a Teacher">
+                        <Label layoutX="79.0" prefHeight="26.0" prefWidth="156.0" styleClass="card-header" text="Register a Teacher">
                             <font>
                                 <Font name="Microsoft New Tai Lue" size="14.0" />
                             </font>
                         </Label>
-                  <ImageView fx:id="profilePic" fitHeight="87.0" fitWidth="134.0" layoutX="94.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profilePic" fitHeight="87.0" fitWidth="134.0" layoutX="114.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/person.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="91.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic" />
+                  <Button layoutX="111.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic" />
                     </children>
                 </AnchorPane>
             </children>

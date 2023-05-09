@@ -1,15 +1,21 @@
 package Controllers;
 
+import Services.WindowSizeUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import Models.User;
 import Services.UserAuthService;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -49,7 +55,7 @@ public class RegisterStudentsController implements Initializable {
     private ImageView profilePic;
     private String imagePath;
 
-    File selectedFile;
+    private File selectedFile;
     @FXML
     private void handleImageUploadButton(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -63,11 +69,30 @@ public class RegisterStudentsController implements Initializable {
             profilePic.setImage(newImage);
         }
     }
+    @FXML
+    private void registerClick(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Dialog.fxml"));
+        AnchorPane dialogPane = loader.load();
+        DialogController dialogController = loader.getController();
+        dialogController.setLabelText("Add the Student to the System");
+        Stage dialogStage = new Stage();
+        dialogStage.initModality(Modality.APPLICATION_MODAL);
+        dialogStage.setScene(new Scene(dialogPane));
+        dialogController.setDialogStage(dialogStage);
+        dialogStage.showAndWait();
+
+
+        if (dialogController.isConfirmClicked()) {
+            registerStudent();
+        }
+
+    }
+
 
 
 
     @FXML
-    private void registerClick(ActionEvent e){
+    private void registerStudent(){
 
         if (selectedFile != null) {
             try {
@@ -135,7 +160,7 @@ public class RegisterStudentsController implements Initializable {
         }else{
             System.out.println("Please check your email and try again!");
         }
-
+    this.profilePic.setImage(null);
 
     }
     @FXML
