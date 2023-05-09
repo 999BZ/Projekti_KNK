@@ -58,6 +58,17 @@
 .spec-button:pressed{
     -fx-background-color: linear-gradient(#5264ae, #8a98ff);
 }
+
+.danger-button {
+    -fx-background-color: linear-gradient(#ED2B2A, #D21312);
+    -fx-background-radius: 30;
+    -fx-text-fill: white;
+}
+.danger-button:hover{
+    -fx-background-color: linear-gradient(#ED2B2A, #F15A59);
+}
+.danger-button:pressed{
+    -fx-background-color: linear-gradient(#5264ae, #8a98ff);}
 .courses #coursesButton,.students #studentsButton,.assignments #assignmentsButton, .teachers #teachersButton {
     -fx-border-width: 3px;
     -fx-border-radius: 50;
@@ -135,4 +146,5 @@
     -fx-font-family: "MS Reference Specialty";
     -fx-font-size: 14;
 }
+
 

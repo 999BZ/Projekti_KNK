@@ -1,6 +1,7 @@
 package Repository;
 
 
+import Models.AdminUser;
 import Models.StudentUser;
 import Models.TeacherUser;
 import Models.User;
@@ -71,6 +72,32 @@ public class userRepository {
             }
 
             return userRepository.getByEmail(user.getEmail());
+        }else if(user instanceof AdminUser admin){
+            String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position,  U_ProfileImg) VALUES (?, ?, ?, ?, ?)";
+            String TeacherSql = "INSERT INTO Admins (A_Name, A_Surname, A_Phone, A_UID) VALUES (?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
+
+            try(Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement UserStatement = connection.prepareStatement(UserSql)
+            ) {
+                UserStatement.setString(1, admin.getEmail());
+                UserStatement.setString(2, admin.getSaltedPassword());
+                UserStatement.setString(3, admin.getSalt());
+                UserStatement.setString(4, admin.getPosition());
+                UserStatement.setString(5, admin.getProfileImg());
+
+                UserStatement.executeUpdate();
+
+                PreparedStatement TeacherStatement = connection.prepareStatement(TeacherSql);
+                TeacherStatement.setString(1, admin.getName());
+                TeacherStatement.setString(2, admin.getSurname());
+                TeacherStatement.setString(4, admin.getPhone());
+                TeacherStatement.setString(6, admin.getEmail());
+                TeacherStatement.executeUpdate();
+            }catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            return userRepository.getByEmail(user.getEmail());
         }
 
         return null;
@@ -117,7 +144,7 @@ public class userRepository {
     public static User update(User user) throws SQLException {
         if(user instanceof StudentUser student){
             String UserSql = "UPDATE Users Email=?, Salted_Password=?, Salt=?, U_Position=?, U_ProfileImg=? where U_ID = ?";
-            String StudentSql="UPDATE Students S_Name=?, S_Surname=?, S_Birthdate=?, S_Phone=?, S_Address=?, S_GLevel=?, S_UID=? where S_UID";
+            String StudentSql="UPDATE Students S_Name=?, S_Surname=?, S_Birthdate=?, S_Phone=?, S_Address=?, S_GLevel=? where S_UID";
 
             try(Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement UserStatement = connection.prepareStatement(UserSql)
@@ -138,7 +165,6 @@ public class userRepository {
                 StudentStatement.setString(4, student.getPhone());
                 StudentStatement.setString(5, student.getAddress());
                 StudentStatement.setInt(6, student.getYear());
-                StudentStatement.setString(7, student.getEmail());
                 UserStatement.setInt(7, student.getID());
 
                 StudentStatement.executeUpdate();
@@ -150,7 +176,7 @@ public class userRepository {
             return userRepository.getByEmail(user.getEmail());
         }else if(user instanceof TeacherUser teacher){
             String UserSql = "UPDATE Users Email=?, Salted_Password=?, Salt=?, U_Position=?,  U_ProfileImg=? where U_ID=?";
-            String TeacherSql = "UPDATE Teachers T_Name=?, T_Surname=?, T_Birthdate=?, T_Phone=?, T_Address=?, T_UID=? where T_UID = ?";
+            String TeacherSql = "UPDATE Teachers T_Name=?, T_Surname=?, T_Birthdate=?, T_Phone=?, T_Address=?  where T_UID = ?";
 
             try(Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement UserStatement = connection.prepareStatement(UserSql)
@@ -170,14 +196,45 @@ public class userRepository {
                 TeacherStatement.setString(3, teacher.getBirthdate());
                 TeacherStatement.setString(4, teacher.getPhone());
                 TeacherStatement.setString(5, teacher.getAddress());
-                TeacherStatement.setString(6, teacher.getEmail());
-                UserStatement.setInt(7, teacher.getID());
+                UserStatement.setInt(6, teacher.getID());
 
 
                 TeacherStatement.executeUpdate();
             }catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
+
+
+            return userRepository.getByEmail(user.getEmail());
+        }
+        else if(user instanceof AdminUser admin){
+            String UserSql = "UPDATE Users Email=?, Salted_Password=?, Salt=?, U_Position=?,  U_ProfileImg=? where U_ID=?";
+            String TeacherSql = "UPDATE Admins A_Name=?, A_Surname=?,T_Phone=? where T_UID = ?";
+
+            try(Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement UserStatement = connection.prepareStatement(UserSql)
+            ) {
+                UserStatement.setString(1, admin.getEmail());
+                UserStatement.setString(2, admin.getSaltedPassword());
+                UserStatement.setString(3, admin.getSalt());
+                UserStatement.setString(4, admin.getPosition());
+                UserStatement.setString(5, admin.getProfileImg());
+                UserStatement.setInt(6, admin.getID());
+
+                UserStatement.executeUpdate();
+
+                PreparedStatement TeacherStatement = connection.prepareStatement(TeacherSql);
+                TeacherStatement.setString(1, admin.getName());
+                TeacherStatement.setString(2, admin.getSurname());
+                TeacherStatement.setString(3, admin.getPhone());
+                UserStatement.setInt(4, admin.getID());
+
+
+                TeacherStatement.executeUpdate();
+            }catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
 
             return userRepository.getByEmail(user.getEmail());
         }

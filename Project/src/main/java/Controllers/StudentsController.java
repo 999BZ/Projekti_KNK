@@ -56,14 +56,14 @@ public class StudentsController {
 
     public void initialize() throws SQLException {
         Connection conn = ConnectionUtil.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT Students.S_id, Students.S_Name, Students.S_Surname, Students.S_Birthdate, Students.S_Phone, Students.S_Address, Students.S_GLevel, Users.email, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
+        PreparedStatement stmt = conn.prepareStatement("SELECT Students.S_UID, Students.S_Name, Students.S_Surname, Students.S_Birthdate, Students.S_Phone, Students.S_Address, Students.S_GLevel, Users.email, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
                 "            FROM Students\n" +
                 "            INNER JOIN Users ON Students.S_UID = Users.U_ID;");
         ResultSet rs = stmt.executeQuery();
 
         // Loop through the result set and create a Student object for each row
         while (rs.next()) {
-            int id = rs.getInt("S_ID");
+            int id = rs.getInt("S_UID");
             String name = rs.getString("S_Name");
             String surname = rs.getString("S_Surname");
             String birthdate = rs.getString("S_Birthdate");

@@ -66,7 +66,7 @@ public class TeachersController {
     private ObservableList<TeacherUser> teachersList = FXCollections.observableArrayList();
     public void initialize() throws SQLException {
         Connection conn = ConnectionUtil.getConnection();
-        PreparedStatement stmt =  conn.prepareStatement("SELECT Teachers.T_id, Teachers.T_Name, Teachers.t_Surname, Teachers.T_Birthdate, Teachers.T_Phone, Teachers.T_Address, Users.email, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
+        PreparedStatement stmt =  conn.prepareStatement("SELECT  Teachers.T_Name, Teachers.t_Surname, Teachers.T_Birthdate, Teachers.T_Phone, Teachers.T_Address, Users.email, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
                 "FROM Teachers\n" +
                 "INNER JOIN Users ON Teachers.T_UID = Users.U_ID;");
         ResultSet rs = stmt.executeQuery();

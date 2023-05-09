@@ -17,19 +17,17 @@ CREATE TABLE Users(
 -- SELECT * FROM Users
 
 CREATE TABLE Admins (
-	A_ID INT NOT NULL AUTO_INCREMENT,
     A_Name VARCHAR(50),
     A_Surname VARCHAR(50),
     A_Phone VARCHAR(50),
     A_UID INT NOT NULL,
-    PRIMARY KEY (A_ID),
+    PRIMARY KEY (A_UID),
     FOREIGN KEY (A_UID) REFERENCES Users(U_ID) ON DELETE CASCADE
 );
 
 -- SELECT * FROM Admins
-
+drop table Students;
 CREATE TABLE Students (
-	S_ID INT NOT NULL AUTO_INCREMENT,
     S_Name VARCHAR(50),
     S_Surname VARCHAR(50),
     S_Birthdate Date,
@@ -37,21 +35,20 @@ CREATE TABLE Students (
     S_Address VARCHAR(50),
     S_GLevel INT,
     S_UID INT NOT NULL,
-    PRIMARY KEY (S_ID),
+    PRIMARY KEY (S_UID),
     FOREIGN KEY (S_UID) REFERENCES Users(U_ID) ON DELETE CASCADE
 );
 
 -- SELECT * FROM Students
-
+drop table teachers;
 CREATE TABLE Teachers (
-	T_ID INT NOT NULL AUTO_INCREMENT,
     T_Name VARCHAR(50),
     T_Surname VARCHAR(50),
     T_Birthdate Date,
     T_Phone VARCHAR(50),
     T_Address VARCHAR(50),
     T_UID INT NOT NULL,
-    PRIMARY KEY (T_ID),
+    PRIMARY KEY (T_UID),
     FOREIGN KEY (T_UID) REFERENCES Users(U_ID) ON DELETE CASCADE
 );
 
@@ -66,37 +63,37 @@ CREATE TABLE Subjects(
 );
 
 -- SELECT * FROM Subjects
-
+drop table classes;
 CREATE TABLE Classes (
 	C_ID INT NOT NULL AUTO_INCREMENT,
     T_ID INT NOT NULL,
     Sb_ID INT NOT NULL,
     PRIMARY KEY (C_ID),
-    FOREIGN KEY (T_ID) REFERENCES Teachers(T_ID) ON DELETE CASCADE,
+    FOREIGN KEY (T_ID) REFERENCES Teachers(T_UID) ON DELETE CASCADE,
     FOREIGN KEY (Sb_ID) REFERENCES Subjects(Sb_ID) ON DELETE CASCADE
 );
 
 -- SELECT * FROM Classes
-
+drop table enrollments;
 CREATE TABLE Enrollments (
 	E_ID INT NOT NULL AUTO_INCREMENT,
     S_ID INT NOT NULL,
     C_ID INT NOT NULL,
     E_Date Date,
     PRIMARY KEY (E_ID),
-    FOREIGN KEY (S_ID) REFERENCES Students(S_ID) ON DELETE CASCADE,
+    FOREIGN KEY (S_ID) REFERENCES Students(S_UID) ON DELETE CASCADE,
     FOREIGN KEY (C_ID) REFERENCES Classes(C_ID) ON DELETE CASCADE
 );
 
 -- SELECT * FROM Enrollments
-
+drop table grades;
 CREATE TABLE Grades (
 	G_ID INT NOT NULL AUTO_INCREMENT,
     S_ID INT NOT NULL,
     Sb_ID INT NOT NULL,
     G_Value INT,
     PRIMARY KEY (G_ID),
-    FOREIGN KEY (S_ID) REFERENCES Students(S_ID) ON DELETE CASCADE,
+    FOREIGN KEY (S_ID) REFERENCES Students(S_UID) ON DELETE CASCADE,
 	FOREIGN KEY (Sb_ID) REFERENCES Subjects(Sb_ID)
 );
 
@@ -171,3 +168,23 @@ INNER JOIN Enrollments e ON e.S_ID = s.S_ID
 INNER JOIN Classes c ON c.C_ID = e.C_ID
 INNER JOIN Subjects sb ON sb.Sb_ID = c.Sb_ID
 WHERE c.T_ID = 1;
+
+
+
+
+USE lems;
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- Truncate all tables in the database
+TRUNCATE TABLE students;
+TRUNCATE TABLE teachers;
+TRUNCATE TABLE subjects;
+TRUNCATE TABLE grades;
+TRUNCATE TABLE enrollments;
+TRUNCATE TABLE users;
+TRUNCATE TABLE admins;
+TRUNCATE TABLE classes;
+-- ... add more tables as needed
+
+SET FOREIGN_KEY_CHECKS=1;
