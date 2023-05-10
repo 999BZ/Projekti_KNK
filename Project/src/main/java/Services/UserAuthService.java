@@ -1,6 +1,6 @@
 package Services;
 
-import Models.TacherUser;
+import Models.StudentUser;
 import Models.TeacherUser;
 import Models.User;
 import Repository.UserRepository;
@@ -32,11 +32,11 @@ public class UserAuthService {
         String salt = PasswordHasher.generateSalt();
         String saltedPasswordHash = PasswordHasher.generateSaltedHash(password,salt);
         System.out.println("Trying to Register!");
-            return UserRepository.insert(new TacherUser(1,Email, saltedPasswordHash, salt, "Student",ProfileImg, Name, Surname, Birthdate, Phone, Address, Year));
+            return UserRepository.insert(new StudentUser(1,Email, saltedPasswordHash, salt, "Student",ProfileImg, Name, Surname, Birthdate, Phone, Address, Year));
 
     }
     public static User updateStudent(int id,String Name, String Surname, String Birthdate, String Phone, String Address, int Year, String Email, String Position, String ProfileImg) throws SQLException {
-        return UserRepository.update(new TacherUser(id,Email, null, null, "Student",ProfileImg, Name, Surname, Birthdate, Phone, Address, Year));
+        return UserRepository.update(new StudentUser(id,Email, null, null, "Student",ProfileImg, Name, Surname, Birthdate, Phone, Address, Year));
     }
     public static User registerTeacher(String Name, String Surname, String Birthdate, String Phone, String Address, String Email, String password, String Position, String ProfileImg) throws SQLException {
         User CheckUser = UserRepository.getByEmail(Email);

@@ -2,7 +2,7 @@ package Repository;
 
 
 import Models.AdminUser;
-import Models.TacherUser;
+import Models.StudentUser;
 import Models.TeacherUser;
 import Models.User;
 import Services.ConnectionUtil;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class UserRepository {
 
     public static User insert(User user) throws SQLException {
-        if(user instanceof TacherUser student){
+        if(user instanceof StudentUser student){
             String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position, U_ProfileImg) VALUES (?, ?, ?, ?, ?)";
             String StudentSql="INSERT INTO Students (S_Name, S_Surname, S_Birthdate, S_Phone, S_Address, S_GLevel, S_UID) VALUES (?, ?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
 
@@ -142,7 +142,7 @@ public class UserRepository {
         }
     }
     public static User update(User user) throws SQLException {
-        if(user instanceof TacherUser student){
+        if(user instanceof StudentUser student){
             String UserSql = "UPDATE Users set Email=?, U_Position=?, U_ProfileImg=? where U_ID = ?";
             String StudentSql = "UPDATE Students set S_Name=?, S_Surname=?, S_Birthdate=?, S_Phone=?, S_Address=?, S_GLevel=? where S_UID=?";
 

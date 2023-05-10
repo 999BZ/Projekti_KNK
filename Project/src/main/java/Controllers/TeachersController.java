@@ -1,8 +1,8 @@
 package Controllers;
 
-import Models.TacherUser;
+import Models.StudentUser;
 import Models.TeacherUser;
-import Services.ConnectionUtil;
+import Services.FetchData;
 import Services.WindowSizeUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,9 +17,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TeachersController {
@@ -43,52 +40,31 @@ public class TeachersController {
     private TableView<TeacherUser> teachersTable;
 
     @FXML
-    private TableColumn<TacherUser, String> name;
+    private TableColumn<StudentUser, String> name;
 
     @FXML
-    private TableColumn<TacherUser, String> surname;
+    private TableColumn<StudentUser, String> surname;
 
     @FXML
-    private TableColumn<TacherUser, String> birthdate;
+    private TableColumn<StudentUser, String> birthdate;
 
     @FXML
-    private TableColumn<TacherUser, Integer> id;
+    private TableColumn<StudentUser, Integer> id;
 
     @FXML
-    private TableColumn<TacherUser, String> phone;
+    private TableColumn<StudentUser, String> phone;
 
     @FXML
-    private TableColumn<TacherUser, String> email;
+    private TableColumn<StudentUser, String> email;
 
     @FXML
-    private TableColumn<TacherUser, String> address;
+    private TableColumn<StudentUser, String> address;
 
     private ObservableList<TeacherUser> teachersList = FXCollections.observableArrayList();
     public void initialize() throws SQLException {
-        Connection conn = ConnectionUtil.getConnection();
-        PreparedStatement stmt =  conn.prepareStatement("SELECT  Teachers.T_Name, Teachers.t_Surname, Teachers.T_Birthdate, Teachers.T_Phone, Teachers.T_Address, Users.email,Users.U_ID, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
-                "FROM Teachers\n" +
-                "INNER JOIN Users ON Teachers.T_UID = Users.U_ID;");
-        ResultSet rs = stmt.executeQuery();
+            teachersList = FetchData.getAllTeachers();
 
-        // Loop through the result set and create a Student object for each row
-        while (rs.next()) {
-            int id = rs.getInt("U_ID");
-            String name = rs.getString("T_Name");
-            String surname = rs.getString("T_Surname");
-            String birthdate = rs.getString("T_Birthdate");
-            String phone = rs.getString("T_Phone");
-            String address = rs.getString("T_Address");
-            String email = rs.getString("email");
-            String salted_password = rs.getString("salted_password");
-            String salt = rs.getString("salt");
-            String position = rs.getString("u_position");
-            String profile_pics = rs.getString("u_profileimg");
-
-            TeacherUser teacher = new TeacherUser(id,  email,  salted_password,  salt,  position, profile_pics,  name,  surname,  birthdate,  phone,  address);
-            teachersList.add(teacher);
-
-
+        for (TeacherUser teacher: teachersList) {
             this.name.setCellValueFactory(new PropertyValueFactory<>("Name"));
             this.surname.setCellValueFactory(new PropertyValueFactory<>("Surname"));
             this.birthdate.setCellValueFactory(new PropertyValueFactory<>("Birthdate"));
@@ -108,8 +84,9 @@ public class TeachersController {
                 }
             });
         }
+        }
 
-    }
+
     private void showTeacherInfo(TeacherUser teacher) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/TeacherInfo.fxml"));

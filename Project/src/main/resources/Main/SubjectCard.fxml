@@ -4,8 +4,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="234.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SubjectCardController">
     <children>
@@ -13,14 +14,41 @@
          <children>
               <AnchorPane layoutX="21.0" layoutY="20.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="191.0" styleClass="card" stylesheets="@../CSS/style.css">
                   <children>
-                      <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="69.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="69.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@../Images/books.png" />
                           </image>
                       </ImageView>
-                      <Label fx:id="subjectName" layoutX="36.0" layoutY="5.0" styleClass="card-header" text="Subject Name" />
-                      <Text fx:id="subjectInfo" layoutX="3.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject Info Subject Info Subject Info Subject Info Subject Info" wrappingWidth="180.0" />
-                      <Label fx:id="gradeLvl" layoutX="64.0" layoutY="137.0" style="-fx-background-color: purple;" styleClass="card-header" text="GLvl" />
+                  <StackPane layoutY="6.0" prefHeight="38.0" prefWidth="191.0">
+                     <children>
+                            <Label fx:id="subjectName" alignment="CENTER" prefHeight="43.0" prefWidth="145.0" styleClass="card-header" text="Subject Name">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/subject.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <StackPane layoutY="80.0" prefHeight="64.0" prefWidth="192.0">
+                     <children>
+                        <Label fx:id="subjectInfo" styleClass="subject-desc" text="Label" />
+                     </children>
+                  </StackPane>
+                      <Label fx:id="gradeLvl" alignment="CENTER" layoutX="47.0" layoutY="140.0" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #48CAE4;" styleClass="card-header" text="GLvl" textFill="WHITE">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/level.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
                   </children>
               </AnchorPane>
          </children>

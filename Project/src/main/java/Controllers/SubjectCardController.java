@@ -7,10 +7,10 @@ import javafx.scene.text.Text;
 
 public class SubjectCardController {
     @FXML
-    private Label gradeLvl = new Label();
+    private Label gradeLvl ;
    @FXML
-   private Label subjectName = new Label();
-   @FXML Text subjectInfo = new Text();
+   private Label subjectName;
+   @FXML Label subjectInfo;
 
     public void setData(Subject subject){
         gradeLvl.setText(String.valueOf(subject.getYear()));

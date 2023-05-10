@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.TacherUser;
+import Models.StudentUser;
 import Models.User;
 import Repository.UserRepository;
 import Services.UserAuthService;
@@ -73,7 +73,7 @@ public class StudentInfoController implements Initializable {
     private Button updatePhoto;
     @FXML
     private Button removeButton;
-    private TacherUser student;
+    private StudentUser student;
     private File selectedFile;
     private boolean isEditable = false;
     private String imagePath;
@@ -264,7 +264,7 @@ public class StudentInfoController implements Initializable {
             }
         }
 
-    public void setStudent(TacherUser student) {
+    public void setStudent(StudentUser student) {
         this.student = student;
         if (student != null) {
             firstname.setText(student.getName());

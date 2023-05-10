@@ -1,7 +1,8 @@
 package Controllers;
 
-import Models.TacherUser;
+import Models.StudentUser;
 import Services.ConnectionUtil;
+import Services.FetchData;
 import Services.WindowSizeUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,65 +17,42 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class StudentsController {
+    private  ObservableList<StudentUser> studentsList = FXCollections.observableArrayList();
     @FXML
     private BorderPane rootPane;
-
     @FXML
-    private TableView<TacherUser> studentsTable;
-
+    private TableView<StudentUser> studentsTable;
     @FXML
-    private TableColumn<TacherUser, String> name;
-
+    private TableColumn<StudentUser, String> name;
     @FXML
-    private TableColumn<TacherUser, String> surname;
-
+    private TableColumn<StudentUser, String> surname;
     @FXML
-    private TableColumn<TacherUser, String> birthdate;
-
+    private TableColumn<StudentUser, String> birthdate;
     @FXML
-    private TableColumn<TacherUser, Integer> year;
+    private TableColumn<StudentUser, Integer> year;
     @FXML
-    private TableColumn<TacherUser, Integer> id;
-
+    private TableColumn<StudentUser, Integer> id;
     @FXML
-    private TableColumn<TacherUser, String> phone;
-
+    private TableColumn<StudentUser, String> phone;
     @FXML
-    private TableColumn<TacherUser, String> email;
-
+    private TableColumn<StudentUser, String> email;
     @FXML
-    private TableColumn<TacherUser, String> address;
+    private TableColumn<StudentUser, String> address;
 
-    private ObservableList<TacherUser> studentsList = FXCollections.observableArrayList();
+    public StudentsController() {
+    }
 
     public void initialize() throws SQLException {
-        Connection conn = ConnectionUtil.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT Students.S_UID, Students.S_Name, Students.S_Surname, Students.S_Birthdate, Students.S_Phone, Students.S_Address, Students.S_GLevel, Users.email, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
-                "            FROM Students\n" +
-                "            INNER JOIN Users ON Students.S_UID = Users.U_ID;");
-        ResultSet rs = stmt.executeQuery();
+        studentsList = FetchData.getAllStudents();
 
-        // Loop through the result set and create a Student object for each row
-        while (rs.next()) {
-            int id = rs.getInt("S_UID");
-            String name = rs.getString("S_Name");
-            String surname = rs.getString("S_Surname");
-            String birthdate = rs.getString("S_Birthdate");
-            int year = rs.getInt("S_GLevel");
-            String phone = rs.getString("S_Phone");
-            String address = rs.getString("S_Address");
-            int gradeLevel = rs.getInt("S_GLevel");
-            String email = rs.getString("email");
-            String salted_password = rs.getString("salted_password");
-            String salt = rs.getString("salt");
-            String position = rs.getString("u_position");
-            String profile_pic = rs.getString("u_profileimg");
 
-            TacherUser student = new TacherUser(id, email, salted_password, salt, position, profile_pic, name, surname, birthdate, phone, address, year);
-            studentsList.add(student);
+        for (StudentUser student:studentsList) {
 
 
             this.name.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -89,7 +67,7 @@ public class StudentsController {
 
             studentsTable.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2) { // double click
-                    TacherUser selectedStudent = studentsTable.getSelectionModel().getSelectedItem();
+                    StudentUser selectedStudent = studentsTable.getSelectionModel().getSelectedItem();
                     if (selectedStudent != null) {
                         showStudentInfo(selectedStudent);
                     }
@@ -99,7 +77,7 @@ public class StudentsController {
         }
     }
 
-    private void showStudentInfo(TacherUser student) {
+    private void showStudentInfo(StudentUser student) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/StudentInfo.fxml"));
             Parent root = loader.load();
@@ -128,9 +106,4 @@ public class StudentsController {
             e.printStackTrace();
         }
     }
-
-
-
-
-    public StudentsController() {}
 }

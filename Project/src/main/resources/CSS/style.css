@@ -146,5 +146,7 @@
     -fx-font-family: "MS Reference Specialty";
     -fx-font-size: 14;
 }
-
+.subject-desc {
+    -fx-font-weight: bold;
+}
 
