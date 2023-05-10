@@ -88,27 +88,55 @@
                                 </AnchorPane>
                         <AnchorPane GridPane.rowIndex="10">
                            <children>
-                                    <Button fx:id="registerBtnT" layoutX="40.0" layoutY="1.0" mnemonicParsing="false" onAction="#registerClick" styleClass="spec-button" text="Register" />
+                                    <Button fx:id="registerBtnT" layoutX="29.0" layoutY="5.0" mnemonicParsing="false" onAction="#registerClick" styleClass="spec-button" text="Register">
+                                 <graphic>
+                                    <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/registerDone.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                            </children>
                         </AnchorPane>
                         <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="10">
                            <children>
-                                    <Button fx:id="cancelBtnT" layoutX="44.0" layoutY="1.0" mnemonicParsing="false" onAction="#cancelClick" styleClass="spec-button" text="Cancel" />
+                                    <Button fx:id="cancelBtnT" layoutX="36.0" layoutY="2.0" mnemonicParsing="false" onAction="#cancelClick" styleClass="spec-button" text="Reset">
+                                 <graphic>
+                                    <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/reset.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                            </children>
                         </AnchorPane>
                             </children>
                         </GridPane>
-                        <Label layoutX="79.0" prefHeight="26.0" prefWidth="156.0" styleClass="card-header" text="Register a Teacher">
+                        <Label layoutX="67.0" prefHeight="43.0" prefWidth="180.0" styleClass="card-header" text="Register a Teacher">
                             <font>
                                 <Font name="Microsoft New Tai Lue" size="14.0" />
                             </font>
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/register.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                         </Label>
                   <ImageView fx:id="profilePic" fitHeight="87.0" fitWidth="134.0" layoutX="114.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/person.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="111.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic" />
+                  <Button layoutX="98.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                     </children>
                 </AnchorPane>
             </children>

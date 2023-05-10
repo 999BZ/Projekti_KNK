@@ -30,6 +30,23 @@ import java.util.UUID;
 
 public class StudentInfoController implements Initializable {
     @FXML
+    private ImageView birthdayw;
+    @FXML
+    private ImageView firstnamew;
+    @FXML
+    private ImageView lastnamew;
+    @FXML
+    private ImageView phonew;
+    @FXML
+    private ImageView emailw;
+    @FXML
+    private ImageView gradeLvlw;
+    @FXML
+    private ImageView addressw;
+    @FXML
+    private Label w;
+
+    @FXML
     private BorderPane rootPane;
     User localStudent;
     @FXML
@@ -79,6 +96,14 @@ public class StudentInfoController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        birthdayw.setVisible(false);
+        firstnamew.setVisible(false);
+        lastnamew.setVisible(false);
+        phonew.setVisible(false);
+        emailw.setVisible(false);
+        gradeLvlw.setVisible(false);
+        addressw.setVisible(false);
+        w.setVisible(false);
         gradeLvl.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 12, 0));
         Image oldImage =profilePic.getImage();
         oldImagePath = oldImage.getUrl();
@@ -101,8 +126,9 @@ public class StudentInfoController implements Initializable {
             localStudent = UserRepository.getByEmail(email.getText());
             UserRepository.delete(localStudent);
             String relativePath = localStudent.getProfileImg();
+            if(relativePath!=null){
             File oldImage = new File(relativePath);
-            oldImage.delete();
+            oldImage.delete();}
             loader = new FXMLLoader(getClass().getResource("/Main/Students.fxml"));
             try {
                 Parent root = loader.load();
@@ -171,7 +197,7 @@ public class StudentInfoController implements Initializable {
                 if(emailValue.matches(emailRegex)){
                     if( !this.firstname.getText().isEmpty() && !this.lastname.getText().isEmpty() &&
                             !(this.birthday.getValue() == null) && !this.phone.getText().isEmpty() &&
-                            !this.address.getText().isEmpty() && this.gradeLvl.getValue() != 0){
+                            !this.address.getText().isEmpty() && this.gradeLvl.getValue() != null){
                             String nameValue = this.firstname.getText();
                             String surnameValue = this.lastname.getText();
                             LocalDate tempBirthdateValue = this.birthday.getValue();
@@ -194,15 +220,47 @@ public class StudentInfoController implements Initializable {
                                 updatePhoto.setVisible(false);
                                 editButton.setText("Edit or Delete Student");
                                 isEditable = false;
+                                removeButton.setVisible(false);
+                                birthdayw.setVisible(false);
+                                firstnamew.setVisible(false);
+                                lastnamew.setVisible(false);
+                                phonew.setVisible(false);
+                                emailw.setVisible(false);
+                                gradeLvlw.setVisible(false);
+                                addressw.setVisible(false);
+                                w.setVisible(false);
+                                System.out.println("TEst");
                             }catch (SQLException sqlException) {
                                 System.out.println("Student couldn't be updated.");
                             }
+
                     }else{
                         System.out.println("Please fill all text fields");
+                        w.setVisible(true);
+                        if (this.firstname.getText().isEmpty()) {
+                            firstnamew.setVisible(true);
+                        }
+                        if (this.lastname.getText().isEmpty()) {
+                            lastnamew.setVisible(true);
+                        }
+                        if (this.birthday.getValue() == null) {
+                            birthdayw.setVisible(true);
+                        }
+                        if (this.phone.getText().isEmpty()) {
+                            phonew.setVisible(true);
+                        }
+                        if (this.address.getText().isEmpty()) {
+                            addressw.setVisible(true);
+                        }
+                        if (this.gradeLvl.getValue() == null) {
+                            gradeLvlw.setVisible(true);
+                        }
                     }
+
                 }else{
                     System.out.println("Please check your email and try again!");
-
+                    emailw.setVisible(true);
+                    w.setVisible(true);
                 }
 
             }

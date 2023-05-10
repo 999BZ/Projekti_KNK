@@ -97,31 +97,59 @@
                                 </AnchorPane>
                         <AnchorPane GridPane.rowIndex="10">
                            <children>
-                                    <Button fx:id="registerBtn" layoutX="35.0" layoutY="1.0" mnemonicParsing="false" onAction="#registerClick" styleClass="spec-button" text="Register" />
+                                    <Button fx:id="registerBtn" layoutX="32.0" layoutY="-15.0" mnemonicParsing="false" onAction="#registerClick" prefHeight="30.0" prefWidth="85.0" styleClass="spec-button" text="Register">
+                                 <graphic>
+                                    <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/registerDone.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                            </children>
                         </AnchorPane>
                         <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="10">
                            <children>
                               <AnchorPane layoutX="39.0" layoutY="1.0">
                                  <children>
-                                          <Button mnemonicParsing="false" onAction="#cancelClick" styleClass="spec-button" text="Cancel" />
+                                          <Button layoutY="-15.0" mnemonicParsing="false" onAction="#cancelClick" prefHeight="30.0" prefWidth="70.0" styleClass="spec-button" text="Reset">
+                                       <graphic>
+                                          <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Images/reset.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Button>
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
                             </children>
                         </GridPane>
-                  <Label layoutX="89.0" prefHeight="37.0" prefWidth="154.0" styleClass="card-header" text="Register a Student">
+                  <Label layoutX="76.0" prefHeight="42.0" prefWidth="178.0" styleClass="card-header" text="Register a Student">
                      <font>
                         <Font name="Microsoft Tai Le" size="14.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/register.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Label>
                   <ImageView fx:id="profilePic" fitHeight="84.0" fitWidth="135.0" layoutX="124.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/person.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="119.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic" />
+                  <Button layoutX="106.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                     </children>
                 </AnchorPane>
             </children>

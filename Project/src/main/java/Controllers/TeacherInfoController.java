@@ -186,6 +186,7 @@ public class TeacherInfoController implements Initializable {
                         updatePhoto.setVisible(false);
                         editButton.setText("Edit or Delete Teacher");
                         isEditable = false;
+                        removeButton.setVisible(true);
                     }catch (SQLException sqlException) {
                         System.out.println("Teacher couldn't be updated.");
                     }

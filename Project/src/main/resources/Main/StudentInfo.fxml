@@ -23,18 +23,19 @@
 <fx:include source="SideNav.fxml" styleClass="students" />
 </left>
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="575.0" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="575.0" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="421.0" layoutY="36.0" prefHeight="374.0" prefWidth="148.0">
+            <TableView layoutX="421.0" layoutY="90.0" prefHeight="374.0" prefWidth="148.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Subject" />
                 <TableColumn prefWidth="75.0" text="Grade" />
               </columns>
             </TableView>
-            <GridPane layoutX="14.0" prefHeight="446.0" prefWidth="286.0">
+            <GridPane layoutX="14.0" prefHeight="446.0" prefWidth="317.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="173.6000244140625" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="0.0" prefWidth="27.199975585937494" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.20000000000002" minWidth="0.0" prefWidth="121.60002441406252" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="0.0" prefWidth="23.199975585937523" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -53,10 +54,17 @@
                <children>
                   <Label prefHeight="19.0" prefWidth="154.0" styleClass="profile-info" text="Parent's Phone Number:" GridPane.rowIndex="7" />
                   <Label styleClass="profile-info" text="Grade Level:" GridPane.rowIndex="8" />
-                  <AnchorPane fx:id="imageContainer" prefHeight="250.0" prefWidth="286.0" GridPane.columnSpan="2" GridPane.rowSpan="7">
+                  <AnchorPane fx:id="imageContainer" prefHeight="286.0" prefWidth="318.0" GridPane.columnSpan="3" GridPane.rowSpan="7">
                      <children>
-                        <Label layoutX="90.0" layoutY="-19.0" styleClass="card-header" text="Student Info" />
-                        <StackPane layoutX="74.0" layoutY="24.0" prefHeight="127.0" prefWidth="137.0">
+                        <Label layoutX="77.0" layoutY="14.0" styleClass="card-header" text="Student Info">
+                           <graphic>
+                              <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/info.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Label>
+                        <StackPane layoutX="74.0" layoutY="56.0" prefHeight="127.0" prefWidth="137.0">
                            <children>
                               <ImageView fx:id="profilePic" fitHeight="119.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -65,17 +73,34 @@
                               </ImageView>
                            </children>
                         </StackPane>
-                        <TextField fx:id="firstname" alignment="CENTER" editable="false" layoutY="200.0" prefHeight="31.0" prefWidth="125.0">
+                        <TextField fx:id="firstname" alignment="CENTER" editable="false" layoutX="5.0" layoutY="237.0" prefHeight="31.0" prefWidth="125.0">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="lastname" alignment="CENTER" editable="false" layoutX="160.0" layoutY="200.0" prefHeight="31.0" prefWidth="125.0">
+                        <TextField fx:id="lastname" alignment="CENTER" editable="false" layoutX="165.0" layoutY="237.0" prefHeight="31.0" prefWidth="125.0">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="updatePhoto" layoutX="88.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Update Profile Pic" />
+                        <Button fx:id="updatePhoto" layoutX="72.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleImageUploadButton" prefHeight="30.0" prefWidth="141.0" styleClass="spec-button" text="Update Profile Pic">
+                           <graphic>
+                              <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/update.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <ImageView fx:id="firstnamew" fitHeight="21.0" fitWidth="21.0" layoutX="132.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/warning.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="lastnamew" fitHeight="21.0" fitWidth="21.0" layoutX="292.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/warning.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <Label styleClass="profile-info" text="Email:" GridPane.rowIndex="9" />
@@ -86,10 +111,56 @@
                   <DatePicker fx:id="birthday" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <TextField fx:id="address" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                    <Spinner fx:id="gradeLvl" layoutX="18.0" prefHeight="28.0" prefWidth="112.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <ImageView fx:id="phonew" fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                     <image>
+                        <Image url="@../Images/warning.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="emailw" fitHeight="21.0" fitWidth="21.0" layoutX="305.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                     <image>
+                        <Image url="@../Images/warning.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="gradeLvlw" fitHeight="21.0" fitWidth="21.0" layoutX="305.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                     <image>
+                        <Image url="@../Images/warning.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="birthdayw" fitHeight="21.0" fitWidth="21.0" layoutX="305.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                     <image>
+                        <Image url="@../Images/warning.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="addressw" fitHeight="21.0" fitWidth="21.0" layoutX="305.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="11">
+                     <image>
+                        <Image url="@../Images/warning.png" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
-            <Button fx:id="editButton" alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="26.0" prefWidth="114.0" styleClass="spec-button" text="Edit Student Info" />
-            <Button fx:id="removeButton" layoutY="466.0" mnemonicParsing="false" onAction="#handleRemoveButton" styleClass="danger-button" text="Remove Student" />
+            <Button fx:id="removeButton" layoutY="464.0" mnemonicParsing="false" onAction="#handleRemoveButton" prefHeight="30.0" prefWidth="138.0" styleClass="danger-button" text="Remove Student">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/remove.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="editButton" layoutX="166.0" layoutY="464.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="30.0" prefWidth="174.0" styleClass="spec-button" text="Edit or Remove Student">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label fx:id="w" alignment="CENTER" layoutX="168.0" layoutY="504.0" prefHeight="20.0" prefWidth="171.0" text="Faulty Inputs" textFill="RED">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>
