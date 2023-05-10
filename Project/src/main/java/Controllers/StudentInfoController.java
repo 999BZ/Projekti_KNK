@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.TeacherStudent;
+import Models.TacherUser;
 import Models.User;
 import Repository.UserRepository;
 import Services.UserAuthService;
@@ -73,7 +73,7 @@ public class StudentInfoController implements Initializable {
     private Button updatePhoto;
     @FXML
     private Button removeButton;
-    private TeacherStudent student;
+    private TacherUser student;
     private File selectedFile;
     private boolean isEditable = false;
     private String imagePath;
@@ -123,7 +123,6 @@ public class StudentInfoController implements Initializable {
         dialogStage.showAndWait();
 
         if (dialogController.isConfirmClicked()) {
-            localStudent = UserRepository.getByEmail(email.getText());
             UserRepository.delete(localStudent);
             String relativePath = localStudent.getProfileImg();
             if(relativePath!=null){
@@ -150,7 +149,7 @@ public class StudentInfoController implements Initializable {
             birthday.setEditable(true);
             address.setEditable(true);
             email.setEditable(true);
-            gradeLvl.setEditable(true);
+            gradeLvl.setDisable(false);
             updatePhoto.setVisible(true);
             removeButton.setVisible(true);
             editButton.setText("Save");
@@ -187,7 +186,6 @@ public class StudentInfoController implements Initializable {
 
                 }
                 else {
-                    localStudent = UserRepository.getByEmail(email.getText());
                     imagePath = localStudent.getProfileImg();
                 }
 
@@ -216,7 +214,7 @@ public class StudentInfoController implements Initializable {
                                 birthday.setEditable(false);
                                 address.setEditable(false);
                                 email.setEditable(false);
-                                gradeLvl.setEditable(false);
+                                gradeLvl.setDisable(true);
                                 updatePhoto.setVisible(false);
                                 editButton.setText("Edit or Delete Student");
                                 isEditable = false;
@@ -266,7 +264,7 @@ public class StudentInfoController implements Initializable {
             }
         }
 
-    public void setStudent(TeacherStudent student) {
+    public void setStudent(TacherUser student) {
         this.student = student;
         if (student != null) {
             firstname.setText(student.getName());

@@ -156,7 +156,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Label fx:id="w" alignment="CENTER" layoutX="168.0" layoutY="504.0" prefHeight="20.0" prefWidth="171.0" text="Faulty Inputs" textFill="RED">
+            <Label fx:id="w" alignment="CENTER" layoutX="153.0" layoutY="502.0" prefHeight="20.0" prefWidth="199.0" text="Please fill out all required fields" textFill="RED">
                <font>
                   <Font size="14.0" />
                </font>

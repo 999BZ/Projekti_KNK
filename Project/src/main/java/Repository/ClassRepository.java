@@ -1,24 +1,22 @@
 package Repository;
 
 import Models.Class;
-import Models.Grade;
 import Services.ConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class gradeRepository {
+public class ClassRepository {
 
-    public static void insert(Grade grade) throws SQLException {
+    public static void insert(Class clas) throws SQLException {
 
-        String UserSql = "INSERT INTO Grades (S_ID, Sb_ID, G_Value) VALUES (?, ?, ?)";
+        String UserSql = "INSERT INTO Classes (T_ID, Sb_ID) VALUES (?, ?, ?)";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)
         ) {
-            statement.setInt(1, grade.getStudentId());
-            statement.setInt(2, grade.getSubjectId());
-            statement.setInt(3, grade.getGrade());
+            statement.setInt(1, clas.getTeacherId());
+            statement.setInt(2, clas.getSubjectId());
 
             statement.executeUpdate();
 
@@ -27,16 +25,16 @@ public class gradeRepository {
         }
     }
 
-    public static void update(Grade grade) throws SQLException {
+    public static void update(Class clas) throws SQLException {
 
-        String UserSql = "UPDATE  Grades S_ID=?, Sb_ID=?, G_Value = ? where G_ID = ? ";
+        String UserSql = "UPDATE  Classes T_ID=?, Sb_ID=? where Sb_ID = ? ";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)
         ) {
-            statement.setInt(1, grade.getStudentId());
-            statement.setInt(2, grade.getSubjectId());
-            statement.setInt(3, grade.getGrade());
-            statement.setInt(4, grade.getId());
+            statement.setInt(1, clas.getTeacherId());
+            statement.setInt(2, clas.getSubjectId());
+            statement.setInt(3, clas.getId());
+
             statement.executeUpdate();
 
         }catch (SQLException ex) {

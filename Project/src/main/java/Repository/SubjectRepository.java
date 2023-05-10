@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class subjectRepository {
+public class SubjectRepository {
 
     public static void insert(Subject subject) throws SQLException {
 

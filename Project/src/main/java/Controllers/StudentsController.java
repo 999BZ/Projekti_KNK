@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.TeacherStudent;
+import Models.TacherUser;
 import Services.ConnectionUtil;
 import Services.WindowSizeUtils;
 import javafx.collections.FXCollections;
@@ -23,32 +23,32 @@ public class StudentsController {
     private BorderPane rootPane;
 
     @FXML
-    private TableView<TeacherStudent> studentsTable;
+    private TableView<TacherUser> studentsTable;
 
     @FXML
-    private TableColumn<TeacherStudent, String> name;
+    private TableColumn<TacherUser, String> name;
 
     @FXML
-    private TableColumn<TeacherStudent, String> surname;
+    private TableColumn<TacherUser, String> surname;
 
     @FXML
-    private TableColumn<TeacherStudent, String> birthdate;
+    private TableColumn<TacherUser, String> birthdate;
 
     @FXML
-    private TableColumn<TeacherStudent, Integer> year;
+    private TableColumn<TacherUser, Integer> year;
     @FXML
-    private TableColumn<TeacherStudent, Integer> id;
+    private TableColumn<TacherUser, Integer> id;
 
     @FXML
-    private TableColumn<TeacherStudent, String> phone;
+    private TableColumn<TacherUser, String> phone;
 
     @FXML
-    private TableColumn<TeacherStudent, String> email;
+    private TableColumn<TacherUser, String> email;
 
     @FXML
-    private TableColumn<TeacherStudent, String> address;
+    private TableColumn<TacherUser, String> address;
 
-    private ObservableList<TeacherStudent> studentsList = FXCollections.observableArrayList();
+    private ObservableList<TacherUser> studentsList = FXCollections.observableArrayList();
 
     public void initialize() throws SQLException {
         Connection conn = ConnectionUtil.getConnection();
@@ -73,7 +73,7 @@ public class StudentsController {
             String position = rs.getString("u_position");
             String profile_pic = rs.getString("u_profileimg");
 
-            TeacherStudent student = new TeacherStudent(id, email, salted_password, salt, position, profile_pic, name, surname, birthdate, phone, address, year);
+            TacherUser student = new TacherUser(id, email, salted_password, salt, position, profile_pic, name, surname, birthdate, phone, address, year);
             studentsList.add(student);
 
 
@@ -89,7 +89,7 @@ public class StudentsController {
 
             studentsTable.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2) { // double click
-                    TeacherStudent selectedStudent = studentsTable.getSelectionModel().getSelectedItem();
+                    TacherUser selectedStudent = studentsTable.getSelectionModel().getSelectedItem();
                     if (selectedStudent != null) {
                         showStudentInfo(selectedStudent);
                     }
@@ -99,7 +99,7 @@ public class StudentsController {
         }
     }
 
-    private void showStudentInfo(TeacherStudent student) {
+    private void showStudentInfo(TacherUser student) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/StudentInfo.fxml"));
             Parent root = loader.load();

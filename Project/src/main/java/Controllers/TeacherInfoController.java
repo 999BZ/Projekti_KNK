@@ -31,6 +31,20 @@ import java.util.UUID;
 public class TeacherInfoController implements Initializable {
     @FXML
     private BorderPane rootPane;
+    @FXML
+    private ImageView birthdayw;
+    @FXML
+    private ImageView firstnamew;
+    @FXML
+    private ImageView lastnamew;
+    @FXML
+    private ImageView phonew;
+    @FXML
+    private ImageView emailw;;
+    @FXML
+    private ImageView addressw;
+    @FXML
+    private Label w;
     User localTeacher;
     @FXML
     private Stage primaryStage;
@@ -77,6 +91,13 @@ public class TeacherInfoController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        birthdayw.setVisible(false);
+        firstnamew.setVisible(false);
+        lastnamew.setVisible(false);
+        phonew.setVisible(false);
+        emailw.setVisible(false);
+        addressw.setVisible(false);
+        w.setVisible(false);
         removeButton.setVisible(false);
         updatePhoto.setVisible(false);
     }
@@ -93,7 +114,6 @@ public class TeacherInfoController implements Initializable {
         dialogStage.showAndWait();
 
         if (dialogController.isConfirmClicked()) {
-            localTeacher= UserRepository.getByEmail(email.getText());
             UserRepository.delete(localTeacher);
             String relativePath = localTeacher.getProfileImg();
             File oldImage = new File(relativePath);
@@ -155,7 +175,6 @@ public class TeacherInfoController implements Initializable {
 
             }
             else {
-                localTeacher = UserRepository.getByEmail(email.getText());
                 imagePath = localTeacher.getProfileImg();
             }
 
@@ -187,15 +206,40 @@ public class TeacherInfoController implements Initializable {
                         editButton.setText("Edit or Delete Teacher");
                         isEditable = false;
                         removeButton.setVisible(true);
+                        birthdayw.setVisible(false);
+                        firstnamew.setVisible(false);
+                        lastnamew.setVisible(false);
+                        phonew.setVisible(false);
+                        emailw.setVisible(false);
+                        addressw.setVisible(false);
+                        w.setVisible(false);
                     }catch (SQLException sqlException) {
                         System.out.println("Teacher couldn't be updated.");
                     }
                 }else{
                     System.out.println("Please fill all text fields");
+                    w.setText("Please fill out all required fields");
+                    w.setVisible(true);
+                    if (this.firstname.getText().isEmpty()) {
+                        firstnamew.setVisible(true);
+                    }
+                    if (this.lastname.getText().isEmpty()) {
+                        lastnamew.setVisible(true);
+                    }
+                    if (this.birthday.getValue() == null) {
+                        birthdayw.setVisible(true);
+                    }
+                    if (this.phone.getText().isEmpty()) {
+                        phonew.setVisible(true);
+                    }
+                    if (this.address.getText().isEmpty()) {
+                        addressw.setVisible(true);
+                    }
                 }
             }else{
                 System.out.println("Please check your email and try again!");
-
+                emailw.setVisible(true);
+                w.setVisible(true);
             }
 
         }

@@ -27,6 +27,24 @@ import java.util.ResourceBundle;
 import java.util.UUID;
 
 public class RegisterStudentsController implements Initializable {
+    @FXML
+    private ImageView birthdayw;
+    @FXML
+    private ImageView firstnamew;
+    @FXML
+    private ImageView lastnamew;
+    @FXML
+    private ImageView phonew;
+    @FXML
+    private ImageView emailw;
+    @FXML
+    private ImageView gradeLvlw;
+    @FXML
+    private ImageView addressw;
+    @FXML
+    private ImageView passwordw;
+    @FXML
+    private Label w;
 
     private Stage primaryStage;
     @FXML
@@ -43,6 +61,15 @@ public class RegisterStudentsController implements Initializable {
     private Spinner<Integer> txtYear;
 
     public void initialize(URL url, ResourceBundle rb) {
+        birthdayw.setVisible(false);
+        firstnamew.setVisible(false);
+        lastnamew.setVisible(false);
+        phonew.setVisible(false);
+        emailw.setVisible(false);
+        gradeLvlw.setVisible(false);
+        addressw.setVisible(false);
+        passwordw.setVisible(false);
+        w.setVisible(false);
         txtYear.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 12, 0));
     }
 
@@ -147,18 +174,51 @@ public class RegisterStudentsController implements Initializable {
                             this.txtYear.getValueFactory().setValue(0);
                             this.txtEmail.setText("");
                             this.pwdPassword.setText("");
+                            birthdayw.setVisible(false);
+                            firstnamew.setVisible(false);
+                            lastnamew.setVisible(false);
+                            phonew.setVisible(false);
+                            emailw.setVisible(false);
+                            gradeLvlw.setVisible(false);
+                            addressw.setVisible(false);
+                            passwordw.setVisible(false);
+                            w.setVisible(false);
                         }
                     }catch (SQLException sqlException) {
                         System.out.println("Student couldn't register.");
                     }
                 }else{
                     System.out.println("Password is too short!");
+                    w.setText("Password is too short!");
                 }
             }else{
                 System.out.println("Please fill all text fields");
+                w.setText("Please fill out all required fields");
+                w.setVisible(true);
+                if (this.txtName.getText().isEmpty()) {
+                    firstnamew.setVisible(true);
+                }
+                if (this.txtSurname.getText().isEmpty()) {
+                    lastnamew.setVisible(true);
+                }
+                if (this.DateBirthdate.getValue() == null) {
+                    birthdayw.setVisible(true);
+                }
+                if (this.txtPhone.getText().isEmpty()) {
+                    phonew.setVisible(true);
+                }
+                if (this.txtEmail.getText().isEmpty()) {
+                    addressw.setVisible(true);
+                }
+                if (this.txtYear.getValue() == null) {
+                    gradeLvlw.setVisible(true);
+                }
             }
         }else{
             System.out.println("Please check your email and try again!");
+            emailw.setVisible(true);
+            w.setText("Please fill out all required fields");
+            w.setVisible(true);
         }
     this.profilePic.setImage(null);
 

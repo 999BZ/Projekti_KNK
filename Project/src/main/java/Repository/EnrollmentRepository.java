@@ -1,7 +1,6 @@
 package Repository;
 
 import Models.Enrollment;
-import Models.Grade;
 import Services.ConnectionUtil;
 
 import java.sql.Connection;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class enrollmentRepository {
+public class EnrollmentRepository {
     public static void insert(Enrollment enrollment) throws SQLException {
 
         String UserSql = "INSERT INTO Enrollments (S_ID, C_ID, E_Date) VALUES (?, ?, ?)";

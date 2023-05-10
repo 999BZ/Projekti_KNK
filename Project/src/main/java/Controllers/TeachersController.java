@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.TeacherStudent;
+import Models.TacherUser;
 import Models.TeacherUser;
 import Services.ConnectionUtil;
 import Services.WindowSizeUtils;
@@ -43,25 +43,25 @@ public class TeachersController {
     private TableView<TeacherUser> teachersTable;
 
     @FXML
-    private TableColumn<TeacherStudent, String> name;
+    private TableColumn<TacherUser, String> name;
 
     @FXML
-    private TableColumn<TeacherStudent, String> surname;
+    private TableColumn<TacherUser, String> surname;
 
     @FXML
-    private TableColumn<TeacherStudent, String> birthdate;
+    private TableColumn<TacherUser, String> birthdate;
 
     @FXML
-    private TableColumn<TeacherStudent, Integer> id;
+    private TableColumn<TacherUser, Integer> id;
 
     @FXML
-    private TableColumn<TeacherStudent, String> phone;
+    private TableColumn<TacherUser, String> phone;
 
     @FXML
-    private TableColumn<TeacherStudent, String> email;
+    private TableColumn<TacherUser, String> email;
 
     @FXML
-    private TableColumn<TeacherStudent, String> address;
+    private TableColumn<TacherUser, String> address;
 
     private ObservableList<TeacherUser> teachersList = FXCollections.observableArrayList();
     public void initialize() throws SQLException {

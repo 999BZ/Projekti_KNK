@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="234.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SubjectCardController">
+    <children>
+      <AnchorPane>
+         <children>
+              <AnchorPane layoutX="21.0" layoutY="20.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="191.0" styleClass="card" stylesheets="@../CSS/style.css">
+                  <children>
+                      <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="69.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../Images/books.png" />
+                          </image>
+                      </ImageView>
+                      <Label fx:id="subjectName" layoutX="36.0" layoutY="5.0" styleClass="card-header" text="Subject Name" />
+                      <Text fx:id="subjectInfo" layoutX="3.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject Info Subject Info Subject Info Subject Info Subject Info" wrappingWidth="180.0" />
+                      <Label fx:id="gradeLvl" layoutX="64.0" layoutY="137.0" style="-fx-background-color: purple;" styleClass="card-header" text="GLvl" />
+                  </children>
+              </AnchorPane>
+         </children>
+      </AnchorPane>
+    </children>
+</VBox>
