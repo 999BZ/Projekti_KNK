@@ -29,7 +29,7 @@ public class SubjectRepository {
 
     public static void update(Subject subject) throws SQLException {
 
-        String UserSql = "UPDATE  Subjects Sb_Name=?, Sb_Description=?, Sb_GLevel=? where Sb_ID = ? ";
+        String UserSql = "UPDATE  Subjects set Sb_Name=?, Sb_Description=?, Sb_GLevel=? where Sb_ID = ? ";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)
         ) {

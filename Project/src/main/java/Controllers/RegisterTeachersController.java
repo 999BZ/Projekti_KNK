@@ -1,16 +1,13 @@
 package Controllers;
 
 import Models.User;
+import Services.GeneralUtil;
 import Services.UserAuthService;
-import Services.WindowSizeUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -19,7 +16,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import java.util.UUID;
 
 public class RegisterTeachersController implements Initializable  {
     private Stage primaryStage;
@@ -72,41 +68,22 @@ public class RegisterTeachersController implements Initializable  {
         w.setVisible(false);
     }
     @FXML
-    private void handleImageUploadButton(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose Image");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
-        );
-        selectedFile = fileChooser.showOpenDialog(primaryStage);
-        if (selectedFile != null) {
-            Image newImage = new Image(selectedFile.toURI().toString());
-            profilePic.setImage(newImage);
-        }
+    private void handleImageUploadButton(ActionEvent event) throws IOException {
+        selectedFile = GeneralUtil.handleImageUpdate(profilePic);
     }
 
     @FXML
     private void registerClick(ActionEvent e){
+        birthdayw.setVisible(false);
+        firstnamew.setVisible(false);
+        lastnamew.setVisible(false);
+        phonew.setVisible(false);
+        emailw.setVisible(false);
+        addressw.setVisible(false);
+        passwordw.setVisible(false);
+        w.setVisible(false);
         if (selectedFile != null) {
-            try {
-                String fileName = selectedFile.getName();
-                String extension = fileName.substring(fileName.lastIndexOf("."));
-                String newFileName = UUID.randomUUID().toString() + extension;
-                imagePath = "src/main/resources/Images/ProfilePics/" + newFileName;
-                File destination = new File(imagePath);
-                InputStream source = new FileInputStream(selectedFile);
-                OutputStream output = new FileOutputStream(destination);
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = source.read(buffer)) > 0) {
-                    output.write(buffer, 0, length);
-                }
-                source.close();
-                output.close();
-                System.out.println("Writing file to " + imagePath);
-            } catch (IOException ex) {
-                System.out.println("Error saving image: " + ex.getMessage());
-            }
+            imagePath = GeneralUtil.savePhoto(selectedFile);
         }
 
 
@@ -174,12 +151,42 @@ public class RegisterTeachersController implements Initializable  {
                 if (this.txtEmail.getText().isEmpty()) {
                     addressw.setVisible(true);
                 }
+
+                if (this.txtEmail.getText() == null) {
+                    emailw.setVisible(true);
+                }
+                if (this.pwdPassword.getText().isEmpty()) {
+                    passwordw.setVisible(true);
+                }
+
             }
         }else{
             System.out.println("Please check your email and try again!");
             emailw.setVisible(true);
             w.setText("Please fill out all required fields");
             w.setVisible(true);
+            if (this.txtName.getText().isEmpty()) {
+                firstnamew.setVisible(true);
+            }
+            if (this.txtSurname.getText().isEmpty()) {
+                lastnamew.setVisible(true);
+            }
+            if (this.DateBirthdate.getValue() == null) {
+                birthdayw.setVisible(true);
+            }
+            if (this.txtPhone.getText().isEmpty()) {
+                phonew.setVisible(true);
+            }
+            if (this.txtEmail.getText().isEmpty()) {
+                addressw.setVisible(true);
+            }
+
+            if (this.txtEmail.getText() == null) {
+                emailw.setVisible(true);
+            }
+            if (this.pwdPassword.getText().isEmpty()) {
+                passwordw.setVisible(true);
+            }
         }
 
 

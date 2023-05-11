@@ -3,6 +3,7 @@ package Controllers;
 import Models.TeacherUser;
 import Models.User;
 import Repository.UserRepository;
+import Services.GeneralUtil;
 import Services.UserAuthService;
 import Services.WindowSizeUtils;
 import javafx.event.ActionEvent;
@@ -16,7 +17,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,7 +26,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import java.util.UUID;
 
 public class TeacherInfoController implements Initializable {
     @FXML
@@ -75,19 +74,8 @@ public class TeacherInfoController implements Initializable {
     private String oldImagePath;
 
     @FXML
-    private void handleImageUploadButton(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose Image");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
-        );
-        selectedFile = fileChooser.showOpenDialog(primaryStage);
-        if (selectedFile != null) {
-            Image newImage = new Image(selectedFile.toURI().toString());
-            profilePic.setImage(newImage);
-        }
-
-
+    private void handleImageUploadButton(ActionEvent event) throws IOException {
+       selectedFile =  GeneralUtil.handleImageUpdate(profilePic);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -146,33 +134,17 @@ public class TeacherInfoController implements Initializable {
         } else {
 
             if (selectedFile != null) {
-                try {
-                    String fileName = selectedFile.getName();
-                    String extension = fileName.substring(fileName.lastIndexOf("."));
-                    String newFileName = UUID.randomUUID().toString() + extension;
-                    imagePath = "src/main/resources/Images/ProfilePics/" + newFileName;
-                    File destination = new File(imagePath);
-                    InputStream source = new FileInputStream(selectedFile);
-                    OutputStream output = new FileOutputStream(destination);
-                    byte[] buffer = new byte[1024];
-                    int length;
-                    while ((length = source.read(buffer)) > 0) {
-                        output.write(buffer, 0, length);
-                    }
-                    source.close();
-                    output.close();
-                    System.out.println("Writing file to " + imagePath);
-
+                if (selectedFile != null) {
+                    imagePath = GeneralUtil.savePhoto(selectedFile);
+                    System.out.println(imagePath);
                     String relativePath = localTeacher.getProfileImg();
-//                                .replace("src/main/resources", "");
-                    File oldImage = new File(relativePath);
-                    oldImage.delete();
-                    System.out.println(oldImage.getAbsolutePath());
 
-                } catch (IOException ex) {
-                    System.out.println("Error saving image: " + ex.getMessage());
+                    File oldImage;
+                    if(relativePath!=null){
+                        oldImage = new File(relativePath);
+                        oldImage.delete();
+                    }
                 }
-
             }
             else {
                 imagePath = localTeacher.getProfileImg();
@@ -235,11 +207,32 @@ public class TeacherInfoController implements Initializable {
                     if (this.address.getText().isEmpty()) {
                         addressw.setVisible(true);
                     }
+                    if(this.email.getText().isEmpty()){
+                        emailw.setVisible(true);
+                    }
                 }
             }else{
                 System.out.println("Please check your email and try again!");
                 emailw.setVisible(true);
                 w.setVisible(true);
+                if (this.firstname.getText().isEmpty()) {
+                    firstnamew.setVisible(true);
+                }
+                if (this.lastname.getText().isEmpty()) {
+                    lastnamew.setVisible(true);
+                }
+                if (this.birthday.getValue() == null) {
+                    birthdayw.setVisible(true);
+                }
+                if (this.phone.getText().isEmpty()) {
+                    phonew.setVisible(true);
+                }
+                if (this.address.getText().isEmpty()) {
+                    addressw.setVisible(true);
+                }
+                if(this.email.getText().isEmpty()){
+                    emailw.setVisible(true);
+                }
             }
 
         }
@@ -257,8 +250,15 @@ public class TeacherInfoController implements Initializable {
 
             try {
                 String relativePath = teacher.getProfileImg().replace("src/main/resources", "");
-                Image image = new Image(getClass().getResourceAsStream(relativePath));
-                profilePic.setImage(image);
+                InputStream inputStream = getClass().getResourceAsStream(relativePath);
+                if (inputStream != null) {
+                    Image image = new Image(inputStream);
+                    profilePic.setImage(image);
+                } else {
+                    System.out.println("Error loading image: " + teacher.getProfileImg());
+                }
+                inputStream.close();
+
             } catch (Exception e)  {
                 System.out.println("Error loading image: " + e.getMessage());
 

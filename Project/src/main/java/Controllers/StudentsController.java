@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class StudentsController {
+
     private  ObservableList<StudentUser> studentsList = FXCollections.observableArrayList();
     @FXML
     private BorderPane rootPane;
@@ -66,7 +68,7 @@ public class StudentsController {
             studentsTable.setItems(studentsList);
 
             studentsTable.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2) { // double click
+                if (event.getClickCount() == 2) {
                     StudentUser selectedStudent = studentsTable.getSelectionModel().getSelectedItem();
                     if (selectedStudent != null) {
                         showStudentInfo(selectedStudent);

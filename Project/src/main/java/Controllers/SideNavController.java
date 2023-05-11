@@ -45,9 +45,9 @@ public class SideNavController  {
         }
 
         @FXML
-        private void goToCourses() {
-            // Load the Courses page FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Courses.fxml"));
+        private void goToSubjects() {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Subjects.fxml"));
             try {
                 Parent root = loader.load();
                 Scene scene = new Scene(root,WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
@@ -86,29 +86,7 @@ public class SideNavController  {
             }
         }
 
-//    @FXML
-//    private void goToLogin() {
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//        alert.setTitle("Log Out");
-//        alert.setContentText("Do you want to end your session and log out?");
-//        alert.getDialogPane().getStyleClass().add("confirmation-dialog");
-//
-//        Optional<ButtonType> result = alert.showAndWait();
-//
-//        if (result.isPresent() && result.get() == ButtonType.OK) {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Login.fxml"));
-//            try {
-//                Parent root = loader.load();
-//                Scene scene = new Scene(root,WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
-//                Stage stage = (Stage) navbar.getScene().getWindow();
-//                stage.setScene(scene);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            // User chose cancel, do nothing
-//        }
-//    }
+
 
     @FXML
     private void handleLogOutButton() throws IOException {

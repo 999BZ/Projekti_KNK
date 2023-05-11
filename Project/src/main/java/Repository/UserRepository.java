@@ -17,7 +17,7 @@ public class UserRepository {
     public static User insert(User user) throws SQLException {
         if(user instanceof StudentUser student){
             String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position, U_ProfileImg) VALUES (?, ?, ?, ?, ?)";
-            String StudentSql="INSERT INTO Students (S_Name, S_Surname, S_Birthdate, S_Phone, S_Address, S_GLevel, S_UID) VALUES (?, ?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
+            String StudentSql="INSERT INTO Students (S_Name, S_Surname, S_Birthdate, S_Phone, S_Address, S_GLevel, S_Paralel, S_UID) VALUES (?, ?, ?, ?, ?,?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
 
             try(Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement UserStatement = connection.prepareStatement(UserSql)
@@ -36,7 +36,8 @@ public class UserRepository {
                 StudentStatement.setString(4, student.getPhone());
                 StudentStatement.setString(5, student.getAddress());
                 StudentStatement.setInt(6, student.getYear());
-                StudentStatement.setString(7, student.getEmail());
+                StudentStatement.setInt(7,student.getParalel());
+                StudentStatement.setString(8, student.getEmail());
                 StudentStatement.executeUpdate();
 
             }catch (SQLException ex) {
@@ -144,7 +145,7 @@ public class UserRepository {
     public static User update(User user) throws SQLException {
         if(user instanceof StudentUser student){
             String UserSql = "UPDATE Users set Email=?, U_Position=?, U_ProfileImg=? where U_ID = ?";
-            String StudentSql = "UPDATE Students set S_Name=?, S_Surname=?, S_Birthdate=?, S_Phone=?, S_Address=?, S_GLevel=? where S_UID=?";
+            String StudentSql = "UPDATE Students set S_Name=?, S_Surname=?, S_Birthdate=?, S_Phone=?, S_Address=?, S_GLevel=?, S_Paralel=? where S_UID=?";
 
             try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement UserStatement = connection.prepareStatement(UserSql);
@@ -153,6 +154,7 @@ public class UserRepository {
                 UserStatement.setString(1, student.getEmail());
                 UserStatement.setString(2, student.getPosition());
                 UserStatement.setString(3, student.getProfileImg());
+
                 UserStatement.setInt(4, student.getID());
 
                 UserStatement.executeUpdate();
@@ -163,7 +165,8 @@ public class UserRepository {
                 StudentStatement.setString(4, student.getPhone());
                 StudentStatement.setString(5, student.getAddress());
                 StudentStatement.setInt(6, student.getYear());
-                StudentStatement.setInt(7, student.getID());
+                StudentStatement.setInt(7, student.getParalel());
+                StudentStatement.setInt(8, student.getID());
 
                 StudentStatement.executeUpdate();
 
@@ -203,8 +206,8 @@ public class UserRepository {
             return UserRepository.getByEmail(user.getEmail());
         }
         else if(user instanceof AdminUser admin){
-            String UserSql = "UPDATE Users Email=?, Salted_Password=?, Salt=?, U_Position=?,  U_ProfileImg=? where U_ID=?";
-            String TeacherSql = "UPDATE Admins A_Name=?, A_Surname=?,T_Phone=? where T_UID = ?";
+            String UserSql = "UPDATE Users set Email=?, Salted_Password=?, Salt=?, U_Position=?,  U_ProfileImg=? where U_ID=?";
+            String TeacherSql = "UPDATE Admins set A_Name=?, A_Surname=?,T_Phone=? where T_UID = ?";
 
             try(Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement UserStatement = connection.prepareStatement(UserSql)

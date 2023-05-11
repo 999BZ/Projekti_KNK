@@ -76,7 +76,7 @@
                   </AnchorPane>
                   <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <PasswordField fx:id="pwdPassword" layoutY="7.0" prefHeight="29.0" prefWidth="98.0" promptText="********" styleClass="textInput">
+                        <PasswordField fx:id="pwdPassword" layoutY="7.0" onKeyPressed="#handleEnterKeyPressed" prefHeight="29.0" prefWidth="98.0" promptText="********" styleClass="textInput">
                            <font>
                               <Font size="14.0" />
                            </font>

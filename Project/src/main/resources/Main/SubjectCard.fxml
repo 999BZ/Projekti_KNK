@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,20 +9,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="234.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SubjectCardController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SubjectCardController">
     <children>
-      <AnchorPane>
+      <AnchorPane prefHeight="78.0" prefWidth="723.0">
          <children>
-              <AnchorPane layoutX="21.0" layoutY="20.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="191.0" styleClass="card" stylesheets="@../CSS/style.css">
+              <AnchorPane layoutX="8.0" layoutY="9.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="716.0" styleClass="card" stylesheets="@../CSS/style.css">
                   <children>
-                      <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="69.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="177.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@../Images/books.png" />
                           </image>
                       </ImageView>
-                  <StackPane layoutY="6.0" prefHeight="38.0" prefWidth="191.0">
+                  <StackPane layoutY="12.0" prefHeight="43.0" prefWidth="165.0">
                      <children>
-                            <Label fx:id="subjectName" alignment="CENTER" prefHeight="43.0" prefWidth="145.0" styleClass="card-header" text="Subject Name">
+                            <Label fx:id="subjectName" alignment="CENTER" prefHeight="43.0" prefWidth="145.0" text="Subject Name">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -32,23 +33,25 @@
                         </Label>
                      </children>
                   </StackPane>
-                  <StackPane layoutY="80.0" prefHeight="64.0" prefWidth="192.0">
+                  <StackPane layoutX="251.0" layoutY="12.0" prefHeight="43.0" prefWidth="192.0">
                      <children>
                         <Label fx:id="subjectInfo" styleClass="subject-desc" text="Label" />
                      </children>
                   </StackPane>
-                      <Label fx:id="gradeLvl" alignment="CENTER" layoutX="47.0" layoutY="140.0" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #48CAE4;" styleClass="card-header" text="GLvl" textFill="WHITE">
+                      <Label fx:id="gradeLvl" alignment="CENTER" layoutX="475.0" layoutY="16.0" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #48CAE4;" styleClass="card-header" text="GLvl" textFill="WHITE">
                      <font>
                         <Font size="11.0" />
                      </font>
+                  </Label>
+                  <Button fx:id="editButton" layoutX="624.0" layoutY="19.0" mnemonicParsing="false" onAction="#editSubject" styleClass="spec-button" text="Edit">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/level.png" />
+                              <Image url="@../Images/edit.png" />
                            </image>
                         </ImageView>
                      </graphic>
-                  </Label>
+                  </Button>
                   </children>
               </AnchorPane>
          </children>

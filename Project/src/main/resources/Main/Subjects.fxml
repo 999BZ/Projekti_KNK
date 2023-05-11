@@ -3,21 +3,27 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SubjectsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" styleClass="subjects" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SubjectsController">
     <left>
         <fx:include source="SideNav.fxml" />
     </left>
    <center>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane>
          <children>
-            <FlowPane fx:id="subjectCards" layoutY="66.0" prefHeight="434.0" prefWidth="729.0" />
-            <Button alignment="CENTER" layoutX="586.0" layoutY="501.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="106.0" styleClass="spec-button" text="Add Subject">
+            <ScrollPane hbarPolicy="NEVER" layoutX="3.0" layoutY="66.0" prefHeight="406.0" prefWidth="726.0">
+               <content>
+                  <VBox fx:id="subjectCards" alignment="CENTER" prefHeight="410.0" prefWidth="710.0" />
+               </content>
+            </ScrollPane>
+            <Button fx:id="addSubjectButton" alignment="CENTER" layoutX="585.0" layoutY="508.0" mnemonicParsing="false" onAction="#openAddSubjects" prefHeight="27.0" prefWidth="106.0" styleClass="spec-button" text="Add Subject">
                <graphic>
                   <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -26,19 +32,39 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ChoiceBox fx:id="teacherFilter" layoutX="332.0" layoutY="28.0" prefWidth="150.0" />
-            <ChoiceBox fx:id="gradeFilter" layoutX="107.0" layoutY="28.0" prefWidth="150.0" />
-            <Label layoutX="31.0" layoutY="32.0" text="Grade Level:" />
-            <Label layoutX="272.0" layoutY="32.0" text="Teacher:" />
-            <Button fx:id="filterButton" alignment="CENTER" layoutX="613.0" layoutY="27.0" mnemonicParsing="false" onAction="#filterSubjects" prefHeight="27.0" prefWidth="78.0" styleClass="spec-button" text="Filter">
-               <graphic>
-                  <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/filter.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <AnchorPane layoutX="7.0" layoutY="32.0" prefHeight="27.0" prefWidth="725.0">
+               <children>
+                  <Label layoutX="10.0" layoutY="5.0" text="Grade Level:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Button fx:id="clearFilters" alignment="CENTER" layoutX="500.0" mnemonicParsing="false" onAction="#clearFilters" prefHeight="27.0" prefWidth="91.0" styleClass="spec-button" text="Refresh">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/reset.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ChoiceBox fx:id="teacherFilter" layoutX="333.0" layoutY="1.0" prefWidth="150.0" />
+                  <ChoiceBox fx:id="gradeFilter" layoutX="84.0" layoutY="1.0" prefWidth="150.0" />
+                  <Button fx:id="filterButton" alignment="CENTER" layoutX="622.0" layoutY="-1.0" mnemonicParsing="false" onAction="#filterSubjects" prefHeight="27.0" prefWidth="78.0" styleClass="spec-button" text="Filter">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/filter.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="280.0" layoutY="5.0" text="Teacher:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </center>

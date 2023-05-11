@@ -23,7 +23,7 @@ public class UserAuthService {
         return null;
     }
 
-    public static User registerStudent(String Name, String Surname, String Birthdate, String Phone, String Address, int Year, String Email, String password, String Position, String ProfileImg) throws SQLException {
+    public static User registerStudent(String Name, String Surname, String Birthdate, String Phone, String Address, int Year, int Paralel,  String Email, String password, String Position, String ProfileImg) throws SQLException {
         User CheckUser = UserRepository.getByEmail(Email);
         if(CheckUser != null){
             System.out.println("User already exists.");
@@ -32,11 +32,11 @@ public class UserAuthService {
         String salt = PasswordHasher.generateSalt();
         String saltedPasswordHash = PasswordHasher.generateSaltedHash(password,salt);
         System.out.println("Trying to Register!");
-            return UserRepository.insert(new StudentUser(1,Email, saltedPasswordHash, salt, "Student",ProfileImg, Name, Surname, Birthdate, Phone, Address, Year));
+            return UserRepository.insert(new StudentUser(1,Email, saltedPasswordHash, salt, "Student",ProfileImg, Name, Surname, Birthdate, Phone, Address, Year, Paralel));
 
     }
-    public static User updateStudent(int id,String Name, String Surname, String Birthdate, String Phone, String Address, int Year, String Email, String Position, String ProfileImg) throws SQLException {
-        return UserRepository.update(new StudentUser(id,Email, null, null, "Student",ProfileImg, Name, Surname, Birthdate, Phone, Address, Year));
+    public static User updateStudent(int id,String Name, String Surname, String Birthdate, String Phone, String Address, int Year,int Paralel, String Email, String Position, String ProfileImg) throws SQLException {
+        return UserRepository.update(new StudentUser(id,Email, null, null, "Student",ProfileImg, Name, Surname, Birthdate, Phone, Address, Year, Paralel));
     }
     public static User registerTeacher(String Name, String Surname, String Birthdate, String Phone, String Address, String Email, String password, String Position, String ProfileImg) throws SQLException {
         User CheckUser = UserRepository.getByEmail(Email);

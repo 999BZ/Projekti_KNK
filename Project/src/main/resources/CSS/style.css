@@ -60,7 +60,7 @@
 }
 
 .danger-button {
-    -fx-background-color: linear-gradient(#ED2B2A, #D21312);
+    -fx-background-color: linear-gradient(#c1121f, #ED2B2A);
     -fx-background-radius: 30;
     -fx-text-fill: white;
 }
@@ -69,7 +69,7 @@
 }
 .danger-button:pressed{
     -fx-background-color: linear-gradient(#5264ae, #8a98ff);}
-.courses #coursesButton,.students #studentsButton,.assignments #assignmentsButton, .teachers #teachersButton {
+.subjects #subjectsButton,.students #studentsButton,.assignments #assignmentsButton, .teachers #teachersButton {
     -fx-border-width: 3px;
     -fx-border-radius: 50;
     -fx-border-color: #e5f4f9;
@@ -149,4 +149,17 @@
 .subject-desc {
     -fx-font-weight: bold;
 }
+
+.info-label{
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #0353a4;
+    -fx-background-radius: 20px;
+    -fx-label-padding: 5px;
+}
+.choice-box {
+    -fx-text-fill: black;
+    -fx-background-color: #90E0EF;
+}
+
 

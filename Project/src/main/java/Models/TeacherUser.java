@@ -57,5 +57,8 @@ public class TeacherUser extends User {
         Address = address;
     }
 
-
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

@@ -108,8 +108,14 @@
                                 <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="46.0" text="Year:" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                                 <AnchorPane prefHeight="36.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
                                     <children>
-                                        <Spinner fx:id="txtYear" layoutX="18.0" prefHeight="28.0" prefWidth="112.0" />
-                              <ImageView fx:id="gradeLvlw" fitHeight="21.0" fitWidth="21.0" layoutX="133.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                        <Spinner fx:id="txtYear" layoutX="18.0" prefHeight="28.0" prefWidth="57.0" />
+                              <ImageView fx:id="gradeLvlw" fitHeight="21.0" fitWidth="21.0" layoutX="78.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/warning.png" />
+                                 </image>
+                              </ImageView>
+                              <Spinner fx:id="txtParalel" layoutX="107.0" prefHeight="28.0" prefWidth="52.0" />
+                              <ImageView fx:id="txtParalelw" fitHeight="21.0" fitWidth="21.0" layoutX="162.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
                                  </image>
@@ -203,6 +209,11 @@
                                     </ImageView>
                                  </children>
                               </StackPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="11">
+                           <children>
+                              <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="7.0" prefHeight="18.0" prefWidth="46.0" text="Paralel:" />
                            </children>
                         </AnchorPane>
                             </children>

@@ -4,11 +4,13 @@ public class Class {
     private int id;
     private int teacherId;
     private int subjectId;
+    private int paralel;
 
-    public Class(int id, int teacherId, int subjectId) {
+    public Class(int id, int teacherId, int subjectId, int paralel) {
         this.id = id;
         this.teacherId = teacherId;
         this.subjectId = subjectId;
+        this.paralel = paralel;
     }
 
     public int getId() {
@@ -33,5 +35,13 @@ public class Class {
 
     public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
+    }
+
+    public int getParalel() {
+        return paralel;
+    }
+
+    public void setParalel(int paralel) {
+        this.paralel = paralel;
     }
 }

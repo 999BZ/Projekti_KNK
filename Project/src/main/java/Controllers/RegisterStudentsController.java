@@ -1,20 +1,16 @@
 package Controllers;
 
-import Services.WindowSizeUtils;
+import Services.GeneralUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import Models.User;
 import Services.UserAuthService;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -24,7 +20,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import java.util.UUID;
 
 public class RegisterStudentsController implements Initializable {
     @FXML
@@ -39,6 +34,8 @@ public class RegisterStudentsController implements Initializable {
     private ImageView emailw;
     @FXML
     private ImageView gradeLvlw;
+    @FXML
+    private ImageView txtParalelw;
     @FXML
     private ImageView addressw;
     @FXML
@@ -59,6 +56,8 @@ public class RegisterStudentsController implements Initializable {
     private TextField txtAddress;
     @FXML
     private Spinner<Integer> txtYear;
+    @FXML
+    private Spinner<Integer> txtParalel;
 
     public void initialize(URL url, ResourceBundle rb) {
         birthdayw.setVisible(false);
@@ -67,10 +66,12 @@ public class RegisterStudentsController implements Initializable {
         phonew.setVisible(false);
         emailw.setVisible(false);
         gradeLvlw.setVisible(false);
+        txtParalelw.setVisible(false);
         addressw.setVisible(false);
         passwordw.setVisible(false);
         w.setVisible(false);
         txtYear.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 12, 0));
+        txtParalel.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 3, 0));
     }
 
     @FXML
@@ -80,24 +81,25 @@ public class RegisterStudentsController implements Initializable {
     private PasswordField pwdPassword;
     @FXML
     private ImageView profilePic;
-    private String imagePath;
+    private String imagePath ;
 
     private File selectedFile;
     @FXML
-    private void handleImageUploadButton(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose Image");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
-        );
-        selectedFile = fileChooser.showOpenDialog(primaryStage);
-        if (selectedFile != null) {
-            Image newImage = new Image(selectedFile.toURI().toString());
-            profilePic.setImage(newImage);
-        }
+    private void handleImageUploadButton(ActionEvent event) throws IOException {
+        selectedFile = GeneralUtil.handleImageUpdate(profilePic);
     }
     @FXML
     private void registerClick(ActionEvent e) throws IOException {
+        birthdayw.setVisible(false);
+        firstnamew.setVisible(false);
+        lastnamew.setVisible(false);
+        phonew.setVisible(false);
+        emailw.setVisible(false);
+        gradeLvlw.setVisible(false);
+        addressw.setVisible(false);
+        passwordw.setVisible(false);
+        txtParalelw.setVisible(false);
+        w.setVisible(false);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Dialog.fxml"));
         AnchorPane dialogPane = loader.load();
         DialogController dialogController = loader.getController();
@@ -122,25 +124,7 @@ public class RegisterStudentsController implements Initializable {
     private void registerStudent(){
 
         if (selectedFile != null) {
-            try {
-                String fileName = selectedFile.getName();
-                String extension = fileName.substring(fileName.lastIndexOf("."));
-                String newFileName = UUID.randomUUID().toString() + extension;
-                imagePath = "src/main/resources/Images/ProfilePics/" + newFileName;
-                File destination = new File(imagePath);
-                InputStream source = new FileInputStream(selectedFile);
-                OutputStream output = new FileOutputStream(destination);
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = source.read(buffer)) > 0) {
-                    output.write(buffer, 0, length);
-                }
-                source.close();
-                output.close();
-                System.out.println("Writing file to " + imagePath);
-            } catch (IOException ex) {
-                System.out.println("Error saving image: " + ex.getMessage());
-            }
+            imagePath = GeneralUtil.savePhoto(selectedFile);
         }
 
 
@@ -149,7 +133,7 @@ public class RegisterStudentsController implements Initializable {
         if(email.matches(emailRegex)){
             if(!this.pwdPassword.getText().isEmpty() && !this.txtName.getText().isEmpty() && !this.txtSurname.getText().isEmpty() &&
                     !(this.DateBirthdate.getValue() == null) && !this.txtPhone.getText().isEmpty() &&
-                    !this.txtAddress.getText().isEmpty() && this.txtYear.getValue() != 0){
+                    !this.txtAddress.getText().isEmpty() && this.txtYear.getValue() != 0 && this.txtParalel.getValue() != 0){
                 String password = this.pwdPassword.getText();
                 if(password.length() > 7){
                     String name = this.txtName.getText();
@@ -160,10 +144,11 @@ public class RegisterStudentsController implements Initializable {
                     String phone = this.txtPhone.getText();
                     String address = this.txtAddress.getText();
                     int year = this.txtYear.getValue();
+                    int paralel = this.txtParalel.getValue();
                     System.out.println("ALL GOOD");
                     try {
                         System.out.println("Register -> AuthService");
-                        User user = UserAuthService.registerStudent(name, surname, birthdate, phone, address, year, email, password,"Student", imagePath);
+                        User user = UserAuthService.registerStudent(name, surname, birthdate, phone, address, year,paralel, email, password,"Student", imagePath);
                         if (user != null){
                             System.out.println("User Registered");
                             this.txtName.setText("");
@@ -182,6 +167,7 @@ public class RegisterStudentsController implements Initializable {
                             gradeLvlw.setVisible(false);
                             addressw.setVisible(false);
                             passwordw.setVisible(false);
+                            txtParalelw.setVisible(false);
                             w.setVisible(false);
                         }
                     }catch (SQLException sqlException) {
@@ -210,15 +196,53 @@ public class RegisterStudentsController implements Initializable {
                 if (this.txtEmail.getText().isEmpty()) {
                     addressw.setVisible(true);
                 }
-                if (this.txtYear.getValue() == null) {
+                if (this.txtYear.getValue() == 0) {
                     gradeLvlw.setVisible(true);
                 }
+                if (this.txtParalel.getValue() == 0) {
+                    txtParalelw.setVisible(true);
+                }
+                if (this.txtEmail.getText() == null) {
+                    emailw.setVisible(true);
+                }
+                if (this.pwdPassword.getText().isEmpty()) {
+                    passwordw.setVisible(true);
+                }
+
             }
         }else{
             System.out.println("Please check your email and try again!");
             emailw.setVisible(true);
             w.setText("Please fill out all required fields");
             w.setVisible(true);
+            if (this.txtName.getText().isEmpty()) {
+                firstnamew.setVisible(true);
+            }
+            if (this.txtSurname.getText().isEmpty()) {
+                lastnamew.setVisible(true);
+            }
+            if (this.DateBirthdate.getValue() == null) {
+                birthdayw.setVisible(true);
+            }
+            if (this.txtPhone.getText().isEmpty()) {
+                phonew.setVisible(true);
+            }
+            if (this.txtEmail.getText().isEmpty()) {
+                addressw.setVisible(true);
+            }
+            if (this.txtYear.getValue() == 0) {
+                gradeLvlw.setVisible(true);
+            }
+            if (this.txtParalel.getValue() == 0) {
+                txtParalelw.setVisible(true);
+            }
+            if (this.txtEmail.getText() == null) {
+                emailw.setVisible(true);
+            }
+            if (this.pwdPassword.getText().isEmpty()) {
+                passwordw.setVisible(true);
+            }
+
         }
     this.profilePic.setImage(null);
 
@@ -234,6 +258,7 @@ public class RegisterStudentsController implements Initializable {
         this.txtEmail.setText("");
         this.pwdPassword.setText("");
         this.profilePic.setImage(null);
+        this.txtParalel.getValueFactory().setValue(0);
     }
 
 

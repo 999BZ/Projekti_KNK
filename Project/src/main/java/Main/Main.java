@@ -20,6 +20,5 @@ public class Main extends Application {
         stage.setTitle("Lower Education Managment System");
         stage.setScene(scene);
         stage.show();
-        System.out.println(UUID.randomUUID());
     }
 }

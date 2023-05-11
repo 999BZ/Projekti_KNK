@@ -34,7 +34,7 @@ public class EnrollmentRepository {
 
     public static void update(Enrollment enrollment) throws SQLException {
 
-        String UserSql = "UPDATE  Enrollments S_ID=?, C_ID=?, E_Date = ? where E_ID = ? ";
+        String UserSql = "UPDATE  Enrollments set S_ID=?, C_ID=?, E_Date = ? where E_ID = ? ";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)
         ) {

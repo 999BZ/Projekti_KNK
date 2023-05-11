@@ -11,7 +11,7 @@ public class GradeRepository {
 
     public static void insert(Grade grade) throws SQLException {
 
-        String UserSql = "INSERT INTO Grades (S_ID, Sb_ID, G_Value) VALUES (?, ?, ?)";
+        String UserSql = "INSERT INTO Grades  (S_ID, Sb_ID, G_Value) VALUES (?, ?, ?)";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)
         ) {
@@ -28,7 +28,7 @@ public class GradeRepository {
 
     public static void update(Grade grade) throws SQLException {
 
-        String UserSql = "UPDATE  Grades S_ID=?, Sb_ID=?, G_Value = ? where G_ID = ? ";
+        String UserSql = "UPDATE  Grades set S_ID=?, Sb_ID=?, G_Value = ? where G_ID = ? ";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)
         ) {

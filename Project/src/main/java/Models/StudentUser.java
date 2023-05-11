@@ -8,15 +8,17 @@ public class StudentUser extends User {
     private String Phone;
     private String Address;
     private int Year;
+    private int Paralel;
 
-    public StudentUser(int ID, String email, String saltedPassword, String salt, String position, String profilePic, String name, String surname, String birthdate, String phone, String address, int year) {
-        super(ID, email, saltedPassword, salt, position, profilePic);
+    public StudentUser(int ID, String email, String saltedPassword, String salt, String position, String profileImg, String name, String surname, String birthdate, String phone, String address, int year, int paralel) {
+        super(ID, email, saltedPassword, salt, position, profileImg);
         Name = name;
         Surname = surname;
         Birthdate = birthdate;
         Phone = phone;
         Address = address;
         Year = year;
+        Paralel = paralel;
     }
 
     public String getName() {
@@ -65,5 +67,13 @@ public class StudentUser extends User {
 
     public void setYear(int year) {
         Year = year;
+    }
+
+    public int getParalel() {
+        return Paralel;
+    }
+
+    public void setParalel(int paralel) {
+        Paralel = paralel;
     }
 }
