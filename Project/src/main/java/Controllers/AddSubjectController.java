@@ -36,12 +36,15 @@ public class AddSubjectController implements Initializable {
 
     @FXML
     private TextArea subjectDescription;
+    @FXML
+    private CheckBox obligatory;
 
     @FXML
     private Spinner<Integer> subjectGradeLvl = new Spinner<>(0,12,0,1);
 
     private Stage addSubjectsStage;
-    private boolean editMode;
+    private boolean editMode = false;
+    private boolean confirmed = false;
     Subject subject;
 
 
@@ -55,9 +58,11 @@ public class AddSubjectController implements Initializable {
     void handleConfirmButton(ActionEvent event) throws SQLException {
         if(editMode == false) {
             if (subjectGradeLvl.getValue() != 0 && !subjectDescription.getText().isEmpty() && !subjectName.getText().isEmpty()) {
-                Subject subject = new Subject(1, subjectName.getText(), subjectDescription.getText(), subjectGradeLvl.getValue());
+                Subject subject = new Subject(1, subjectName.getText(), subjectDescription.getText(), subjectGradeLvl.getValue(), obligatory.isSelected());
                 SubjectRepository.insert(subject);
+                confirmed = true;
                 this.addSubjectsStage.close();
+
             } else {
                 if (subjectName.getText().isEmpty()) {
                     namew.setVisible(true);
@@ -73,7 +78,7 @@ public class AddSubjectController implements Initializable {
         }
         else{
             if (subjectGradeLvl.getValue() != 0 && !subjectDescription.getText().isEmpty() && !subjectName.getText().isEmpty()) {
-                Subject subject = new Subject(this.subject.getId(), subjectName.getText(), subjectDescription.getText(), subjectGradeLvl.getValue());
+                Subject subject = new Subject(this.subject.getId(), subjectName.getText(), subjectDescription.getText(), subjectGradeLvl.getValue(), obligatory.isSelected());
                 SubjectRepository.update(subject);
                 this.addSubjectsStage.close();
             } else {
@@ -111,7 +116,10 @@ public class AddSubjectController implements Initializable {
         subjectGradeLvl.getValueFactory().setValue(subject.getYear());
         subjectName.setText(subject.getName());
         subjectDescription.setText(subject.getDescription());
+        obligatory.setSelected(subject.isObligatory());
     }
 
-
+    public boolean getConfimed(){
+        return confirmed;
+    }
 }

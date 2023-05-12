@@ -1,8 +1,10 @@
 package Controllers;
 
 import Models.Subject;
+import Repository.SubjectRepository;
 import Services.CardGenUtil;
 import Services.FetchData;
+import Services.WindowSizeUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,10 +44,41 @@ public class SubjectCardController {
         dialogStage.setScene(new Scene(addSubjectPane));
         subjectController.setAddSubjectsStage(dialogStage);
         dialogStage.showAndWait();
-        parentController.filterSubjects();
+        parentController.clearFilters();
     }
+    @FXML
+    public void removeSubject() throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Dialog.fxml"));
+        AnchorPane dialogPane = loader.load();
+        DialogController dialogController = loader.getController();
+        dialogController.setLabelText("This subject is being removed!");
+        Stage dialogStage = new Stage();
+        dialogStage.initModality(Modality.APPLICATION_MODAL);
+        dialogStage.setScene(new Scene(dialogPane));
+        dialogController.setDialogStage(dialogStage);
+        dialogStage.showAndWait();
+
+
+        if (dialogController.isConfirmClicked()) {
+            SubjectRepository.delete(subject);
+            parentController.clearFilters();
+        }
+    }
+
     public void setParentController(SubjectsController parentController) {
         this.parentController = parentController;
+    }
+    @FXML
+    public void assignTeacher() throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/AssignSubject.fxml"));
+        AnchorPane assignPane = loader.load();
+        AssignSubjectController asc = loader.getController();
+        asc.setData(this.subject);
+        Stage assignStage = new Stage();
+        assignStage.initModality(Modality.APPLICATION_MODAL);
+        assignStage.setScene(new Scene(assignPane));
+        asc.setAssignStage(assignStage);
+        assignStage.showAndWait();
     }
 
 

@@ -54,12 +54,13 @@ CREATE TABLE Teachers (
 );
 
 -- SELECT * FROM Teachers
-
+drop table subjects;
 CREATE TABLE Subjects(
 	Sb_ID INT NOT NULL AUTO_INCREMENT,
     Sb_Name VARCHAR(50),
     Sb_Description VARCHAR(2000),
     Sb_GLevel INT NOT NULL,
+    Sb_Obligatory real,
     PRIMARY KEY (Sb_ID)
 );
 
@@ -132,14 +133,21 @@ SET FOREIGN_KEY_CHECKS=1;
 
 #Enroll Students Trigger 
 DELIMITER $$
-CREATE TRIGGER enroll_student AFTER INSERT ON Students
+CREATE TRIGGER auto_enroll AFTER INSERT ON Students
 FOR EACH ROW
 BEGIN
-    INSERT INTO Enrollments (S_ID, C_ID, E_Date)
-    SELECT NEW.S_UID, C.C_ID, CURDATE()
+  INSERT INTO Enrollments (S_ID, C_ID, E_Date)
+    SELECT NEW.S_UID, C.C_ID, NOW() 
     FROM Classes C
-    WHERE C.Sb_GLevel = NEW.S_GLevel AND C.C_Paralel = NEW.S_Paralel;
+    JOIN Subjects S ON C.Sb_ID = S.Sb_ID 
+    WHERE C.C_Paralel = NEW.S_Paralel 
+    AND C.Grade_Level = NEW.S_GLevel 
+    AND S.Sb_Obligatory = 1;
 END$$
 DELIMITER ;
+
+
+
+drop trigger auto_enroll;
 
 

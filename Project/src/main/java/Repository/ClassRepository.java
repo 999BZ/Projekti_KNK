@@ -1,6 +1,6 @@
 package Repository;
 
-import Models.Class;
+import Models.Classe;
 import Services.ConnectionUtil;
 
 import java.sql.Connection;
@@ -9,9 +9,9 @@ import java.sql.SQLException;
 
 public class ClassRepository {
 
-    public static void insert(Class clas) throws SQLException {
+    public static void insert(Classe clas) throws SQLException {
 
-        String UserSql = "INSERT INTO Classes (T_ID, Sb_ID, C_Paralel) VALUES (?, ?, ?, ?)";
+        String UserSql = "INSERT INTO Classes (T_ID, Sb_ID, C_Paralel) VALUES (?, ?, ?)";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)
         ) {
@@ -26,9 +26,9 @@ public class ClassRepository {
         }
     }
 
-    public static void update(Class clas) throws SQLException {
+    public static void update(Classe clas) throws SQLException {
 
-        String UserSql = "UPDATE  Classes set T_ID=?, Sb_ID=?, C_Paralel=? where Sb_ID = ? ";
+        String UserSql = "UPDATE  Classes set T_ID=?, Sb_ID=?, C_Paralel=? where C_ID = ? ";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)
         ) {

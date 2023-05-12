@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="249.0" prefWidth="472.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AssignSubjectController">
+   <children>
+      <GridPane layoutX="190.0" layoutY="15.0" prefHeight="218.0" prefWidth="256.0" style="-fx-border-color: #669bbc; -fx-border-radius: 20;">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.20001220703125" minWidth="10.0" prefWidth="159.19998779296876" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="174.40001220703127" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <StackPane GridPane.rowIndex="3">
+               <children>
+                  <Button fx:id="assignButton" mnemonicParsing="false" onAction="#handleAssignButton" prefHeight="30.0" prefWidth="86.0" styleClass="spec-button" text="Assign">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="80.0" styleClass="danger-button" text="Cancel">
+                     <graphic>
+                        <ImageView blendMode="COLOR_DODGE" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/cancel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="312.0" GridPane.columnSpan="2">
+               <children>
+                  <Label fx:id="header" alignment="CENTER" prefHeight="38.0" prefWidth="94.0" style="-fx-padding: 0;" styleClass="card-header" text="Assign">
+                     <graphic>
+                        <ImageView blendMode="COLOR_DODGE" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/addProp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+            </StackPane>
+            <AnchorPane GridPane.rowIndex="1">
+               <children>
+                  <Label layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="86.0" text="Assign Teacher:" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="54.0" prefWidth="113.0" GridPane.rowIndex="2">
+               <children>
+                  <Label layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="86.0" text="Class Parallel:" />
+               </children>
+            </AnchorPane>
+            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fx:id="teacherw" fitHeight="21.0" fitWidth="21.0" layoutX="112.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/warning.png" />
+                     </image>
+                  </ImageView>
+                  <ChoiceBox fx:id="teacher" layoutX="-10.0" layoutY="11.0" prefHeight="26.0" prefWidth="121.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fx:id="paralelw" fitHeight="21.0" fitWidth="21.0" layoutX="113.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/warning.png" />
+                     </image>
+                  </ImageView>
+                  <ChoiceBox fx:id="paralel" layoutX="-9.0" layoutY="7.0" prefHeight="26.0" prefWidth="122.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+      <Label fx:id="alreadeAssignedTo" alignment="CENTER" layoutX="23.0" layoutY="34.0" prefHeight="30.0" prefWidth="135.0" style="-fx-label-padding: 5; -fx-background-color: #1C558E; -fx-background-radius: 20;" text="Already assigned to: " textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <TableView fx:id="assignedTo" fixedCellSize="0.0" layoutX="10.0" layoutY="72.0" prefHeight="142.0" prefWidth="162.0">
+        <columns>
+          <TableColumn fx:id="assignedTeacher" prefWidth="101.5999755859375" text="Teacher" />
+          <TableColumn fx:id="assignedParalel" prefWidth="59.999975585937506" text="Paralel" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,5 +1,15 @@
 package Models;
 
+import Services.ConnectionUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class TeacherUser extends User {
 
     private String Name;
@@ -59,6 +69,9 @@ public class TeacherUser extends User {
 
     @Override
     public String toString() {
-        return this.getName();
+        return (this.getName()+ " " +this.getSurname());
     }
+
+
+
 }

@@ -1,12 +1,12 @@
 package Models;
 
-public class Class {
+public class Classe {
     private int id;
     private int teacherId;
     private int subjectId;
     private int paralel;
 
-    public Class(int id, int teacherId, int subjectId, int paralel) {
+    public Classe(int id, int teacherId, int subjectId, int paralel) {
         this.id = id;
         this.teacherId = teacherId;
         this.subjectId = subjectId;

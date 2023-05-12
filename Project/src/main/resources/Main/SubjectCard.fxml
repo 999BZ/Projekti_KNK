@@ -9,45 +9,55 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="732.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SubjectCardController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SubjectCardController">
     <children>
       <AnchorPane prefHeight="78.0" prefWidth="723.0">
          <children>
-              <AnchorPane layoutX="8.0" layoutY="9.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="716.0" styleClass="card" stylesheets="@../CSS/style.css">
+              <AnchorPane layoutX="8.0" layoutY="9.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="704.0" styleClass="card" stylesheets="@../CSS/style.css">
                   <children>
-                      <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="177.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fitHeight="51.0" fitWidth="48.0" layoutX="11.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@../Images/books.png" />
                           </image>
                       </ImageView>
-                  <StackPane layoutY="12.0" prefHeight="43.0" prefWidth="165.0">
+                  <StackPane layoutX="59.0" layoutY="12.0" prefHeight="43.0" prefWidth="165.0">
                      <children>
-                            <Label fx:id="subjectName" alignment="CENTER" prefHeight="43.0" prefWidth="145.0" text="Subject Name">
-                           <graphic>
-                              <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Images/subject.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Label>
+                            <Label fx:id="subjectName" alignment="CENTER" prefHeight="32.0" prefWidth="139.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="info-label" text="Subject Name" />
                      </children>
                   </StackPane>
-                  <StackPane layoutX="251.0" layoutY="12.0" prefHeight="43.0" prefWidth="192.0">
+                  <StackPane layoutX="205.0" layoutY="12.0" prefHeight="43.0" prefWidth="192.0">
                      <children>
-                        <Label fx:id="subjectInfo" styleClass="subject-desc" text="Label" />
+                        <Label fx:id="subjectInfo" prefHeight="43.0" prefWidth="134.0" text="Label" wrapText="true" />
                      </children>
                   </StackPane>
-                      <Label fx:id="gradeLvl" alignment="CENTER" layoutX="475.0" layoutY="16.0" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #48CAE4;" styleClass="card-header" text="GLvl" textFill="WHITE">
+                      <Label fx:id="gradeLvl" alignment="CENTER" layoutX="426.0" layoutY="16.0" prefHeight="38.0" prefWidth="38.0" style="-fx-padding: 0; -fx-background-color: #1a5b92;" styleClass="card-header" text="GLvl" textFill="WHITE">
                      <font>
-                        <Font size="11.0" />
+                        <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="editButton" layoutX="624.0" layoutY="19.0" mnemonicParsing="false" onAction="#editSubject" styleClass="spec-button" text="Edit">
+                  <Button fx:id="editButton" layoutX="528.0" layoutY="19.0" mnemonicParsing="false" onAction="#editSubject" styleClass="info-button">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Images/edit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="removeButton" layoutX="651.0" layoutY="19.0" mnemonicParsing="false" onAction="#removeSubject" style="-fx-background-color: white; -fx-background-radius: 20;">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/remove.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="assignButton" layoutX="571.0" layoutY="19.0" mnemonicParsing="false" onAction="#assignTeacher" styleClass="spec-button" text="Assign">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/assign.png" />
                            </image>
                         </ImageView>
                      </graphic>

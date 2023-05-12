@@ -12,13 +12,14 @@ public class SubjectRepository {
 
     public static void insert(Subject subject) throws SQLException {
 
-            String UserSql = "INSERT INTO Subjects (Sb_Name, Sb_Description, Sb_GLevel) VALUES (?, ?, ?)";
+            String UserSql = "INSERT INTO Subjects (Sb_Name, Sb_Description, Sb_GLevel, Sb_Obligatory) VALUES (?, ?, ?, ?)";
             try(Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(UserSql)
             ) {
                 statement.setString(1, subject.getName());
                 statement.setString(2, subject.getDescription());
                 statement.setInt(3, subject.getYear());
+                statement.setBoolean(4, subject.isObligatory());
 
                 statement.executeUpdate();
 
@@ -29,14 +30,15 @@ public class SubjectRepository {
 
     public static void update(Subject subject) throws SQLException {
 
-        String UserSql = "UPDATE  Subjects set Sb_Name=?, Sb_Description=?, Sb_GLevel=? where Sb_ID = ? ";
+        String UserSql = "UPDATE  Subjects set Sb_Name=?, Sb_Description=?, Sb_GLevel=?, Sb_Obligatory=? where Sb_ID = ? ";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)
         ) {
             statement.setString(1, subject.getName());
             statement.setString(2, subject.getDescription());
             statement.setInt(3, subject.getYear());
-            statement.setInt(4, subject.getId());
+            statement.setBoolean(4, subject.isObligatory());
+            statement.setInt(5, subject.getId());
 
 
             statement.executeUpdate();
@@ -46,4 +48,19 @@ public class SubjectRepository {
         }
     }
 
+    public static void delete(Subject subject) throws SQLException {
+
+        String UserSql = "Delete from Subjects where Sb_ID = ? ";
+        try(Connection connection = ConnectionUtil.getConnection();
+            PreparedStatement statement = connection.prepareStatement(UserSql)
+        ) {
+            statement.setInt(1, subject.getId());
+
+
+            statement.executeUpdate();
+
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

@@ -54,42 +54,21 @@ Connection conn;
             throw new RuntimeException(e);
         }
         gradeFilter.setOnAction(e->{
-            ObservableList<TeacherUser> teachers = FXCollections.observableArrayList();
-            teachers.clear();
-
-            PreparedStatement ps = null;
+            ObservableList<TeacherUser> teachers = null;
             try {
-                ps = conn.prepareStatement("SELECT T_Name, T_Surname FROM Teachers " +
-                        "JOIN Classes ON Teachers.T_UID = Classes.T_ID " +
-                        "JOIN Subjects ON Classes.Sb_ID = Subjects.Sb_ID " +
-                        "WHERE Sb_GLevel = ?");
+                teachers = FetchData.getAllTeachers(gradeFilter.getValue());
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-            try {
-                ps.setInt(1, gradeFilter.getValue());
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-            teachers = FetchData.getAllTeachers();
             for (TeacherUser teacher:teachers
             ) {
+                System.out.println(teacher.getName());
                 optionsTeacher.add(teacher);
             }
+            teacherFilter.getItems().clear();
             teacherFilter.setItems(teachers);
         });
         gradeFilter.setValue(0);
-        teacherFilter.setConverter(new StringConverter<TeacherUser>() {
-            @Override
-            public String toString(TeacherUser teacher) {
-                return teacher != null ? (teacher.getName()+" "+teacher.getSurname()) : "";
-            }
-
-            @Override
-            public TeacherUser fromString(String string) {
-                return null;
-            }
-        });
 
         ObservableList<TeacherUser> teachers = FXCollections.observableArrayList();
         teachers = FetchData.getAllTeachers();
@@ -115,11 +94,11 @@ Connection conn;
         if(selectedTeacherOption == null && selectedGradeOption == 0){
             query = "SELECT * FROM subjects";
         } else if (selectedTeacherOption != null && selectedGradeOption == 0) {
-            query = "SELECT * FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ?";
+            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ? group by s.Sb_ID";
         } else if (selectedTeacherOption == null && selectedGradeOption !=0 ) {
-            query = "SELECT * FROM subjects WHERE Sb_Glevel = ?";
+            query = "SELECT * FROM subjects WHERE Sb_Glevel = ? group by s.Sb_ID";
         } else {
-            query = "SELECT * FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ? AND s.Sb_GLevel = ?";
+            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ? AND s.Sb_GLevel = ? group by s.Sb_ID";
         }
 
         PreparedStatement pstmt = conn.prepareStatement(query);
@@ -147,14 +126,20 @@ Connection conn;
         dialogStage.setScene(new Scene(addSubjectPane));
         subjectController.setAddSubjectsStage(dialogStage);
         dialogStage.showAndWait();
+        if(subjectController.getConfimed()){
         subjectsList = FetchData.getAllSubjects();
-        CardGenUtil.subjectsToFlowPane(subjectCards, subjectsList, this);
+        CardGenUtil.subjectsToFlowPane(subjectCards, subjectsList, this);}
     }
     @FXML
     public void clearFilters() throws IOException{
         teacherFilter.setValue(null);
+        teacherFilter.setItems(FetchData.getAllTeachers());
         gradeFilter.setValue(0);
         subjectsList = FetchData.getAllSubjects();
         CardGenUtil.subjectsToFlowPane(subjectCards, subjectsList, this);
+    }
+    @FXML
+    public void teacherDynamicOptions() throws SQLException {
+
     }
 }
