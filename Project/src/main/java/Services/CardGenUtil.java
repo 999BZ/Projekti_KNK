@@ -20,7 +20,6 @@ public class CardGenUtil {
         for(int i = 0; i<subjectsList.size();i++){
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(CardGenUtil.class.getResource("/Main/SubjectCard.fxml"));
-            System.out.println(subjectsList.get(i).getId());
 
             try {
                 VBox hBox = fxmlLoader.load();

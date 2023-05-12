@@ -60,16 +60,7 @@ public class RegisterStudentsController implements Initializable {
     private Spinner<Integer> txtParalel;
 
     public void initialize(URL url, ResourceBundle rb) {
-        birthdayw.setVisible(false);
-        firstnamew.setVisible(false);
-        lastnamew.setVisible(false);
-        phonew.setVisible(false);
-        emailw.setVisible(false);
-        gradeLvlw.setVisible(false);
-        txtParalelw.setVisible(false);
-        addressw.setVisible(false);
-        passwordw.setVisible(false);
-        w.setVisible(false);
+        setWarnings(false);
         txtYear.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 12, 0));
         txtParalel.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 3, 0));
     }
@@ -90,31 +81,9 @@ public class RegisterStudentsController implements Initializable {
     }
     @FXML
     private void registerClick(ActionEvent e) throws IOException {
-        birthdayw.setVisible(false);
-        firstnamew.setVisible(false);
-        lastnamew.setVisible(false);
-        phonew.setVisible(false);
-        emailw.setVisible(false);
-        gradeLvlw.setVisible(false);
-        addressw.setVisible(false);
-        passwordw.setVisible(false);
-        txtParalelw.setVisible(false);
-        w.setVisible(false);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Dialog.fxml"));
-        AnchorPane dialogPane = loader.load();
-        DialogController dialogController = loader.getController();
-        dialogController.setLabelText("Add the Student to the System");
-        Stage dialogStage = new Stage();
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
-        dialogStage.setScene(new Scene(dialogPane));
-        dialogController.setDialogStage(dialogStage);
-        dialogStage.showAndWait();
-
-
-        if (dialogController.isConfirmClicked()) {
+        if (GeneralUtil.setDialog("Add the Student to the System")) {
             registerStudent();
         }
-
     }
 
 
@@ -126,7 +95,6 @@ public class RegisterStudentsController implements Initializable {
         if (selectedFile != null) {
             imagePath = GeneralUtil.savePhoto(selectedFile);
         }
-
 
         String email = this.txtEmail.getText();
         String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
@@ -151,24 +119,8 @@ public class RegisterStudentsController implements Initializable {
                         User user = UserAuthService.registerStudent(name, surname, birthdate, phone, address, year,paralel, email, password,"Student", imagePath);
                         if (user != null){
                             System.out.println("User Registered");
-                            this.txtName.setText("");
-                            this.txtSurname.setText("");
-                            this.DateBirthdate.setValue(null);
-                            this.txtPhone.setText("");
-                            this.txtAddress.setText("");
-                            this.txtYear.getValueFactory().setValue(0);
-                            this.txtEmail.setText("");
-                            this.pwdPassword.setText("");
-                            birthdayw.setVisible(false);
-                            firstnamew.setVisible(false);
-                            lastnamew.setVisible(false);
-                            phonew.setVisible(false);
-                            emailw.setVisible(false);
-                            gradeLvlw.setVisible(false);
-                            addressw.setVisible(false);
-                            passwordw.setVisible(false);
-                            txtParalelw.setVisible(false);
-                            w.setVisible(false);
+                            cancelClick(new ActionEvent());
+                            setWarnings(false);
                         }
                     }catch (SQLException sqlException) {
                         System.out.println("Student couldn't register.");
@@ -176,73 +128,19 @@ public class RegisterStudentsController implements Initializable {
                 }else{
                     System.out.println("Password is too short!");
                     w.setText("Password is too short!");
+                    checkWarnings();
                 }
             }else{
                 System.out.println("Please fill all text fields");
                 w.setText("Please fill out all required fields");
-                w.setVisible(true);
-                if (this.txtName.getText().isEmpty()) {
-                    firstnamew.setVisible(true);
-                }
-                if (this.txtSurname.getText().isEmpty()) {
-                    lastnamew.setVisible(true);
-                }
-                if (this.DateBirthdate.getValue() == null) {
-                    birthdayw.setVisible(true);
-                }
-                if (this.txtPhone.getText().isEmpty()) {
-                    phonew.setVisible(true);
-                }
-                if (this.txtEmail.getText().isEmpty()) {
-                    addressw.setVisible(true);
-                }
-                if (this.txtYear.getValue() == 0) {
-                    gradeLvlw.setVisible(true);
-                }
-                if (this.txtParalel.getValue() == 0) {
-                    txtParalelw.setVisible(true);
-                }
-                if (this.txtEmail.getText() == null) {
-                    emailw.setVisible(true);
-                }
-                if (this.pwdPassword.getText().isEmpty()) {
-                    passwordw.setVisible(true);
-                }
+                checkWarnings();
 
             }
         }else{
             System.out.println("Please check your email and try again!");
-            emailw.setVisible(true);
             w.setText("Please fill out all required fields");
-            w.setVisible(true);
-            if (this.txtName.getText().isEmpty()) {
-                firstnamew.setVisible(true);
-            }
-            if (this.txtSurname.getText().isEmpty()) {
-                lastnamew.setVisible(true);
-            }
-            if (this.DateBirthdate.getValue() == null) {
-                birthdayw.setVisible(true);
-            }
-            if (this.txtPhone.getText().isEmpty()) {
-                phonew.setVisible(true);
-            }
-            if (this.txtEmail.getText().isEmpty()) {
-                addressw.setVisible(true);
-            }
-            if (this.txtYear.getValue() == 0) {
-                gradeLvlw.setVisible(true);
-            }
-            if (this.txtParalel.getValue() == 0) {
-                txtParalelw.setVisible(true);
-            }
-            if (this.txtEmail.getText() == null) {
-                emailw.setVisible(true);
-            }
-            if (this.pwdPassword.getText().isEmpty()) {
-                passwordw.setVisible(true);
-            }
-
+            emailw.setVisible(true);
+            checkWarnings();
         }
     this.profilePic.setImage(null);
 
@@ -260,6 +158,44 @@ public class RegisterStudentsController implements Initializable {
         this.profilePic.setImage(null);
         this.txtParalel.getValueFactory().setValue(0);
     }
+public void checkWarnings(){
+    if (this.txtName.getText().isEmpty()) {
+        firstnamew.setVisible(true);
+    }
+    if (this.txtSurname.getText().isEmpty()) {
+        lastnamew.setVisible(true);
+    }
+    if (this.DateBirthdate.getValue() == null) {
+        birthdayw.setVisible(true);
+    }
+    if (this.txtPhone.getText().isEmpty()) {
+        phonew.setVisible(true);
+    }
+    if (this.txtEmail.getText().isEmpty()) {
+        addressw.setVisible(true);
+    }
+    if (this.txtYear.getValue() == 0) {
+        gradeLvlw.setVisible(true);
+    }
+    if (this.txtParalel.getValue() == 0) {
+        txtParalelw.setVisible(true);
+    }
+    if (this.pwdPassword.getText().isEmpty()) {
+        passwordw.setVisible(true);
+    }
+}
 
+    public void setWarnings( boolean set){
+        birthdayw.setVisible(set);
+        firstnamew.setVisible(set);
+        lastnamew.setVisible(set);
+        phonew.setVisible(set);
+        emailw.setVisible(set);
+        gradeLvlw.setVisible(set);
+        addressw.setVisible(set);
+        passwordw.setVisible(set);
+        txtParalelw.setVisible(set);
+        w.setVisible(set);
+    }
 
 }

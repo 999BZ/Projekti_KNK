@@ -58,14 +58,7 @@ public class RegisterTeachersController implements Initializable  {
     File selectedFile;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        birthdayw.setVisible(false);
-        firstnamew.setVisible(false);
-        lastnamew.setVisible(false);
-        phonew.setVisible(false);
-        emailw.setVisible(false);
-        addressw.setVisible(false);
-        passwordw.setVisible(false);
-        w.setVisible(false);
+        setWarnings(false);
     }
     @FXML
     private void handleImageUploadButton(ActionEvent event) throws IOException {
@@ -74,14 +67,7 @@ public class RegisterTeachersController implements Initializable  {
 
     @FXML
     private void registerClick(ActionEvent e){
-        birthdayw.setVisible(false);
-        firstnamew.setVisible(false);
-        lastnamew.setVisible(false);
-        phonew.setVisible(false);
-        emailw.setVisible(false);
-        addressw.setVisible(false);
-        passwordw.setVisible(false);
-        w.setVisible(false);
+        setWarnings(false);
         if (selectedFile != null) {
             imagePath = GeneralUtil.savePhoto(selectedFile);
         }
@@ -115,14 +101,7 @@ public class RegisterTeachersController implements Initializable  {
                             this.txtAddress.setText("");
                             this.txtEmail.setText("");
                             this.pwdPassword.setText("");
-                            birthdayw.setVisible(false);
-                            firstnamew.setVisible(false);
-                            lastnamew.setVisible(false);
-                            phonew.setVisible(false);
-                            emailw.setVisible(false);
-                            addressw.setVisible(false);
-                            passwordw.setVisible(false);
-                            w.setVisible(false);
+                            setWarnings(false);
                             
                         }
                     }catch (SQLException sqlException) {
@@ -136,28 +115,7 @@ public class RegisterTeachersController implements Initializable  {
                 System.out.println("Please fill all text fields");
                 w.setText("Please fill out all required fields");
                 w.setVisible(true);
-                if (this.txtName.getText().isEmpty()) {
-                    firstnamew.setVisible(true);
-                }
-                if (this.txtSurname.getText().isEmpty()) {
-                    lastnamew.setVisible(true);
-                }
-                if (this.DateBirthdate.getValue() == null) {
-                    birthdayw.setVisible(true);
-                }
-                if (this.txtPhone.getText().isEmpty()) {
-                    phonew.setVisible(true);
-                }
-                if (this.txtEmail.getText().isEmpty()) {
-                    addressw.setVisible(true);
-                }
-
-                if (this.txtEmail.getText() == null) {
-                    emailw.setVisible(true);
-                }
-                if (this.pwdPassword.getText().isEmpty()) {
-                    passwordw.setVisible(true);
-                }
+               checkWarnings();
 
             }
         }else{
@@ -165,28 +123,7 @@ public class RegisterTeachersController implements Initializable  {
             emailw.setVisible(true);
             w.setText("Please fill out all required fields");
             w.setVisible(true);
-            if (this.txtName.getText().isEmpty()) {
-                firstnamew.setVisible(true);
-            }
-            if (this.txtSurname.getText().isEmpty()) {
-                lastnamew.setVisible(true);
-            }
-            if (this.DateBirthdate.getValue() == null) {
-                birthdayw.setVisible(true);
-            }
-            if (this.txtPhone.getText().isEmpty()) {
-                phonew.setVisible(true);
-            }
-            if (this.txtEmail.getText().isEmpty()) {
-                addressw.setVisible(true);
-            }
-
-            if (this.txtEmail.getText() == null) {
-                emailw.setVisible(true);
-            }
-            if (this.pwdPassword.getText().isEmpty()) {
-                passwordw.setVisible(true);
-            }
+           checkWarnings();
         }
 
 
@@ -200,6 +137,42 @@ public class RegisterTeachersController implements Initializable  {
         this.txtAddress.setText("");
         this.txtEmail.setText("");
         this.pwdPassword.setText("");
+    }
+
+    public void setWarnings(boolean set){
+        birthdayw.setVisible(set);
+        firstnamew.setVisible(set);
+        lastnamew.setVisible(set);
+        phonew.setVisible(set);
+        emailw.setVisible(set);
+        addressw.setVisible(set);
+        passwordw.setVisible(set);
+        w.setVisible(set);
+    }
+
+    public void checkWarnings(){
+        if (this.txtName.getText().isEmpty()) {
+            firstnamew.setVisible(true);
+        }
+        if (this.txtSurname.getText().isEmpty()) {
+            lastnamew.setVisible(true);
+        }
+        if (this.DateBirthdate.getValue() == null) {
+            birthdayw.setVisible(true);
+        }
+        if (this.txtPhone.getText().isEmpty()) {
+            phonew.setVisible(true);
+        }
+        if (this.txtEmail.getText().isEmpty()) {
+            addressw.setVisible(true);
+        }
+
+        if (this.txtEmail.getText() == null) {
+            emailw.setVisible(true);
+        }
+        if (this.pwdPassword.getText().isEmpty()) {
+            passwordw.setVisible(true);
+        }
     }
 
 

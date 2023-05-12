@@ -141,7 +141,7 @@ BEGIN
     FROM Classes C
     JOIN Subjects S ON C.Sb_ID = S.Sb_ID 
     WHERE C.C_Paralel = NEW.S_Paralel 
-    AND C.Grade_Level = NEW.S_GLevel 
+    AND S.Sb_GLevel = NEW.S_GLevel 
     AND S.Sb_Obligatory = 1;
 END$$
 DELIMITER ;

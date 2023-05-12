@@ -94,9 +94,9 @@ Connection conn;
         if(selectedTeacherOption == null && selectedGradeOption == 0){
             query = "SELECT * FROM subjects";
         } else if (selectedTeacherOption != null && selectedGradeOption == 0) {
-            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ? group by s.Sb_ID";
+            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.c_id WHERE c.t_id = ? group by s.Sb_ID";
         } else if (selectedTeacherOption == null && selectedGradeOption !=0 ) {
-            query = "SELECT * FROM subjects WHERE Sb_Glevel = ? group by s.Sb_ID";
+            query = "SELECT * FROM subjects WHERE Sb_Glevel = ? group by subjects.Sb_ID";
         } else {
             query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ? AND s.Sb_GLevel = ? group by s.Sb_ID";
         }

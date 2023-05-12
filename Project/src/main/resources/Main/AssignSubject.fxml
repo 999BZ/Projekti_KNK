@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="249.0" prefWidth="472.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AssignSubjectController">
+<AnchorPane prefHeight="286.0" prefWidth="550.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AssignSubjectController">
    <children>
-      <GridPane layoutX="190.0" layoutY="15.0" prefHeight="218.0" prefWidth="256.0" style="-fx-border-color: #669bbc; -fx-border-radius: 20;">
+      <GridPane layoutX="275.0" layoutY="34.0" prefHeight="218.0" prefWidth="256.0" style="-fx-border-color: #669bbc; -fx-border-radius: 20;">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.20001220703125" minWidth="10.0" prefWidth="159.19998779296876" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="174.40001220703127" />
@@ -99,18 +99,21 @@
             </AnchorPane>
          </children>
       </GridPane>
-      <Label fx:id="alreadeAssignedTo" alignment="CENTER" layoutX="23.0" layoutY="34.0" prefHeight="30.0" prefWidth="135.0" style="-fx-label-padding: 5; -fx-background-color: #1C558E; -fx-background-radius: 20;" text="Already assigned to: " textFill="WHITE" wrapText="true">
+      <Label fx:id="alreadeAssignedTo" alignment="CENTER" layoutX="73.0" layoutY="34.0" prefHeight="30.0" prefWidth="135.0" style="-fx-label-padding: 5; -fx-background-color: #1C558E; -fx-background-radius: 20;" text="Already assigned to: " textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <TableView fx:id="assignedTo" fixedCellSize="0.0" layoutX="10.0" layoutY="72.0" prefHeight="142.0" prefWidth="162.0">
+      <TableView fx:id="assignedTo" fixedCellSize="0.0" layoutX="20.0" layoutY="89.0" prefHeight="142.0" prefWidth="241.0">
         <columns>
-          <TableColumn fx:id="assignedTeacher" prefWidth="101.5999755859375" text="Teacher" />
-          <TableColumn fx:id="assignedParalel" prefWidth="59.999975585937506" text="Paralel" />
+          <TableColumn fx:id="assignedTeacher" prefWidth="127.20000839233398" resizable="false" text="Teacher" />
+          <TableColumn fx:id="assignedParalel" minWidth="-1.0" prefWidth="55.20001220703125" resizable="false" text="Paralel" />
+            <TableColumn fx:id="unAssign" minWidth="-1.0" prefWidth="94.40003967285156" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <Label fx:id="w" layoutX="282.0" layoutY="257.0" text="The teacher is already assigned to the paralel!" textFill="#ff0202" />
+      <Label fx:id="success" layoutX="303.0" layoutY="14.0" text="The teacher was succesfully assigned!" textFill="#46d761" />
    </children>
 </AnchorPane>

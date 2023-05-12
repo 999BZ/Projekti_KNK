@@ -79,34 +79,18 @@ public class TeacherInfoController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        birthdayw.setVisible(false);
-        firstnamew.setVisible(false);
-        lastnamew.setVisible(false);
-        phonew.setVisible(false);
-        emailw.setVisible(false);
-        addressw.setVisible(false);
-        w.setVisible(false);
-        removeButton.setVisible(false);
-        updatePhoto.setVisible(false);
+        setEditable(false);
+        setWarnings(false);
     }
     @FXML
     private void handleRemoveButton() throws IOException, SQLException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Dialog.fxml"));
-        AnchorPane dialogPane = loader.load();
-        DialogController dialogController = loader.getController();
-        dialogController.setLabelText("Remove the Teacher from the System");
-        Stage dialogStage = new Stage();
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
-        dialogStage.setScene(new Scene(dialogPane));
-        dialogController.setDialogStage(dialogStage);
-        dialogStage.showAndWait();
 
-        if (dialogController.isConfirmClicked()) {
+        if (GeneralUtil.setDialog("Remove the Teacher from the System")) {
             UserRepository.delete(localTeacher);
             String relativePath = localTeacher.getProfileImg();
             File oldImage = new File(relativePath);
             oldImage.delete();
-            loader = new FXMLLoader(getClass().getResource("/Main/Teachers.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Teachers.fxml"));
             try {
                 Parent root = loader.load();
                 Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
@@ -121,16 +105,7 @@ public class TeacherInfoController implements Initializable {
     @FXML
     private void handleEditButton() throws SQLException {
         if (!isEditable) {
-            firstname.setEditable(true);
-            lastname.setEditable(true);
-            phone.setEditable(true);
-            birthday.setEditable(true);
-            address.setEditable(true);
-            email.setEditable(true);
-            updatePhoto.setVisible(true);
-            removeButton.setVisible(true);
-            editButton.setText("Save");
-            isEditable = true;
+            setEditable(true);
         } else {
 
             if (selectedFile != null) {
@@ -168,23 +143,8 @@ public class TeacherInfoController implements Initializable {
                     try {
                         System.out.println("Register -> AuthService");
                         User user = UserAuthService.updateTeacher(teacher.getID(), nameValue, surnameValue, birthdateValue, phoneValue, addressValue, emailValue,"Teacher", imagePath);
-                        firstname.setEditable(false);
-                        lastname.setEditable(false);
-                        phone.setEditable(false);
-                        birthday.setEditable(false);
-                        address.setEditable(false);
-                        email.setEditable(false);
-                        updatePhoto.setVisible(false);
-                        editButton.setText("Edit or Delete Teacher");
-                        isEditable = false;
-                        removeButton.setVisible(true);
-                        birthdayw.setVisible(false);
-                        firstnamew.setVisible(false);
-                        lastnamew.setVisible(false);
-                        phonew.setVisible(false);
-                        emailw.setVisible(false);
-                        addressw.setVisible(false);
-                        w.setVisible(false);
+                        setEditable(false);
+                        setWarnings(false);
                     }catch (SQLException sqlException) {
                         System.out.println("Teacher couldn't be updated.");
                     }
@@ -192,47 +152,13 @@ public class TeacherInfoController implements Initializable {
                     System.out.println("Please fill all text fields");
                     w.setText("Please fill out all required fields");
                     w.setVisible(true);
-                    if (this.firstname.getText().isEmpty()) {
-                        firstnamew.setVisible(true);
-                    }
-                    if (this.lastname.getText().isEmpty()) {
-                        lastnamew.setVisible(true);
-                    }
-                    if (this.birthday.getValue() == null) {
-                        birthdayw.setVisible(true);
-                    }
-                    if (this.phone.getText().isEmpty()) {
-                        phonew.setVisible(true);
-                    }
-                    if (this.address.getText().isEmpty()) {
-                        addressw.setVisible(true);
-                    }
-                    if(this.email.getText().isEmpty()){
-                        emailw.setVisible(true);
-                    }
+                    checkWarnings();
                 }
             }else{
                 System.out.println("Please check your email and try again!");
                 emailw.setVisible(true);
                 w.setVisible(true);
-                if (this.firstname.getText().isEmpty()) {
-                    firstnamew.setVisible(true);
-                }
-                if (this.lastname.getText().isEmpty()) {
-                    lastnamew.setVisible(true);
-                }
-                if (this.birthday.getValue() == null) {
-                    birthdayw.setVisible(true);
-                }
-                if (this.phone.getText().isEmpty()) {
-                    phonew.setVisible(true);
-                }
-                if (this.address.getText().isEmpty()) {
-                    addressw.setVisible(true);
-                }
-                if(this.email.getText().isEmpty()){
-                    emailw.setVisible(true);
-                }
+                checkWarnings();
             }
 
         }
@@ -267,6 +193,54 @@ public class TeacherInfoController implements Initializable {
         localTeacher = teacher;
     }
 
+
+    public void setEditable(boolean set){
+        firstname.setEditable(set);
+        lastname.setEditable(set);
+        phone.setEditable(set);
+        birthday.setEditable(set);
+        address.setEditable(set);
+        email.setEditable(set);
+        updatePhoto.setVisible(set);
+        removeButton.setVisible(set);
+        if(set) {
+            editButton.setText("Save");
+        }else{
+            editButton.setText("Edit or Delete Teacher");
+        }
+        isEditable = set;
+    }
+    public void setWarnings(boolean set){
+        removeButton.setVisible(set);
+        birthdayw.setVisible(set);
+        firstnamew.setVisible(set);
+        lastnamew.setVisible(set);
+        phonew.setVisible(set);
+        emailw.setVisible(set);
+        addressw.setVisible(set);
+        w.setVisible(set);
+    }
+
+    public void checkWarnings(){
+        if (this.firstname.getText().isEmpty()) {
+            firstnamew.setVisible(true);
+        }
+        if (this.lastname.getText().isEmpty()) {
+            lastnamew.setVisible(true);
+        }
+        if (this.birthday.getValue() == null) {
+            birthdayw.setVisible(true);
+        }
+        if (this.phone.getText().isEmpty()) {
+            phonew.setVisible(true);
+        }
+        if (this.address.getText().isEmpty()) {
+            addressw.setVisible(true);
+        }
+        if (this.email.getText().isEmpty()){
+            emailw.setVisible(true);
+        }
+    }
 
 
 }

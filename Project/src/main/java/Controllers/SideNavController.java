@@ -1,5 +1,6 @@
 package Controllers;
 
+import Services.GeneralUtil;
 import Services.WindowSizeUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,69 +22,32 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class SideNavController  {
+public class SideNavController   {
 
     @FXML
     private VBox navbar;
     private Stage stage;
     private Scene scene;
     private Parent root;
-
-
         @FXML
-        private void goToHome() {
-            // Load the Home page FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Home.fxml"));
-            try {
-                Parent root = loader.load();
-                Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
-                Stage stage = (Stage) navbar.getScene().getWindow();
-                stage.setScene(scene);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        private void goToHome() throws IOException {
+            GeneralUtil.goToFXML("/Main/Home.fxml", (Stage) navbar.getScene().getWindow());
         }
 
         @FXML
-        private void goToSubjects() {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Subjects.fxml"));
-            try {
-                Parent root = loader.load();
-                Scene scene = new Scene(root,WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
-                Stage stage = (Stage) navbar.getScene().getWindow();
-                stage.setScene(scene);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        private void goToSubjects() throws IOException {
+            GeneralUtil.goToFXML("/Main/Subjects.fxml", (Stage) navbar.getScene().getWindow());
         }
 
         @FXML
-        private void goToStudents() {
-            // Load the Students page FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Students.fxml"));
-            try {
-                Parent root = loader.load();
-                Scene scene = new Scene(root,WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
-                Stage stage = (Stage) navbar.getScene().getWindow();
-                stage.setScene(scene);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        private void goToStudents() throws IOException {
+            GeneralUtil.goToFXML("/Main/Students.fxml", (Stage) navbar.getScene().getWindow());
 
         }
 
         @FXML
-        private void goToTeachers() {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Teachers.fxml"));
-            try {
-                Parent root = loader.load();
-                Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
-                Stage stage = (Stage) navbar.getScene().getWindow();
-                stage.setScene(scene);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        private void goToTeachers() throws IOException {
+            GeneralUtil.goToFXML("/Main/Teachers.fxml", (Stage) navbar.getScene().getWindow());
         }
 
 
@@ -91,28 +55,8 @@ public class SideNavController  {
     @FXML
     private void handleLogOutButton() throws IOException {
 
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Dialog.fxml"));
-        AnchorPane dialogPane = loader.load();
-        DialogController dialogController = loader.getController();
-        dialogController.setLabelText("Are you sure you want to log out?");
-        Stage dialogStage = new Stage();
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
-        dialogStage.setScene(new Scene(dialogPane));
-        dialogController.setDialogStage(dialogStage);
-        dialogStage.showAndWait();
-
-
-        if (dialogController.isConfirmClicked()) {
-            loader = new FXMLLoader(getClass().getResource("/Main/Login.fxml"));
-            try {
-                Parent root = loader.load();
-                Scene scene = new Scene(root,WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
-                Stage stage = (Stage) navbar.getScene().getWindow();
-                stage.setScene(scene);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (GeneralUtil.setDialog("Are you sure you want to log out?")) {
+            GeneralUtil.goToFXML("/Main/Login.fxml", (Stage) navbar.getScene().getWindow());
         }
     }
 

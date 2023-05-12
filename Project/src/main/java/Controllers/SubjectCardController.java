@@ -4,6 +4,7 @@ import Models.Subject;
 import Repository.SubjectRepository;
 import Services.CardGenUtil;
 import Services.FetchData;
+import Services.GeneralUtil;
 import Services.WindowSizeUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,18 +49,8 @@ public class SubjectCardController {
     }
     @FXML
     public void removeSubject() throws IOException, SQLException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Dialog.fxml"));
-        AnchorPane dialogPane = loader.load();
-        DialogController dialogController = loader.getController();
-        dialogController.setLabelText("This subject is being removed!");
-        Stage dialogStage = new Stage();
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
-        dialogStage.setScene(new Scene(dialogPane));
-        dialogController.setDialogStage(dialogStage);
-        dialogStage.showAndWait();
 
-
-        if (dialogController.isConfirmClicked()) {
+        if (GeneralUtil.setDialog("This subject is being removed!")) {
             SubjectRepository.delete(subject);
             parentController.clearFilters();
         }
