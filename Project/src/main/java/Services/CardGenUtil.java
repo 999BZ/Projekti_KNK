@@ -5,6 +5,7 @@ import Controllers.SubjectCardController;
 import Controllers.SubjectsController;
 import Models.StudentUser;
 import Models.Subject;
+import Models.TeacherUser;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
@@ -44,6 +45,25 @@ public class CardGenUtil {
                 HBox hBox = fxmlLoader.load();
                 StudentSubjectCardController scc = fxmlLoader.getController();
                 scc.setData(subjectsList.get(i), student);
+                subjectCards.getChildren().add(hBox);
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+
+    }
+
+    public static void subjectsToFlowPaneTeachers(VBox subjectCards, ObservableList<Subject> subjectsList, TeacherUser teacher){
+        subjectCards.getChildren().clear();
+        for(int i = 0; i<subjectsList.size();i++){
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(CardGenUtil.class.getResource("/Main/StudentSubjectCard.fxml"));
+            System.out.println(subjectsList.get(i).getId());
+
+            try {
+                HBox hBox = fxmlLoader.load();
+                StudentSubjectCardController scc = fxmlLoader.getController();
+                scc.setData(subjectsList.get(i), teacher);
                 subjectCards.getChildren().add(hBox);
             } catch (IOException e) {
                 System.out.println(e);

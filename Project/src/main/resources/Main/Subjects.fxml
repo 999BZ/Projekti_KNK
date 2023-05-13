@@ -37,7 +37,8 @@
                   <Label layoutX="10.0" layoutY="5.0" text="Grade Level:">
                      <font>
                         <Font name="System Bold" size="12.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                   <Button fx:id="clearFilters" alignment="CENTER" layoutX="500.0" mnemonicParsing="false" onAction="#clearFilters" prefHeight="27.0" prefWidth="91.0" styleClass="spec-button" text="Refresh">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">

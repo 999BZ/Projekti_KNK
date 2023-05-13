@@ -3,6 +3,7 @@ package Controllers;
 import Models.Grade;
 import Models.StudentUser;
 import Models.Subject;
+import Models.TeacherUser;
 import Services.FetchData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,8 +24,14 @@ public class StudentSubjectCardController implements Initializable {
 
     @FXML
     private Label subjectName;
+
+    @FXML
+    private Label subjectName1;
     private Subject subject;
     private StudentUser student;
+
+    private TeacherUser teacher;
+
     private Connection conn;
 
     public void setData(Subject subject, StudentUser student){
@@ -32,6 +39,8 @@ public class StudentSubjectCardController implements Initializable {
         this.student = student;
         subjectName.setText(subject.getName());
         int grade;
+        subjectName1.setPrefWidth(40);
+        subjectName1.setText("Grade: ");
         try {
             grade = FetchData.getStudentGrade(student, subject);
         } catch (SQLException e) {
@@ -44,6 +53,21 @@ public class StudentSubjectCardController implements Initializable {
         else{
             gradeValue.setText(String.valueOf(grade));
         }
+
+    }
+    public void setData(Subject subject, TeacherUser teacher){
+        this.subject = subject;
+        this.teacher = teacher;
+        subjectName1.setPrefWidth(50);
+        subjectName.setText(subject.getName());
+        subjectName1.setText("Parallels: ");
+        String classes;
+        try {
+            classes = FetchData.getTeacherP(teacher, subject);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        gradeValue.setText(classes);
 
     }
 

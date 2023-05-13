@@ -26,7 +26,7 @@ CREATE TABLE Admins (
 );
 
 -- SELECT * FROM Admins
-drop table Students;
+-- drop table Students;
 CREATE TABLE Students (
     S_Name VARCHAR(50),
     S_Surname VARCHAR(50),
@@ -41,7 +41,7 @@ CREATE TABLE Students (
 );
 
 -- SELECT * FROM Students
-drop table teachers;
+-- drop table teachers;
 CREATE TABLE Teachers (
     T_Name VARCHAR(50),
     T_Surname VARCHAR(50),
@@ -54,7 +54,7 @@ CREATE TABLE Teachers (
 );
 
 -- SELECT * FROM Teachers
-drop table subjects;
+-- drop table subjects;
 CREATE TABLE Subjects(
 	Sb_ID INT NOT NULL AUTO_INCREMENT,
     Sb_Name VARCHAR(50),
@@ -65,7 +65,7 @@ CREATE TABLE Subjects(
 );
 
 -- SELECT * FROM Subjects
-drop table classes;
+-- drop table classes;
 CREATE TABLE Classes (
 	C_ID INT NOT NULL AUTO_INCREMENT,
     T_ID INT NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE Classes (
 );
 
 -- SELECT * FROM Classes
-drop table enrollments;
+-- drop table enrollments;
 CREATE TABLE Enrollments (
 	E_ID INT NOT NULL AUTO_INCREMENT,
     S_ID INT NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE Enrollments (
 );
 
 -- SELECT * FROM Enrollments
-drop table grades;
+-- drop table grades;
 CREATE TABLE Grades (
 	G_ID INT NOT NULL AUTO_INCREMENT,
     S_ID INT NOT NULL,
@@ -104,12 +104,12 @@ CREATE TABLE Grades (
 
 
 -- Dummy data for Enrollments table
-INSERT INTO Enrollments(S_ID, C_ID, E_Date) VALUES
-(1, 1, '2022-08-25'),
-(2, 2, '2022-08-25'),
-(3, 3, '2022-08-26'),
-(4, 4, '2022-08-26'),
-(5, 5, '2022-08-27');
+-- INSERT INTO Enrollments(S_ID, C_ID, E_Date) VALUES
+-- (1, 1, '2022-08-25'),
+-- (2, 2, '2022-08-25'),
+-- (3, 3, '2022-08-26'),
+-- (4, 4, '2022-08-26'),
+-- (5, 5, '2022-08-27');
 
 
 USE lems;
@@ -148,6 +148,6 @@ DELIMITER ;
 
 
 
-drop trigger auto_enroll;
+-- drop trigger auto_enroll;
 
 

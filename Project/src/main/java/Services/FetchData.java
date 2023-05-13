@@ -180,17 +180,72 @@ public class FetchData {
         return grade;
     }
 
+    public static String getTeacherP(TeacherUser teacher, Subject subject) throws SQLException {
+        String query = "SELECT C_Paralel FROM Classes " +
+                "WHERE T_ID = ? AND Sb_ID = ? " +
+                "ORDER BY C_Paralel ASC";
+        Connection conn = ConnectionUtil.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        pstmt.setInt(1, teacher.getID());
+        pstmt.setInt(2, subject.getId());
+        ResultSet rs = pstmt.executeQuery();
+        int P;
+        String Parallels = "";
+
+        if(rs.next()) {
+            P = rs.getInt("C_Paralel");
+            Parallels += P;
+        }
+        while (rs.next()) {
+            P = rs.getInt("C_Paralel");
+            Parallels += "," + P;
+        }
+
+        return Parallels;
+    }
+
     public static ObservableList<Subject> getStudentSubjects(StudentUser student) throws SQLException {
         ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
         try {
             Connection conn = ConnectionUtil.getConnection();
-            String query = "SELECT s.Sb_ID, s.Sb_Name, s.Sb_Description, s.Sb_Glevel " +
+            String query = "SELECT s.Sb_ID, s.Sb_Name, s.Sb_Description, s.Sb_Glevel, s.Sb_Obligatory " +
                     "FROM Subjects s " +
                     "JOIN Classes c ON s.Sb_ID = c.Sb_ID " +
                     "JOIN Enrollments e ON c.C_ID = e.C_ID " +
                     "WHERE e.S_ID = ?";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, student.getID());
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("Sb_ID");
+                String name = rs.getString("Sb_Name");
+                String description = rs.getString("Sb_Description");
+                int gLevel = rs.getInt("Sb_GLevel");
+                boolean obligatory = rs.getBoolean("Sb_Obligatory");
+
+                Subject subject = new Subject(id, name, description, gLevel, obligatory);
+                subjectsList.add(subject);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return subjectsList;
+    }
+
+    public static ObservableList<Subject> getTeacherSubjects(TeacherUser teacher) throws SQLException {
+        ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            String query = "SELECT s.Sb_ID, s.Sb_Name, s.Sb_Description, s.Sb_Glevel, s.Sb_Obligatory " +
+                    "FROM Subjects s " +
+                    "JOIN Classes c ON s.Sb_ID = c.Sb_ID " +
+                    "JOIN Teachers t ON c.T_ID = t.T_UID " +
+                    "WHERE t.T_UID = ? " +
+                    "GROUP BY s.Sb_ID";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, teacher.getID());
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {

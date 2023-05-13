@@ -1,11 +1,12 @@
 package Controllers;
 
+import Models.Subject;
 import Models.TeacherUser;
 import Models.User;
 import Repository.UserRepository;
-import Services.GeneralUtil;
-import Services.UserAuthService;
-import Services.WindowSizeUtils;
+import Services.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -72,6 +74,10 @@ public class TeacherInfoController implements Initializable {
     private boolean isEditable = false;
     private String imagePath;
     private String oldImagePath;
+    private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
+
+    @FXML
+    private VBox subjectsBox;
 
     @FXML
     private void handleImageUploadButton(ActionEvent event) throws IOException {
@@ -166,6 +172,16 @@ public class TeacherInfoController implements Initializable {
 
     public void setTeacher(TeacherUser teacher) {
         this.teacher = teacher;
+        try {
+            subjectsList = FetchData.getTeacherSubjects(teacher);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        for (Subject subject:subjectsList
+        ) {
+            System.out.println(subject.getName());
+        }
+        CardGenUtil.subjectsToFlowPaneTeachers(subjectsBox, subjectsList, teacher);
         if (teacher != null) {
             firstname.setText(teacher.getName());
             lastname.setText(teacher.getSurname());
