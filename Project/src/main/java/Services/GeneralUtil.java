@@ -68,27 +68,12 @@ public class GeneralUtil {
         return dialogController.isConfirmClicked();
     }
 
-    private static Double currentWidth = null;
-    private static Double currentHeight = null;
     public static void goToFXML(String location, Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(GeneralUtil.class.getResource(location));
         try {
             Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            if (currentWidth == null || currentHeight == null) {
-                currentWidth = stage.getWidth();
-                currentHeight = stage.getHeight();
-            }
-
+            Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
             stage.setScene(scene);
-            stage.setWidth(currentWidth);
-            stage.setHeight(currentHeight);
-            stage.show();
-
-            // Update the current width and height
-            currentWidth = null;
-            currentHeight = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
