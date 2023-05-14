@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="2000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SideNavController">
+<AnchorPane maxHeight="2000.0" prefHeight="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SideNavController">
    <children>
       <VBox fx:id="navbar" prefHeight="482.0" prefWidth="170.0" styleClass="nav-container" stylesheets="@../CSS/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -17,6 +17,15 @@
                         <Image url="@../Images/logo3.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="helpButton" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="1.0" mnemonicParsing="false" onAction="#goToHelp" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #0b64ae; -fx-padding: 0;" styleClass="nav-button" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                           <image>
+                              <Image url="@../Images/help.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
             <AnchorPane>
@@ -71,7 +80,6 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane />
             <AnchorPane maxHeight="2000.0" maxWidth="1024.0" minWidth="-Infinity" prefHeight="195.0" prefWidth="170.0" VBox.vgrow="ALWAYS">
                <children>
                   <Button fx:id="logoutButton" alignment="CENTER" layoutX="34.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="38.0" prefWidth="102.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Log Out" AnchorPane.bottomAnchor="14.799999999999983">

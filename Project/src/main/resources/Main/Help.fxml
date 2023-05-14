@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HelpController">
+    <left>
+        <fx:include source="SideNav.fxml" styleClass="help" />
+    </left>
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
+         <children>
+             <VBox alignment="TOP_CENTER" layoutX="100.0" layoutY="14.0" prefWidth="600.0" spacing="10">
+      
+                 <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" styleClass="info-label" text="Help Page" />
+      
+                 <Separator />
+      
+                 <HBox alignment="CENTER_LEFT" spacing="10">
+                     <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Section 1" />
+                     <Label text="Description of section 1" />
+                 </HBox>
+      
+                 <VBox alignment="CENTER_LEFT" spacing="5" style="-fx-padding: 0 0 0 20px;">
+                     <Label text="Topic 1.1" />
+                     <Label text="Description of topic 1.1" />
+                     <Label text="Topic 1.2" />
+                     <Label text="Description of topic 1.2" />
+                 </VBox>
+      
+                 <HBox alignment="CENTER_LEFT" spacing="10">
+                     <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Section 2" />
+                     <Label text="Description of section 2" />
+                 </HBox>
+      
+                 <VBox alignment="CENTER_LEFT" spacing="5" style="-fx-padding: 0 0 0 20px;">
+                     <Label text="Topic 2.1" />
+                     <Label text="Description of topic 2.1" />
+                     <Label text="Topic 2.2" />
+                     <Label text="Description of topic 2.2" />
+                 </VBox>
+      
+                 <HBox alignment="CENTER_LEFT" spacing="10">
+                     <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Section 3" />
+                     <Label text="Description of section 3" />
+                 </HBox>
+      
+                 <VBox alignment="CENTER_LEFT" spacing="5" style="-fx-padding: 0 0 0 20px;">
+                     <Label text="Topic 3.1" />
+                     <Label text="Description of topic 3.1" />
+                     <Label text="Topic 3.2" />
+                     <Label text="Description of topic 3.2" />
+                 </VBox>
+      
+             </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -5,6 +5,7 @@ import Models.StudentUser;
 import Models.Subject;
 import Repository.GradeRepository;
 import Services.FetchData;
+import Services.GeneralUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
@@ -127,15 +129,28 @@ try {
         gradeChoiceBox.setVisible(true);
         gradeButton.setText("Finish");
         gradeButton.setOnAction(e->{
-            try {
-                gradeObject = new Grade(FetchData.getStudentGradeId(student,subject), student.getID(), subject.getId(), gradeChoiceBox.getValue());
-                GradeRepository.update(gradeObject);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
+            if(gradeChoiceBox.getValue()!=null) {
+                try {
+                    if(GeneralUtil.setDialog("Save changes")) {
+                        try {
+                            gradeObject = new Grade(FetchData.getStudentGradeId(student, subject), student.getID(), subject.getId(), gradeChoiceBox.getValue());
+                            GradeRepository.update(gradeObject);
+                            grade.setText(String.valueOf(gradeObject.getGrade()));
+                        } catch (SQLException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
-            gradeButton.setText("Edit");
-            gradeChoiceBox.setVisible(false);
-            grade.setText(String.valueOf(gradeObject.getGrade()));
+                gradeButton.setText("Edit");
+                gradeButton.setOnAction(ep->{
+                    editAction();
+                });
+                gradeChoiceBox.setVisible(false);
+
+
         });
 
     }

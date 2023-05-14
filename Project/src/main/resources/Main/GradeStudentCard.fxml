@@ -21,16 +21,16 @@
                         <Label fx:id="studentName" alignment="CENTER" prefHeight="32.0" prefWidth="139.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="info-label" text="Student Name" />
                      </children>
                   </StackPane>
-                  <StackPane layoutX="252.0" layoutY="13.0" prefHeight="43.0" prefWidth="166.0">
+                  <StackPane layoutX="240.0" layoutY="12.0" prefHeight="43.0" prefWidth="166.0">
                      <children>
-                        <Label fx:id="subjectName" prefHeight="43.0" prefWidth="134.0" text="Subject" wrapText="true">
+                        <Label fx:id="subjectName" alignment="CENTER" prefHeight="43.0" prefWidth="134.0" text="Subject" wrapText="true">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
                      </children>
                   </StackPane>
-                  <Label fx:id="grade" alignment="CENTER" layoutX="429.0" layoutY="19.0" prefHeight="30.0" prefWidth="39.0" style="-fx-padding: 0; -fx-background-color: #1a5b92;" styleClass="card-header" text="GLvl" textFill="WHITE">
+                  <Label fx:id="grade" alignment="CENTER" layoutX="429.0" layoutY="19.0" prefHeight="30.0" prefWidth="39.0" style="-fx-padding: 0; -fx-background-color: #1a5b92; -fx-background-radius: 10;" styleClass="card-header" text="GLvl" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -52,7 +52,7 @@
                            </image></ImageView>
                      </children>
                   </StackPane>
-                  <ChoiceBox fx:id="gradeChoiceBox" layoutX="517.0" layoutY="20.0" prefHeight="26.0" prefWidth="39.0" style="-fx-background-color: #19A7CE;" />
+                  <ChoiceBox fx:id="gradeChoiceBox" layoutX="548.0" layoutY="21.0" prefHeight="26.0" prefWidth="39.0" style="-fx-background-color: #19A7CE;" />
                   <Label fx:id="notGraded" layoutX="417.0" layoutY="24.0" style="-fx-font-weight: bold;" text="Not Graded" textFill="RED" />
                </children>
             </AnchorPane>

@@ -33,6 +33,10 @@ public class SideNavController   {
         private void goToHome() throws IOException {
             GeneralUtil.goToFXML("/Main/Home.fxml", (Stage) navbar.getScene().getWindow());
         }
+        @FXML
+        private void goToHelp() throws IOException {
+            GeneralUtil.goToFXML("/Main/Help.fxml", (Stage) navbar.getScene().getWindow());
+        }
 
         @FXML
         private void goToSubjects() throws IOException {

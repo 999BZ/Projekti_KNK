@@ -8,25 +8,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="rootPane" prefHeight="571.0" prefWidth="868.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StudentsController">
+<BorderPane fx:id="rootPane" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StudentsController">
    <left>
       <fx:include source="SideNav.fxml" styleClass="students" />
    </left>
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="662.0" stylesheets="@../CSS/style.css">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" stylesheets="@../CSS/style.css">
          <children>
-            <TableView fx:id="studentsTable" layoutX="19.0" prefHeight="412.0" prefWidth="623.0" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="studentsTable" layoutX="19.0" prefHeight="412.0" prefWidth="623.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columns>
-                  <TableColumn fx:id="name" prefWidth="65.60003662109375" text="Name" />
-                  <TableColumn fx:id="surname" prefWidth="67.99999237060547" text="Surname" />
-                  <TableColumn fx:id="birthdate" prefWidth="68.0" text="Birthday" />
-                  <TableColumn fx:id="year" prefWidth="84.80001831054688" text="Grade Level" />
-                  <TableColumn fx:id="phone" prefWidth="104.7999267578125" text="Phone Number" />
-                  <TableColumn fx:id="email" prefWidth="163.20004272460938" text="Email" />
-                  <TableColumn fx:id="address" prefWidth="61.5999755859375" text="Address" />
+                  <TableColumn fx:id="name" prefWidth="100.0" text="Name" />
+                  <TableColumn fx:id="surname" prefWidth="100.0" text="Surname" />
+                  <TableColumn fx:id="birthdate" text="Birthday" />
+                  <TableColumn fx:id="year" prefWidth="90.0" text="Grade Level" />
+                  <TableColumn fx:id="phone" prefWidth="100.0" text="Phone Number" />
+                  <TableColumn fx:id="email" prefWidth="180.0" text="Email" />
+                  <TableColumn fx:id="address" prefWidth="100.0" text="Address" />
                </columns>
             </TableView>
-            <Button fx:id="addStudentButton" layoutX="513.0" layoutY="419.0" mnemonicParsing="false" onAction="#goToAddStudents" prefHeight="30.0" prefWidth="129.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Student">
+            <Button fx:id="addStudentButton" layoutX="606.0" layoutY="455.0" mnemonicParsing="false" onAction="#goToAddStudents" prefHeight="30.0" prefWidth="129.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Student">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -16,14 +16,14 @@
         <fx:include source="SideNav.fxml" />
     </left>
    <center>
-      <AnchorPane>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane hbarPolicy="NEVER" layoutX="51.0" layoutY="122.0" prefHeight="406.0" prefWidth="726.0">
+            <ScrollPane hbarPolicy="NEVER" layoutX="25.0" layoutY="100.0" prefHeight="400.0" prefWidth="750.0">
                <content>
-                  <VBox fx:id="subjectCards" alignment="CENTER" prefHeight="402.0" prefWidth="710.0" />
+                  <VBox fx:id="subjectCards" alignment="CENTER" prefHeight="392.0" prefWidth="750.0" />
                </content>
             </ScrollPane>
-            <Button fx:id="addSubjectButton" alignment="CENTER" layoutX="679.0" layoutY="551.0" mnemonicParsing="false" onAction="#openAddSubjects" prefHeight="27.0" prefWidth="106.0" styleClass="spec-button" text="Add Subject">
+            <Button fx:id="addSubjectButton" alignment="CENTER" layoutX="648.0" layoutY="513.0" mnemonicParsing="false" onAction="#openAddSubjects" prefHeight="27.0" prefWidth="106.0" styleClass="spec-button" text="Add Subject">
                <graphic>
                   <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -32,7 +32,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <AnchorPane layoutX="51.0" layoutY="67.0" prefHeight="27.0" prefWidth="725.0">
+            <AnchorPane layoutX="37.0" layoutY="50.0" prefHeight="27.0" prefWidth="725.0">
                <children>
                   <Label layoutX="10.0" layoutY="5.0" text="Grade Level:">
                      <font>
