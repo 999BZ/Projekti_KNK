@@ -122,8 +122,11 @@ public class RegisterStudentsController implements Initializable {
                             cancelClick(new ActionEvent());
                             setWarnings(false);
                         }
+                        GeneralUtil.goToFXML("/Main/Students.fxml", (Stage) txtEmail.getScene().getWindow());
                     }catch (SQLException sqlException) {
                         System.out.println("Student couldn't register.");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }else{
                     System.out.println("Password is too short!");

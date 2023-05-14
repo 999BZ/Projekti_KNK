@@ -11,19 +11,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" styleClass="subjects" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SubjectsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="subjects" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SubjectsController">
     <left>
         <fx:include source="SideNav.fxml" />
     </left>
    <center>
       <AnchorPane>
          <children>
-            <ScrollPane hbarPolicy="NEVER" layoutX="3.0" layoutY="66.0" prefHeight="406.0" prefWidth="726.0">
+            <ScrollPane hbarPolicy="NEVER" layoutX="51.0" layoutY="122.0" prefHeight="406.0" prefWidth="726.0">
                <content>
                   <VBox fx:id="subjectCards" alignment="CENTER" prefHeight="402.0" prefWidth="710.0" />
                </content>
             </ScrollPane>
-            <Button fx:id="addSubjectButton" alignment="CENTER" layoutX="585.0" layoutY="508.0" mnemonicParsing="false" onAction="#openAddSubjects" prefHeight="27.0" prefWidth="106.0" styleClass="spec-button" text="Add Subject">
+            <Button fx:id="addSubjectButton" alignment="CENTER" layoutX="679.0" layoutY="551.0" mnemonicParsing="false" onAction="#openAddSubjects" prefHeight="27.0" prefWidth="106.0" styleClass="spec-button" text="Add Subject">
                <graphic>
                   <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -32,7 +32,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <AnchorPane layoutX="7.0" layoutY="32.0" prefHeight="27.0" prefWidth="725.0">
+            <AnchorPane layoutX="51.0" layoutY="67.0" prefHeight="27.0" prefWidth="725.0">
                <children>
                   <Label layoutX="10.0" layoutY="5.0" text="Grade Level:">
                      <font>

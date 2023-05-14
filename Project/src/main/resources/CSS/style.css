@@ -194,4 +194,27 @@
     -fx-background-color: #480000;
 }
 
+/* Style the vertical scroll bar */
+.scroll-pane:vertical > .scroll-bar {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.scroll-pane:vertical > .scroll-bar > .increment-button,
+.scroll-pane:vertical > .scroll-bar > .decrement-button,
+.scroll-pane:vertical > .scroll-bar > .thumb {
+    -fx-background-color: #353e93;
+    -fx-background-radius: 0;
+}
+
+.scroll-pane:vertical > .scroll-bar > .increment-button:hover,
+.scroll-pane:vertical > .scroll-bar > .decrement-button:hover,
+.scroll-pane:vertical > .scroll-bar > .thumb:hover {
+    -fx-background-color: #3570ab;
+}
+
+.scroll-pane:vertical > .scroll-bar > .thumb:pressed {
+    -fx-background-color: #7db2c2;
+}
+
 

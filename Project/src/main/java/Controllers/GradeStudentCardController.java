@@ -102,7 +102,6 @@ try {
         profilePic.setImage(image);
     }
 }catch (Exception e){
-    System.out.println(e);
 }
 
         studentName.setText(student.getName()+" "+student.getSurname());

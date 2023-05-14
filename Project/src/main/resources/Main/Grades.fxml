@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GradesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GradesController">
     <left>
         <fx:include source="SideNav.fxml" styleClass="grades" />
     </left>
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane hbarPolicy="NEVER" layoutX="1.0" layoutY="72.0" prefHeight="406.0" prefWidth="726.0">
+            <ScrollPane hbarPolicy="NEVER" layoutX="51.0" layoutY="122.0" prefHeight="406.0" prefWidth="726.0" styleClass="scroll-bar" stylesheets="@../CSS/style.css">
                <content>
                   <VBox fx:id="gradesCard" alignment="CENTER" prefHeight="402.0" prefWidth="710.0" />
                </content>

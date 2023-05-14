@@ -94,18 +94,15 @@ public class RegisterTeachersController implements Initializable  {
                         User user = UserAuthService.registerTeacher(name, surname, birthdate, phone, address, email, password,"Teacher",imagePath );
                         if (user != null){
                             System.out.println("User Registered");
-                            this.txtName.setText("");
-                            this.txtSurname.setText("");
-                            this.DateBirthdate.setValue(null);
-                            this.txtPhone.setText("");
-                            this.txtAddress.setText("");
-                            this.txtEmail.setText("");
-                            this.pwdPassword.setText("");
+                            cancelClick(new ActionEvent());
                             setWarnings(false);
+                            GeneralUtil.goToFXML("/Main/Teachers.fxml",(Stage) txtName.getScene().getWindow());
                             
                         }
                     }catch (SQLException sqlException) {
                         System.out.println("Teacher couldn't register.");
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
                     }
                 }else{
                     System.out.println("Password is too short!");
@@ -138,7 +135,6 @@ public class RegisterTeachersController implements Initializable  {
         this.txtEmail.setText("");
         this.pwdPassword.setText("");
     }
-
     public void setWarnings(boolean set){
         birthdayw.setVisible(set);
         firstnamew.setVisible(set);

@@ -2,7 +2,7 @@ package Services;
 
 
 public class WindowSizeUtils {
-        public static int windowWidth = 900;
-        public static int windowHeight = 550;
+        public static int windowWidth = 1000;
+        public static int windowHeight = 650;
 
 }
