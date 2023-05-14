@@ -39,7 +39,7 @@ Connection conn;
     private ChoiceBox<Integer> gradeFilter;
 
     private ObservableList<TeacherUser> optionsTeacher = FXCollections.observableArrayList();
-    private ObservableList<Integer> optionsGrade = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10,11,12);;
+    private ObservableList<Integer> optionsGrade = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10,11,12);
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
 
     public SubjectsController() throws SQLException {

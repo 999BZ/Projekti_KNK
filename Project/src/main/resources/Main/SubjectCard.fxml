@@ -44,7 +44,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="removeButton" layoutX="651.0" layoutY="19.0" mnemonicParsing="false" onAction="#removeSubject" style="-fx-background-color: white; -fx-background-radius: 20;">
+                  <Button fx:id="removeButton" layoutX="651.0" layoutY="19.0" mnemonicParsing="false" onAction="#removeSubject" styleClass="white-button">
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -10,18 +10,18 @@
    <children>
       <VBox fx:id="navbar" prefHeight="482.0" prefWidth="170.0" styleClass="nav-container" stylesheets="@../CSS/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane>
+            <AnchorPane prefHeight="102.0" prefWidth="170.0">
                <children>
-                  <ImageView fitHeight="54.0" fitWidth="108.0" layoutX="37.0" layoutY="7.0" onMouseClicked="#goToHome" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="10.0">
+                  <ImageView fitHeight="87.0" fitWidth="170.0" layoutX="41.0" onMouseClicked="#goToHome" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-0.5999999999999943" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="42.00091400146485" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../Images/logo1.png" />
+                        <Image url="@../Images/logo3.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane>
                <children>
-                  <Button fx:id="studentsButton" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToStudents" prefHeight="29.0" prefWidth="129.0" styleClass="nav-button" text="Students" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
+                  <Button fx:id="studentsButton" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToStudents" prefHeight="29.0" prefWidth="129.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Students" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                            <image>
@@ -34,7 +34,7 @@
             </AnchorPane>
             <AnchorPane>
                <children>
-                  <Button fx:id="teachersButton" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToTeachers" prefHeight="29.0" prefWidth="129.0" styleClass="nav-button" text="Teachers" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
+                  <Button fx:id="teachersButton" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToTeachers" prefHeight="29.0" prefWidth="129.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Teachers" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                            <image>
@@ -47,7 +47,7 @@
             </AnchorPane>
             <AnchorPane>
                <children>
-                  <Button fx:id="subjectsButton" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToSubjects" prefHeight="45.0" prefWidth="129.0" styleClass="nav-button" text="Subjects" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
+                  <Button fx:id="subjectsButton" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToSubjects" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Subjects" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0">
                            <image>
@@ -58,10 +58,23 @@
                   </Button>
                </children>
             </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <Button fx:id="gradesButton" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToGrades" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Grades" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                           <image>
+                              <Image url="@../Images/grades.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
             <AnchorPane />
             <AnchorPane maxHeight="2000.0" maxWidth="1024.0" minWidth="-Infinity" prefHeight="195.0" prefWidth="170.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="logoutButton" alignment="CENTER" layoutX="37.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="38.0" prefWidth="96.0" styleClass="nav-button" text="Log Out" AnchorPane.bottomAnchor="14.799999999999983">
+                  <Button fx:id="logoutButton" alignment="CENTER" layoutX="34.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="38.0" prefWidth="102.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Log Out" AnchorPane.bottomAnchor="14.799999999999983">
                      <graphic>
                         <ImageView fitHeight="16.0" fitWidth="15.0">
                            <image>

@@ -15,18 +15,15 @@
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="662.0" stylesheets="@../CSS/style.css">
          <children>
-            <TableView fx:id="teachersTable" fixedCellSize="0.0" layoutX="-13.0" prefHeight="412.0" prefWidth="660.0">
+            <TableView fx:id="teachersTable" fixedCellSize="0.0" layoutX="-9.0" prefHeight="412.0" prefWidth="679.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columns>
-                  <TableColumn fx:id="name" prefWidth="89.59997272491455" text="Name" />
-                  <TableColumn fx:id="surname" text="Surname" />
-                  <TableColumn fx:id="birthdate" prefWidth="88.79997253417969" text="Birthday" />
-                  <TableColumn fx:id="phone" prefWidth="114.40008544921875" text="Phone Number" />
-                  <TableColumn fx:id="email" prefWidth="203.20001220703125" text="Email" />
-                  <TableColumn fx:id="address" prefWidth="81.99991455078123" text="Address" />
+                  <TableColumn fx:id="name" prefWidth="91.19994831085205" text="Name" />
+                  <TableColumn fx:id="surname" prefWidth="112.0" text="Surname" />
+                  <TableColumn fx:id="birthdate" prefWidth="84.00001525878906" text="Birthday" />
+                  <TableColumn fx:id="phone" prefWidth="100.80001831054688" text="Phone Number" />
+                  <TableColumn fx:id="email" minWidth="0.0" prefWidth="167.99993896484375" text="Email" />
+                  <TableColumn fx:id="address" prefWidth="103.99991455078123" text="Address" />
                </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
             </TableView>
             <Button fx:id="addStudentButton" layoutX="511.0" layoutY="418.0" mnemonicParsing="false" onAction="#goToAddTeachers" prefHeight="30.0" prefWidth="130.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Teacher">
                <graphic>

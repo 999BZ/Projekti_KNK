@@ -1,9 +1,6 @@
 package Services;
 
-import Models.Classe;
-import Models.StudentUser;
-import Models.Subject;
-import Models.TeacherUser;
+import Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class FetchData {
     public static ObservableList<TeacherUser> getAllTeachers() {
@@ -179,6 +177,20 @@ public class FetchData {
         }
         return grade;
     }
+    public static int getStudentGradeId(StudentUser student, Subject subject) throws SQLException {
+        String query = "SELECT G_ID FROM Grades " +
+                "WHERE S_ID = ? AND Sb_ID = ?";
+        Connection conn = ConnectionUtil.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        pstmt.setInt(1, student.getID());
+        pstmt.setInt(2, subject.getId());
+        ResultSet rs = pstmt.executeQuery();
+        int gradeID = 0;
+        while (rs.next()) {
+            gradeID = rs.getInt("G_ID");
+        }
+        return gradeID;
+    }
 
     public static String getTeacherP(TeacherUser teacher, Subject subject) throws SQLException {
         String query = "SELECT C_Paralel FROM Classes " +
@@ -198,7 +210,7 @@ public class FetchData {
         }
         while (rs.next()) {
             P = rs.getInt("C_Paralel");
-            Parallels += "," + P;
+            Parallels += ", " + P;
         }
 
         return Parallels;
@@ -322,6 +334,100 @@ public class FetchData {
         }
         return teacher;
     }
+
+    public static int getStudentIdFromEnrollment(int enrollmentID) {
+        int studentID = 0;
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            String query = "SELECT S_ID FROM Enrollments WHERE E_ID = ?";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, enrollmentID);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                studentID = rs.getInt("S_ID");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return studentID;
+    }
+
+    public static int getSubjectIdFromEnrollmentId(int enrollmentId) throws SQLException {
+        int subjectId = -1; // default value in case query fails or enrollment ID not found
+        Connection conn = ConnectionUtil.getConnection();
+        String query = "SELECT Classes.Sb_ID FROM Enrollments JOIN Classes ON Enrollments.C_ID = Classes.C_ID WHERE Enrollments.E_ID = ?";
+        PreparedStatement statement = conn.prepareStatement(query);
+        statement.setInt(1, enrollmentId);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            subjectId = rs.getInt("Sb_ID");
+        }
+        rs.close();
+        statement.close();
+        conn.close();
+        return subjectId;
+    }
+    public static StudentUser getStudentFromEnrollment(int enrollmentId) throws SQLException {
+        StudentUser student = null;
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            String query = "SELECT s.*, u.* FROM enrollments e INNER JOIN students s ON e.S_ID = s.S_UID inner join users u on s.s_uid = u.u_id WHERE e.E_ID = ?;";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, enrollmentId);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("S_UID");
+                String name = rs.getString("S_Name");
+                String surname = rs.getString("S_Surname");
+                String birthdate = rs.getDate("S_Birthdate").toLocalDate().toString();
+                String phone = rs.getString("S_Phone");
+                String address = rs.getString("S_Address");
+                int gradeLevel = rs.getInt("S_GLevel");
+                int paralel = rs.getInt("S_Paralel");
+                String email = rs.getString("Email");
+                String password = rs.getString("Salted_Password");
+                String salt = rs.getString("Salt");
+                String position = rs.getString("U_Position");
+                String profileImage = rs.getString("U_ProfileImg");
+
+                student = new StudentUser(id, email, password, salt, position, profileImage, name, surname, birthdate, phone, address, gradeLevel, paralel);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return student;
+    }
+
+
+    public static ObservableList<Enrollment> getAllEnrollments() {
+        ObservableList<Enrollment> enrollmentsList = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * from Enrollments");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("E_ID");
+                int classId = rs.getInt("C_ID");
+                int studentId = rs.getInt("S_ID");
+                String date = rs.getDate("E_Date").toLocalDate().toString();
+
+                Enrollment enrollment = new Enrollment(id, studentId, classId, date);
+                enrollmentsList.add(enrollment);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return enrollmentsList;
+    }
+
+
 
 
 }

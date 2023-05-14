@@ -21,6 +21,8 @@ import java.util.ResourceBundle;
 public class StudentSubjectCardController implements Initializable {
     @FXML
     private Label gradeValue;
+    @FXML
+    private Label gradeLevel;
 
     @FXML
     private Label subjectName;
@@ -38,6 +40,7 @@ public class StudentSubjectCardController implements Initializable {
         this.subject = subject;
         this.student = student;
         subjectName.setText(subject.getName());
+        gradeLevel.setVisible(false);
         int grade;
         subjectName1.setPrefWidth(40);
         subjectName1.setText("Grade: ");
@@ -60,7 +63,8 @@ public class StudentSubjectCardController implements Initializable {
         this.teacher = teacher;
         subjectName1.setPrefWidth(50);
         subjectName.setText(subject.getName());
-        subjectName1.setText("Parallels: ");
+        subjectName1.setText("Classes:");
+        gradeLevel.setText(String.valueOf(subject.getYear()));
         String classes;
         try {
             classes = FetchData.getTeacherP(teacher, subject);

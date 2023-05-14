@@ -82,6 +82,7 @@ public class AssignSubjectController implements Initializable {
             setAssignedTeachersInTable();}
             else {
                 w.setVisible(true);
+                success.setVisible(false);
             }
 
         } else {

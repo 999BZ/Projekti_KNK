@@ -124,7 +124,7 @@ public class UserRepository {
         }
     }
     public static User getByID(int  U_ID) throws SQLException {
-        String sql = "SELECT * FROM Users WHERE Email = ?";
+        String sql = "SELECT * FROM Users WHERE U_ID = ?";
         try (Connection connection = ConnectionUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, U_ID);

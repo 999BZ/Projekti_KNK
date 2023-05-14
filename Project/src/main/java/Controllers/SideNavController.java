@@ -50,6 +50,11 @@ public class SideNavController   {
             GeneralUtil.goToFXML("/Main/Teachers.fxml", (Stage) navbar.getScene().getWindow());
         }
 
+         @FXML
+         private void goToGrades() throws IOException {
+            GeneralUtil.goToFXML("/Main/Grades.fxml", (Stage) navbar.getScene().getWindow());
+         }
+
 
 
     @FXML

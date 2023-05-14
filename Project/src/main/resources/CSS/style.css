@@ -4,7 +4,7 @@
 }
 
 .nav-button {
-
+    -fx-font-weight: bold;
     -fx-background-color: #02315E;
     -fx-text-fill: #dcdde1;
     -fx-background-radius: 50px;
@@ -43,20 +43,24 @@
     -fx-background-radius: 50px;
     -fx-border-radius: 50px;
 }
+.table-row-cell {
+    -fx-pref-height: 25px;
+    -fx-text-alignment: center;
+}
 .button {
     -fx-background-color: #4C5D8B;
     -fx-text-fill: white;
 }
 .spec-button {
-    -fx-background-color: linear-gradient(#304375, #1B1F47);
+    -fx-background-color:#1B1F47;
     -fx-background-radius: 30;
     -fx-text-fill: white;
 }
 .spec-button:hover{
-    -fx-background-color: linear-gradient(#3e4abd, #142d72);
+    -fx-background-color: #142d72;
 }
 .spec-button:pressed{
-    -fx-background-color: linear-gradient(#5264ae, #8a98ff);
+    -fx-background-color: #8a98ff;
 }
 
 .danger-button {
@@ -65,10 +69,10 @@
     -fx-text-fill: white;
 }
 .danger-button:hover{
-    -fx-background-color: linear-gradient(#ED2B2A, #F15A59);
+    -fx-background-color: #F15A59;
 }
 .danger-button:pressed{
-    -fx-background-color: linear-gradient(#5264ae, #8a98ff);}
+    -fx-background-color: #5264ae}
 
 
 .info-button {
@@ -77,17 +81,17 @@
     -fx-text-fill: white;
 }
 .info-button:hover{
-    -fx-background-color: linear-gradient(#7db2c2, #75939d);
+    -fx-background-color: #7db2c2;
 }
 .info-button:pressed{
-    -fx-background-color: linear-gradient(#4193ce, #3570ab);}
-.subjects #subjectsButton,.students #studentsButton,.assignments #assignmentsButton, .teachers #teachersButton {
+    -fx-background-color:  #3570ab;}
+.subjects #subjectsButton,.students #studentsButton,.assignments #assignmentsButton, .teachers #teachersButton, .grades #gradesButton {
     -fx-border-width: 3px;
     -fx-border-radius: 50;
     -fx-border-color: #e5f4f9;
 }
 .card {
-    -fx-background-color: #90E0EF;
+    -fx-background-color:#90E0EF;
     -fx-background-radius: 10;
 }
 .textInput {
@@ -115,6 +119,10 @@
 }
 .date-picker-pers > .arrow-button {
     -fx-background-radius: 7;
+}
+.spinner{
+    -fx-text-fill: black;
+    -fx-background-color: #90E0EF;
 }
 /*.spinner  {*/
 /*    -fx-background-color: #FFFFFF;*/
@@ -172,6 +180,18 @@
 .choice-box {
     -fx-text-fill: black;
     -fx-background-color: #90E0EF;
+}
+
+.white-button {
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-text-fill: white;
+}
+.white-button:hover{
+    -fx-background-color: #931928;
+}
+.white-button:pressed{
+    -fx-background-color: #480000;
 }
 
 

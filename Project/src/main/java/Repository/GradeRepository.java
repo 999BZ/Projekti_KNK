@@ -1,10 +1,13 @@
 package Repository;
 
 import Models.Grade;
+import Models.Subject;
+import Models.User;
 import Services.ConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GradeRepository {
@@ -42,4 +45,5 @@ public class GradeRepository {
             System.out.println(ex.getMessage());
         }
     }
+
 }
