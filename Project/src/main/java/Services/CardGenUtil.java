@@ -41,7 +41,7 @@ public class CardGenUtil {
             try {
                 VBox hBox = fxmlLoader.load();
                 GradeStudentCardController scc = fxmlLoader.getController();
-                scc.setData(FetchData.getStudentFromEnrollment(enrollmentsList.get(i).getId()), SubjectRepository.getByID(FetchData.getSubjectIdFromEnrollmentId(enrollmentsList.get(i).getId())));
+                scc.setData(FetchData.getStudentFromEnrollment(enrollmentsList.get(i).getId()), FetchData.getSubjectFromEnrollmentId(enrollmentsList.get(i).getId()));
                 scc.setParentController(gc);
                 subjectCards.getChildren().add(hBox);
             } catch (IOException e) {

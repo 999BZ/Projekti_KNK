@@ -355,20 +355,28 @@ public class FetchData {
         return studentID;
     }
 
-    public static int getSubjectIdFromEnrollmentId(int enrollmentId) throws SQLException {
-        int subjectId = -1; // default value in case query fails or enrollment ID not found
+    public static Subject getSubjectFromEnrollmentId(int enrollmentId) throws SQLException {
+        Subject subject = null;
         Connection conn = ConnectionUtil.getConnection();
-        String query = "SELECT Classes.Sb_ID FROM Enrollments JOIN Classes ON Enrollments.C_ID = Classes.C_ID WHERE Enrollments.E_ID = ?";
+        String query = "SELECT Subjects.* FROM Enrollments \n" +
+                "                           JOIN Classes ON Enrollments.C_ID = Classes.C_ID \n" +
+                "                           JOIN Subjects ON Classes.Sb_ID = Subjects.Sb_ID \n" +
+                "                           WHERE E_ID = ?";
         PreparedStatement statement = conn.prepareStatement(query);
         statement.setInt(1, enrollmentId);
         ResultSet rs = statement.executeQuery();
         if (rs.next()) {
-            subjectId = rs.getInt("Sb_ID");
+            int subjectId = rs.getInt("Sb_ID");
+             String subjectName = rs.getString("Sb_Name");
+            String subjectDescription = rs.getString("Sb_Description");
+            int gradeLevel = rs.getInt("Sb_GLevel");
+            boolean obligatory = rs.getBoolean("Sb_Obligatory");
+            subject = new Subject(subjectId,subjectName,subjectDescription,gradeLevel,obligatory);
         }
         rs.close();
         statement.close();
         conn.close();
-        return subjectId;
+        return subject;
     }
     public static StudentUser getStudentFromEnrollment(int enrollmentId) throws SQLException {
         StudentUser student = null;

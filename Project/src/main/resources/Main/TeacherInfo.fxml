@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherInfoController">
+<BorderPane fx:id="rootPane" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherInfoController">
 
     <left>
         <fx:include source="SideNav.fxml" styleClass="students" />
@@ -144,10 +144,10 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="433.0" layoutY="32.0" prefHeight="29.0" prefWidth="124.0" styleClass="info-label" text="Teacher's Subjects" />
-            <ScrollPane hbarPolicy="NEVER" layoutX="422.0" layoutY="72.0" prefHeight="426.0" prefWidth="151.0">
+            <Label alignment="CENTER" layoutX="443.0" layoutY="11.0" prefHeight="29.0" prefWidth="124.0" styleClass="info-label" text="Teacher's Subjects" />
+            <ScrollPane hbarPolicy="NEVER" layoutX="415.0" layoutY="47.0" prefHeight="450.0" prefWidth="180.0">
                <content>
-                  <VBox fx:id="subjectsBox" prefHeight="424.0" prefWidth="149.0" style="-fx-background-color: white;" />
+                  <VBox fx:id="subjectsBox" prefHeight="440.0" prefWidth="180.0" style="-fx-background-color: white;" />
                </content>
             </ScrollPane>
             </children>

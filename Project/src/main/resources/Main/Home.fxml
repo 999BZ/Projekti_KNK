@@ -17,6 +17,11 @@
                   <Font name="Century Gothic Bold" size="28.0" />
                </font>
             </Label>
+            <Label fx:id="userRole" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="82.0" prefHeight="36.0" prefWidth="310.0" text="User Role">
+               <font>
+                  <Font name="Century Gothic Bold" size="28.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

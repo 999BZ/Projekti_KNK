@@ -44,6 +44,8 @@
     -fx-border-radius: 50px;
 }
 .table-row-cell {
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 14px;
     -fx-pref-height: 25px;
     -fx-text-alignment: center;
 }

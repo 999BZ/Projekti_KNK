@@ -7,10 +7,7 @@ import Models.TeacherUser;
 import Models.User;
 import Services.ConnectionUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserRepository {
 
@@ -256,4 +253,75 @@ public class UserRepository {
 
 
         }
+
+
+
+
+        public static TeacherUser getTeacherByUserID(int userID) throws SQLException {
+            TeacherUser teacher = null;
+            Connection connection = ConnectionUtil.getConnection();
+            String query = "SELECT T.*, U.* FROM Teachers T " +
+                    "INNER JOIN Users U ON T.T_UID = U.U_ID " +
+                    "WHERE T.T_UID = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userID);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String name = resultSet.getString("T_Name");
+                String surname = resultSet.getString("T_Surname");
+                String birthdate = resultSet.getDate("T_Birthdate").toLocalDate().toString();
+                String phone = resultSet.getString("T_Phone");
+                String address = resultSet.getString("T_Address");
+                String email = resultSet.getString("Email");
+                String saltedPassword = resultSet.getString("salted_password");
+                String salt = resultSet.getString("salt");
+                String position = resultSet.getString("U_Position");
+                String profileImg = resultSet.getString("U_ProfileImg");
+
+
+                teacher = new TeacherUser(userID, email, saltedPassword, salt, position, profileImg, name, surname, birthdate, phone, address);
+            }
+
+            resultSet.close();
+            statement.close();
+
+            return teacher;
+        }
+
+    public static StudentUser getStudentByUserID(int userID) throws SQLException {
+        StudentUser student = null;
+        Connection connection = ConnectionUtil.getConnection();
+        String query = "SELECT S.*, U.* FROM Students S " +
+                "INNER JOIN Users U ON S.S_UID = U.U_ID " +
+                "WHERE S.S_UID = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, userID);
+
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            String name = resultSet.getString("S_Name");
+            String surname = resultSet.getString("S_Surname");
+            String birthdate = resultSet.getDate("S_Birthdate").toLocalDate().toString();
+            String phone = resultSet.getString("S_Phone");
+            int gradeLvl = resultSet.getInt("S_GLevel");
+            int paralel = resultSet.getInt("S_Paralel");
+            String address = resultSet.getString("S_Address");
+            String email = resultSet.getString("Email");
+            String saltedPassword = resultSet.getString("salted_password");
+            String salt = resultSet.getString("salt");
+            String position = resultSet.getString("U_Position");
+            String profileImg = resultSet.getString("U_ProfileImg");
+
+
+            student = new StudentUser(userID, email, saltedPassword, salt, position, profileImg, name, surname, birthdate, phone, address, gradeLvl, paralel);
+        }
+
+        resultSet.close();
+        statement.close();
+
+        return student;
     }
+    }
+
+

@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,14 +22,31 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
-public class SideNavController   {
+public class SideNavController  implements Initializable{
 
     @FXML
     private VBox navbar;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    @FXML
+    private Button gradesButton;
+
+    @FXML
+    private Button helpButton;
+
+    @FXML
+    private Button logoutButton;
+
+    @FXML
+    private Button studentsButton;
+
+    @FXML
+    private Button subjectsButton;
+
+    @FXML
+    private Button teachersButton;
+
+        private String position;
         @FXML
         private void goToHome() throws IOException {
             GeneralUtil.goToFXML("/Main/Home.fxml", (Stage) navbar.getScene().getWindow());
@@ -70,5 +88,31 @@ public class SideNavController   {
     }
 
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //get user position from preferences
+        Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+        this.position = prefs.get("position", null);
+        if(this.position.equals("Student")){
+            studentsButton.setVisible(false);
+            teachersButton.setVisible(false);
+            subjectsButton.setVisible(false);
+            gradesButton.setVisible(false);
+        }
+        else if(this.position.equals("Teacher")){
+            studentsButton.setVisible(false);
+            teachersButton.setVisible(false);
+            subjectsButton.setVisible(false);
+        }
+        else if(this.position.equals("Admin")){
+            studentsButton.setVisible(true);
+            teachersButton.setVisible(true);
+            subjectsButton.setVisible(true);
+            gradesButton.setVisible(true);
+        }
+        else{
+            System.out.println("Error! Position not found!");
+            System.out.println("Position: " + this.position);
+        }
+    }
 }

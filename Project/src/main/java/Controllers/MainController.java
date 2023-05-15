@@ -23,6 +23,8 @@ import javafx.stage.Stage;
 public class MainController {
     @FXML
     private Label userName;
+    @FXML
+    private Label userRole;
     private double previousWidth;
     private double previousHeight;
 
@@ -35,6 +37,12 @@ public class MainController {
 
         // Get the user ID from the preferences
         int userId = prefs.getInt("userId", 0);
+        // Get the user position from the preferences
+        String userPosition = prefs.get("position", null);
+
+        // Set the user role to the label text
+        userRole.setText(userPosition);
+
         // Perform a database query to get the name of the user
         String userNameFromDB = "";
         try {

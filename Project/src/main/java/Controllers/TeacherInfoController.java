@@ -28,6 +28,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class TeacherInfoController implements Initializable {
     @FXML
@@ -74,6 +75,7 @@ public class TeacherInfoController implements Initializable {
     private boolean isEditable = false;
     private String imagePath;
     private String oldImagePath;
+    private String userPosition;
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
 
     @FXML
@@ -85,6 +87,14 @@ public class TeacherInfoController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // get the user position
+        Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
+        this.userPosition = preferences.get("position", null);
+        if(this.userPosition.equals("Admin")){
+            editButton.setVisible(true);
+        }else{
+            editButton.setVisible(false);
+        }
         setEditable(false);
         setWarnings(false);
     }
@@ -214,11 +224,12 @@ public class TeacherInfoController implements Initializable {
         firstname.setEditable(set);
         lastname.setEditable(set);
         phone.setEditable(set);
-        birthday.setEditable(set);
+        birthday.setDisable(!set);
         address.setEditable(set);
         email.setEditable(set);
         updatePhoto.setVisible(set);
         removeButton.setVisible(set);
+
         if(set) {
             editButton.setText("Save");
         }else{

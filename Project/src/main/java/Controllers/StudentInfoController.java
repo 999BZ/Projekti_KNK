@@ -28,6 +28,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class StudentInfoController implements Initializable {
     @FXML
@@ -86,6 +87,8 @@ public class StudentInfoController implements Initializable {
     private String imagePath;
     private String oldImagePath;
     private StudentUser studentUser;
+
+    private String userPosition;
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
 
     @FXML
@@ -96,16 +99,23 @@ public class StudentInfoController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setWarnings(false);
+        //get user position
+        Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
+        this.userPosition = preferences.get("position", null);
+        System.out.println(this.userPosition);
+        if(this.userPosition.equals("Admin")){
+            editButton.setVisible(true);
+        }else{
+            editButton.setVisible(false);
+        }
 
+        setWarnings(false);
         gradeLvl.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 12, 0));
-        gradeLvl.setDisable(true);
-        paralel.setDisable(true);
+
         paralel.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 3, 0));
         Image oldImage =profilePic.getImage();
         oldImagePath = oldImage.getUrl();
-        updatePhoto.setVisible(false);
-        removeButton.setVisible(false);
+        setEditable(false);
     }
     @FXML
     private void handleRemoveButton() throws IOException, SQLException {
@@ -236,7 +246,7 @@ public class StudentInfoController implements Initializable {
         firstname.setEditable(set);
         lastname.setEditable(set);
         phone.setEditable(set);
-        birthday.setEditable(set);
+        birthday.setDisable(!set);
         address.setEditable(set);
         email.setEditable(set);
         gradeLvl.setDisable(!set);

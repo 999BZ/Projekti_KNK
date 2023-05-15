@@ -112,10 +112,6 @@ CREATE TABLE Grades (
 -- (5, 5, '2022-08-27');
 
 
-USE lems;
-
-SET FOREIGN_KEY_CHECKS=0;
-
 -- Truncate all tables in the database
 TRUNCATE TABLE students;
 TRUNCATE TABLE teachers;
@@ -126,6 +122,12 @@ TRUNCATE TABLE users;
 TRUNCATE TABLE admins;
 TRUNCATE TABLE classes;
 -- ... add more tables as needed
+
+
+USE lems;
+
+SET FOREIGN_KEY_CHECKS=0;
+TRUNCATE TABLE grades;
 
 SET FOREIGN_KEY_CHECKS=1;
 

@@ -15,15 +15,16 @@
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" stylesheets="@../CSS/style.css">
          <children>
-            <TableView fx:id="studentsTable" layoutX="19.0" prefHeight="412.0" prefWidth="623.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="studentsTable" layoutX="19.0" prefHeight="412.0" prefWidth="750.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columns>
-                  <TableColumn fx:id="name" prefWidth="100.0" text="Name" />
+                  <TableColumn fx:id="name" editable="false" prefWidth="100.0" resizable="false" text="Name" />
                   <TableColumn fx:id="surname" prefWidth="100.0" text="Surname" />
                   <TableColumn fx:id="birthdate" text="Birthday" />
-                  <TableColumn fx:id="year" prefWidth="90.0" text="Grade Level" />
+                  <TableColumn fx:id="year" prefWidth="45.0" text="G.Lvl" />
+                  <TableColumn fx:id="paralel" prefWidth="45.0" text="Prl." />
                   <TableColumn fx:id="phone" prefWidth="100.0" text="Phone Number" />
                   <TableColumn fx:id="email" prefWidth="180.0" text="Email" />
-                  <TableColumn fx:id="address" prefWidth="100.0" text="Address" />
+                  <TableColumn fx:id="address" prefWidth="98.40006103515623" text="Address" />
                </columns>
             </TableView>
             <Button fx:id="addStudentButton" layoutX="606.0" layoutY="455.0" mnemonicParsing="false" onAction="#goToAddStudents" prefHeight="30.0" prefWidth="129.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Student">

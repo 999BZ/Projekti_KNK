@@ -112,6 +112,11 @@
                   <Font name="Century Gothic Bold" size="25.0" />
                </font>
             </Label>
+            <Label fx:id="warning" alignment="CENTER" contentDisplay="CENTER" layoutX="-31.0" layoutY="322.0" prefHeight="32.0" prefWidth="469.0" text="Check email or password again!" textFill="RED">
+               <font>
+                  <Font name="Century Gothic Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

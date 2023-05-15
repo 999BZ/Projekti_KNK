@@ -39,7 +39,7 @@ public class StudentsController {
     @FXML
     private TableColumn<StudentUser, Integer> year;
     @FXML
-    private TableColumn<StudentUser, Integer> id;
+    private TableColumn<StudentUser, Integer> paralel;
     @FXML
     private TableColumn<StudentUser, String> phone;
     @FXML
@@ -64,6 +64,7 @@ public class StudentsController {
             this.phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
             this.email.setCellValueFactory(new PropertyValueFactory<>("Email"));
             this.address.setCellValueFactory(new PropertyValueFactory<>("Address"));
+            this.paralel.setCellValueFactory(new PropertyValueFactory<>("Paralel"));
 
             studentsTable.setItems(studentsList);
 
