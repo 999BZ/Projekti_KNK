@@ -1,27 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
     <left>
-        <fx:include source="SideNav.fxml" styleClass="home" />
+        <fx:include fx:id="sidenav" source="SideNav.fxml" styleClass="home" />
     </left>
    <center>
-      <AnchorPane prefHeight="482.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="userName" alignment="CENTER" contentDisplay="CENTER" layoutX="145.0" layoutY="223.0" prefHeight="36.0" prefWidth="310.0" AnchorPane.bottomAnchor="223.39999999999998" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="144.60000000000002" AnchorPane.topAnchor="223.0">
-               <font>
-                  <Font name="Century Gothic Bold" size="28.0" />
-               </font>
-            </Label>
-            <Label fx:id="userRole" alignment="CENTER" contentDisplay="CENTER" layoutX="259.0" layoutY="82.0" prefHeight="36.0" prefWidth="310.0" text="User Role">
-               <font>
-                  <Font name="Century Gothic Bold" size="28.0" />
-               </font>
-            </Label>
+            <AnchorPane layoutX="14.0" prefHeight="146.0" prefWidth="149.0" styleClass="card">
+               <children>
+                  <AnchorPane layoutX="-5.0" layoutY="96.0" prefHeight="46.0" prefWidth="161.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Label fx:id="nrOfStudents" alignment="CENTER" layoutX="6.0" layoutY="6.0" prefHeight="34.0" prefWidth="38.0" style="-fx-background-color: #3570ABFF; -fx-background-radius: 10; -fx-label-padding: 8;" text="Label" textFill="WHITE">
+                           <font>
+                              <Font name="Microsoft New Tai Lue Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="64.0" layoutY="13.0" text="Students">
+                           <font>
+                              <Font name="Franklin Gothic Book" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <StackPane layoutY="-12.0" prefHeight="104.0" prefWidth="140.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="77.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/classmates.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </center>

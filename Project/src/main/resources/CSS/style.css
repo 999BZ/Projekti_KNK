@@ -87,7 +87,7 @@
 }
 .info-button:pressed{
     -fx-background-color:  #3570ab;}
-.subjects #subjectsButton,.students #studentsButton,.assignments #assignmentsButton, .teachers #teachersButton, .grades #gradesButton,.help #helpButton {
+.subjects #subjectsButton,.students #studentsButton,.assignments #assignmentsButton, .teachers #teachersButton, .grades #gradesButton,.help #helpButton , .profile #profileButton{
     -fx-border-width: 3px;
     -fx-border-radius: 50;
     -fx-border-color: #e5f4f9;

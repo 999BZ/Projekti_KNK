@@ -76,11 +76,15 @@ public class TeacherInfoController implements Initializable {
     private String imagePath;
     private String oldImagePath;
     private String userPosition;
+    @FXML
+    private AnchorPane sidenav;
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
 
     @FXML
     private VBox subjectsBox;
-
+    @FXML
+    private void handleStatisticsButton(ActionEvent event) throws IOException {
+    }
     @FXML
     private void handleImageUploadButton(ActionEvent event) throws IOException {
        selectedFile =  GeneralUtil.handleImageUpdate(profilePic);
@@ -94,6 +98,8 @@ public class TeacherInfoController implements Initializable {
             editButton.setVisible(true);
         }else{
             editButton.setVisible(false);
+            sidenav.getStyleClass().clear();
+            sidenav.getStyleClass().add("profile");
         }
         setEditable(false);
         setWarnings(false);

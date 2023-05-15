@@ -16,20 +16,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainController {
     @FXML
-    private Label userName;
-    @FXML
-    private Label userRole;
-    private double previousWidth;
-    private double previousHeight;
-
-    @FXML
     private BorderPane rootPane;
+    @FXML
+    private AnchorPane sidenav;
+    @FXML
+    private Label nrOfStudents;
 
 
     public void initialize() {
@@ -40,12 +38,42 @@ public class MainController {
         // Get the user position from the preferences
         String userPosition = prefs.get("position", null);
 
-        // Set the user role to the label text
-        userRole.setText(userPosition);
+        if(userPosition.equals("Admin")){
+            sidenav.getStyleClass().clear();
+            sidenav.getStyleClass().add("profile");
+        }
+
+
+        // get the number of students from the database
+        int numberOfStudents = 0;
+        try {
+            // Create a connection to the database
+            Connection connection = ConnectionUtil.getConnection();
+
+            // Create a prepared statement to retrieve the number of students
+            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_students FROM users where u_position='Student'");
+
+            // Execute the query and retrieve the result set
+            ResultSet resultSet = statement.executeQuery();
+
+            // Retrieve the number of students from the result set
+            if (resultSet.next()) {
+                numberOfStudents = resultSet.getInt("number_of_students");
+            }
+            nrOfStudents.setText(String.valueOf(numberOfStudents));
+
+            // Close the database connection and statement
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         // Perform a database query to get the name of the user
         String userNameFromDB = "";
         try {
+
             // Create a connection to the database
             Connection connection = ConnectionUtil.getConnection();
 
@@ -74,7 +102,6 @@ public class MainController {
             e.printStackTrace();
         }
 
-        // Set the user name to the label text
-        userName.setText("Welcome " + userNameFromDB);
+        // Set the user name to the label tex
     }
 }

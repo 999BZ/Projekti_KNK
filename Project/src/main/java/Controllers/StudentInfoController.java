@@ -81,6 +81,8 @@ public class StudentInfoController implements Initializable {
     private Button updatePhoto;
     @FXML
     private Button removeButton;
+    @FXML
+    private AnchorPane sidenav;
     private StudentUser student;
     private File selectedFile;
     private boolean isEditable = false;
@@ -94,6 +96,10 @@ public class StudentInfoController implements Initializable {
     @FXML
     private void handleImageUploadButton(ActionEvent event) throws IOException {
       selectedFile = GeneralUtil.handleImageUpdate(profilePic);
+    }
+
+    @FXML
+    private void handleStatisticsButton(ActionEvent event) throws IOException {
 
 
     }
@@ -107,6 +113,8 @@ public class StudentInfoController implements Initializable {
             editButton.setVisible(true);
         }else{
             editButton.setVisible(false);
+            sidenav.getStyleClass().clear();
+            sidenav.getStyleClass().add("profile");
         }
 
         setWarnings(false);

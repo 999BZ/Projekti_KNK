@@ -1,5 +1,6 @@
 package Controllers;
 
+import Repository.UserRepository;
 import Services.GeneralUtil;
 import Services.WindowSizeUtils;
 import javafx.fxml.FXML;
@@ -12,14 +13,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
@@ -45,6 +45,12 @@ public class SideNavController  implements Initializable{
 
     @FXML
     private Button teachersButton;
+    @FXML
+    private GridPane buttonsGrid;
+    @FXML
+    private Button profileButton;
+    @FXML
+    private StackPane gradesPane;
 
         private String position;
         @FXML
@@ -76,6 +82,30 @@ public class SideNavController  implements Initializable{
          private void goToGrades() throws IOException {
             GeneralUtil.goToFXML("/Main/Grades.fxml", (Stage) navbar.getScene().getWindow());
          }
+         @FXML
+         private void goToProfile() throws IOException, SQLException {
+             Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
+             Parent root = null;
+             if(position.equals("Teacher")){
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/TeacherInfo.fxml"));
+                 root = loader.load();
+                 TeacherInfoController controller = loader.getController();
+                 controller.setTeacher(UserRepository.getTeacherByUserID(preferences.getInt("userId", 0)));
+
+             } else if (position.equals("Student")) {
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/StudentInfo.fxml"));
+                 root = loader.load();
+                 StudentInfoController controller = loader.getController();
+                 controller.setStudent(UserRepository.getStudentByUserID(preferences.getInt("userId", 0)));
+             } else {
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Home.fxml"));
+                 root = loader.load();
+             }
+             Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
+             Stage stage = (Stage) gradesButton.getScene().getWindow();
+             stage.setScene(scene);
+             stage.show();
+         }
 
 
 
@@ -103,6 +133,8 @@ public class SideNavController  implements Initializable{
             studentsButton.setVisible(false);
             teachersButton.setVisible(false);
             subjectsButton.setVisible(false);
+            buttonsGrid.getChildren().remove(gradesPane);
+            buttonsGrid.add(gradesPane, 0, 0);
         }
         else if(this.position.equals("Admin")){
             studentsButton.setVisible(true);

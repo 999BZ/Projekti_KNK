@@ -4,6 +4,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="2000.0" prefHeight="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SideNavController">
@@ -28,58 +32,84 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane>
+            <StackPane>
                <children>
-                  <Button fx:id="studentsButton" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToStudents" prefHeight="29.0" prefWidth="129.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Students" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
+                  <Button fx:id="profileButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToProfile" prefHeight="46.0" prefWidth="50.0" style="-fx-background-color: #0b64ae; -fx-padding: 0;" styleClass="nav-button">
                      <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                        <ImageView fitHeight="30.0" fitWidth="30.0">
                            <image>
-                              <Image url="@../Images/students.png" />
+                              <Image url="@../Images/profile-white.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
                </children>
-            </AnchorPane>
-            <AnchorPane>
+            </StackPane>
+            <GridPane fx:id="buttonsGrid" prefHeight="240.0" prefWidth="170.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Button fx:id="teachersButton" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToTeachers" prefHeight="29.0" prefWidth="129.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Teachers" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0">
-                           <image>
-                              <Image url="@../Images/teacher.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <StackPane>
+                     <children>
+                        <Button fx:id="studentsButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToStudents" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Students">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0">
+                                 <image>
+                                    <Image url="@../Images/students.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.rowIndex="1">
+                     <children>
+                        <Button fx:id="teachersButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToTeachers" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Teachers">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0">
+                                 <image>
+                                    <Image url="@../Images/teacher.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.rowIndex="2">
+                     <children>
+                        <Button fx:id="subjectsButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToSubjects" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Subjects">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0">
+                                 <image>
+                                    <Image url="@../Images/courses.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </StackPane>
+                  <StackPane fx:id="gradesPane" GridPane.rowIndex="3">
+                     <children>
+                        <Button fx:id="gradesButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToGrades" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Grades">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0">
+                                 <image>
+                                    <Image url="@../Images/grades.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </StackPane>
                </children>
-            </AnchorPane>
-            <AnchorPane>
-               <children>
-                  <Button fx:id="subjectsButton" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToSubjects" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Subjects" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0">
-                           <image>
-                              <Image url="@../Images/courses.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <AnchorPane>
-               <children>
-                  <Button fx:id="gradesButton" alignment="CENTER" layoutX="20.0" mnemonicParsing="false" onAction="#goToGrades" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Grades" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="24.0">
-                           <image>
-                              <Image url="@../Images/grades.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </AnchorPane>
+            </GridPane>
             <AnchorPane maxHeight="2000.0" maxWidth="1024.0" minWidth="-Infinity" prefHeight="195.0" prefWidth="170.0" VBox.vgrow="ALWAYS">
                <children>
                   <Button fx:id="logoutButton" alignment="CENTER" layoutX="34.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="38.0" prefWidth="102.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Log Out" AnchorPane.bottomAnchor="14.799999999999983">
