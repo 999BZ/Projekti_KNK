@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Ellipse?>
 
 <AnchorPane maxHeight="2000.0" prefHeight="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SideNavController">
    <children>
@@ -35,7 +34,7 @@
             </AnchorPane>
             <StackPane>
                <children>
-                  <Button fx:id="profileButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToProfile" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #0b64ae; -fx-padding: 0;" styleClass="nav-button">
+                  <Button fx:id="profileButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToProfile" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #0b64ae; -fx-padding: 0;" styleClass="nav-button">
                      <graphic>
                         <ImageView fx:id="profilePic" fitHeight="38.0" fitWidth="38.0">
                            <image>
@@ -44,7 +43,6 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Ellipse fill="DODGERBLUE" radiusX="27.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" style="-fx-fill: null; -fx-stroke-width: 10; -fx-stroke: #0b64ae;" />
                </children>
             </StackPane>
             <GridPane fx:id="buttonsGrid" prefHeight="240.0" prefWidth="170.0">

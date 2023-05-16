@@ -86,15 +86,6 @@ public class LoginController implements Initializable{
             stage.show();
         }
 
-
-//        FXMLLoader home = FXMLLoader.load(getClass().getResource("/Main/Home.fxml"));
-//
-//        Scene homePageScene = new Scene(home, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
-//
-//        Stage window = (Stage) txtEmail.getScene().getWindow();
-//
-//        window.setScene(homePageScene);
-//        window.show();
     }
     @FXML
     private void cancelClick(ActionEvent e){

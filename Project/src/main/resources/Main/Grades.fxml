@@ -25,26 +25,17 @@
             </ScrollPane>
             <AnchorPane layoutX="37.0" layoutY="44.0" prefHeight="27.0" prefWidth="725.0">
                <children>
-                  <Button fx:id="clearFilters" alignment="CENTER" layoutX="500.0" mnemonicParsing="false" onAction="#clearFilters" prefHeight="27.0" prefWidth="91.0" styleClass="spec-button" text="Refresh">
+                  <Button fx:id="clearFilters" alignment="CENTER" layoutX="619.0" mnemonicParsing="false" onAction="#clearFilters" prefHeight="27.0" prefWidth="91.0" styleClass="spec-button" text="View All">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/reset.png" />
+                              <Image url="@../Images/viewall.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ChoiceBox fx:id="subjectFilter" layoutX="99.0" layoutY="1.0" prefWidth="150.0" />
-                  <Button fx:id="filterButton" alignment="CENTER" layoutX="622.0" layoutY="-1.0" mnemonicParsing="false" onAction="#filterGrades" prefHeight="27.0" prefWidth="78.0" styleClass="spec-button" text="Filter">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/filter.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label layoutX="27.0" layoutY="5.0" text="Subject:">
+                  <ChoiceBox fx:id="subjectFilter" layoutX="116.0" layoutY="1.0" prefWidth="150.0" />
+                  <Label layoutX="46.0" layoutY="5.0" text="Subject:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

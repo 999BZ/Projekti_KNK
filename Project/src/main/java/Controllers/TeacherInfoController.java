@@ -70,6 +70,8 @@ public class TeacherInfoController implements Initializable {
     private Button updatePhoto;
     @FXML
     private Button removeButton;
+    @FXML
+    private Button changePwd;
     private TeacherUser teacher;
     private File selectedFile;
     private boolean isEditable = false;
@@ -98,6 +100,7 @@ public class TeacherInfoController implements Initializable {
         this.userPosition = preferences.get("position", null);
         if(this.userPosition.equals("Admin")){
             editButton.setVisible(true);
+            changePwd.setVisible(false);
         }else{
             editButton.setVisible(false);
             sidenav.getStyleClass().clear();
@@ -238,6 +241,7 @@ public class TeacherInfoController implements Initializable {
         email.setEditable(set);
         updatePhoto.setVisible(set);
         removeButton.setVisible(set);
+        changePwd.setVisible(set);
 
         if(set) {
             editButton.setText("Save");

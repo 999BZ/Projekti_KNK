@@ -115,14 +115,15 @@ public class StudentInfoController implements Initializable {
         System.out.println(this.userPosition);
         if(this.userPosition.equals("Admin")){
             editButton.setVisible(true);
-            changePwd.setVisible(true);
+
         }else{
+            changePwd.setVisible(true);
             editButton.setVisible(false);
             sidenav.getStyleClass().clear();
             sidenav.getStyleClass().add("profile");
         }
         if(this.userPosition.equals("Student")){
-            editButton.setVisible(true);
+            editButton.setVisible(false);
         }
 
         setWarnings(false);
@@ -270,6 +271,9 @@ public class StudentInfoController implements Initializable {
         paralel.setDisable(!set);
         updatePhoto.setVisible(set);
         removeButton.setVisible(set);
+        if(this.userPosition.equals("Admin")) {
+            changePwd.setVisible(set);
+        }
         if(set) {
             editButton.setText("Save");
         }else{

@@ -125,23 +125,24 @@ public class SideNavController  implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //get user position from preferences
         Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
-        String profileUrl = prefs.get("imageUrl", null);
-        if(profileUrl!=null) {
-            String relativePath = profileUrl.replace("src/main/resources", "");
-            InputStream inputStream = getClass().getResourceAsStream(relativePath);
-            if (inputStream != null) {
-                Image image = new Image(inputStream);
-                profilePic.setImage(image);
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                System.out.println("Error loading image: " + profileUrl);
-            }
-
-        }
+        this.position = prefs.get("position",null);
+//        String profileUrl = prefs.get("imageUrl", null);
+//        if(profileUrl!=null) {
+//            String relativePath = profileUrl.replace("src/main/resources", "");
+//            InputStream inputStream = getClass().getResourceAsStream(relativePath);
+//            if (inputStream != null) {
+//                Image image = new Image(inputStream);
+//                profilePic.setImage(image);
+//                try {
+//                    inputStream.close();
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            } else {
+//                System.out.println("Error loading image: " + profileUrl);
+//            }
+//
+//        }
         this.position = prefs.get("position", null);
         if(this.position.equals("Student")){
             studentsButton.setVisible(false);

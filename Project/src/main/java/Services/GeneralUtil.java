@@ -70,7 +70,7 @@ public class GeneralUtil {
     }
 
     public static void setChangePassword(int U_ID) throws IOException {
-        FXMLLoader loader = new FXMLLoader(GeneralUtil.class.getResource("/Main/changePassword.fxml"));
+        FXMLLoader loader = new FXMLLoader(GeneralUtil.class.getResource("/Main/ChangePassword.fxml"));
         AnchorPane chPwPane = loader.load();
         ChangePasswordController chPwController = loader.getController();
         Stage chPwStage = new Stage();
