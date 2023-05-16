@@ -72,7 +72,7 @@ public class UserRepository {
             return UserRepository.getByEmail(user.getEmail());
         }else if(user instanceof AdminUser admin){
             String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position,  U_ProfileImg) VALUES (?, ?, ?, ?, ?)";
-            String TeacherSql = "INSERT INTO Admins (A_Name, A_Surname, A_Phone, A_UID) VALUES (?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
+            String AdminSql = "INSERT INTO Admins (A_Name, A_Surname, A_Phone, A_UID) VALUES (?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
 
             try(Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement UserStatement = connection.prepareStatement(UserSql)
@@ -85,11 +85,11 @@ public class UserRepository {
 
                 UserStatement.executeUpdate();
 
-                PreparedStatement TeacherStatement = connection.prepareStatement(TeacherSql);
+                PreparedStatement TeacherStatement = connection.prepareStatement(AdminSql);
                 TeacherStatement.setString(1, admin.getName());
                 TeacherStatement.setString(2, admin.getSurname());
-                TeacherStatement.setString(4, admin.getPhone());
-                TeacherStatement.setString(6, admin.getEmail());
+                TeacherStatement.setString(3, admin.getPhone());
+                TeacherStatement.setString(4, admin.getEmail());
                 TeacherStatement.executeUpdate();
             }catch (SQLException ex) {
                 System.out.println(ex.getMessage());

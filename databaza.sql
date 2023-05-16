@@ -15,6 +15,7 @@ CREATE TABLE Users(
 );
 
 -- SELECT * FROM Users
+-- DELETE FROM Users WHERE U_ID = 2;
 
 CREATE TABLE Admins (
     A_Name VARCHAR(50),

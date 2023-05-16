@@ -61,22 +61,22 @@
                               </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label text="Birthdate:" GridPane.rowIndex="9" />
-                                <AnchorPane prefHeight="36.0" prefWidth="77.0" GridPane.rowIndex="10">
+                                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="70.0" text="Surname:" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="8">
                                     <children>
-                                        <DatePicker fx:id="DateBirthdate" editable="false" prefHeight="28.0" prefWidth="112.0" promptText="Birthdate..." />
-                              <ImageView fx:id="birthdayw" fitHeight="21.0" fitWidth="21.0" layoutX="115.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                        <TextField fx:id="txtSurname" layoutX="17.0" prefHeight="28.0" prefWidth="112.0" promptText="Surname..." styleClass="textInput" />
+                              <ImageView fx:id="lastnamew" fitHeight="21.0" fitWidth="21.0" layoutX="131.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
                                  </image>
                               </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="70.0" text="Surname:" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                <Label text="Birthdate:" GridPane.rowIndex="9" />
+                                <AnchorPane prefHeight="36.0" prefWidth="77.0" GridPane.rowIndex="10">
                                     <children>
-                                        <TextField fx:id="txtSurname" layoutX="17.0" prefHeight="28.0" prefWidth="112.0" promptText="Surname..." styleClass="textInput" />
-                              <ImageView fx:id="lastnamew" fitHeight="21.0" fitWidth="21.0" layoutX="131.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                        <DatePicker fx:id="DateBirthdate" editable="false" prefHeight="28.0" prefWidth="112.0" promptText="Birthdate..." />
+                              <ImageView fx:id="birthdayw" fitHeight="21.0" fitWidth="21.0" layoutX="115.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
                                  </image>

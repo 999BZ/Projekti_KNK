@@ -180,6 +180,15 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="statistics1" layoutX="6.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleStatisticsButton" prefHeight="30.0" prefWidth="145.0" styleClass="spec-button" text="Change Password">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </center>

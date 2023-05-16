@@ -1,5 +1,6 @@
 package Services;
 
+import Models.AdminUser;
 import Models.StudentUser;
 import Models.TeacherUser;
 import Models.User;
@@ -23,7 +24,7 @@ public class UserAuthService {
         return null;
     }
 
-    public static User registerStudent(String Name, String Surname, String Birthdate, String Phone, String Address, int Year, int Paralel,  String Email, String password, String Position, String ProfileImg) throws SQLException {
+    public static User registerStudent(String Name, String Surname, String Birthdate, String Phone, String Address, int Year, int Paralel,  String Email, String password, String ProfileImg) throws SQLException {
         User CheckUser = UserRepository.getByEmail(Email);
         if(CheckUser != null){
             System.out.println("User already exists.");
@@ -33,6 +34,19 @@ public class UserAuthService {
         String saltedPasswordHash = PasswordHasher.generateSaltedHash(password,salt);
         System.out.println("Trying to Register!");
             return UserRepository.insert(new StudentUser(1,Email, saltedPasswordHash, salt, "Student",ProfileImg, Name, Surname, Birthdate, Phone, Address, Year, Paralel));
+
+    }
+
+    public static User registerAdmin(String Name, String Surname, String Phone,  String Email, String password, String ProfileImg) throws SQLException {
+        User CheckUser = UserRepository.getByEmail(Email);
+        if(CheckUser != null){
+            System.out.println("User already exists.");
+            return null;
+        }
+        String salt = PasswordHasher.generateSalt();
+        String saltedPasswordHash = PasswordHasher.generateSaltedHash(password,salt);
+        System.out.println("Trying to Register!");
+        return UserRepository.insert(new AdminUser(1,Email, saltedPasswordHash, salt, "Admin",ProfileImg, Name, Surname, Phone));
 
     }
     public static User updateStudent(int id,String Name, String Surname, String Birthdate, String Phone, String Address, int Year,int Paralel, String Email, String Position, String ProfileImg) throws SQLException {
