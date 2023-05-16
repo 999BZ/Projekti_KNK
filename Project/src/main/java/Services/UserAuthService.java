@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class UserAuthService {
 
     public static User login(String Email,String password) throws SQLException {
-        System.out.println("UserAuth -> UserRepository");
+        try{System.out.println("UserAuth -> UserRepository");
         User user = UserRepository.getByEmail(Email);
         if(user == null){
             System.out.println("No User found Authentication");
@@ -21,6 +21,7 @@ public class UserAuthService {
             System.out.println("User FOUND");
             return user;
         }
+        }catch(SQLException e){System.out.println(e.getMessage());}
         return null;
     }
 

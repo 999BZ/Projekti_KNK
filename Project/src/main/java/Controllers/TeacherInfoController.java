@@ -80,6 +80,8 @@ public class TeacherInfoController implements Initializable {
     private AnchorPane sidenav;
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
 
+    private int T_ID;
+
     @FXML
     private VBox subjectsBox;
     @FXML
@@ -205,6 +207,7 @@ public class TeacherInfoController implements Initializable {
             birthday.setValue(LocalDate.parse(teacher.getBirthdate()));
             address.setText(teacher.getAddress());
             email.setText(teacher.getEmail());
+            this.T_ID = teacher.getID();
 
             try {
                 String relativePath = teacher.getProfileImg().replace("src/main/resources", "");
@@ -273,6 +276,11 @@ public class TeacherInfoController implements Initializable {
         if (this.email.getText().isEmpty()){
             emailw.setVisible(true);
         }
+    }
+
+    @FXML
+    public void changePassword() throws IOException {
+        GeneralUtil.setChangePassword(this.T_ID);
     }
 
 

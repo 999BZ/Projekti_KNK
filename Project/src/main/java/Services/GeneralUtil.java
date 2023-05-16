@@ -1,5 +1,6 @@
 package Services;
 
+import Controllers.ChangePasswordController;
 import Controllers.DialogController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -66,6 +67,18 @@ public class GeneralUtil {
         dialogStage.showAndWait();
 
         return dialogController.isConfirmClicked();
+    }
+
+    public static void setChangePassword(int U_ID) throws IOException {
+        FXMLLoader loader = new FXMLLoader(GeneralUtil.class.getResource("/Main/changePassword.fxml"));
+        AnchorPane chPwPane = loader.load();
+        ChangePasswordController chPwController = loader.getController();
+        Stage chPwStage = new Stage();
+        chPwStage.initModality(Modality.APPLICATION_MODAL);
+        chPwStage.setScene(new Scene(chPwPane));
+        chPwController.setDialogStage(chPwStage);
+        chPwController.setUserId(U_ID);
+        chPwStage.showAndWait();
     }
 
     public static void goToFXML(String location, Stage stage) throws IOException {

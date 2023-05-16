@@ -83,12 +83,16 @@ public class StudentInfoController implements Initializable {
     private Button removeButton;
     @FXML
     private AnchorPane sidenav;
+    @FXML
+    private Button changePwd;
     private StudentUser student;
     private File selectedFile;
     private boolean isEditable = false;
     private String imagePath;
     private String oldImagePath;
     private StudentUser studentUser;
+
+    private int S_ID;
 
     private String userPosition;
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
@@ -111,10 +115,14 @@ public class StudentInfoController implements Initializable {
         System.out.println(this.userPosition);
         if(this.userPosition.equals("Admin")){
             editButton.setVisible(true);
+            changePwd.setVisible(true);
         }else{
             editButton.setVisible(false);
             sidenav.getStyleClass().clear();
             sidenav.getStyleClass().add("profile");
+        }
+        if(this.userPosition.equals("Student")){
+            editButton.setVisible(true);
         }
 
         setWarnings(false);
@@ -227,6 +235,7 @@ public class StudentInfoController implements Initializable {
             birthday.setValue(LocalDate.parse(student.getBirthdate()));
             address.setText(student.getAddress());
             email.setText(student.getEmail());
+            this.S_ID = student.getID();
             if (student.getYear() != 0) {
                 gradeLvl.getValueFactory().setValue(student.getYear());            }
             if (student.getParalel() != 0) {
@@ -307,7 +316,10 @@ public class StudentInfoController implements Initializable {
             emailw.setVisible(true);
         }
     }
-
+    @FXML
+    public void changePassword() throws IOException {
+        GeneralUtil.setChangePassword(this.S_ID);
+    }
 
 
 }
