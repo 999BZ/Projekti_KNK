@@ -53,6 +53,7 @@ public class LoginController implements Initializable{
                 Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
                 preferences.putInt("userId", user.getID());
                 preferences.put("position", user.getPosition());
+                preferences.put("imageUrl", user.getProfileImg());
                 isLoginSuccessful = true;
                 position = user.getPosition();
             }

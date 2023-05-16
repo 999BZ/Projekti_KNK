@@ -58,4 +58,8 @@ public class Subject {
     public void setObligatory(boolean obligatory) {
         this.obligatory = obligatory;
     }
+    @Override
+    public String toString() {
+        return (this.getName());
+    }
 }

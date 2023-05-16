@@ -18,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -51,6 +52,8 @@ public class SideNavController  implements Initializable{
     private Button profileButton;
     @FXML
     private StackPane gradesPane;
+    @FXML
+    private ImageView profilePic;
 
         private String position;
         @FXML
@@ -122,6 +125,23 @@ public class SideNavController  implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //get user position from preferences
         Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+        String profileUrl = prefs.get("imageUrl", null);
+        if(profileUrl!=null) {
+            String relativePath = profileUrl.replace("src/main/resources", "");
+            InputStream inputStream = getClass().getResourceAsStream(relativePath);
+            if (inputStream != null) {
+                Image image = new Image(inputStream);
+                profilePic.setImage(image);
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                System.out.println("Error loading image: " + profileUrl);
+            }
+
+        }
         this.position = prefs.get("position", null);
         if(this.position.equals("Student")){
             studentsButton.setVisible(false);
@@ -140,7 +160,7 @@ public class SideNavController  implements Initializable{
             studentsButton.setVisible(true);
             teachersButton.setVisible(true);
             subjectsButton.setVisible(true);
-            gradesButton.setVisible(true);
+            gradesButton.setVisible(false);
         }
         else{
             System.out.println("Error! Position not found!");

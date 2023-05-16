@@ -60,25 +60,30 @@ public class GradeStudentCardController implements Initializable {
         gradeButton.setOnAction(e->{
             gradeChoiceBox.setVisible(false);
             gradeValue = gradeChoiceBox.getValue();
-            if(gradeValue!=0){
-                try {
-                    gradeObject = new Grade(1,student.getID(), subject.getId(),gradeValue);
-                    GradeRepository.insert(gradeObject);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+            try {
+                if(GeneralUtil.setDialog("Are you sure you want to grade this student with "+gradeValue+"?")) {
+                    if (gradeValue != 0) {
+                        try {
+                            gradeObject = new Grade(1, student.getID(), subject.getId(), gradeValue);
+                            GradeRepository.insert(gradeObject);
+                        } catch (SQLException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        gradeButton.setText("Edit");
+                        gradeButton.setOnAction(ex -> {
+                            editAction();
+                        });
+                        notGraded.setVisible(false);
+                        grade.setVisible(true);
+                        grade.setText(String.valueOf(gradeObject.getGrade()));
+                    } else {
+                        grade.setVisible(false);
+                        notGraded.setVisible(true);
+                        gradeButton.setText("Grade");
+                    }
                 }
-                gradeButton.setText("Edit");
-                gradeButton.setOnAction(ex->{
-                    editAction();
-                });
-                notGraded.setVisible(false);
-                grade.setVisible(true);
-                grade.setText(String.valueOf(gradeObject.getGrade()));
-            }
-            else{
-                 grade.setVisible(false);
-                 notGraded.setVisible(true);
-                 gradeButton.setText("Grade");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
     }

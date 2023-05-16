@@ -24,7 +24,7 @@
                   <TableColumn fx:id="paralel" prefWidth="45.0" text="Prl." />
                   <TableColumn fx:id="phone" prefWidth="100.0" text="Phone Number" />
                   <TableColumn fx:id="email" prefWidth="180.0" text="Email" />
-                  <TableColumn fx:id="address" prefWidth="98.40006103515623" text="Address" />
+                  <TableColumn fx:id="address" prefWidth="90.0" text="Address" />
                </columns>
             </TableView>
             <Button fx:id="addStudentButton" layoutX="606.0" layoutY="455.0" mnemonicParsing="false" onAction="#goToAddStudents" prefHeight="30.0" prefWidth="129.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Student">

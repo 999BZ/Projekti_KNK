@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class FetchData {
     public static ObservableList<TeacherUser> getAllTeachers() {
@@ -276,6 +275,36 @@ public class FetchData {
 
         return subjectsList;
     }
+
+    public static ObservableList<Subject> getTeacherSubjectsEnrolled(int ID) throws SQLException {
+        ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            String query = "SELECT DISTINCT Subjects.*\n" +
+                    "FROM Subjects\n" +
+                    "JOIN Classes ON Subjects.Sb_ID = Classes.Sb_ID\n" +
+                    "JOIN Enrollments ON Classes.C_ID = Enrollments.C_ID\n" +
+                    "WHERE Classes.T_ID = ?;";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, ID);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("Sb_ID");
+                String name = rs.getString("Sb_Name");
+                String description = rs.getString("Sb_Description");
+                int gLevel = rs.getInt("Sb_GLevel");
+                boolean obligatory = rs.getBoolean("Sb_Obligatory");
+
+                Subject subject = new Subject(id, name, description, gLevel, obligatory);
+                subjectsList.add(subject);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return subjectsList;
+    }
     public static ObservableList<Classe> getSubjectClasses(Subject subject) throws SQLException {
         ObservableList<Classe> classesList = FXCollections.observableArrayList();
         try {
@@ -412,7 +441,7 @@ public class FetchData {
     }
 
 
-    public static ObservableList<Enrollment> getAllEnrollments() {
+    public static ObservableList<Enrollment> getAllTeacherEnrollments() {
         ObservableList<Enrollment> enrollmentsList = FXCollections.observableArrayList();
         try {
             Connection conn = ConnectionUtil.getConnection();
@@ -435,6 +464,62 @@ public class FetchData {
         return enrollmentsList;
     }
 
+    public static ObservableList<Enrollment> getAllTeacherEnrollments(int ID) {
+        ObservableList<Enrollment> enrollmentsList = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT *\n" +
+                    "FROM Enrollments\n" +
+                    "JOIN Classes ON Enrollments.C_ID = Classes.C_ID\n" +
+                    "WHERE Classes.T_ID = ?;");
+            stmt.setInt(1, ID);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("E_ID");
+                int classId = rs.getInt("C_ID");
+                int studentId = rs.getInt("S_ID");
+                String date = rs.getDate("E_Date").toLocalDate().toString();
+
+                Enrollment enrollment = new Enrollment(id, studentId, classId, date);
+                enrollmentsList.add(enrollment);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return enrollmentsList;
+    }
+    public static ObservableList<Enrollment> getAllEnrollmentsBySubjectOfTeacher(int subjectId, int teacherId) {
+        ObservableList<Enrollment> enrollmentsList = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT Enrollments.*\n" +
+                    "FROM Enrollments\n" +
+                    "JOIN Classes ON Enrollments.C_ID = Classes.C_ID\n" +
+                    "JOIN Subjects ON Classes.Sb_ID = Subjects.Sb_ID\n" +
+                    "JOIN Teachers ON Classes.T_ID = Teachers.T_UID\n" +
+                    "WHERE Subjects.Sb_ID = ?\n" +
+                    "  AND Teachers.T_UID = ?;\n");
+            stmt.setInt(1, subjectId);
+            stmt.setInt(2, teacherId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("E_ID");
+                int classId = rs.getInt("C_ID");
+                int studentId = rs.getInt("S_ID");
+                String date = rs.getDate("E_Date").toLocalDate().toString();
+
+                Enrollment enrollment = new Enrollment(id, studentId, classId, date);
+                enrollmentsList.add(enrollment);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return enrollmentsList;
+    }
 
 
 
