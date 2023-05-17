@@ -581,6 +581,25 @@ public class FetchData {
             return false;
         }
     }
+    public static double getAverageOfGrades(int id) throws SQLException {
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String query = "SELECT S_ID, AVG(G_Value) AS AverageGrade\n" +
+                    "FROM Grades\n" +
+                    "WHERE S_ID = ? " +
+                    "GROUP BY S_ID; ";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                double average = rs.getDouble("AverageGrade");
+                return average;
+            } else {
+                // Handle case where no grades are found for the specified student ID
+                return 0.0; // or any other appropriate default value
+            }
+        }
+    }
 
 
 

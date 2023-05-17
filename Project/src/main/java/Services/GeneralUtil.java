@@ -2,6 +2,8 @@ package Services;
 
 import Controllers.ChangePasswordController;
 import Controllers.DialogController;
+import Controllers.StudentsStatisticsController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -91,7 +93,18 @@ public class GeneralUtil {
             e.printStackTrace();
         }
     }
-
+    public static void getStatistics(int id , double notamesatare) throws IOException {
+        FXMLLoader loader = new FXMLLoader(GeneralUtil.class.getResource("/Main/Students_Statistics.fxml"));
+        AnchorPane statisticsPane = loader.load();
+        StudentsStatisticsController statisticsController = loader.getController();
+        statisticsController.setLblaverage(Double.toString(notamesatare));
+        Stage StatisticStage = new Stage();
+        StatisticStage.initModality(Modality.APPLICATION_MODAL);
+        StatisticStage.setScene(new Scene(statisticsPane));
+        statisticsController.setDialogStage(StatisticStage);
+        statisticsController.setUserId(id);
+        StatisticStage.showAndWait();
+    }
 
 
 }
