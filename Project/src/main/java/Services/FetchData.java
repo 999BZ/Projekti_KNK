@@ -406,40 +406,6 @@ public class FetchData {
 
         return classesList;
     }
-    public static TeacherUser getTeacherByID(int ID) {
-        TeacherUser teacher = null;
-        try {
-            Connection conn = ConnectionUtil.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT  Teachers.T_Name, Teachers.t_Surname, Teachers.T_Birthdate, Teachers.T_Phone, Teachers.T_Address, Users.email,Users.U_ID, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
-                    "                    FROM Teachers\n" +
-                    "                    INNER JOIN Users ON Teachers.T_UID = Users.U_ID\n" +
-                    "                    where T_UID = ?");
-            stmt.setInt(1,ID);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                int id = rs.getInt("U_ID");
-                String name = rs.getString("T_Name");
-                String surname = rs.getString("T_Surname");
-                String birthdate = rs.getString("T_Birthdate");
-                String phone = rs.getString("T_Phone");
-                String address = rs.getString("T_Address");
-                String email = rs.getString("email");
-                String salted_password = rs.getString("salted_password");
-                String salt = rs.getString("salt");
-                String position = rs.getString("u_position");
-                String profile_pics = rs.getString("u_profileimg");
-
-                teacher = new TeacherUser(id, email, salted_password, salt, position, profile_pics, name, surname, birthdate, phone, address);
-
-            }
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return teacher;
-    }
 
     public static int getStudentIdFromEnrollment(int enrollmentID) {
         int studentID = 0;

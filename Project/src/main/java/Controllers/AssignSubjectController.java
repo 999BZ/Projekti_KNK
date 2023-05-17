@@ -6,6 +6,7 @@ import Models.Subject;
 import Models.TeacherUser;
 import Repository.ClassRepository;
 import Repository.SubjectRepository;
+import Repository.UserRepository;
 import Services.FetchData;
 import Services.GeneralUtil;
 import javafx.beans.property.SimpleStringProperty;
@@ -117,7 +118,12 @@ public class AssignSubjectController implements Initializable {
         for (Classe classe : this.classesList) {
             this.assignedTeacher.setCellValueFactory(cellData -> {
                 int teacherId = cellData.getValue().getTeacherId();
-                TeacherUser teacher = FetchData.getTeacherByID(teacherId);
+                TeacherUser teacher = null;
+                try {
+                    teacher = UserRepository.getTeacherByUserID(teacherId);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 return new SimpleStringProperty(teacher.getName()+ " "+ teacher.getSurname());
             });
             this.assignedParalel.setCellValueFactory(new PropertyValueFactory<>("paralel"));
