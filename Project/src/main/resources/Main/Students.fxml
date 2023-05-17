@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,9 +14,9 @@
       <fx:include source="SideNav.fxml" styleClass="students" />
    </left>
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" stylesheets="@../CSS/style.css">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" stylesheets="@../CSS/style.css">
          <children>
-            <TableView fx:id="studentsTable" layoutX="19.0" prefHeight="412.0" prefWidth="750.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="studentsTable" layoutY="100.0" prefHeight="400.0" prefWidth="750.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <columns>
                   <TableColumn fx:id="name" editable="false" prefWidth="100.0" resizable="false" text="Name" />
                   <TableColumn fx:id="surname" prefWidth="100.0" text="Surname" />
@@ -27,7 +28,7 @@
                   <TableColumn fx:id="address" prefWidth="90.0" text="Address" />
                </columns>
             </TableView>
-            <Button fx:id="addStudentButton" layoutX="606.0" layoutY="455.0" mnemonicParsing="false" onAction="#goToAddStudents" prefHeight="30.0" prefWidth="129.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Student">
+            <Button fx:id="addStudentButton" layoutX="620.0" layoutY="510.0" mnemonicParsing="false" onAction="#goToAddStudents" prefHeight="30.0" prefWidth="129.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Student">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -35,6 +36,16 @@
                      </image>
                   </ImageView>
                </graphic></Button>
+            <TextField fx:id="searchInput" layoutY="57.0" promptText="Search..." />
+            <Button fx:id="searchButton" layoutX="157.0" layoutY="55.0" mnemonicParsing="false" onAction="#searchStudents" styleClass="spec-button">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </center>

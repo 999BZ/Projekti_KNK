@@ -12,7 +12,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -59,11 +61,55 @@ public class TeachersController {
 
     @FXML
     private TableColumn<StudentUser, String> address;
+    @FXML
+    private TextField searchInput;
 
     private ObservableList<TeacherUser> teachersList = FXCollections.observableArrayList();
     public void initialize() throws SQLException {
-            teachersList = FetchData.getAllTeachers();
+        teachersList = FetchData.getAllTeachers();
+        fillTable();
 
+        searchInput.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                teachersList.clear();
+                teachersList.addAll(FetchData.searchAllTeachers(searchInput.getText()));
+                try {
+                    fillTable();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+    @FXML
+    public void searchTeachers(){
+        if(!searchInput.getText().isEmpty()) {
+            teachersList.clear();
+            teachersList.addAll(FetchData.searchAllTeachers(searchInput.getText()));
+            try {
+                fillTable();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    private void showTeacherInfo (TeacherUser teacher) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/TeacherInfo.fxml"));
+            Parent root = loader.load();
+            TeacherInfoController controller = loader.getController();
+            controller.setTeacher(teacher);
+            Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void fillTable() throws SQLException {
         for (TeacherUser teacher: teachersList) {
             this.name.setCellValueFactory(new PropertyValueFactory<>("Name"));
             this.surname.setCellValueFactory(new PropertyValueFactory<>("Surname"));
@@ -83,22 +129,6 @@ public class TeachersController {
                     }
                 }
             });
-        }
-        }
-
-
-    private void showTeacherInfo(TeacherUser teacher) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/TeacherInfo.fxml"));
-            Parent root = loader.load();
-            TeacherInfoController controller = loader.getController();
-            controller.setTeacher(teacher);
-            Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
-            Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

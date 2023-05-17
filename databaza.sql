@@ -183,7 +183,8 @@ BEGIN
     SELECT S.S_UID, NEW.C_ID, CURDATE()
     FROM Students S
     WHERE S.S_GLevel = (SELECT Sb_GLevel FROM Subjects WHERE Sb_ID = NEW.Sb_ID)
-    AND S.S_Paralel = NEW.C_Paralel;
+    AND S.S_Paralel = NEW.C_Paralel
+    AND (SELECT Sb_Obligatory FROM Subjects WHERE Sb_ID = NEW.Sb_ID) = 1;
 END$$
 DELIMITER ;
 -- drop trigger enroll_students_to_class
