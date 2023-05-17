@@ -95,6 +95,7 @@ public class StudentInfoController implements Initializable {
     private StudentUser studentUser;
 
     private int S_ID;
+    private double average;
 
     private String userPosition;
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
@@ -106,7 +107,14 @@ public class StudentInfoController implements Initializable {
 
     @FXML
     private void handleStatisticsButton(ActionEvent event) throws IOException {
+        try {
+            this.average = FetchData.getAverageOfGrades(this.S_ID);
+            System.out.println(this.average);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
+        GeneralUtil.getStatistics(this.S_ID,this.average);
 
     }
     @Override
@@ -137,7 +145,11 @@ public class StudentInfoController implements Initializable {
         Image oldImage =profilePic.getImage();
         oldImagePath = oldImage.getUrl();
         setEditable(false);
+
+
+
     }
+
     @FXML
     private void handleRemoveButton() throws IOException, SQLException {
 
