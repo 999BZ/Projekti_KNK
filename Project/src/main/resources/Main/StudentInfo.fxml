@@ -165,11 +165,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Label fx:id="w" alignment="CENTER" layoutX="153.0" layoutY="502.0" prefHeight="20.0" prefWidth="199.0" text="Please fill out all required fields" textFill="RED">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
+            <Label fx:id="w" alignment="CENTER" layoutX="153.0" layoutY="492.0" prefHeight="20.0" prefWidth="199.0" text="Please fill out all required fields" textFill="RED" />
             <Label alignment="CENTER" layoutX="417.0" layoutY="14.0" prefHeight="29.0" prefWidth="124.0" styleClass="info-label" text="Student's Subjects" />
             <Button fx:id="statistics" layoutX="429.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleStatisticsButton" prefHeight="30.0" prefWidth="98.0" styleClass="spec-button" text="Statistics">
                <graphic>
@@ -185,6 +181,15 @@
                   <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/resetPassword.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="chooseSubjectButton" layoutX="166.0" layoutY="509.0" mnemonicParsing="false" onAction="#chooseSubject" prefHeight="30.0" prefWidth="174.0" styleClass="spec-button" text="Choose Elective Subject">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/choose.png" />
                      </image>
                   </ImageView>
                </graphic>

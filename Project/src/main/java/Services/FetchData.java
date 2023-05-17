@@ -521,6 +521,24 @@ public class FetchData {
         return enrollmentsList;
     }
 
+    public static boolean hasStudentSetElectiveSubject(StudentUser student) throws SQLException {
+        Connection conn = ConnectionUtil.getConnection();
+        PreparedStatement ps  = conn.prepareStatement("SELECT COUNT(*) AS EnrollmentCount\n" +
+                "                FROM Enrollments\n" +
+                "                INNER JOIN Classes ON Enrollments.C_ID = Classes.C_ID\n" +
+                "                INNER JOIN Subjects ON Classes.Sb_ID = Subjects.Sb_ID\n" +
+                "                inner join Students on Enrollments.S_ID = Students.S_UID\n" +
+                "                WHERE Students.S_UID = ?\n" +
+                "                AND Subjects.Sb_Obligatory = 0;");
+        ps.setInt(1, student.getID());
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 
 }

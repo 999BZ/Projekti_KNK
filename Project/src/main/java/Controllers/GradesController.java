@@ -25,11 +25,7 @@ public class GradesController implements Initializable {
     @FXML
     private Button clearFilters;
 
-    @FXML
-    private Button filterButton;
 
-    @FXML
-    private ChoiceBox<Integer> gradeFilter;
 
     @FXML
     private ChoiceBox<Subject> subjectFilter;
@@ -53,9 +49,6 @@ public class GradesController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         clearFilters.setOnAction(e->{
             clearFilters();
-        });
-        filterButton.setOnAction(e->{
-            filterGrades();
         });
         subjectFilter.setOnAction(e->{
             filterGrades();

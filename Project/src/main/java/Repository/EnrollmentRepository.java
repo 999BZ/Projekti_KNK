@@ -1,6 +1,9 @@
 package Repository;
 
+import Models.Classe;
 import Models.Enrollment;
+import Models.StudentUser;
+import Models.Subject;
 import Services.ConnectionUtil;
 
 import java.sql.Connection;
@@ -42,6 +45,27 @@ public class EnrollmentRepository {
             statement.setInt(2, enrollment.getClassId());
             statement.setString(3, enrollment.getEnrollmentDate());
             statement.setInt(4, enrollment.getId());
+            statement.executeUpdate();
+
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void enrollStudentToSubject(StudentUser student, Classe classe){
+        String UserSql = "INSERT INTO Enrollments (S_ID, C_ID, E_Date) VALUES (?, ?, ?)";
+        try(Connection connection = ConnectionUtil.getConnection();
+            PreparedStatement statement = connection.prepareStatement(UserSql)
+        ) {
+            LocalDate currentDate = LocalDate.now();
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            String formattedDate = currentDate.format(formatter);
+            statement.setInt(1, student.getID());
+            statement.setInt(2, classe.getId());
+            statement.setString(3, formattedDate);
+
             statement.executeUpdate();
 
         }catch (SQLException ex) {

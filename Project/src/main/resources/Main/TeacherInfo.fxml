@@ -19,7 +19,7 @@
 <BorderPane fx:id="rootPane" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherInfoController">
 
     <left>
-        <fx:include fx:id="sidenav" source="SideNav.fxml" styleClass="students" />
+        <fx:include fx:id="sidenav" source="SideNav.fxml" styleClass="teachers" />
     </left>
     <center>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="575.0" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">

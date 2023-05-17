@@ -82,6 +82,8 @@ public class StudentInfoController implements Initializable {
     @FXML
     private Button removeButton;
     @FXML
+    private Button chooseSubjectButton;
+    @FXML
     private AnchorPane sidenav;
     @FXML
     private Button changePwd;
@@ -115,12 +117,14 @@ public class StudentInfoController implements Initializable {
         System.out.println(this.userPosition);
         if(this.userPosition.equals("Admin")){
             editButton.setVisible(true);
+            chooseSubjectButton.setVisible(false);
 
         }else{
             changePwd.setVisible(true);
             editButton.setVisible(false);
             sidenav.getStyleClass().clear();
             sidenav.getStyleClass().add("profile");
+
         }
         if(this.userPosition.equals("Student")){
             editButton.setVisible(false);
@@ -219,16 +223,28 @@ public class StudentInfoController implements Initializable {
 
     public void setStudent(StudentUser student) {
         this.student = student;
+
+        //setting the student subjects to the scrollpane
         try {
             subjectsList = FetchData.getStudentSubjects(student);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        for (Subject subject:subjectsList
-             ) {
-            System.out.println(subject.getName());
-        }
+
         CardGenUtil.subjectsToFlowPaneStudents(subjectsBox, subjectsList, student);
+
+        //checking if student has elected elective subject(to or not to add the choose button)
+        try {
+            if(!FetchData.hasStudentSetElectiveSubject(this.student) && this.userPosition.equals("Student")){
+                chooseSubjectButton.setVisible(true);
+            }else{
+                chooseSubjectButton.setVisible(false);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        //filling the information
         if (student != null) {
             firstname.setText(student.getName());
             lastname.setText(student.getSurname());
@@ -257,6 +273,19 @@ public class StudentInfoController implements Initializable {
             }
         }
         localStudent = student;
+    }
+
+    public void chooseSubject() throws SQLException, IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/ChooseElectiveSubject.fxml"));
+        AnchorPane addSubjectPane = loader.load();
+        ChooseElectiveSubjectController subjectController = loader.getController();
+        Stage dialogStage = new Stage();
+        dialogStage.initModality(Modality.APPLICATION_MODAL);
+        dialogStage.setScene(new Scene(addSubjectPane));
+        subjectController.setStage(dialogStage);
+        subjectController.setParentController(this);
+        subjectController.setData(this.student);
+        dialogStage.showAndWait();
     }
 
 

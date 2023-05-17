@@ -1,7 +1,11 @@
 package Repository;
 
 import Models.Classe;
+import Models.StudentUser;
+import Models.Subject;
 import Services.ConnectionUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -73,6 +77,34 @@ public class ClassRepository {
         } else {
             return false;
         }
+    }
+    public static Classe subjectClassOfStudent(Subject subject, StudentUser student){
+        Classe clas = null;
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            String query = "SELECT * FROM Classes c join Subjects s on c.Sb_ID = s.Sb_ID" +
+                    " WHERE c.Sb_ID = ? and s.Sb_GLevel = ? and c.C_Paralel =?";
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, subject.getId());
+            statement.setInt(2,subject.getYear());
+            statement.setInt(3,student.getParalel());
+            ResultSet rs = statement.executeQuery();
+
+
+            while (rs.next()) {
+                int id = rs.getInt("C_ID");
+                int teacherId = rs.getInt("T_ID");
+                int subjectId = rs.getInt("Sb_ID");
+                int paralel = rs.getInt("C_Paralel");
+
+                clas = new Classe(id, teacherId, subjectId, paralel);
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return clas;
     }
 
 }

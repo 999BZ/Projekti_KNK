@@ -148,9 +148,45 @@ BEGIN
     AND S.Sb_Obligatory = 1;
 END$$
 DELIMITER ;
-
-
-
 -- drop trigger auto_enroll;
+
+
+#Update Students Enrollments
+DELIMITER $$
+CREATE TRIGGER update_student_classes
+AFTER UPDATE ON Students
+FOR EACH ROW
+BEGIN
+    IF NEW.S_GLevel <> OLD.S_GLevel OR NEW.S_Paralel <> OLD.S_Paralel THEN
+        -- Unenroll the student from previous classes
+        DELETE FROM Enrollments WHERE S_ID = OLD.S_UID;
+        
+        -- Enroll the student in new classes based on grade level and paralel
+        INSERT INTO Enrollments (S_ID, C_ID, E_Date)
+        SELECT NEW.S_UID, C.C_ID, CURDATE()
+        FROM Classes C
+        INNER JOIN Subjects S ON C.Sb_ID = S.Sb_ID
+        WHERE S.Sb_GLevel = NEW.S_GLevel AND C.C_Paralel = NEW.S_Paralel;
+    END IF;
+END$$
+DELIMITER ;
+-- drop trigger update_student_classes
+
+#Enroll student to new added subject
+DELIMITER $$
+CREATE TRIGGER enroll_students_to_class
+AFTER INSERT ON Classes
+FOR EACH ROW
+BEGIN
+    -- Enroll students with matching Sb_GLevel and C_Paralel to the new class
+    INSERT INTO Enrollments (S_ID, C_ID, E_Date)
+    SELECT S.S_UID, NEW.C_ID, CURDATE()
+    FROM Students S
+    WHERE S.S_GLevel = (SELECT Sb_GLevel FROM Subjects WHERE Sb_ID = NEW.Sb_ID)
+    AND S.S_Paralel = NEW.C_Paralel;
+END$$
+DELIMITER ;
+-- drop trigger enroll_students_to_class
+
 
 

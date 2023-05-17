@@ -28,6 +28,11 @@ public class MainController {
     private AnchorPane sidenav;
     @FXML
     private Label nrOfStudents;
+    @FXML
+    private Label nrOfTeachers;
+    @FXML
+    private Label nrOfSubjects;
+
 
 
     public void initialize() {
@@ -61,6 +66,34 @@ public class MainController {
                 numberOfStudents = resultSet.getInt("number_of_students");
             }
             nrOfStudents.setText(String.valueOf(numberOfStudents));
+
+            //get the number of teachers from the database
+            int numberOfTeachers = 0;
+            statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_teachers FROM users where u_position='Teacher'");
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                numberOfTeachers = resultSet.getInt("number_of_teachers");
+            }
+
+            nrOfTeachers.setText(String.valueOf(numberOfTeachers));
+
+            //get the number of admins from the database
+            int numberOfAdmins = 0;
+            statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_admins FROM users where u_position='Admin'");
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                numberOfAdmins = resultSet.getInt("number_of_admins");
+            }
+            //get the number of subjects from the database
+            int numberOfSubjects = 0;
+            statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_subjects FROM subjects");
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                numberOfSubjects = resultSet.getInt("number_of_subjects");
+            }
+
+            nrOfSubjects.setText(String.valueOf(numberOfSubjects));
+
 
             // Close the database connection and statement
             resultSet.close();
