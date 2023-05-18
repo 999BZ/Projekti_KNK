@@ -32,7 +32,7 @@
          <children>
             <StackPane GridPane.rowIndex="5">
                <children>
-                  <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#handleConfirmButton" prefHeight="30.0" prefWidth="119.0" styleClass="spec-button" text="Add Subject">
+                  <Button fx:id="addSubject" mnemonicParsing="false" onAction="#handleAddSubject" prefHeight="30.0" prefWidth="119.0" styleClass="spec-button" text="Add Subject">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -71,17 +71,17 @@
             </StackPane>
             <AnchorPane GridPane.rowIndex="1">
                <children>
-                  <Label layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="140.0" text="Subject name: " />
+                  <Label fx:id="subjectNameL" layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="140.0" text="Subject name: " />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.rowIndex="2">
                <children>
-                  <Label layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="138.0" text="Subject description" />
+                  <Label fx:id="subjectDesc" layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="138.0" text="Subject description" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.rowIndex="3">
                <children>
-                  <Label layoutX="14.0" layoutY="17.0" prefHeight="18.0" prefWidth="118.0" text="Grade level:" />
+                  <Label fx:id="gradeLevel" layoutX="14.0" layoutY="17.0" prefHeight="18.0" prefWidth="118.0" text="Grade level:" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">

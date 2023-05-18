@@ -30,7 +30,7 @@ public class AddSubjectController implements Initializable {
     private Button cancelButton;
 
     @FXML
-    private Button confirmButton;
+    private Button addSubject;
     @FXML
     private Label header;
 
@@ -55,7 +55,7 @@ public class AddSubjectController implements Initializable {
     }
 
     @FXML
-    void handleConfirmButton(ActionEvent event) throws SQLException {
+    void handleAddSubject(ActionEvent event) throws SQLException {
         if(editMode == false) {
             if (subjectGradeLvl.getValue() != 0 && !subjectDescription.getText().isEmpty() && !subjectName.getText().isEmpty()) {
                 Subject subject = new Subject(1, subjectName.getText(), subjectDescription.getText(), subjectGradeLvl.getValue(), obligatory.isSelected());
@@ -111,7 +111,7 @@ public class AddSubjectController implements Initializable {
     public void setEditMode(Subject subject){
         this.subject = subject;
         this.editMode = true;
-        confirmButton.setText("Save Changes");
+        addSubject.setText("Save Changes");
         header.setText("Edit Subject");
         subjectGradeLvl.getValueFactory().setValue(subject.getYear());
         subjectName.setText(subject.getName());

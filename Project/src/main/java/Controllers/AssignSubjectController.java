@@ -37,7 +37,7 @@ public class AssignSubjectController implements Initializable {
     TableColumn<Classe, Void> unAssign;
 
     @FXML
-    private TableColumn<Classe, Integer> assignedParalel;
+    private TableColumn<Classe, Integer> assignedParallel;
 
     @FXML
     private TableColumn<Classe, String> assignedTeacher;
@@ -45,9 +45,9 @@ public class AssignSubjectController implements Initializable {
     @FXML
     private TableView<Classe> assignedTo;
     @FXML
-    private Label w;
+    private Label teacherWasAssigned;
     @FXML
-    private Label success;
+    private Label teacherAssigned;
 
     @FXML
     private ChoiceBox<Integer> paralel;
@@ -76,14 +76,14 @@ public class AssignSubjectController implements Initializable {
     void handleAssignButton(ActionEvent event) throws SQLException {
         if (teacher.getValue()!= null&& paralel.getValue()!=null) {
             if(!ClassRepository.exists(new Classe(1, teacher.getValue().getID(),this.subject.getId(), paralel.getValue()))){
-            Classe classe = new Classe(1,teacher.getValue().getID() , this.subject.getId(),paralel.getValue());
-            ClassRepository.insert(classe);
-            success.setVisible(true);
-            w.setVisible(false);
-            setAssignedTeachersInTable();}
-            else {
-                w.setVisible(true);
-                success.setVisible(false);
+                Classe classe = new Classe(1,teacher.getValue().getID() , this.subject.getId(),paralel.getValue());
+                ClassRepository.insert(classe);
+                teacherAssigned.setVisible(true);
+                teacherWasAssigned.setVisible(false);
+                setAssignedTeachersInTable();
+            } else {
+                teacherWasAssigned.setVisible(true);
+                teacherAssigned.setVisible(false);
             }
 
         } else {
@@ -126,7 +126,7 @@ public class AssignSubjectController implements Initializable {
                 }
                 return new SimpleStringProperty(teacher.getName()+ " "+ teacher.getSurname());
             });
-            this.assignedParalel.setCellValueFactory(new PropertyValueFactory<>("paralel"));
+            this.assignedParallel.setCellValueFactory(new PropertyValueFactory<>("parallel"));
             assignedTo.setItems(this.classesList);
         }
     }
@@ -135,8 +135,8 @@ public class AssignSubjectController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        success.setVisible(false);
-        w.setVisible(false);
+        teacherAssigned.setVisible(false);
+        teacherWasAssigned.setVisible(false);
         teacher.setItems(allTeachers);
         paralel.setItems(allParalels);
         paralelw.setVisible(false);

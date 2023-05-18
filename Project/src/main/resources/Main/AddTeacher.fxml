@@ -46,10 +46,10 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Label text="Name:" GridPane.rowIndex="7" />
+                                <Label fx:id="name" text="Name:" GridPane.rowIndex="7" />
                                 <AnchorPane GridPane.rowIndex="8">
                                     <children>
-                                        <TextField fx:id="txtName" prefHeight="28.0" prefWidth="112.0" promptText="Name..." styleClass="textInput" />
+                                        <TextField fx:id="txtName" prefHeight="28.0" prefWidth="112.0" styleClass="textInput" />
                               <ImageView fx:id="firstnamew" fitHeight="21.0" fitWidth="21.0" layoutX="113.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
@@ -57,10 +57,10 @@
                               </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="70.0" text="Surname:" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <Label fx:id="surname" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="70.0" text="Surname:" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                 <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="8">
                                     <children>
-                                        <TextField fx:id="txtSurname" layoutX="17.0" prefHeight="28.0" prefWidth="112.0" promptText="Surname..." styleClass="textInput" />
+                                        <TextField fx:id="txtSurname" layoutX="17.0" prefHeight="28.0" prefWidth="112.0" styleClass="textInput" />
                               <ImageView fx:id="lastnamew" fitHeight="21.0" fitWidth="21.0" layoutX="130.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
@@ -68,10 +68,10 @@
                               </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label text="Birthdate:" GridPane.rowIndex="9" />
+                                <Label fx:id="birthdate" text="Birthdate:" GridPane.rowIndex="9" />
                                 <AnchorPane prefHeight="36.0" prefWidth="77.0" GridPane.rowIndex="10">
                                     <children>
-                                        <DatePicker fx:id="DateBirthdate" editable="false" prefHeight="28.0" prefWidth="112.0" promptText="Birthdate..." />
+                                        <DatePicker fx:id="DateBirthdate" editable="false" prefHeight="28.0" prefWidth="112.0" />
                               <ImageView fx:id="birthdayw" fitHeight="21.0" fitWidth="21.0" layoutX="113.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
@@ -79,10 +79,10 @@
                               </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="57.0" text="Phone:" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                <Label fx:id="phone" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="57.0" text="Phone:" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                                 <AnchorPane prefHeight="30.0" prefWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
                                     <children>
-                                        <TextField fx:id="txtPhone" layoutX="17.0" prefHeight="28.0" prefWidth="112.0" promptText="Phone Number..." styleClass="textInput" />
+                                        <TextField fx:id="txtPhone" layoutX="17.0" prefHeight="28.0" prefWidth="112.0" styleClass="textInput" />
                               <ImageView fx:id="phonew" fitHeight="21.0" fitWidth="21.0" layoutX="130.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
@@ -90,10 +90,10 @@
                               </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label text="Address:" GridPane.rowIndex="11" />
+                                <Label fx:id="address" text="Address:" GridPane.rowIndex="11" />
                                 <AnchorPane GridPane.rowIndex="12">
                                     <children>
-                                        <TextField fx:id="txtAddress" prefHeight="28.0" prefWidth="112.0" promptText="Address..." styleClass="textInput" />
+                                        <TextField fx:id="txtAddress" prefHeight="28.0" prefWidth="112.0" styleClass="textInput" />
                               <ImageView fx:id="addressw" fitHeight="21.0" fitWidth="21.0" layoutX="113.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
@@ -102,7 +102,7 @@
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane prefHeight="36.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                                <Label text="Email:" GridPane.rowIndex="13" />
+                                <Label fx:id="email" text="Email:" GridPane.rowIndex="13" />
                                 <AnchorPane GridPane.rowIndex="14">
                                     <children>
                                         <AnchorPane>
@@ -117,7 +117,7 @@
                               </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="72.0" text="Password:" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                <Label fx:id="password" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="72.0" text="Password:" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                                 <AnchorPane prefHeight="30.0" prefWidth="102.0" GridPane.columnIndex="1" GridPane.rowIndex="14">
                                     <children>
                                         <PasswordField fx:id="pwdPassword" layoutX="17.0" layoutY="1.0" prefHeight="28.0" prefWidth="112.0" promptText="*********" styleClass="textInput" />
@@ -154,7 +154,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowSpan="6">
                            <children>
-                              <Button layoutX="86.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic">
+                              <Button fx:id="addProfilePic" layoutX="86.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic">
                                  <graphic>
                                     <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -164,7 +164,7 @@
                                  </graphic>
                               </Button>
                               <StackPane layoutX="91.0" layoutY="61.0" />
-                                    <Label layoutX="56.0" prefHeight="43.0" prefWidth="180.0" styleClass="card-header" text="Register a Teacher">
+                                    <Label fx:id="regTeacher" layoutX="56.0" prefHeight="43.0" prefWidth="180.0" styleClass="card-header" text="Register a Teacher">
                                         <font>
                                             <Font name="Microsoft New Tai Lue" size="14.0" />
                                         </font>

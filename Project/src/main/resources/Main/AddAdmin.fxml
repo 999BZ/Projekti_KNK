@@ -45,7 +45,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Label text="Name:" GridPane.rowIndex="7" />
+                                <Label fx:id="name" text="Name:" GridPane.rowIndex="7" />
                                 <AnchorPane GridPane.rowIndex="8">
                                     <children>
                                         <TextField fx:id="txtName" prefHeight="28.0" prefWidth="112.0" promptText="Name..." styleClass="textInput" />
@@ -56,7 +56,7 @@
                               </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="70.0" text="Surname:" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <Label fx:id="surname" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="70.0" text="Surname:" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                 <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="8">
                                     <children>
                                         <TextField fx:id="txtSurname" layoutX="17.0" prefHeight="28.0" prefWidth="112.0" promptText="Surname..." styleClass="textInput" />
@@ -67,7 +67,7 @@
                               </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="57.0" text="Phone:" GridPane.rowIndex="9" />
+                                <Label fx:id="phone" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="57.0" text="Phone:" GridPane.rowIndex="9" />
                                 <AnchorPane prefHeight="36.0" prefWidth="77.0" GridPane.rowIndex="10">
                            <children>
                                         <TextField fx:id="txtPhone" prefHeight="28.0" prefWidth="112.0" promptText="Phone Number..." styleClass="textInput" />
@@ -81,7 +81,7 @@
                                 <AnchorPane prefHeight="30.0" prefWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                                 <AnchorPane GridPane.rowIndex="12">
                            <children>
-                                      <Label layoutX="4.0" layoutY="4.0" text="Email:" />
+                                      <Label fx:id="email" layoutX="4.0" layoutY="4.0" text="Email:" />
                            </children>
                                 </AnchorPane>
                                   <AnchorPane GridPane.rowIndex="13">
@@ -96,7 +96,7 @@
                                   </AnchorPane>
                                 <AnchorPane prefHeight="36.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
                            <children>
-                                      <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="-1.0" prefHeight="18.0" prefWidth="72.0" text="Password:" />
+                                      <Label fx:id="password" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="-1.0" prefHeight="18.0" prefWidth="72.0" text="Password:" />
                            </children>
                                 </AnchorPane>
                                 <AnchorPane prefHeight="30.0" prefWidth="102.0" GridPane.columnIndex="1" GridPane.rowIndex="13">
@@ -126,7 +126,7 @@
                            <children>
                               <AnchorPane layoutX="39.0" layoutY="1.0">
                                  <children>
-                                          <Button layoutY="-15.0" mnemonicParsing="false" onAction="#cancelClick" prefHeight="30.0" prefWidth="70.0" styleClass="spec-button" text="Reset">
+                                          <Button fx:id="reset" layoutY="-15.0" mnemonicParsing="false" onAction="#cancelClick" prefHeight="30.0" prefWidth="70.0" styleClass="spec-button" text="Reset">
                                        <graphic>
                                           <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -140,7 +140,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowSpan="6">
                            <children>
-                              <Button layoutX="100.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic">
+                              <Button fx:id="addProfilePic" layoutX="100.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic">
                                  <graphic>
                                     <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -149,7 +149,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Label layoutX="69.0" layoutY="5.0" prefHeight="42.0" prefWidth="180.0" styleClass="card-header" text="Register an Admin">
+                              <Label fx:id="regAdmin" layoutX="69.0" layoutY="5.0" prefHeight="42.0" prefWidth="180.0" styleClass="card-header" text="Register an Admin">
                                  <font>
                                     <Font name="Microsoft Tai Le" size="14.0" />
                                  </font>
