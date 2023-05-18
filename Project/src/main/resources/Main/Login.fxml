@@ -15,25 +15,30 @@
 
 <BorderPane fx:id="rootPane" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: white;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="nav-container" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="650.0" prefWidth="433.0" styleClass="nav-container" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="29.0" layoutY="367.0" prefHeight="18.0" prefWidth="142.0" style="-fx-text-fill: white;" text="Copyright ©. All rights reserved." AnchorPane.bottomAnchor="8.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="650.0" fitWidth="495.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-11.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../Images/istockphoto-1172286440-612x612.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="228.0" fitWidth="252.0" layoutX="103.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/logo3.png" />
                </image>
             </ImageView>
+            <Label alignment="CENTER" layoutX="108.0" layoutY="626.0" prefHeight="20.0" prefWidth="217.0" style="-fx-text-fill: white;" text="Copyright ©. All rights reserved." AnchorPane.bottomAnchor="4.399999999999977">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="352.0" prefWidth="452.0" snapToPixel="false" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="452.0" snapToPixel="false" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <GridPane layoutX="-16.0" layoutY="102.0" prefHeight="212.0" prefWidth="439.0">
+            <GridPane layoutX="-16.0" layoutY="125.0" prefHeight="212.0" prefWidth="439.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -47,15 +52,15 @@
                <children>
                   <AnchorPane>
                      <children>
-                        <Label layoutX="63.0" layoutY="6.0" text="Email:">
+                        <Label layoutX="77.0" layoutY="17.0" text="Email:">
                            <font>
-                              <Font size="17.0" />
+                              <Font name="Berlin Sans FB" size="17.0" />
                            </font></Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane GridPane.columnIndex="1">
                      <children>
-                        <TextField fx:id="txtEmail" layoutY="5.0" prefHeight="29.0" prefWidth="166.0" promptText="someone@domain.com" styleClass="textInput">
+                        <TextField fx:id="txtEmail" layoutY="12.0" prefHeight="29.0" prefWidth="166.0" promptText="someone@domain.com" styleClass="textInput">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -64,15 +69,15 @@
                   </AnchorPane>
                   <AnchorPane GridPane.rowIndex="1">
                      <children>
-                        <Label layoutX="62.0" layoutY="6.0" text="Password:">
+                        <Label layoutX="77.0" layoutY="17.0" text="Password:">
                            <font>
-                              <Font size="16.0" />
+                              <Font name="Berlin Sans FB" size="16.0" />
                            </font></Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <PasswordField fx:id="pwdPassword" layoutY="7.0" onKeyPressed="#handleEnterKeyPressed" prefHeight="19.0" prefWidth="98.0" promptText="********" styleClass="textInput">
+                        <PasswordField fx:id="pwdPassword" layoutY="12.0" onKeyPressed="#handleEnterKeyPressed" prefHeight="29.0" prefWidth="168.0" promptText="********" styleClass="textInput">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -107,7 +112,7 @@
                   </AnchorPane>
                </children>
             </GridPane>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-31.0" layoutY="-2.0" prefHeight="32.0" prefWidth="469.0" text="Secure Login ">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-16.0" layoutY="-16.0" prefHeight="32.0" prefWidth="469.0" text="Secure Login ">
                <font>
                   <Font name="Century Gothic Bold" size="25.0" />
                </font>

@@ -1,6 +1,5 @@
 package Controllers;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,18 +7,13 @@ import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
 import Services.ConnectionUtil;
-import Services.WindowSizeUtils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
 
 public class MainController {
     @FXML
@@ -33,9 +27,20 @@ public class MainController {
     @FXML
     private Label nrOfSubjects;
 
+    @FXML
+    private Label nrOfUsers;
+    @FXML
+    private Label nrOfEnrollments;
+    @FXML
+    StackedBarChart<String, Integer> enrollmentsOverTime;
+    @FXML
+    BarChart<String, Integer> studentsPerGradeLevel;
+
+
 
 
     public void initialize() {
+
         Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
 
         // Get the user ID from the preferences
@@ -49,92 +54,175 @@ public class MainController {
         }
 
 
-        // get the number of students from the database
-        int numberOfStudents = 0;
+
         try {
-            // Create a connection to the database
-            Connection connection = ConnectionUtil.getConnection();
-
-            // Create a prepared statement to retrieve the number of students
-            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_students FROM users where u_position='Student'");
-
-            // Execute the query and retrieve the result set
-            ResultSet resultSet = statement.executeQuery();
-
-            // Retrieve the number of students from the result set
-            if (resultSet.next()) {
-                numberOfStudents = resultSet.getInt("number_of_students");
-            }
-            nrOfStudents.setText(String.valueOf(numberOfStudents));
+            // get the number of students from the database
+            nrOfStudents.setText(String.valueOf(getStudentCount()));
 
             //get the number of teachers from the database
-            int numberOfTeachers = 0;
-            statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_teachers FROM users where u_position='Teacher'");
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                numberOfTeachers = resultSet.getInt("number_of_teachers");
-            }
+            nrOfTeachers.setText(String.valueOf(getTeacherCount()));
 
-            nrOfTeachers.setText(String.valueOf(numberOfTeachers));
-
-            //get the number of admins from the database
-            int numberOfAdmins = 0;
-            statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_admins FROM users where u_position='Admin'");
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                numberOfAdmins = resultSet.getInt("number_of_admins");
-            }
             //get the number of subjects from the database
-            int numberOfSubjects = 0;
-            statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_subjects FROM subjects");
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                numberOfSubjects = resultSet.getInt("number_of_subjects");
-            }
+            nrOfSubjects.setText(String.valueOf(getSubjectCount()));
 
-            nrOfSubjects.setText(String.valueOf(numberOfSubjects));
+            //get the number of users from the database
+            nrOfUsers.setText(String.valueOf(getUserCount()));
 
+            //get the number of enrollments from the database
+            nrOfEnrollments.setText(String.valueOf(getEnrollmentCount()));
 
-            // Close the database connection and statement
-            resultSet.close();
-            statement.close();
-            connection.close();
+            //get the enrollments over time from the database
+            XYChart.Series<String, Integer> series = getEnrollmentsPerWeek();
+            series.setName("Enrollment Count");
+            enrollmentsOverTime.getData().add(series);
+
+            //get students per grade level
+            XYChart.Series<String, Integer> series2 = getStudentsPerGradeLevel();
+            studentsPerGradeLevel.getData().add(series2);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        // Perform a database query to get the name of the user
-        String userNameFromDB = "";
-        try {
 
-            // Create a connection to the database
-            Connection connection = ConnectionUtil.getConnection();
-
-            // Create a prepared statement to retrieve the user name based on the user ID
-            PreparedStatement statement = connection.prepareStatement("SELECT COALESCE( a.a_name, t.t_name, s.s_name) AS name\n" +
-                    "FROM users u\n" +
-                    "LEFT JOIN admins a ON u.u_id = a.a_uid\n" +
-                    "LEFT JOIN teachers t ON u.u_id = t.t_uid\n" +
-                    "LEFT JOIN students s ON u.u_id = s.s_uid\n" +
-                    "WHERE u.u_id = ?\n");
-            statement.setInt(1, userId);
-
-            // Execute the query and retrieve the result set
-            ResultSet resultSet = statement.executeQuery();
-
-            // Retrieve the user name from the result set
-            if (resultSet.next()) {
-                userNameFromDB = resultSet.getString("name");
-            }
-
-            // Close the database connection and statement
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        // Set the user name to the label tex
     }
+
+
+    XYChart.Series<String, Integer> getEnrollmentsPerWeek(){
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        series.setName("Enrollment Count");
+
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT WEEK(E_Date) AS WeekNumber, COUNT(*) AS EnrollmentCount " +
+                    "FROM Enrollments " +
+                    "GROUP BY WEEK(E_Date) " +
+                    "ORDER BY WEEK(E_Date)");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int weekNumber = rs.getInt("WeekNumber");
+                int enrollmentCount = rs.getInt("EnrollmentCount");
+                System.out.println("Week number: " + weekNumber + " Enrollment count: " + enrollmentCount);
+                series.getData().add(new XYChart.Data<>(String.valueOf(weekNumber), enrollmentCount));
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return series;
+    }
+
+    int getSubjectCount() throws SQLException {
+        int numberOfSubjects = 0;
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_subjects FROM subjects");
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            numberOfSubjects = resultSet.getInt("number_of_subjects");
+        }
+        return numberOfSubjects;
+    }
+
+    int getAdminCount() throws SQLException {
+        int numberOfAdmins = 0;
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_admins FROM users where u_position='Admin'");
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            numberOfAdmins = resultSet.getInt("number_of_admins");
+        }
+        return numberOfAdmins;
+    }
+
+    int getTeacherCount() throws SQLException {
+        int numberOfTeachers = 0;
+        Connection connection = ConnectionUtil.getConnection();
+
+        PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_teachers FROM users where u_position='Teacher'");
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            numberOfTeachers = resultSet.getInt("number_of_teachers");
+        }
+        return numberOfTeachers;
+    }
+
+    int getStudentCount() throws SQLException {
+        int numberOfStudents = 0;
+        Connection connection = ConnectionUtil.getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_students FROM users where u_position='Student'");
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            numberOfStudents = resultSet.getInt("number_of_students");
+        }
+        return numberOfStudents;
+    }
+
+    int getEnrollmentCount(){
+        int numberOfEnrollments = 0;
+        try {
+            Connection connection = ConnectionUtil.getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_enrollments FROM enrollments");
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                numberOfEnrollments = resultSet.getInt("number_of_enrollments");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return numberOfEnrollments;
+    }
+
+    int getUserCount(){
+        int numberOfUsers = 0;
+        try {
+            Connection connection = ConnectionUtil.getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_users FROM users");
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                numberOfUsers = resultSet.getInt("number_of_users");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return numberOfUsers;
+    }
+
+    XYChart.Series<String, Integer> getStudentsPerGradeLevel(){
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        series.setName("Enrollment Count");
+
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT S_GLevel, COUNT(*) AS StudentCount\n" +
+                    "FROM Students\n" +
+                    "GROUP BY S_GLevel;");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int number = rs.getInt("StudentCount");
+                int gradeLevel = rs.getInt("S_GLevel");
+                XYChart.Data<String, Integer> data = new XYChart.Data<>(String.valueOf(gradeLevel), number);
+                series.getData().add(data);
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return series;
+    }
+
 }
+
+
+
+
+
