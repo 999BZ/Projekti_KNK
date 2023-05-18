@@ -103,7 +103,7 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <TableView fx:id="noContent" fixedCellSize="0.0" layoutX="20.0" layoutY="89.0" prefHeight="142.0" prefWidth="241.0">
+      <TableView fx:id="assignedTo" fixedCellSize="0.0" layoutX="20.0" layoutY="89.0" prefHeight="142.0" prefWidth="241.0">
         <columns>
           <TableColumn fx:id="assignedTeacher" prefWidth="127.20000839233398" resizable="false" text="Teacher" />
           <TableColumn fx:id="assignedParallel" minWidth="-1.0" prefWidth="55.20001220703125" resizable="false" text="Paralel" />

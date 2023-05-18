@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -40,10 +41,17 @@ Connection conn;
     @FXML
     private ChoiceBox<Option> obligatoryFilter;
 
+    @FXML
+    private Pagination subjectPagination;
+
     private ObservableList<TeacherUser> optionsTeacher = FXCollections.observableArrayList();
     private ObservableList<Integer> optionsGrade = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10,11,12);
     private ObservableList<Option> optionsObligatory = FXCollections.observableArrayList(new Option("Obligatory",1), new Option("Elective",0));
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
+
+    private ObservableList<Subject> subjectsPerPage = FXCollections.observableArrayList();
+
+    private int maxSubjectsPerPage = 4;
 
     public SubjectsController() throws SQLException {
     }
@@ -85,9 +93,19 @@ Connection conn;
         obligatoryFilter.setItems(optionsObligatory);
 
 
-       subjectsList = FetchData.getAllSubjects();
+        subjectsList = FetchData.getAllSubjects();
 
-        CardGenUtil.subjectsToFlowPane(subjectCards, subjectsList, this);
+        if(subjectsList.isEmpty()){
+            this.subjectPagination.setVisible(false);
+        }else{
+            this.subjectPagination.setVisible(true);
+        }
+
+        int numPages =(int) Math.ceil((double) this.subjectsList.size()/this.maxSubjectsPerPage);
+
+        this.subjectPagination.setPageCount(numPages);
+
+        CardGenUtil.subjectsToFlowPane(this.subjectPagination,this.maxSubjectsPerPage,subjectCards, subjectsList, this);
     }
     public void filterSubjects() throws SQLException {
         Connection conn = ConnectionUtil.getConnection();
@@ -131,7 +149,14 @@ Connection conn;
         }
 
         subjectsList = FetchData.getAllSubjects(pstmt);
-        CardGenUtil.subjectsToFlowPane(subjectCards, subjectsList, this);
+        int numPages =(int) Math.ceil((double) this.subjectsList.size()/this.maxSubjectsPerPage);
+        this.subjectPagination.setPageCount(numPages);
+        if(subjectsList.isEmpty()){
+            this.subjectPagination.setVisible(false);
+        }else{
+            this.subjectPagination.setVisible(true);
+        }
+        CardGenUtil.subjectsToFlowPane(this.subjectPagination,this.maxSubjectsPerPage,subjectCards, subjectsList, this);
 
     }
     public static class Option {
@@ -168,7 +193,14 @@ Connection conn;
         dialogStage.showAndWait();
         if(subjectController.getConfimed()){
         subjectsList = FetchData.getAllSubjects();
-        CardGenUtil.subjectsToFlowPane(subjectCards, subjectsList, this);}
+        int numPages =(int) Math.ceil((double) this.subjectsList.size()/this.maxSubjectsPerPage);
+        this.subjectPagination.setPageCount(numPages);
+        if(subjectsList.isEmpty()){
+            this.subjectPagination.setVisible(false);
+        }else{
+            this.subjectPagination.setVisible(true);
+        }
+        CardGenUtil.subjectsToFlowPane(this.subjectPagination,this.maxSubjectsPerPage,subjectCards, subjectsList, this);}
     }
     @FXML
     public void clearFilters() throws IOException{
@@ -181,7 +213,14 @@ Connection conn;
         }
         gradeFilter.setValue(0);
         subjectsList = FetchData.getAllSubjects();
-        CardGenUtil.subjectsToFlowPane(subjectCards, subjectsList, this);
+        int numPages =(int) Math.ceil((double) this.subjectsList.size()/this.maxSubjectsPerPage);
+        this.subjectPagination.setPageCount(numPages);
+        if(subjectsList.isEmpty()){
+            this.subjectPagination.setVisible(false);
+        }else{
+            this.subjectPagination.setVisible(true);
+        }
+        CardGenUtil.subjectsToFlowPane(this.subjectPagination,this.maxSubjectsPerPage,subjectCards, subjectsList, this);
     }
     @FXML
     public void teacherDynamicOptions() throws SQLException {

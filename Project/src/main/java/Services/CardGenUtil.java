@@ -5,6 +5,7 @@ import Models.*;
 import Repository.SubjectRepository;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -14,23 +15,32 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class CardGenUtil {
-    public static void subjectsToFlowPane(VBox subjectCards, ObservableList<Subject> subjectsList, SubjectsController sc){
-        subjectCards.getChildren().clear();
-        for(int i = 0; i<subjectsList.size();i++){
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(CardGenUtil.class.getResource("/Main/SubjectCard.fxml"));
+    public static void subjectsToFlowPane(Pagination pg,int subjectsPerPage, VBox subjectCards, ObservableList<Subject> subjectsList, SubjectsController sc){
+        pg.setPageFactory(pageIndex -> {
+            VBox pageContent = new VBox();
 
-            try {
-                VBox hBox = fxmlLoader.load();
-                SubjectCardController scc = fxmlLoader.getController();
-                scc.setData(subjectsList.get(i));
-                scc.setParentController(sc);
-                subjectCards.getChildren().add(hBox);
-            } catch (IOException e) {
-                System.out.println(e);
+            int startIndex = pageIndex * subjectsPerPage;
+            int endIndex = Math.min(startIndex + subjectsPerPage, subjectsList.size());
+
+            for (int i = startIndex; i < endIndex; i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(CardGenUtil.class.getResource("/Main/SubjectCard.fxml"));
+
+                try {
+                    VBox hBox = fxmlLoader.load();
+                    SubjectCardController scc = fxmlLoader.getController();
+                    scc.setData(subjectsList.get(i));
+                    scc.setParentController(sc);
+                    pageContent.getChildren().add(hBox);
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
             }
-        }
+            return pageContent;
+        });
 
+        subjectCards.getChildren().clear();
+        subjectCards.getChildren().addAll(pg);
     }
     public static void gradesToFlowPane(VBox subjectCards, ObservableList<Enrollment> enrollmentsList, GradesController gc){
         subjectCards.getChildren().clear();
