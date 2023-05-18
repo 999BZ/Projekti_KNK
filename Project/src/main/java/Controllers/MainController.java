@@ -7,8 +7,11 @@ import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
 import Services.ConnectionUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
@@ -26,15 +29,20 @@ public class MainController {
     private Label nrOfTeachers;
     @FXML
     private Label nrOfSubjects;
+    @FXML
+    private Label nrOfGrades;
 
     @FXML
     private Label nrOfUsers;
     @FXML
     private Label nrOfEnrollments;
     @FXML
-    StackedBarChart<String, Integer> enrollmentsOverTime;
+    private StackedBarChart<String, Integer> enrollmentsOverTime;
     @FXML
-    BarChart<String, Integer> studentsPerGradeLevel;
+    private BarChart<String, Integer> studentsPerGradeLevel;
+    @FXML
+    private PieChart countOfGradeEvaluations;
+
 
 
 
@@ -71,6 +79,9 @@ public class MainController {
             //get the number of enrollments from the database
             nrOfEnrollments.setText(String.valueOf(getEnrollmentCount()));
 
+            //get the number of grades from the database
+            nrOfGrades.setText(String.valueOf(getGradeCount()));
+
             //get the enrollments over time from the database
             XYChart.Series<String, Integer> series = getEnrollmentsPerWeek();
             series.setName("Enrollment Count");
@@ -78,7 +89,12 @@ public class MainController {
 
             //get students per grade level
             XYChart.Series<String, Integer> series2 = getStudentsPerGradeLevel();
+            series2.setName("Student Count");
             studentsPerGradeLevel.getData().add(series2);
+
+            //get count per grade evaluation
+            countOfGradeEvaluations.setData(getCountPerGradeEvaluation());
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -161,7 +177,7 @@ public class MainController {
         return numberOfStudents;
     }
 
-    int getEnrollmentCount(){
+    int getEnrollmentCount() {
         int numberOfEnrollments = 0;
         try {
             Connection connection = ConnectionUtil.getConnection();
@@ -174,6 +190,20 @@ public class MainController {
             e.printStackTrace();
         }
         return numberOfEnrollments;
+    }
+    int getGradeCount() {
+        int numberOfGrades = 0;
+        try {
+            Connection connection = ConnectionUtil.getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) AS number_of_grades FROM grades");
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                numberOfGrades = resultSet.getInt("number_of_grades");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return numberOfGrades;
     }
 
     int getUserCount(){
@@ -219,6 +249,33 @@ public class MainController {
 
         return series;
     }
+
+    ObservableList<PieChart.Data> getCountPerGradeEvaluation() {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT G_Value, COUNT(*) AS GradeCount\n" +
+                    "FROM Grades\n" +
+                    "GROUP BY G_Value;");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int gradeValue = rs.getInt("G_Value");
+                int gradeCount = rs.getInt("GradeCount");
+                PieChart.Data data = new PieChart.Data(String.valueOf(gradeValue), gradeCount);
+                pieChartData.add(data);
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pieChartData;
+    }
+
 
 }
 

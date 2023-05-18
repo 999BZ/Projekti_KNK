@@ -196,27 +196,25 @@
     -fx-background-color: #480000;
 }
 
-/* Style the vertical scroll bar */
-.scroll-pane:vertical > .scroll-bar {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0;
+.scroll-pane {
+    -fx-background-color: #F4F4F4; /* Background color of the scroll pane */
 }
 
-.scroll-pane:vertical > .scroll-bar > .increment-button,
-.scroll-pane:vertical > .scroll-bar > .decrement-button,
-.scroll-pane:vertical > .scroll-bar > .thumb {
-    -fx-background-color: #353e93;
-    -fx-background-radius: 0;
+.scroll-pane .scroll-bar {
+    -fx-background-color: #D6D6D6; /* Color of the scroll bar track */
 }
 
-.scroll-pane:vertical > .scroll-bar > .increment-button:hover,
-.scroll-pane:vertical > .scroll-bar > .decrement-button:hover,
-.scroll-pane:vertical > .scroll-bar > .thumb:hover {
-    -fx-background-color: #3570ab;
+.scroll-pane .scroll-bar-thumb {
+    -fx-background-color:#90E0EF; /* Color of the scroll bar thumb */
 }
 
-.scroll-pane:vertical > .scroll-bar > .thumb:pressed {
-    -fx-background-color: #7db2c2;
+.scroll-pane .scroll-bar-thumb:hover {
+    -fx-background-color:  #0353a4; /* Color of the scroll bar thumb on hover */
 }
+
+.scroll-pane .scroll-bar-thumb:pressed {
+    -fx-background-color: #333333; /* Color of the scroll bar thumb when pressed */
+}
+
 
 

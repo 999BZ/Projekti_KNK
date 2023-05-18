@@ -35,7 +35,7 @@
                   </ImageView>
                </graphic></Button>
             <TextField fx:id="searchInput" layoutY="57.0" promptText="Search..." />
-            <Button fx:id="searchButton" layoutX="156.0" layoutY="55.0" mnemonicParsing="false" onAction="#searchTeachers" styleClass="spec-button">
+            <Button fx:id="searchButton" layoutX="157.0" layoutY="55.0" mnemonicParsing="false" onAction="#searchTeachers" styleClass="spec-button">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>

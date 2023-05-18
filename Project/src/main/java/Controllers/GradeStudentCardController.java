@@ -58,7 +58,7 @@ public class GradeStudentCardController implements Initializable {
         gradeChoiceBox.setVisible(true);
         gradeButton.setText("Finish");
         gradeButton.setOnAction(e->{
-            gradeChoiceBox.setVisible(false);
+
             gradeValue = gradeChoiceBox.getValue();
             try {
                 if(GeneralUtil.setDialog("Are you sure you want to grade this student with "+gradeValue+"?")) {
@@ -82,6 +82,7 @@ public class GradeStudentCardController implements Initializable {
                         gradeButton.setText("Grade");
                     }
                 }
+                gradeChoiceBox.setVisible(false);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

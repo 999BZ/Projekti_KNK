@@ -3,6 +3,7 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -200,6 +201,7 @@
                         </StackPane>
                      </children>
                   </AnchorPane>
+                  <PieChart fx:id="countOfGradeEvaluations" labelLineLength="15.0" legendSide="TOP" prefHeight="150.0" prefWidth="342.0" title="Count Of Grade Evaluations" />
                </children>
             </FlowPane>
          </children>

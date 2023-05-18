@@ -565,6 +565,7 @@ public class FetchData {
     }
 
     public static boolean hasStudentSetElectiveSubject(StudentUser student) throws SQLException {
+        int EnrollmentCount = 0;
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement ps  = conn.prepareStatement("SELECT COUNT(*) AS EnrollmentCount\n" +
                 "                FROM Enrollments\n" +
@@ -575,7 +576,10 @@ public class FetchData {
                 "                AND Subjects.Sb_Obligatory = 0;");
         ps.setInt(1, student.getID());
         ResultSet rs = ps.executeQuery();
-        if(rs.next()){
+        while (rs.next()) {
+            EnrollmentCount = rs.getInt("EnrollmentCount");
+        }
+        if(EnrollmentCount > 0){
             return true;
         }else{
             return false;

@@ -27,7 +27,7 @@
          <children>
             <ScrollPane hbarPolicy="NEVER" layoutX="389.0" layoutY="52.0" prefHeight="450.0" prefWidth="180.0">
                <content>
-                  <VBox fx:id="subjectsBox" prefHeight="440.0" prefWidth="180.0" style="-fx-background-color: white;" />
+                  <VBox fx:id="subjectsBox" prefHeight="440.0" prefWidth="180.0" style="-fx-background-color: white;" styleClass="scroll-pane" />
                </content>
             </ScrollPane>
             <GridPane layoutX="14.0" prefHeight="446.0" prefWidth="317.0">

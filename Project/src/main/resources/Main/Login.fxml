@@ -54,7 +54,7 @@
                      <children>
                         <Label layoutX="77.0" layoutY="17.0" text="Email:">
                            <font>
-                              <Font name="Berlin Sans FB" size="17.0" />
+                              <Font name="Gill Sans MT" size="17.0" />
                            </font></Label>
                      </children>
                   </AnchorPane>
@@ -71,7 +71,7 @@
                      <children>
                         <Label layoutX="77.0" layoutY="17.0" text="Password:">
                            <font>
-                              <Font name="Berlin Sans FB" size="16.0" />
+                              <Font name="Gill Sans MT" size="16.0" />
                            </font></Label>
                      </children>
                   </AnchorPane>

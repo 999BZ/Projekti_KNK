@@ -248,9 +248,12 @@ public class StudentInfoController implements Initializable {
         //checking if student has elected elective subject(to or not to add the choose button)
         try {
             if(!FetchData.hasStudentSetElectiveSubject(this.student) && this.userPosition.equals("Student")){
+                System.out.println("Student has not set elective subject");
                 chooseSubjectButton.setVisible(true);
             }else{
+                System.out.println("Student has set elective subject");
                 chooseSubjectButton.setVisible(false);
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

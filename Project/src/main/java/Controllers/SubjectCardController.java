@@ -26,12 +26,20 @@ public class SubjectCardController {
    @FXML
    private Label subjectName;
    @FXML Label subjectInfo;
+   @FXML
+           private Label obligatory;
    Subject subject;
 
     public void setData(Subject subject){
         gradeLvl.setText(String.valueOf(subject.getYear()));
         subjectInfo.setText(subject.getDescription());
         subjectName.setText(subject.getName());
+        if(subject.isObligatory()){
+            obligatory.setText("Obligatory");
+            obligatory.setStyle("-fx-text-fill: #186021; -fx-font-weight: bold;");
+        }else{
+            obligatory.setText("Elective");
+        }
         this.subject = subject;
     }
     @FXML

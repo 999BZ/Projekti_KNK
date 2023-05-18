@@ -147,7 +147,7 @@
             <Label alignment="CENTER" layoutX="443.0" layoutY="11.0" prefHeight="29.0" prefWidth="124.0" styleClass="info-label" text="Teacher's Subjects" />
             <ScrollPane hbarPolicy="NEVER" layoutX="415.0" layoutY="47.0" prefHeight="450.0" prefWidth="180.0">
                <content>
-                  <VBox fx:id="subjectsBox" prefHeight="440.0" prefWidth="180.0" style="-fx-background-color: white;" />
+                  <VBox fx:id="subjectsBox" prefHeight="440.0" prefWidth="180.0" style="-fx-background-color: white;" styleClass="scroll-pane" />
                </content>
             </ScrollPane>
             <Button fx:id="statistics" layoutX="456.0" layoutY="504.0" mnemonicParsing="false" onAction="#handleStatisticsButton" prefHeight="30.0" prefWidth="98.0" styleClass="spec-button" text="Statistics">

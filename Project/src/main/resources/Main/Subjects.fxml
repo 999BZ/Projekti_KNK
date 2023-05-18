@@ -20,10 +20,10 @@
          <children>
             <ScrollPane hbarPolicy="NEVER" layoutX="25.0" layoutY="100.0" prefHeight="400.0" prefWidth="750.0">
                <content>
-                  <VBox fx:id="subjectCards" alignment="CENTER" prefHeight="392.0" prefWidth="750.0" />
+                  <VBox fx:id="subjectCards" alignment="CENTER" prefHeight="392.0" prefWidth="750.0" styleClass="scroll-pane" />
                </content>
             </ScrollPane>
-            <Button fx:id="addSubjectButton" alignment="CENTER" layoutX="648.0" layoutY="513.0" mnemonicParsing="false" onAction="#openAddSubjects" prefHeight="27.0" prefWidth="106.0" styleClass="spec-button" text="Add Subject">
+            <Button fx:id="addSubjectButton" alignment="CENTER" layoutX="668.0" layoutY="511.0" mnemonicParsing="false" onAction="#openAddSubjects" prefHeight="27.0" prefWidth="106.0" styleClass="spec-button" text="Add Subject">
                <graphic>
                   <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -34,23 +34,18 @@
             </Button>
             <AnchorPane layoutX="37.0" layoutY="50.0" prefHeight="27.0" prefWidth="725.0">
                <children>
-                  <Label layoutX="10.0" layoutY="5.0" text="Grade Level:">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="clearFilters" alignment="CENTER" layoutX="500.0" mnemonicParsing="false" onAction="#clearFilters" prefHeight="27.0" prefWidth="91.0" styleClass="spec-button" text="Refresh">
+                  <Button fx:id="clearFilters" alignment="CENTER" layoutX="547.0" mnemonicParsing="false" onAction="#clearFilters" prefHeight="27.0" prefWidth="91.0" styleClass="spec-button" text="View All">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/reset.png" />
+                              <Image url="@../Images/viewall.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ChoiceBox fx:id="teacherFilter" layoutX="333.0" layoutY="1.0" prefWidth="150.0" />
-                  <ChoiceBox fx:id="gradeFilter" layoutX="84.0" layoutY="1.0" onInputMethodTextChanged="#teacherDynamicOptions" prefWidth="150.0" />
-                  <Button fx:id="filterButton" alignment="CENTER" layoutX="622.0" layoutY="-1.0" mnemonicParsing="false" onAction="#filterSubjects" prefHeight="27.0" prefWidth="78.0" styleClass="spec-button" text="Filter">
+                  <ChoiceBox fx:id="teacherFilter" layoutX="179.0" layoutY="1.0" prefHeight="26.0" prefWidth="142.0" />
+                  <ChoiceBox fx:id="gradeFilter" layoutX="64.0" layoutY="-1.0" onInputMethodTextChanged="#teacherDynamicOptions" prefHeight="26.0" prefWidth="53.0" />
+                  <Button fx:id="filterButton" alignment="CENTER" layoutX="647.0" mnemonicParsing="false" onAction="#filterSubjects" prefHeight="27.0" prefWidth="78.0" styleClass="spec-button" text="Filter">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -59,7 +54,18 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Label layoutX="280.0" layoutY="5.0" text="Teacher:">
+                  <Label layoutX="126.0" layoutY="5.0" text="Teacher:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="obligatoryFilter" layoutX="413.0" layoutY="1.0" prefHeight="26.0" prefWidth="122.0" />
+                  <Label layoutX="340.0" layoutY="4.0" prefHeight="18.0" prefWidth="72.0" text="Obligatory:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="-9.0" layoutY="4.0" text="Grade Level:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

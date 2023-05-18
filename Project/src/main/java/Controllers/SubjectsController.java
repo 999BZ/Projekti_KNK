@@ -37,9 +37,12 @@ Connection conn;
     private ChoiceBox<TeacherUser> teacherFilter;
     @FXML
     private ChoiceBox<Integer> gradeFilter;
+    @FXML
+    private ChoiceBox<Option> obligatoryFilter;
 
     private ObservableList<TeacherUser> optionsTeacher = FXCollections.observableArrayList();
     private ObservableList<Integer> optionsGrade = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10,11,12);
+    private ObservableList<Option> optionsObligatory = FXCollections.observableArrayList(new Option("Obligatory",1), new Option("Elective",0));
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
 
     public SubjectsController() throws SQLException {
@@ -79,6 +82,7 @@ Connection conn;
         teacherFilter.setItems(teachers);
 
         gradeFilter.setItems(optionsGrade);
+        obligatoryFilter.setItems(optionsObligatory);
 
 
        subjectsList = FetchData.getAllSubjects();
@@ -90,31 +94,67 @@ Connection conn;
 
         int selectedGradeOption = gradeFilter.getValue();
         TeacherUser selectedTeacherOption = teacherFilter.getValue();
+        Option selectedObligatoryOption = obligatoryFilter.getValue();
         String query;
-        if(selectedTeacherOption == null && selectedGradeOption == 0){
+        if (selectedTeacherOption == null && selectedGradeOption == 0 && selectedObligatoryOption == null) {
             query = "SELECT * FROM subjects";
-        } else if (selectedTeacherOption != null && selectedGradeOption == 0) {
-            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.c_id WHERE c.t_id = ? group by s.Sb_ID";
-        } else if (selectedTeacherOption == null && selectedGradeOption !=0 ) {
-            query = "SELECT * FROM subjects WHERE Sb_Glevel = ? group by subjects.Sb_ID";
+        } else if (selectedTeacherOption != null && selectedGradeOption == 0 && selectedObligatoryOption == null) {
+            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.c_id WHERE c.t_id = ? GROUP BY s.Sb_ID";
+        } else if (selectedTeacherOption == null && selectedGradeOption != 0 && selectedObligatoryOption == null) {
+            query = "SELECT * FROM subjects WHERE Sb_Glevel = ? GROUP BY subjects.Sb_ID";
+        } else if (selectedTeacherOption == null && selectedGradeOption == 0 && selectedObligatoryOption != null) {
+            query = "SELECT * FROM subjects WHERE Sb_Obligatory = ?  GROUP BY subjects.Sb_ID";
+        } else if (selectedTeacherOption != null && selectedGradeOption != 0 && selectedObligatoryOption == null) {
+            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ? AND s.Sb_GLevel = ? GROUP BY s.Sb_ID";
+        } else if (selectedTeacherOption != null && selectedGradeOption == 0 && selectedObligatoryOption != null) {
+            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.c_id WHERE c.t_id = ? AND Sb_Obligatory = ? GROUP BY s.Sb_ID";
+        } else if (selectedTeacherOption == null && selectedGradeOption != 0 && selectedObligatoryOption != null) {
+            query = "SELECT * FROM subjects WHERE Sb_Glevel = ? AND Sb_Obligatory = ? GROUP BY subjects.Sb_ID";
         } else {
-            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ? AND s.Sb_GLevel = ? group by s.Sb_ID";
+            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ? AND s.Sb_GLevel = ? AND Sb_Obligatory = ? GROUP BY s.Sb_ID";
         }
 
         PreparedStatement pstmt = conn.prepareStatement(query);
 
-        if(selectedTeacherOption != null && selectedGradeOption == 0){
-            pstmt.setInt(1, selectedTeacherOption.getID());
-        } else if (selectedTeacherOption == null && selectedGradeOption !=0 ) {
-            pstmt.setInt(1, selectedGradeOption);
-        } else if (selectedTeacherOption != null && selectedGradeOption != 0) {
-            pstmt.setInt(1, selectedTeacherOption.getID());
-            pstmt.setInt(2, selectedGradeOption);
+        int parameterIndex = 1;
+
+        if (selectedTeacherOption != null) {
+            pstmt.setInt(parameterIndex++, selectedTeacherOption.getID());
+        }
+
+        if (selectedGradeOption != 0) {
+            pstmt.setInt(parameterIndex++, selectedGradeOption);
+        }
+
+        if (selectedObligatoryOption != null) {
+            pstmt.setInt(parameterIndex++, selectedObligatoryOption.getValue());
         }
 
         subjectsList = FetchData.getAllSubjects(pstmt);
         CardGenUtil.subjectsToFlowPane(subjectCards, subjectsList, this);
 
+    }
+    public static class Option {
+        private final String text;
+        private final int value;
+
+        public Option(String text, int value) {
+            this.text = text;
+            this.value = value;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return text;
+        }
     }
     @FXML
     public void openAddSubjects() throws IOException {
@@ -134,6 +174,11 @@ Connection conn;
     public void clearFilters() throws IOException{
         teacherFilter.setValue(null);
         teacherFilter.setItems(FetchData.getAllTeachers());
+        teacherFilter.setValue(null);
+        for (TeacherUser teacher:FetchData.getAllTeachers()
+             ) {
+            System.out.println(teacher.getName());
+        }
         gradeFilter.setValue(0);
         subjectsList = FetchData.getAllSubjects();
         CardGenUtil.subjectsToFlowPane(subjectCards, subjectsList, this);
