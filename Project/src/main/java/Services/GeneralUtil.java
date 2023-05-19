@@ -3,9 +3,11 @@ package Services;
 import Controllers.ChangePasswordController;
 import Controllers.DialogController;
 import Controllers.StudentsStatisticsController;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.XYChart;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -103,6 +105,19 @@ public class GeneralUtil {
         statisticsController.setDialogStage(StatisticStage);
         statisticsController.setUserId(id);
         StatisticStage.showAndWait();
+    }
+
+
+    public static void colorizeChartDataSeries(XYChart.Series<?,?> series){
+        String[] colors = {"#4C72B0", "#55A868", "#C44E52"};
+        Platform.runLater(() -> {
+            for (int i = 0; i < series.getData().size(); i++) {
+                XYChart.Data<String, Integer> data = (XYChart.Data<String, Integer>) series.getData().get(i);
+                String color = colors[i % colors.length];
+                data.getNode().setStyle("-fx-bar-fill: " + color + ";");
+            }
+        });
+
     }
 
 

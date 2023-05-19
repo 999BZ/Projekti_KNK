@@ -114,9 +114,18 @@ public class SideNavController  implements Initializable{
 
     @FXML
     private void handleLogOutButton() throws IOException {
-
         if (GeneralUtil.setDialog("Are you sure you want to log out?")) {
             GeneralUtil.goToFXML("/Main/Login.fxml", (Stage) navbar.getScene().getWindow());
+            //empty the preferences object
+            // Obtain the preferences object
+            Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
+            // Clear the preferences
+            try {
+                preferences.clear();
+                System.out.println("Preferences cleared successfully.");
+            } catch (Exception e) {
+                System.out.println("Failed to clear preferences: " + e.getMessage());
+            }
         }
     }
 

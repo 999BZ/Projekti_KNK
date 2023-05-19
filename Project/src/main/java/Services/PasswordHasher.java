@@ -54,4 +54,6 @@ public class PasswordHasher {
             throw new RuntimeException("Failed to hash password: " + e.getMessage(), e);
         }
     }
+
+
 }

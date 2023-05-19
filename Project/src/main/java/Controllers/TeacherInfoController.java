@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -79,6 +80,9 @@ public class TeacherInfoController implements Initializable {
     private String userPosition;
     @FXML
     private AnchorPane sidenav;
+
+    @FXML
+    private Button statistics;
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
 
     private int T_ID;
@@ -94,6 +98,14 @@ public class TeacherInfoController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        statistics.setOnAction(e->{
+            try {
+                handleStatisticsButton();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
         // get the user position
         Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
         this.userPosition = preferences.get("position", null);
@@ -228,6 +240,17 @@ public class TeacherInfoController implements Initializable {
             }
         }
         localTeacher = teacher;
+    }
+
+    public void handleStatisticsButton() throws IOException {
+        FXMLLoader loader = new FXMLLoader(GeneralUtil.class.getResource("/Main/TeacherStatistics.fxml"));
+        AnchorPane statisticsPane = loader.load();
+        TeacherStatisticsController statisticsController = loader.getController();
+        Stage StatisticStage = new Stage();
+        StatisticStage.initModality(Modality.APPLICATION_MODAL);
+        StatisticStage.setScene(new Scene(statisticsPane));
+        statisticsController.setTeacher(this.teacher);
+        StatisticStage.showAndWait();
     }
 
 

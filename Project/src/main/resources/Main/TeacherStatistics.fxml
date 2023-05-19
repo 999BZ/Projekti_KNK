@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherStatisticsController">
+   <children>
+      <BarChart fx:id="averageGradePerSubject" layoutY="14.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.topAnchor="25.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <ProgressBar fx:id="percentageOfStudentsGraded" layoutX="419.0" layoutY="116.0" prefHeight="18.0" prefWidth="154.0" progress="0.0" />
+      <Label layoutX="88.0" layoutY="5.0" text="Average Grade Per Subjects Taught">
+         <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+         </font>
+      </Label>
+      <BarChart fx:id="enrollmentsPerClass" layoutY="242.0" prefHeight="200.0" prefWidth="400.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Label layoutX="74.0" layoutY="215.0" text="Students Enrolled Per Each Class Taught">
+         <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="400.0" layoutY="146.0" text="Students Graded Percentage">
+         <font>
+            <Font name="Berlin Sans FB" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
