@@ -77,7 +77,7 @@ CREATE TABLE Classes (
     FOREIGN KEY (Sb_ID) REFERENCES Subjects(Sb_ID) ON DELETE CASCADE
 );
 
--- SELECT * FROM Classes
+-- SELECT * FROM Classes;
 -- drop table enrollments;
 CREATE TABLE Enrollments (
 	E_ID INT NOT NULL AUTO_INCREMENT,
@@ -101,7 +101,8 @@ CREATE TABLE Grades (
 	FOREIGN KEY (Sb_ID) REFERENCES Subjects(Sb_ID)
 );
 
--- SELECT * FROM Grades
+-- SELECT * FROM Gradesgrades
+
 
 
 -- Dummy data for Enrollments table
@@ -183,8 +184,7 @@ BEGIN
     SELECT S.S_UID, NEW.C_ID, CURDATE()
     FROM Students S
     WHERE S.S_GLevel = (SELECT Sb_GLevel FROM Subjects WHERE Sb_ID = NEW.Sb_ID)
-    AND S.S_Paralel = NEW.C_Paralel
-    AND (SELECT Sb_Obligatory FROM Subjects WHERE Sb_ID = NEW.Sb_ID) = 1;
+    AND S.S_Paralel = NEW.C_Paralel;
 END$$
 DELIMITER ;
 -- drop trigger enroll_students_to_class

@@ -49,9 +49,13 @@ public class GradesController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        subjectFilter.setItems(subjectsList);
-        subjectFilter.setValue(subjectsList.get(0));
-        filterGrades();
+        try {
+            subjectFilter.setItems(subjectsList);
+            subjectFilter.setValue(subjectsList.get(0));
+            filterGrades();
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML

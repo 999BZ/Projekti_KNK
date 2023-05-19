@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class FetchData {
     public static ObservableList<TeacherUser> getAllTeachers() {
@@ -604,7 +605,30 @@ public class FetchData {
             }
         }
     }
+    public static ArrayList<Grade> getAllGrades(int S_ID) {
+        ArrayList<Grade> GradesList = new ArrayList<>();
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * from Grades WHERE S_ID = ?;");
+            stmt.setInt(1,S_ID);
+            ResultSet rs = stmt.executeQuery();
 
+            while (rs.next()) {
+                int id = rs.getInt("G_ID");
+                int std_id= rs.getInt("S_ID");
+                int sbj_id = rs.getInt("Sb_ID");
+                int grade_id = rs.getInt("G_Value");
+
+
+                Grade grade = new Grade(id, std_id, sbj_id,grade_id);
+                GradesList.add(grade);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return GradesList;
+    }
 
 
 

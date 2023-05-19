@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Grade;
 import Models.StudentUser;
 import Models.Subject;
 import Models.User;
@@ -27,6 +28,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
@@ -93,6 +95,7 @@ public class StudentInfoController implements Initializable {
     private String imagePath;
     private String oldImagePath;
     private StudentUser studentUser;
+    private ArrayList<Grade> gradesList;
 
     private int S_ID;
     private double average;
@@ -145,6 +148,8 @@ public class StudentInfoController implements Initializable {
         Image oldImage =profilePic.getImage();
         oldImagePath = oldImage.getUrl();
         setEditable(false);
+
+
 
 
 
@@ -268,6 +273,10 @@ public class StudentInfoController implements Initializable {
             address.setText(student.getAddress());
             email.setText(student.getEmail());
             this.S_ID = student.getID();
+            this.gradesList = FetchData.getAllGrades(this.S_ID);
+            for (int i=0;i<this.gradesList.size();i++){
+                System.out.println(gradesList.get(i).getGrade());
+            }
             if (student.getYear() != 0) {
                 gradeLvl.getValueFactory().setValue(student.getYear());            }
             if (student.getParalel() != 0) {
