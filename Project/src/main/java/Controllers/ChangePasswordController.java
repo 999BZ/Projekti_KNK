@@ -65,8 +65,6 @@ public class ChangePasswordController implements Initializable {
 
     public void setUserId(int U_ID){this.U_ID=U_ID;}
 
-
-
     @FXML
     private void handleConfirmButton() throws SQLException {
         String oldPassword = pwdOldPassword.getText();

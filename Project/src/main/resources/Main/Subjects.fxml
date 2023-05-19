@@ -55,18 +55,18 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Label layoutX="126.0" layoutY="5.0" text="Teacher:">
+                  <Label fx:id="teacher" layoutX="126.0" layoutY="5.0" text="Teacher:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                   <ChoiceBox fx:id="obligatoryFilter" layoutX="413.0" layoutY="1.0" prefHeight="26.0" prefWidth="122.0" />
-                  <Label layoutX="340.0" layoutY="4.0" prefHeight="18.0" prefWidth="72.0" text="Obligatory:">
+                  <Label fx:id="obligatory" layoutX="340.0" layoutY="4.0" prefHeight="18.0" prefWidth="72.0" text="Obligatory:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="-9.0" layoutY="4.0" text="Grade Level:">
+                  <Label fx:id="gradeLevel" layoutX="-9.0" layoutY="4.0" text="Grade Level:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

@@ -74,7 +74,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="54.0" prefWidth="113.0" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="classParallel" layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="86.0" text="Class Parallel:" />
+                  <Label fx:id="classParalel" layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="86.0" text="Class Paralel:" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">

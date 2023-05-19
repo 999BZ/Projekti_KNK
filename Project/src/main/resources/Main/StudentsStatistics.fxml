@@ -28,7 +28,7 @@
                <children>
                   <StackPane layoutX="24.0" layoutY="4.0" prefHeight="43.0" prefWidth="165.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="info-label" text="Grade Average:">
+                        <Label fx:id="average" alignment="CENTER" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: white; -fx-text-fill: black;" styleClass="info-label" text="Grade Average:">
                            <StackPane.margin>
                               <Insets />
                            </StackPane.margin>

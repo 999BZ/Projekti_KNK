@@ -78,7 +78,7 @@ public class StudentInfoController implements Initializable {
     @FXML
     private Button editButton;
     @FXML
-    private Button updatePhoto;
+    private Button updateProfilePic;
     @FXML
     private Button removeButton;
     @FXML
@@ -86,7 +86,7 @@ public class StudentInfoController implements Initializable {
     @FXML
     private AnchorPane sidenav;
     @FXML
-    private Button changePwd;
+    private Button reset;
     private StudentUser student;
     private File selectedFile;
     private boolean isEditable = false;
@@ -128,7 +128,7 @@ public class StudentInfoController implements Initializable {
             chooseSubjectButton.setVisible(false);
 
         }else{
-            changePwd.setVisible(true);
+            reset.setVisible(true);
             editButton.setVisible(false);
             sidenav.getStyleClass().clear();
             sidenav.getStyleClass().add("profile");
@@ -313,10 +313,10 @@ public class StudentInfoController implements Initializable {
         email.setEditable(set);
         gradeLvl.setDisable(!set);
         paralel.setDisable(!set);
-        updatePhoto.setVisible(set);
+        updateProfilePic.setVisible(set);
         removeButton.setVisible(set);
         if(this.userPosition.equals("Admin")) {
-            changePwd.setVisible(set);
+            reset.setVisible(set);
         }
         if(set) {
             editButton.setText("Save");

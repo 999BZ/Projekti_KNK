@@ -6,7 +6,6 @@ import Services.CardGenUtil;
 import Services.FetchData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -31,28 +30,14 @@ public class GradesController implements Initializable {
     private ChoiceBox<Subject> subjectFilter;
     private int teacherId;
 
-    @FXML
-    void clearFilters(ActionEvent event) {
-
-    }
-
-    @FXML
-    void filterGrades(ActionEvent event) {
-
-    }
-
     private ObservableList<Enrollment> enrollmentsList = FXCollections.observableArrayList();
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        clearFilters.setOnAction(e->{
-            clearFilters();
-        });
-        subjectFilter.setOnAction(e->{
-            filterGrades();
-        });
+        clearFilters.setOnAction(e -> clearFilters());
+        subjectFilter.setOnAction(e -> filterGrades());
 
         //get user id from preferences
         Preferences preferences = Preferences.userNodeForPackage(LoginController.class);

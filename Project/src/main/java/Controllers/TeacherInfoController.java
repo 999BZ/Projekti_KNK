@@ -19,7 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -42,7 +41,7 @@ public class TeacherInfoController implements Initializable {
     @FXML
     private ImageView phonew;
     @FXML
-    private ImageView emailw;;
+    private ImageView emailw;
     @FXML
     private ImageView addressw;
     @FXML
@@ -67,11 +66,11 @@ public class TeacherInfoController implements Initializable {
     @FXML
     private Button editButton;
     @FXML
-    private Button updatePhoto;
+    private Button updateProfilePic;
     @FXML
     private Button removeButton;
     @FXML
-    private Button changePwd;
+    private Button reset;
     private TeacherUser teacher;
     private File selectedFile;
     private boolean isEditable = false;
@@ -100,7 +99,7 @@ public class TeacherInfoController implements Initializable {
         this.userPosition = preferences.get("position", null);
         if(this.userPosition.equals("Admin")){
             editButton.setVisible(true);
-            changePwd.setVisible(false);
+            reset.setVisible(false);
         }else{
             editButton.setVisible(false);
             sidenav.getStyleClass().clear();
@@ -239,9 +238,9 @@ public class TeacherInfoController implements Initializable {
         birthday.setDisable(!set);
         address.setEditable(set);
         email.setEditable(set);
-        updatePhoto.setVisible(set);
+        updateProfilePic.setVisible(set);
         removeButton.setVisible(set);
-        changePwd.setVisible(set);
+        reset.setVisible(set);
 
         if(set) {
             editButton.setText("Save");

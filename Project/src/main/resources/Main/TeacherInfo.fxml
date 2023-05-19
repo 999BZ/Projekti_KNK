@@ -42,7 +42,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label prefHeight="19.0" prefWidth="154.0" styleClass="profile-info" text="Number:" GridPane.rowIndex="5" />
+                        <Label fx:id="lblPhone" prefHeight="19.0" prefWidth="154.0" styleClass="profile-info" text="Number:" GridPane.rowIndex="5" />
                         <AnchorPane fx:id="imageContainer" prefHeight="220.0" prefWidth="286.0" GridPane.columnSpan="2" GridPane.rowSpan="5">
                             <children>
                                 <StackPane layoutX="74.0" layoutY="24.0" prefHeight="127.0" prefWidth="137.0">
@@ -64,7 +64,7 @@
                                         <Font name="System Bold" size="15.0" />
                                     </font>
                                 </TextField>
-                                <Button fx:id="updatePhoto" layoutX="75.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Update Profile Pic">
+                                <Button fx:id="updateProfilePic" layoutX="75.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Update Profile Pic">
                            <graphic>
                               <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -84,9 +84,9 @@
                         </ImageView>
                             </children>
                         </AnchorPane>
-                        <Label styleClass="profile-info" text="Email:" GridPane.rowIndex="6" />
-                        <Label styleClass="profile-info" text="Birthday:" GridPane.rowIndex="7" />
-                        <Label styleClass="profile-info" text="Address:" GridPane.rowIndex="8" />
+                        <Label fx:id="lblEmail" styleClass="profile-info" text="Email:" GridPane.rowIndex="6" />
+                        <Label fx:id="lblBirthdate" styleClass="profile-info" text="Birthday:" GridPane.rowIndex="7" />
+                        <Label fx:id="lblAddress" styleClass="profile-info" text="Address:" GridPane.rowIndex="8" />
                         <TextField fx:id="phone" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <TextField fx:id="email" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <DatePicker fx:id="birthday" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
@@ -130,7 +130,7 @@
                   </ImageView>
                </graphic>
             </Button>
-                    <Label layoutX="91.0" layoutY="5.0" styleClass="card-header" text="Teacher Info">
+                    <Label fx:id="teacherInfo" layoutX="91.0" layoutY="5.0" styleClass="card-header" text="Teacher Info">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -144,7 +144,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="443.0" layoutY="11.0" prefHeight="29.0" prefWidth="124.0" styleClass="info-label" text="Teacher's Subjects" />
+            <Label fx:id="teacherSubjects" alignment="CENTER" layoutX="443.0" layoutY="11.0" prefHeight="29.0" prefWidth="124.0" styleClass="info-label" text="Teacher's Subjects" />
             <ScrollPane hbarPolicy="NEVER" layoutX="415.0" layoutY="47.0" prefHeight="450.0" prefWidth="180.0">
                <content>
                   <VBox fx:id="subjectsBox" prefHeight="440.0" prefWidth="180.0" style="-fx-background-color: white;" styleClass="scroll-pane" />
@@ -159,7 +159,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="changePwd" layoutY="504.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="30.0" prefWidth="134.0" styleClass="spec-button" text="Reset Password">
+            <Button fx:id="reset" layoutY="504.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="30.0" prefWidth="134.0" styleClass="spec-button" text="Reset Password">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>

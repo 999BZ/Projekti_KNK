@@ -51,11 +51,11 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="19.0" prefWidth="154.0" styleClass="profile-info" text="Parent's Phone Number:" GridPane.rowIndex="7" />
+                  <Label fx:id="parentPhone" prefHeight="19.0" prefWidth="154.0" styleClass="profile-info" text="Parent's Phone Number:" GridPane.rowIndex="7" />
                   <Label styleClass="profile-info" text="Grade Leve / Paralel:" GridPane.rowIndex="8" />
                   <AnchorPane fx:id="imageContainer" prefHeight="286.0" prefWidth="318.0" GridPane.columnSpan="3" GridPane.rowSpan="7">
                      <children>
-                        <Label layoutX="77.0" layoutY="14.0" styleClass="card-header" text="Student Info">
+                        <Label fx:id="studentInfo" layoutX="77.0" layoutY="14.0" styleClass="card-header" text="Student Info">
                            <graphic>
                               <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -82,7 +82,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="updatePhoto" layoutX="72.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleImageUploadButton" prefHeight="30.0" prefWidth="141.0" styleClass="spec-button" text="Update Profile Pic">
+                        <Button fx:id="updateProfilePic" layoutX="72.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleImageUploadButton" prefHeight="30.0" prefWidth="141.0" styleClass="spec-button" text="Update Profile Pic">
                            <graphic>
                               <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -102,9 +102,9 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <Label styleClass="profile-info" text="Email:" GridPane.rowIndex="9" />
-                  <Label styleClass="profile-info" text="Birthday:" GridPane.rowIndex="10" />
-                  <Label styleClass="profile-info" text="Address:" GridPane.rowIndex="11" />
+                  <Label fx:id="lblemail" styleClass="profile-info" text="Email:" GridPane.rowIndex="9" />
+                  <Label fx:id="lblbirthday" styleClass="profile-info" text="Birthday:" GridPane.rowIndex="10" />
+                  <Label fx:id="lbladdress" styleClass="profile-info" text="Address:" GridPane.rowIndex="11" />
                   <TextField fx:id="phone" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <TextField fx:id="email" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <DatePicker fx:id="birthday" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
@@ -166,7 +166,7 @@
                </graphic>
             </Button>
             <Label fx:id="w" alignment="CENTER" layoutX="153.0" layoutY="492.0" prefHeight="20.0" prefWidth="199.0" text="Please fill out all required fields" textFill="RED" />
-            <Label alignment="CENTER" layoutX="417.0" layoutY="14.0" prefHeight="29.0" prefWidth="124.0" styleClass="info-label" text="Student's Subjects" />
+            <Label fx:id="studentSubjects" alignment="CENTER" layoutX="417.0" layoutY="14.0" prefHeight="29.0" prefWidth="124.0" styleClass="info-label" text="Student's Subjects" />
             <Button fx:id="statistics" layoutX="429.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleStatisticsButton" prefHeight="30.0" prefWidth="98.0" styleClass="spec-button" text="Statistics">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -176,7 +176,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="changePwd" layoutX="1.0" layoutY="509.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="30.0" prefWidth="135.0" styleClass="spec-button" text="Reset Password">
+            <Button fx:id="reset" layoutX="1.0" layoutY="509.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="30.0" prefWidth="135.0" styleClass="spec-button" text="Reset Password">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>

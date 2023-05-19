@@ -48,7 +48,7 @@
                                 <Label fx:id="name" text="Name:" GridPane.rowIndex="7" />
                                 <AnchorPane GridPane.rowIndex="8">
                                     <children>
-                                        <TextField fx:id="txtName" prefHeight="28.0" prefWidth="112.0" promptText="Name..." styleClass="textInput" />
+                                        <TextField fx:id="txtName" prefHeight="28.0" prefWidth="112.0" styleClass="textInput" />
                               <ImageView fx:id="firstnamew" fitHeight="21.0" fitWidth="21.0" layoutX="113.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
@@ -59,7 +59,7 @@
                                 <Label fx:id="surname" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="70.0" text="Surname:" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                 <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="8">
                                     <children>
-                                        <TextField fx:id="txtSurname" layoutX="17.0" prefHeight="28.0" prefWidth="112.0" promptText="Surname..." styleClass="textInput" />
+                                        <TextField fx:id="txtSurname" layoutX="17.0" prefHeight="28.0" prefWidth="112.0" styleClass="textInput" />
                               <ImageView fx:id="lastnamew" fitHeight="21.0" fitWidth="21.0" layoutX="131.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
@@ -70,7 +70,7 @@
                                 <Label fx:id="phone" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="57.0" text="Phone:" GridPane.rowIndex="9" />
                                 <AnchorPane prefHeight="36.0" prefWidth="77.0" GridPane.rowIndex="10">
                            <children>
-                                        <TextField fx:id="txtPhone" prefHeight="28.0" prefWidth="112.0" promptText="Phone Number..." styleClass="textInput" />
+                                        <TextField fx:id="txtPhone" prefHeight="28.0" prefWidth="112.0" styleClass="textInput" />
                               <ImageView fx:id="phonew" fitHeight="21.0" fitWidth="21.0" layoutX="114.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />

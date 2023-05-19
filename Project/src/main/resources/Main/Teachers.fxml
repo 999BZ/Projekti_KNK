@@ -26,7 +26,7 @@
                   <TableColumn fx:id="address" prefWidth="119.19998779296873" text="Address" />
                </columns>
             </TableView>
-            <Button fx:id="addStudentButton" layoutX="619.0" layoutY="510.0" mnemonicParsing="false" onAction="#goToAddTeachers" prefHeight="30.0" prefWidth="130.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Teacher">
+            <Button fx:id="addTeacherButton" layoutX="619.0" layoutY="510.0" mnemonicParsing="false" onAction="#goToAddTeachers" prefHeight="30.0" prefWidth="130.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Teacher">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>

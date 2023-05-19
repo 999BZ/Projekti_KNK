@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
 import Services.ConnectionUtil;
@@ -37,17 +39,28 @@ public class MainController {
     @FXML
     private Label nrOfEnrollments;
     @FXML
+    private Label students;
+    @FXML
+    private Label teachers;
+    @FXML
+    private Label subjects;
+    @FXML
+    private Label grades;
+    @FXML
+    private Label users;
+    @FXML
+    private Label enrollments;
+    @FXML
     private StackedBarChart<String, Integer> enrollmentsOverTime;
     @FXML
     private BarChart<String, Integer> studentsPerGradeLevel;
     @FXML
     private PieChart countOfGradeEvaluations;
-
-
-
+    private ResourceBundle bundle;
 
 
     public void initialize() {
+        // this.setAlbanian();
 
         Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
 
@@ -277,6 +290,35 @@ public class MainController {
     }
 
 
+    public void setAlbanian() {
+        try {
+            Locale locale = new Locale("sq");
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void setEnglish() {
+        try {
+            Locale locale = Locale.ENGLISH;
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    private void updateLabels() {
+        students.setText(bundle.getString("students"));
+        teachers.setText(bundle.getString("teachers"));
+        subjects.setText(bundle.getString("subjects"));
+        grades.setText(bundle.getString("grades"));
+        users.setText(bundle.getString("users"));
+        enrollments.setText(bundle.getString("enrollments"));
+    }
 }
 
 

@@ -28,7 +28,7 @@ public class StudentSubjectCardController implements Initializable {
     private Label subjectName;
 
     @FXML
-    private Label subjectName1;
+    private Label lblGrade;
     private Subject subject;
     private StudentUser student;
 
@@ -42,8 +42,8 @@ public class StudentSubjectCardController implements Initializable {
         subjectName.setText(subject.getName());
         gradeLevel.setVisible(false);
         int grade;
-        subjectName1.setPrefWidth(40);
-        subjectName1.setText("Grade: ");
+        lblGrade.setPrefWidth(40);
+        lblGrade.setText("Grade: ");
         try {
             grade = FetchData.getStudentGrade(student, subject);
         } catch (SQLException e) {
@@ -61,9 +61,9 @@ public class StudentSubjectCardController implements Initializable {
     public void setData(Subject subject, TeacherUser teacher){
         this.subject = subject;
         this.teacher = teacher;
-        subjectName1.setPrefWidth(50);
+        lblGrade.setPrefWidth(50);
         subjectName.setText(subject.getName());
-        subjectName1.setText("Classes:");
+        lblGrade.setText("Classes:");
         gradeLevel.setText(String.valueOf(subject.getYear()));
         String classes;
         try {

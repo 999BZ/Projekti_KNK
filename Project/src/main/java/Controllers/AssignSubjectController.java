@@ -1,11 +1,9 @@
 package Controllers;
 
 import Models.Classe;
-import Models.StudentUser;
 import Models.Subject;
 import Models.TeacherUser;
 import Repository.ClassRepository;
-import Repository.SubjectRepository;
 import Repository.UserRepository;
 import Services.FetchData;
 import Services.GeneralUtil;
@@ -14,14 +12,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -103,7 +97,8 @@ public class AssignSubjectController implements Initializable {
     }
 
     @FXML
-    void handleCancelButton(ActionEvent event) {
+    void handleCancelButton() {
+        assignStage.close();
     }
 
     public void setData(Subject subject) throws SQLException {

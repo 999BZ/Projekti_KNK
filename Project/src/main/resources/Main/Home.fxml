@@ -32,7 +32,7 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="67.0" layoutY="13.0" text="Users">
+                              <Label fx:id="users" layoutX="67.0" layoutY="13.0" text="Users">
                                  <font>
                                     <Font name="Berlin Sans FB" size="17.0" />
                                  </font>
@@ -59,7 +59,7 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="64.0" layoutY="13.0" text="Students" textFill="WHITE">
+                              <Label fx:id="students" layoutX="64.0" layoutY="13.0" text="Students" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB" size="17.0" />
                                  </font>
@@ -102,7 +102,7 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="64.0" layoutY="13.0" text="Teachers" textFill="WHITE">
+                              <Label fx:id="teachers" layoutX="64.0" layoutY="13.0" text="Teachers" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB" size="17.0" />
                                  </font>
@@ -129,7 +129,7 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="64.0" layoutY="13.0" text="Subjects" textFill="WHITE">
+                              <Label fx:id="subjects" layoutX="64.0" layoutY="13.0" text="Subjects" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB" size="17.0" />
                                  </font>
@@ -156,7 +156,7 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="64.0" layoutY="13.0" text="Grades" textFill="WHITE">
+                              <Label fx:id="grades" layoutX="64.0" layoutY="13.0" text="Grades" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB" size="17.0" />
                                  </font>
@@ -183,7 +183,7 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="53.0" layoutY="13.0" text="Enrollments" textFill="WHITE">
+                              <Label fx:id="enrollments" layoutX="53.0" layoutY="13.0" text="Enrollments" textFill="WHITE">
                                  <font>
                                     <Font name="Berlin Sans FB" size="17.0" />
                                  </font>

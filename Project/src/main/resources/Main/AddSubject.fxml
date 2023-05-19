@@ -86,7 +86,7 @@
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <TextField fx:id="subjectName" layoutY="8.0" prefHeight="26.0" prefWidth="130.0" promptText="subject name..." styleClass="textInput" />
+                  <TextField fx:id="subjectName" layoutY="8.0" prefHeight="26.0" prefWidth="130.0" styleClass="textInput" />
                   <ImageView fx:id="namew" fitHeight="21.0" fitWidth="21.0" layoutX="140.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/warning.png" />
@@ -96,7 +96,7 @@
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <TextArea fx:id="subjectDescription" maxWidth="-Infinity" prefHeight="53.0" prefWidth="143.0" promptText="description" styleClass="textInput" />
+                  <TextArea fx:id="subjectDescription" maxWidth="-Infinity" prefHeight="53.0" prefWidth="143.0" styleClass="textInput" />
                   <ImageView fx:id="descriptionw" fitHeight="21.0" fitWidth="21.0" layoutX="149.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Images/warning.png" />
