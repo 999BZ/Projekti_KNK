@@ -94,6 +94,13 @@
                 <directory>src/main/resources</directory>
                 <filtering>false</filtering>
                 <includes>
+                    <include>Bilinguality/**</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
                     <include>**/*.fxml</include>
                 </includes>
             </resource>

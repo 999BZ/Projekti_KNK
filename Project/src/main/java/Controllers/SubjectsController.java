@@ -5,15 +5,14 @@ import Models.TeacherUser;
 import Services.CardGenUtil;
 import Services.ConnectionUtil;
 import Services.FetchData;
+import Services.LanguageUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -27,13 +26,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.concurrent.Flow;
 
 public class SubjectsController implements Initializable {
     @FXML
+    private Label gradeLevel;
+    @FXML
+    private Label teacher;
+    @FXML
+    private Label obligatory;
+    @FXML
+    private Button clearFilters;
+    @FXML
+    private Button filterButton;
+    @FXML
+    private Button addSubjectButton;
+    @FXML
     private VBox subjectCards;
-Connection conn;
+    Connection conn;
     @FXML
     private ChoiceBox<TeacherUser> teacherFilter;
     @FXML
@@ -52,6 +64,7 @@ Connection conn;
     private ObservableList<Subject> subjectsPerPage = FXCollections.observableArrayList();
 
     private int maxSubjectsPerPage = 4;
+    private ResourceBundle bundle;
 
     public SubjectsController() throws SQLException {
     }
@@ -59,6 +72,14 @@ Connection conn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                setAlbanian();
+            } else {
+                setEnglish();
+            }
+        });
+
         try {
             conn = ConnectionUtil.getConnection();
         } catch (SQLException e) {
@@ -225,5 +246,35 @@ Connection conn;
     @FXML
     public void teacherDynamicOptions() throws SQLException {
 
+    }
+
+    public void setAlbanian() {
+        try {
+            Locale locale = new Locale("sq");
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void setEnglish() {
+        try {
+            Locale locale = Locale.ENGLISH;
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    private void updateLabels() {
+        gradeLevel.setText(bundle.getString("gradeLevel") + ":");
+        teacher.setText(bundle.getString("teacher") + "i:");
+        obligatory.setText(bundle.getString("obligatory") + ":");
+        clearFilters.setText(bundle.getString("viewAll"));
+        filterButton.setText(bundle.getString("filter"));
+        addSubjectButton.setText(bundle.getString("addSubject"));
     }
 }

@@ -1,6 +1,7 @@
 package Controllers;
 import Models.User;
 import Services.ConnectionUtil;
+import Services.LanguageUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
@@ -29,6 +31,8 @@ public class ChangePasswordController implements Initializable {
 
     @FXML
     private Label dialogLabel;
+    @FXML
+    private Label changingPassword;
 
     @FXML
     private AnchorPane dialogPane;
@@ -53,6 +57,7 @@ public class ChangePasswordController implements Initializable {
 
     @FXML
     private Label lblInfo;
+    private ResourceBundle bundle;
 
     private Stage dialogStage;
 
@@ -83,7 +88,7 @@ public class ChangePasswordController implements Initializable {
                     String hashedPassword = PasswordHasher.generateSaltedHash(newPassword, salt);
                     String sql = "UPDATE users SET Salted_Password = ?, Salt = ? WHERE U_ID = ?";
                     try (Connection connection = ConnectionUtil.getConnection();
-                         PreparedStatement statement = connection.prepareStatement(sql)) {
+                        PreparedStatement statement = connection.prepareStatement(sql)) {
                         statement.setString(1, hashedPassword);
                         statement.setString(2, salt);
                         statement.setInt(3, this.U_ID);
@@ -120,5 +125,43 @@ public class ChangePasswordController implements Initializable {
             pwdOldPassword.setVisible(false);
             lblOldPassword.setVisible(false);
         }
+
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                setAlbanian();
+            } else {
+                setEnglish();
+            }
+        });
+    }
+
+    public void setAlbanian() {
+        try {
+            Locale locale = new Locale("sq");
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void setEnglish() {
+        try {
+            Locale locale = Locale.ENGLISH;
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    private void updateLabels() {
+        changingPassword.setText(bundle.getString("changingPassword"));
+        lblOldPassword.setText(bundle.getString("lblOldPassword") + ":");
+        lblNewPassword.setText(bundle.getString("lblNewPassword") + ":");
+        lblRepNewPassword.setText(bundle.getString("lblRepNewPassword") + ":");
+        confirmButton.setText(bundle.getString("confirm"));
+        cancelButton.setText(bundle.getString("cancel"));
     }
 }

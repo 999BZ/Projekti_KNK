@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -27,11 +28,12 @@
                   <Image url="@../Images/logo3.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="108.0" layoutY="626.0" prefHeight="20.0" prefWidth="217.0" style="-fx-text-fill: white;" text="Copyright ©. All rights reserved." AnchorPane.bottomAnchor="4.399999999999977">
+            <Label fx:id="copyright" alignment="CENTER" layoutX="108.0" layoutY="626.0" prefHeight="20.0" prefWidth="217.0" style="-fx-text-fill: white;" text="Copyright ©. All rights reserved." AnchorPane.bottomAnchor="4.399999999999977">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <ChoiceBox fx:id="languagesBox" layoutX="176.0" layoutY="426.0" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: #0b64ae;" />
          </children>
       </AnchorPane>
    </left>
@@ -52,7 +54,7 @@
                <children>
                   <AnchorPane>
                      <children>
-                        <Label layoutX="77.0" layoutY="17.0" text="Email:">
+                        <Label fx:id="email" layoutX="77.0" layoutY="17.0" text="Email:">
                            <font>
                               <Font name="Gill Sans MT" size="17.0" />
                            </font></Label>
@@ -69,7 +71,7 @@
                   </AnchorPane>
                   <AnchorPane GridPane.rowIndex="1">
                      <children>
-                        <Label layoutX="77.0" layoutY="17.0" text="Password:">
+                        <Label fx:id="password" layoutX="77.0" layoutY="17.0" text="Password:">
                            <font>
                               <Font name="Gill Sans MT" size="16.0" />
                            </font></Label>
@@ -112,7 +114,7 @@
                   </AnchorPane>
                </children>
             </GridPane>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-16.0" layoutY="-16.0" prefHeight="32.0" prefWidth="469.0" text="Secure Login ">
+            <Label fx:id="slogin" alignment="CENTER" contentDisplay="CENTER" layoutX="-16.0" layoutY="-16.0" prefHeight="32.0" prefWidth="469.0" text="Secure Login ">
                <font>
                   <Font name="Century Gothic Bold" size="25.0" />
                </font>

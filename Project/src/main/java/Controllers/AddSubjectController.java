@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.Subject;
 import Repository.SubjectRepository;
+import Services.LanguageUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class AddSubjectController implements Initializable {
@@ -33,14 +35,20 @@ public class AddSubjectController implements Initializable {
     private Button addSubject;
     @FXML
     private Label header;
+    @FXML
+    private Label subjectNameL;
+    @FXML
+    private Label subjectDesc;
+    @FXML
+    private Label gradeLevel;
 
     @FXML
     private TextArea subjectDescription;
     @FXML
     private CheckBox obligatory;
-
     @FXML
     private Spinner<Integer> subjectGradeLvl = new Spinner<>(0,12,0,1);
+    private ResourceBundle bundle;
 
     private Stage addSubjectsStage;
     private boolean editMode = false;
@@ -107,6 +115,14 @@ public class AddSubjectController implements Initializable {
         descriptionw.setVisible(false);
         gradeLvlw.setVisible(false);
         subjectGradeLvl.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 12, 0));
+
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                setAlbanian();
+            } else {
+                setEnglish();
+            }
+        });
     }
     public void setEditMode(Subject subject){
         this.subject = subject;
@@ -121,5 +137,36 @@ public class AddSubjectController implements Initializable {
 
     public boolean getConfimed(){
         return confirmed;
+    }
+
+    public void setAlbanian() {
+        try {
+            Locale locale = new Locale("sq");
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void setEnglish() {
+        try {
+            Locale locale = Locale.ENGLISH;
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    private void updateLabels() {
+        header.setText(bundle.getString("header"));
+        subjectNameL.setText(bundle.getString("subjectName") + ":");
+        subjectDesc.setText(bundle.getString("subjectDesc") + ":");
+        gradeLevel.setText(bundle.getString("gradeLevel") + ":");
+        obligatory.setText(bundle.getString("obligatory"));
+        addSubject.setText(bundle.getString("addSubject"));
+        cancelButton.setText(bundle.getString("cancel"));
     }
 }

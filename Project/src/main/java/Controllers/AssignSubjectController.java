@@ -7,6 +7,7 @@ import Repository.ClassRepository;
 import Repository.UserRepository;
 import Services.FetchData;
 import Services.GeneralUtil;
+import Services.LanguageUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class AssignSubjectController implements Initializable {
@@ -31,7 +33,7 @@ public class AssignSubjectController implements Initializable {
     TableColumn<Classe, Void> unAssign;
 
     @FXML
-    private TableColumn<Classe, Integer> assignedParallel;
+    private TableColumn<Classe, Integer> assignedParalel;
 
     @FXML
     private TableColumn<Classe, String> assignedTeacher;
@@ -55,6 +57,15 @@ public class AssignSubjectController implements Initializable {
 
     @FXML
     private ImageView teacherw;
+    @FXML
+    private Label classParalel;
+    @FXML
+    private Label assignTeacher;
+    @FXML
+    private Label header;
+    @FXML
+    private Label alreadyAssignedTo;
+    private ResourceBundle bundle;
 
 
 
@@ -121,7 +132,7 @@ public class AssignSubjectController implements Initializable {
                 }
                 return new SimpleStringProperty(teacher.getName()+ " "+ teacher.getSurname());
             });
-            this.assignedParallel.setCellValueFactory(new PropertyValueFactory<>("paralel"));
+            this.assignedParalel.setCellValueFactory(new PropertyValueFactory<>("parallel"));
             assignedTo.setItems(this.classesList);
         }
     }
@@ -137,6 +148,14 @@ public class AssignSubjectController implements Initializable {
         paralelw.setVisible(false);
         teacherw.setVisible(false);
         unAssignFunctionallity();
+
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                setAlbanian();
+            } else {
+                setEnglish();
+            }
+        });
     }
 
     public void unAssignFunctionallity() {
@@ -173,5 +192,37 @@ public class AssignSubjectController implements Initializable {
                 }
             }
         });
+    }
+
+    public void setAlbanian() {
+        try {
+            Locale locale = new Locale("sq");
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void setEnglish() {
+        try {
+            Locale locale = Locale.ENGLISH;
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    private void updateLabels() {
+        teacherAssigned.setText(bundle.getString("teacherAssigned"));
+        teacherWasAssigned.setText(bundle.getString("teacherWasAssigned"));
+        assignTeacher.setText(bundle.getString("assignTeacher") + ":");
+        classParalel.setText(bundle.getString("classParalel") + ":");
+        header.setText(bundle.getString("assign"));
+        alreadyAssignedTo.setText(bundle.getString("alreadyAssignedTo"));
+        assignedTeacher.setText(bundle.getString("teacher"));
+        assignedParalel.setText(bundle.getString("paralel"));
     }
 }

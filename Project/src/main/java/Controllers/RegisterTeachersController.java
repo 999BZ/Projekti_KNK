@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.User;
+import Services.LanguageUtil;
 import Services.GeneralUtil;
 import Services.UserAuthService;
 import javafx.event.ActionEvent;
@@ -15,11 +16,18 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class RegisterTeachersController implements Initializable  {
     private Stage primaryStage;
 
+    @FXML
+    private Button register;
+    @FXML
+    private Button reset;
+    @FXML
+    private Button addProfilePic;
     @FXML
     private ImageView birthdayw;
     @FXML
@@ -53,12 +61,38 @@ public class RegisterTeachersController implements Initializable  {
     private PasswordField pwdPassword;
     @FXML
     private ImageView profilePic;
+    @FXML
+    private Label name;
+    @FXML
+    private Label surname;
+    @FXML
+    private Label birthdate;
+    @FXML
+    private Label phone;
+    @FXML
+    private Label address;
+    @FXML
+    private Label email;
+    @FXML
+    private Label password;
+    @FXML
+    private Label regTeacher;
+
     private String imagePath;
+    private ResourceBundle bundle;
 
     File selectedFile;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setWarnings(false);
+
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                setAlbanian();
+            } else {
+                setEnglish();
+            }
+        });
     }
     @FXML
     private void handleImageUploadButton(ActionEvent event) throws IOException {
@@ -171,5 +205,39 @@ public class RegisterTeachersController implements Initializable  {
         }
     }
 
+    public void setAlbanian() {
+        try {
+            Locale locale = new Locale("sq");
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", locale);
 
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void setEnglish() {
+        try {
+            Locale locale = Locale.ENGLISH;
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    private void updateLabels() {
+        name.setText(bundle.getString("name") + ":");
+        surname.setText(bundle.getString("surname") + ":");
+        birthdate.setText(bundle.getString("birthdate") + ":");
+        phone.setText(bundle.getString("phone") + ":");
+        address.setText(bundle.getString("address") + ":");
+        email.setText(bundle.getString("email") + ":");
+        password.setText(bundle.getString("password") + ":");
+        register.setText(bundle.getString("register"));
+        reset.setText(bundle.getString("reset"));
+        w.setText(bundle.getString("w"));
+        addProfilePic.setText(bundle.getString("addProfilePic"));
+        regTeacher.setText(bundle.getString("regTeacher"));
+    }
 }

@@ -10,7 +10,7 @@ import java.util.prefs.Preferences;
 
 import Services.ConnectionUtil;
 import Services.GeneralUtil;
-import javafx.application.Platform;
+import Services.LanguageUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -62,7 +62,19 @@ public class MainController {
 
 
     public void initialize() {
-        // this.setAlbanian();
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            setAlbanian();
+        } else {
+            setEnglish();
+        }
+
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                setAlbanian();
+            } else {
+                setEnglish();
+            }
+        });
 
         Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
 
