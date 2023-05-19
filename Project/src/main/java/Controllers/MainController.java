@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
 import Services.ConnectionUtil;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -99,11 +100,29 @@ public class MainController {
             XYChart.Series<String, Integer> series = getEnrollmentsPerWeek();
             series.setName("Enrollment Count");
             enrollmentsOverTime.getData().add(series);
+            enrollmentsOverTime.getXAxis().setLabel("Week");
+            enrollmentsOverTime.getYAxis().setLabel("Enrollment Count");
+            String[] colors = {"#4C72B0", "#55A868", "#C44E52"};
+            Platform.runLater(() -> {
+                for (int i = 0; i < series.getData().size(); i++) {
+                    XYChart.Data<String, Integer> data = series.getData().get(i);
+                    String color = colors[i % colors.length];
+                    data.getNode().setStyle("-fx-bar-fill: " + color + ";");
+                }
+            });
 
             //get students per grade level
             XYChart.Series<String, Integer> series2 = getStudentsPerGradeLevel();
-            series2.setName("Student Count");
             studentsPerGradeLevel.getData().add(series2);
+            studentsPerGradeLevel.getXAxis().setLabel("Grade Level");
+            studentsPerGradeLevel.getYAxis().setLabel("Student Count");
+            Platform.runLater(() -> {
+                for (int i = 0; i < series2.getData().size(); i++) {
+                    XYChart.Data<String, Integer> data = series2.getData().get(i);
+                    String color = colors[i % colors.length];
+                    data.getNode().setStyle("-fx-bar-fill: " + color + ";");
+                }
+            });
 
             //get count per grade evaluation
             countOfGradeEvaluations.setData(getCountPerGradeEvaluation());
@@ -251,6 +270,11 @@ public class MainController {
                 XYChart.Data<String, Integer> data = new XYChart.Data<>(String.valueOf(gradeLevel), number);
                 series.getData().add(data);
             }
+//            for (int i = 0; i < series.getData().size(); i++) {
+//                XYChart.Data<String, Integer> data = series.getData().get(i);
+//                String color = i % 2 == 0 ? "#FF0000" : "#00FF00"; // Alternate between red and green
+//                data.getNode().setStyle("-fx-bar-fill: " + color + ";");
+//            }
 
             rs.close();
             stmt.close();

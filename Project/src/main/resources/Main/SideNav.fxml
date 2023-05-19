@@ -58,7 +58,7 @@
                <children>
                   <StackPane>
                      <children>
-                        <Button fx:id="studentsButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToStudents" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Students">
+                        <Button fx:id="studentsButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToStudents" prefHeight="46.0" prefWidth="145.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Students">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0">
                                  <image>
@@ -71,7 +71,7 @@
                   </StackPane>
                   <StackPane GridPane.rowIndex="1">
                      <children>
-                        <Button fx:id="teachersButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToTeachers" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Teachers">
+                        <Button fx:id="teachersButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToTeachers" prefHeight="46.0" prefWidth="145.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Teachers">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0">
                                  <image>
@@ -84,7 +84,7 @@
                   </StackPane>
                   <StackPane GridPane.rowIndex="2">
                      <children>
-                        <Button fx:id="subjectsButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToSubjects" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Subjects">
+                        <Button fx:id="subjectsButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToSubjects" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Subjects">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0">
                                  <image>
@@ -97,7 +97,7 @@
                   </StackPane>
                   <StackPane fx:id="gradesPane" GridPane.rowIndex="3">
                      <children>
-                        <Button fx:id="gradesButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToGrades" prefHeight="45.0" prefWidth="129.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Grades">
+                        <Button fx:id="gradesButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToGrades" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Grades">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0">
                                  <image>
@@ -110,7 +110,7 @@
                   </StackPane>
                </children>
             </GridPane>
-            <AnchorPane maxHeight="2000.0" maxWidth="1024.0" minWidth="-Infinity" prefHeight="195.0" prefWidth="170.0" VBox.vgrow="ALWAYS">
+            <AnchorPane maxHeight="2000.0" maxWidth="1024.0" minWidth="-Infinity" prefHeight="195.0" prefWidth="180.0" VBox.vgrow="ALWAYS">
                <children>
                   <Button fx:id="logoutButton" alignment="CENTER" layoutX="34.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="38.0" prefWidth="102.0" style="-fx-background-color: #0b64ae;" styleClass="nav-button" text="Log Out" AnchorPane.bottomAnchor="14.799999999999983">
                      <graphic>

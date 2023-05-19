@@ -7,6 +7,7 @@ module com.example.test {
     requires java.sql;
     requires java.prefs;
     opens Models;
+
     opens com.example.test to javafx.fxml;
     opens Main to javafx.fxml;
     exports Main to javafx.graphics;

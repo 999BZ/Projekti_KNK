@@ -19,11 +19,11 @@
         <fx:include fx:id="sidenav" source="SideNav.fxml" styleClass="home" />
     </left>
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
          <children>
             <FlowPane layoutX="33.0" prefHeight="500.0" prefWidth="751.0" style="-fx-hgap: 50; -fx-vgap: 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane prefHeight="146.0" prefWidth="149.0" styleClass="card">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="140.0" prefWidth="140.0" styleClass="card">
                      <children>
                         <AnchorPane layoutX="-5.0" layoutY="96.0" prefHeight="46.0" prefWidth="161.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
@@ -50,7 +50,7 @@
                         </StackPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="146.0" prefWidth="149.0" style="-fx-background-color: #0582CA;" styleClass="card">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: #0582CA;" styleClass="card">
                      <children>
                         <AnchorPane layoutX="-5.0" layoutY="96.0" prefHeight="46.0" prefWidth="161.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
@@ -77,7 +77,7 @@
                         </StackPane>
                      </children>
                   </AnchorPane>
-                  <BarChart fx:id="studentsPerGradeLevel" prefHeight="150.0" prefWidth="350.0">
+                  <BarChart fx:id="studentsPerGradeLevel" prefHeight="180.0" prefWidth="350.0">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -85,7 +85,7 @@
                       <NumberAxis side="LEFT" />
                     </yAxis>
                   </BarChart>
-                  <StackedBarChart fx:id="enrollmentsOverTime" prefHeight="150.0" prefWidth="350.0">
+                  <StackedBarChart fx:id="enrollmentsOverTime" prefHeight="180.0" prefWidth="350.0">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" fx:id="xAxis" />
                     </xAxis>
@@ -93,7 +93,7 @@
                       <NumberAxis fx:id="yAxis" side="LEFT" />
                     </yAxis>
                   </StackedBarChart>
-                  <AnchorPane prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #154c79;" styleClass="card">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: #154c79;" styleClass="card">
                      <children>
                         <AnchorPane layoutX="-5.0" layoutY="96.0" prefHeight="46.0" prefWidth="161.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
@@ -120,7 +120,7 @@
                         </StackPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="146.0" prefWidth="149.0" style="-fx-background-color: #063970;" styleClass="card">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: #063970;" styleClass="card">
                      <children>
                         <AnchorPane layoutX="-5.0" layoutY="96.0" prefHeight="46.0" prefWidth="161.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
@@ -147,7 +147,7 @@
                         </StackPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #051923;" styleClass="card">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: #051923;" styleClass="card">
                      <children>
                         <AnchorPane layoutX="-5.0" layoutY="96.0" prefHeight="46.0" prefWidth="161.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
@@ -174,7 +174,7 @@
                         </StackPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="146.0" prefWidth="149.0" style="-fx-background-color: #006494;" styleClass="card">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: #006494;" styleClass="card">
                      <children>
                         <AnchorPane layoutX="-5.0" layoutY="96.0" prefHeight="46.0" prefWidth="161.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
@@ -201,7 +201,7 @@
                         </StackPane>
                      </children>
                   </AnchorPane>
-                  <PieChart fx:id="countOfGradeEvaluations" labelLineLength="15.0" legendSide="TOP" prefHeight="150.0" prefWidth="342.0" title="Count Of Grade Evaluations" />
+                  <PieChart fx:id="countOfGradeEvaluations" labelLineLength="15.0" legendSide="TOP" prefHeight="180.0" prefWidth="350.0" title="Count Of Grade Evaluations" />
                </children>
             </FlowPane>
          </children>

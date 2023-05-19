@@ -59,6 +59,9 @@
     -fx-text-fill: white;
 }
 .spec-button:hover{
+    -fx-border-width: 3;
+    -fx-border-color: white;
+    -fx-border-radius: 30;
     -fx-background-color: #142d72;
 }
 .spec-button:pressed{
@@ -214,6 +217,90 @@
 
 .scroll-pane .scroll-bar-thumb:pressed {
     -fx-background-color: #333333; /* Color of the scroll bar thumb when pressed */
+}
+
+
+default-color0.chart-bar {
+    -fx-bar-fill: #90E0EF;
+}
+
+default-color1.chart-bar {
+    -fx-bar-fill: #0353a4;
+}
+default-color2.chart-bar {
+    -fx-bar-fill: #1B1F47;
+}
+.default-color3.chart-bar {
+    -fx-bar-fill: #F15A59;
+}
+.default-color4.chart-bar {
+    -fx-bar-fill: #FEE440;
+}
+.default-color5.chart-bar {
+    -fx-bar-fill: #00BBF9;
+}
+.default-color6.chart-bar {
+    -fx-bar-fill: #00F5D4;
+}
+.default-color7.chart-bar {
+    -fx-bar-fill: #90E0EF;
+}
+.default-color8.chart-bar {
+    -fx-bar-fill: #0353a4;
+}
+.default-color9.chart-bar {
+    -fx-bar-fill: #1B1F47;
+}
+.default-color10.chart-bar {
+    -fx-bar-fill: #F15A59;
+}
+.default-color11.chart-bar {
+    -fx-bar-fill: #FEE440;
+}
+
+
+
+.pagination {
+    -fx-background-color: #f2f2f2;
+    -fx-padding: 5px;
+}
+
+.pagination .page-count {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.pagination .arrow-button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #ffffff;
+}
+
+.pagination .arrow-button:hover {
+    -fx-background-color: #0056b3;
+}
+
+.pagination .current-page {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #ffffff;
+}
+
+.pagination .page-number {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+}
+
+.pagination .page-number:hover {
+    -fx-background-color: #f2f2f2;
+}
+
+.pagination .previous-button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #ffffff;
+}
+
+.pagination .next-button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #ffffff;
 }
 
 
