@@ -12,10 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
@@ -57,6 +54,15 @@ public class StudentsController {
     private TableColumn<StudentUser, String> gender;
     @FXML
     private TextField searchInput;
+
+    @FXML
+    private Label lblLevel;
+    @FXML
+    private ChoiceBox<String> levelChoice;
+    @FXML
+    private Label lblParalel;
+    @FXML
+    private ChoiceBox<String> paralelChoice;
     @FXML
     private Button addStudentButton;
     private ResourceBundle bundle;
@@ -76,6 +82,23 @@ public class StudentsController {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
+            }
+        });
+        this.levelChoice.getItems().addAll("All","1","2","3","4","5","6","7","8","9","10","11","12");
+        this.paralelChoice.getItems().addAll("All","1","2","3");
+
+        this.levelChoice.setValue("All");
+        this.paralelChoice.setValue("All");
+        this.paralelChoice.setVisible(false);
+        this.lblParalel.setVisible(false);
+
+        this.levelChoice.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.equals("All")) {
+                this.paralelChoice.setVisible(true);
+                this.lblParalel.setVisible(true);
+            }else{
+                this.paralelChoice.setVisible(false);
+                this.lblParalel.setVisible(false);
             }
         });
 
@@ -132,6 +155,20 @@ public class StudentsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void filterStudents() throws SQLException {
+        String levelChoice = this.levelChoice.getValue();
+        String paralelChoice = this.paralelChoice.getValue();
+        this.studentsList.clear();
+        if(levelChoice.equals("All")){
+            this.studentsList = FetchData.getAllStudents();
+        }else if(paralelChoice.equals("All")){
+            this.studentsList = FetchData.getStudentsByGLevel(levelChoice);
+        }else {
+            this.studentsList = FetchData.getStudentsByGLevelParalel(levelChoice, paralelChoice);
+        }
+        fillTable();
     }
 
     // ...

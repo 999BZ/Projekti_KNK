@@ -220,7 +220,7 @@ public class FetchData {
         ps.setInt(1, grade);
             ResultSet rs = ps.executeQuery();
 
-            // Loop through the result set and create a Student object for each row
+            // Loop through the result set and create a Teacher object for each row
             while (rs.next()) {
                 int id = rs.getInt("T_UID");
                 String name = rs.getString("T_Name");
@@ -239,6 +239,127 @@ public class FetchData {
                 teachersList.add(teacher);
             }
         return teachersList;
+    }
+
+    public static ObservableList<TeacherUser> getTeachersBySubjectName(String subjName) {
+        ObservableList<TeacherUser> teachersList = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT T_UID, T_Name, T_Birthdate, T_Surname, T_Phone, T_Gender, T_Address, u.email, u.salted_password, u.salt, u.u_position, u.U_ID, u.u_profileimg FROM Teachers\n" +
+                    "                                JOIN Classes ON Teachers.T_UID = Classes.T_ID\n" +
+                    "                                JOIN Users u ON u.U_ID = Teachers.T_UID \n" +
+                    "                                JOIN Subjects ON Classes.Sb_ID = Subjects.Sb_ID \n" +
+                    "                WHERE Sb_Name = ?\n" +
+                    "                group by Teachers.T_UID");
+            stmt.setString(1, subjName);
+            ResultSet rs = stmt.executeQuery();
+
+            // Loop through the result set and create a Student object for each row
+            while (rs.next()) {
+                int id = rs.getInt("U_ID");
+                String name = rs.getString("T_Name");
+                String surname = rs.getString("T_Surname");
+                String birthdate = rs.getString("T_Birthdate");
+                String phone = rs.getString("T_Phone");
+                String address = rs.getString("T_Address");
+                String email = rs.getString("email");
+                String salted_password = rs.getString("salted_password");
+                String salt = rs.getString("salt");
+                String position = rs.getString("u_position");
+                String profile_pics = rs.getString("u_profileimg");
+                String gender = rs.getString("T_Gender");
+
+                TeacherUser teacher = new TeacherUser(id, email, salted_password, salt, position, profile_pics, name, surname, birthdate, phone, address,gender);
+                teachersList.add(teacher);
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return teachersList;
+    }
+
+    public static ObservableList<StudentUser> getStudentsByGLevel(String Glevel) {
+        int Level = Integer.parseInt(Glevel);
+        ObservableList<StudentUser> studentsList = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT S_UID, S_Name, S_Surname, S_Paralel, S_Birthdate, S_Phone, S_GLevel, S_Gender, S_Address, u.email, u.salted_password, u.salt, u.u_position, u.U_ID, u.u_profileimg FROM Students\n" +
+                    "                                JOIN Users u ON u.U_ID = Students.S_UID \n" +
+                    "                WHERE S_GLevel = ?\n" +
+                    "                group by Students.S_UID");
+            stmt.setInt(1, Level);
+            ResultSet rs = stmt.executeQuery();
+
+            // Loop through the result set and create a Student object for each row
+            while (rs.next()) {
+                int id = rs.getInt("S_UID");
+                String name = rs.getString("S_Name");
+                String surname = rs.getString("S_Surname");
+                String birthdate = rs.getString("S_Birthdate");
+                int year = rs.getInt("S_GLevel");
+                String phone = rs.getString("S_Phone");
+                String address = rs.getString("S_Address");
+                int gradeLevel = rs.getInt("S_GLevel");
+                int paralel = rs.getInt("S_Paralel");
+                String email = rs.getString("email");
+                String salted_password = rs.getString("salted_password");
+                String salt = rs.getString("salt");
+                String position = rs.getString("u_position");
+                String profile_pic = rs.getString("u_profileimg");
+                String gender = rs.getString("S_Gender");
+
+                StudentUser student = new StudentUser(id, email, salted_password, salt, position, profile_pic, name, surname, birthdate, phone, address, year, paralel, gender);
+                studentsList.add(student);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return studentsList;
+    }
+
+    public static ObservableList<StudentUser> getStudentsByGLevelParalel(String Glevel,String Paralel) {
+        int Level = Integer.parseInt(Glevel);
+        int SParalel = Integer.parseInt(Paralel);
+        ObservableList<StudentUser> studentsList = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT S_UID, S_Name, S_Surname, S_Paralel, S_Birthdate, S_Phone, S_GLevel, S_Gender, S_Address, u.email, u.salted_password, u.salt, u.u_position, u.U_ID, u.u_profileimg FROM Students\n" +
+                    "                                JOIN Users u ON u.U_ID = Students.S_UID \n" +
+                    "                WHERE S_GLevel = ? AND S_Paralel = ?\n" +
+                    "                group by Students.S_UID");
+            stmt.setInt(1, Level);
+            stmt.setInt(2, SParalel);
+            ResultSet rs = stmt.executeQuery();
+
+            // Loop through the result set and create a Student object for each row
+            while (rs.next()) {
+                int id = rs.getInt("S_UID");
+                String name = rs.getString("S_Name");
+                String surname = rs.getString("S_Surname");
+                String birthdate = rs.getString("S_Birthdate");
+                int year = rs.getInt("S_GLevel");
+                String phone = rs.getString("S_Phone");
+                String address = rs.getString("S_Address");
+                int gradeLevel = rs.getInt("S_GLevel");
+                int paralel = rs.getInt("S_Paralel");
+                String email = rs.getString("email");
+                String salted_password = rs.getString("salted_password");
+                String salt = rs.getString("salt");
+                String position = rs.getString("u_position");
+                String profile_pic = rs.getString("u_profileimg");
+                String gender = rs.getString("S_Gender");
+
+                StudentUser student = new StudentUser(id, email, salted_password, salt, position, profile_pic, name, surname, birthdate, phone, address, year, paralel, gender);
+                studentsList.add(student);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return studentsList;
     }
 
     public static int getStudentGrade(StudentUser student, Subject subject) throws SQLException {

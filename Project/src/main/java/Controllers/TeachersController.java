@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.StudentUser;
+import Models.Subject;
 import Models.TeacherUser;
 import Services.FetchData;
 import Services.LanguageUtil;
@@ -11,10 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
@@ -71,12 +69,24 @@ public class TeachersController {
     private TextField searchInput;
     @FXML
     private Button addTeacherButton;
+
+    @FXML
+    private ChoiceBox<String> subjectChoice;
     private ResourceBundle bundle;
+
+    private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
 
     private ObservableList<TeacherUser> teachersList = FXCollections.observableArrayList();
     public void initialize() throws SQLException {
         teachersList = FetchData.getAllTeachers();
         fillTable();
+        this.subjectsList=FetchData.getAllSubjects();
+
+        this.subjectChoice.getItems().add("All");
+        this.subjectChoice.setValue("All");
+        for(Subject s : this.subjectsList){
+            this.subjectChoice.getItems().add(s.getName());
+        }
 
         if (LanguageUtil.getLanguage().equals("Albanian")){
             setAlbanian();
@@ -103,6 +113,7 @@ public class TeachersController {
                 }
             }
         });
+
     }
     @FXML
     public void searchTeachers(){
@@ -115,6 +126,16 @@ public class TeachersController {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void filterTeachers() throws SQLException {
+        String filterSubject = this.subjectChoice.getValue();
+        if(filterSubject.equals("All")){
+            teachersList = FetchData.getAllTeachers();
+        }else{
+            teachersList = FetchData.getTeachersBySubjectName(filterSubject);
+        }
+        fillTable();
     }
 
 
