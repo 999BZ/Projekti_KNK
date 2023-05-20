@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterStudentsController">
+<BorderPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterStudentsController">
     <left>
         <fx:include source="SideNav.fxml" styleClass="students" />
     </left>
@@ -106,22 +106,26 @@
                               </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label fx:id="year" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="46.0" text="Year:" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                                 <AnchorPane prefHeight="36.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
                                     <children>
-                                        <Spinner fx:id="txtYear" layoutX="18.0" prefHeight="28.0" prefWidth="57.0" />
-                              <ImageView fx:id="gradeLvlw" fitHeight="21.0" fitWidth="21.0" layoutX="78.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                        <Spinner fx:id="txtYear" layoutX="-20.0" prefHeight="28.0" prefWidth="59.0" />
+                              <ImageView fx:id="gradeLvlw" fitHeight="15.0" fitWidth="15.0" layoutX="40.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
                                  </image>
                               </ImageView>
-                              <Spinner fx:id="txtParalel" layoutX="107.0" prefHeight="28.0" prefWidth="52.0" />
-                              <ImageView fx:id="txtParalelw" fitHeight="21.0" fitWidth="21.0" layoutX="162.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                              <Spinner fx:id="txtParalel" layoutX="56.0" prefHeight="28.0" prefWidth="58.0" />
+                              <ImageView fx:id="txtParalelw" fitHeight="15.0" fitWidth="17.0" layoutX="115.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
                                  </image>
                               </ImageView>
-                              <ChoiceBox fx:id="genderChoice" layoutX="187.0" layoutY="1.0" prefHeight="27.0" prefWidth="37.0" style="-fx-background-color: white; -fx-padding: -5;" styleClass="textInput" />
+                              <ChoiceBox fx:id="genderChoice" layoutX="132.0" layoutY="1.0" prefHeight="27.0" prefWidth="42.0" style="-fx-background-color: white; -fx-padding: -5;" styleClass="textInput" />
+                              <ImageView fx:id="genderW" fitHeight="16.0" fitWidth="19.0" layoutX="175.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/warning.png" />
+                                 </image>
+                              </ImageView>
                                     </children>
                                 </AnchorPane>
                                 <Label fx:id="email" text="Email:" GridPane.rowIndex="13" />
@@ -152,7 +156,7 @@
                                 </AnchorPane>
                         <AnchorPane GridPane.rowIndex="16">
                            <children>
-                                    <Button fx:id="registerBtn" layoutX="32.0" layoutY="-15.0" mnemonicParsing="false" onAction="#registerClick" prefHeight="30.0" prefWidth="85.0" styleClass="spec-button" text="Register">
+                                    <Button fx:id="registerBtn" alignment="CENTER" layoutX="23.0" layoutY="-15.0" mnemonicParsing="false" onAction="#registerClick" prefHeight="30.0" prefWidth="108.0" styleClass="spec-button" text="Register">
                                  <graphic>
                                     <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -167,21 +171,22 @@
                            <children>
                               <AnchorPane layoutX="39.0" layoutY="1.0">
                                  <children>
-                                          <Button fx:id="reset" layoutY="-15.0" mnemonicParsing="false" onAction="#cancelClick" prefHeight="30.0" prefWidth="70.0" styleClass="spec-button" text="Reset">
+                                          <Button fx:id="reset" alignment="CENTER" layoutX="-33.0" layoutY="-15.0" mnemonicParsing="false" onAction="#cancelClick" prefHeight="30.0" prefWidth="111.0" styleClass="spec-button" text="Reset">
                                        <graphic>
                                           <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../Images/reset.png" />
                                              </image>
                                           </ImageView>
-                                       </graphic></Button>
+                                       </graphic>
+                                    </Button>
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowSpan="6">
                            <children>
-                              <Button fx:id="addProfilePic" layoutX="100.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic">
+                              <Button fx:id="addProfilePic" alignment="CENTER" layoutX="92.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleImageUploadButton" prefHeight="30.0" prefWidth="134.0" styleClass="spec-button" text="Add Profile Pic">
                                  <graphic>
                                     <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -190,7 +195,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Label fx:id="regStudent" layoutX="70.0" prefHeight="42.0" prefWidth="178.0" styleClass="card-header" text="Register a Student">
+                              <Label fx:id="regStudent" alignment="CENTER" layoutX="64.0" prefHeight="42.0" prefWidth="190.0" styleClass="card-header" text="Register a Student">
                                  <font>
                                     <Font name="Microsoft Tai Le" size="14.0" />
                                  </font>
@@ -215,22 +220,18 @@
                         </AnchorPane>
                         <AnchorPane fx:id="years" GridPane.columnIndex="1" GridPane.rowIndex="11">
                            <children>
-                              <Label fx:id="paralel" alignment="CENTER_RIGHT" layoutX="99.0" layoutY="7.0" prefHeight="18.0" prefWidth="46.0" text="Paralel:" />
-                              <Label fx:id="gender" layoutX="185.0" layoutY="8.0" text="Gender:" />
+                              <Label fx:id="paralel" alignment="CENTER" layoutX="53.0" layoutY="10.0" prefHeight="18.0" prefWidth="46.0" text="Paralel:" />
+                              <Label fx:id="gender" layoutX="135.0" layoutY="10.0" text="Gender:" />
+                                      <Label fx:id="year" alignment="CENTER" layoutX="-22.0" layoutY="10.0" prefHeight="18.0" prefWidth="46.0" text="Year:" />
                            </children>
                         </AnchorPane>
                             </children>
                         </GridPane>
-                  <Label fx:id="w" alignment="CENTER" layoutY="519.0" prefHeight="20.0" prefWidth="199.0" text="Please fill out all required fields" textFill="RED">
+                  <Label fx:id="w" alignment="CENTER" layoutX="-9.0" layoutY="519.0" prefHeight="20.0" prefWidth="199.0" text="Please fill out all required fields" textFill="RED">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="genderW" fitHeight="21.0" fitWidth="21.0" layoutX="432.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/warning.png" />
-                     </image>
-                  </ImageView>
                     </children>
                 </AnchorPane>
             </children>

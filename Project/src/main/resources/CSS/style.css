@@ -59,9 +59,6 @@
     -fx-text-fill: white;
 }
 .spec-button:hover{
-    -fx-border-width: 3;
-    -fx-border-color: white;
-    -fx-border-radius: 30;
     -fx-background-color: #142d72;
 }
 .spec-button:pressed{

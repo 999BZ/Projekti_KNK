@@ -19,17 +19,17 @@
             <TableView fx:id="studentsTable" layoutY="100.0" prefHeight="400.0" prefWidth="750.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <columns>
                   <TableColumn fx:id="name" editable="false" prefWidth="88.0" resizable="false" text="Name" />
-                  <TableColumn fx:id="surname" prefWidth="94.0" text="Surname" />
-                  <TableColumn fx:id="birthdate" prefWidth="79.0" text="Birthday" />
-                  <TableColumn fx:id="year" prefWidth="46.0" text="G.Lvl" />
-                  <TableColumn fx:id="paralel" prefWidth="38.0" text="Prl." />
-                  <TableColumn fx:id="phone" prefWidth="105.0" text="Phone Number" />
-                  <TableColumn fx:id="email" prefWidth="163.0" text="Email" />
-                  <TableColumn fx:id="address" prefWidth="72.0" text="Address" />
-                  <TableColumn fx:id="gender" prefWidth="64.0" text="Gender" />
+                  <TableColumn fx:id="surname" prefWidth="88.0" text="Surname" />
+                  <TableColumn fx:id="birthdate" prefWidth="88.0" text="Birthday" />
+                  <TableColumn fx:id="year" prefWidth="45.0" text="G.Lvl" />
+                  <TableColumn fx:id="paralel" prefWidth="45.0" text="Prl." />
+                  <TableColumn fx:id="phone" prefWidth="90.0" text="Phone Number" />
+                  <TableColumn fx:id="email" prefWidth="150.0" text="Email" />
+                  <TableColumn fx:id="address" prefWidth="90.0" text="Address" />
+                  <TableColumn fx:id="gender" prefWidth="58.39990234375" text="Gender" />
                </columns>
             </TableView>
-            <Button fx:id="addStudentButton" layoutX="620.0" layoutY="510.0" mnemonicParsing="false" onAction="#goToAddStudents" prefHeight="30.0" prefWidth="129.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Student">
+            <Button fx:id="addStudentButton" layoutX="621.0" layoutY="510.0" mnemonicParsing="false" onAction="#goToAddStudents" prefHeight="30.0" prefWidth="129.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Student">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>

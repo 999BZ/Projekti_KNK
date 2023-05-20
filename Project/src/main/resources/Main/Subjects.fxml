@@ -24,18 +24,9 @@
                   <VBox fx:id="subjectCards" alignment="CENTER" prefHeight="392.0" prefWidth="750.0" styleClass="scroll-pane" />
                </content>
             </ScrollPane>
-            <Button fx:id="addSubjectButton" alignment="CENTER" layoutX="668.0" layoutY="511.0" mnemonicParsing="false" onAction="#openAddSubjects" prefHeight="27.0" prefWidth="106.0" scaleZ="30.0" styleClass="spec-button" text="Add Subject">
-               <graphic>
-                  <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/add.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <AnchorPane layoutX="37.0" layoutY="50.0" prefHeight="27.0" prefWidth="725.0">
                <children>
-                  <Button fx:id="clearFilters" alignment="CENTER" layoutX="547.0" mnemonicParsing="false" onAction="#clearFilters" prefHeight="27.0" prefWidth="91.0" styleClass="spec-button" text="View All">
+                  <Button fx:id="clearFilters" alignment="CENTER" layoutX="545.0" mnemonicParsing="false" onAction="#clearFilters" prefHeight="27.0" prefWidth="103.0" styleClass="spec-button" text="View All">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -44,9 +35,9 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ChoiceBox fx:id="teacherFilter" layoutX="179.0" layoutY="1.0" prefHeight="26.0" prefWidth="142.0" />
-                  <ChoiceBox fx:id="gradeFilter" layoutX="64.0" layoutY="-1.0" onInputMethodTextChanged="#teacherDynamicOptions" prefHeight="26.0" prefWidth="53.0" />
-                  <Button fx:id="filterButton" alignment="CENTER" layoutX="647.0" mnemonicParsing="false" onAction="#filterSubjects" prefHeight="27.0" prefWidth="78.0" styleClass="spec-button" text="Filter">
+                  <ChoiceBox fx:id="teacherFilter" layoutX="196.0" layoutY="1.0" prefHeight="26.0" prefWidth="134.0" />
+                  <ChoiceBox fx:id="gradeFilter" layoutX="69.0" layoutY="-1.0" onInputMethodTextChanged="#teacherDynamicOptions" prefHeight="26.0" prefWidth="53.0" />
+                  <Button fx:id="filterButton" alignment="CENTER" layoutX="652.0" mnemonicParsing="false" onAction="#filterSubjects" prefHeight="27.0" prefWidth="85.0" styleClass="spec-button" text="Filter">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,18 +46,18 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Label fx:id="teacher" layoutX="126.0" layoutY="5.0" text="Teacher:">
+                  <Label fx:id="teacher" alignment="CENTER" layoutX="123.0" layoutY="4.0" prefHeight="18.0" prefWidth="73.0" text="Teacher:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="obligatoryFilter" layoutX="413.0" layoutY="1.0" prefHeight="26.0" prefWidth="122.0" />
-                  <Label fx:id="obligatory" layoutX="340.0" layoutY="4.0" prefHeight="18.0" prefWidth="72.0" text="Obligatory:">
+                  <ChoiceBox fx:id="obligatoryFilter" layoutX="423.0" prefHeight="26.0" prefWidth="111.0" />
+                  <Label fx:id="obligatory" alignment="CENTER" layoutX="331.0" layoutY="5.0" prefHeight="18.0" prefWidth="90.0" text="Obligatory:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="gradeLevel" layoutX="-19.0" layoutY="4.0" prefHeight="18.0" prefWidth="80.0" text="Grade Level:">
+                  <Label fx:id="gradeLevel" alignment="CENTER" layoutX="-23.0" layoutY="4.0" prefHeight="18.0" prefWidth="93.0" text="Grade Level:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -74,6 +65,15 @@
                   <Pagination fx:id="subjectPagination" layoutX="101.0" layoutY="460.0" prefWidth="500.0" />
                </children>
             </AnchorPane>
+            <Button fx:id="addSubjectButton" alignment="CENTER" layoutX="661.0" layoutY="511.0" mnemonicParsing="false" onAction="#openAddSubjects" prefHeight="27.0" prefWidth="113.0" scaleZ="30.0" styleClass="spec-button" text="Add Subject">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </center>

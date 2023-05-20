@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="286.0" prefWidth="550.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AssignSubjectController">
+<AnchorPane prefHeight="283.0" prefWidth="550.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AssignSubjectController">
    <children>
       <GridPane layoutX="275.0" layoutY="34.0" prefHeight="218.0" prefWidth="256.0" style="-fx-border-color: #669bbc; -fx-border-radius: 20;">
          <columnConstraints>
@@ -30,7 +30,7 @@
          <children>
             <StackPane GridPane.rowIndex="3">
                <children>
-                  <Button fx:id="assignButton" mnemonicParsing="false" onAction="#handleAssignButton" prefHeight="30.0" prefWidth="86.0" styleClass="spec-button" text="Assign">
+                  <Button fx:id="assignButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleAssignButton" prefHeight="30.0" prefWidth="98.0" styleClass="spec-button" text="Assign">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -43,7 +43,7 @@
             </StackPane>
             <StackPane GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="80.0" styleClass="danger-button" text="Cancel">
+                  <Button fx:id="cancelButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="94.0" styleClass="danger-button" text="Cancel">
                      <graphic>
                         <ImageView blendMode="COLOR_DODGE" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -56,7 +56,7 @@
             </StackPane>
             <StackPane prefHeight="150.0" prefWidth="312.0" GridPane.columnSpan="2">
                <children>
-                  <Label fx:id="header" alignment="CENTER" prefHeight="38.0" prefWidth="94.0" style="-fx-padding: 0;" styleClass="card-header" text="Assign">
+                  <Label fx:id="header" alignment="CENTER" prefHeight="38.0" prefWidth="102.0" style="-fx-padding: 0;" styleClass="card-header" text="Assign">
                      <graphic>
                         <ImageView blendMode="COLOR_DODGE" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -69,12 +69,12 @@
             </StackPane>
             <AnchorPane GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="assignTeacher" layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="86.0" text="Assign Teacher:" />
+                  <Label fx:id="assignTeacher" alignment="CENTER" layoutX="-2.0" layoutY="12.0" prefHeight="18.0" prefWidth="110.0" text="Assign Teacher:" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="54.0" prefWidth="113.0" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="classParalel" layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="86.0" text="Class Paralel:" />
+                  <Label fx:id="classParalel" alignment="CENTER" layoutX="-2.0" layoutY="12.0" prefHeight="18.0" prefWidth="102.0" text="Class Paralel:" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -99,7 +99,7 @@
             </AnchorPane>
          </children>
       </GridPane>
-      <Label fx:id="alreadyAssignedTo" alignment="CENTER" layoutX="73.0" layoutY="34.0" prefHeight="30.0" prefWidth="135.0" style="-fx-label-padding: 5; -fx-background-color: #1C558E; -fx-background-radius: 20;" text="Already assigned to: " textFill="WHITE" wrapText="true">
+      <Label fx:id="alreadyAssignedTo" alignment="CENTER" layoutX="68.0" layoutY="34.0" prefHeight="30.0" prefWidth="145.0" style="-fx-label-padding: 5; -fx-background-color: #1C558E; -fx-background-radius: 20;" text="Already assigned to: " textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
@@ -113,7 +113,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label fx:id="teacherWasAssigned" layoutX="282.0" layoutY="257.0" text="The teacher is already assigned to the paralel!" textFill="#ff0202" />
-      <Label fx:id="teacherAssigned" layoutX="303.0" layoutY="14.0" text="The teacher was succesfully assigned!" textFill="#46d761" />
+      <Label fx:id="teacherWasAssigned" alignment="CENTER" layoutX="255.0" layoutY="258.0" prefHeight="18.0" prefWidth="293.0" text="The teacher is already assigned to the paralel!" textFill="#ff0202" />
+      <Label fx:id="teacherAssigned" alignment="CENTER" layoutX="270.0" layoutY="14.0" prefHeight="18.0" prefWidth="262.0" text="The teacher was succesfully assigned!" textFill="#46d761" />
    </children>
 </AnchorPane>

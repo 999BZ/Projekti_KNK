@@ -21,7 +21,7 @@
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
          <children>
-            <FlowPane layoutX="33.0" prefHeight="500.0" prefWidth="751.0" style="-fx-hgap: 50; -fx-vgap: 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+            <FlowPane layoutX="14.0" layoutY="20.0" prefHeight="550.0" prefWidth="330.0" style="-fx-hgap: 50; -fx-vgap: 70;" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="20.0">
                <children>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="140.0" prefWidth="140.0" styleClass="card">
                      <children>
@@ -32,9 +32,9 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="users" layoutX="67.0" layoutY="13.0" text="Users">
+                              <Label fx:id="users" alignment="CENTER" layoutX="49.0" layoutY="13.0" prefHeight="19.0" prefWidth="84.0" text="Users">
                                  <font>
-                                    <Font name="Berlin Sans FB" size="17.0" />
+                                    <Font name="Berlin Sans FB" size="16.0" />
                                  </font>
                               </Label>
                            </children>
@@ -59,9 +59,9 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="students" layoutX="64.0" layoutY="13.0" text="Students" textFill="WHITE">
+                              <Label fx:id="students" alignment="CENTER" layoutX="44.0" layoutY="13.0" prefHeight="19.0" prefWidth="86.0" text="Students" textFill="WHITE">
                                  <font>
-                                    <Font name="Berlin Sans FB" size="17.0" />
+                                    <Font name="Berlin Sans FB" size="16.0" />
                                  </font>
                               </Label>
                            </children>
@@ -77,22 +77,6 @@
                         </StackPane>
                      </children>
                   </AnchorPane>
-                  <BarChart fx:id="studentsPerGradeLevel" prefHeight="180.0" prefWidth="350.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </BarChart>
-                  <StackedBarChart fx:id="enrollmentsOverTime" prefHeight="180.0" prefWidth="350.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" fx:id="xAxis" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis fx:id="yAxis" side="LEFT" />
-                    </yAxis>
-                  </StackedBarChart>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: #154c79;" styleClass="card">
                      <children>
                         <AnchorPane layoutX="-5.0" layoutY="96.0" prefHeight="46.0" prefWidth="161.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -102,9 +86,9 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="teachers" layoutX="64.0" layoutY="13.0" text="Teachers" textFill="WHITE">
+                              <Label fx:id="teachers" alignment="CENTER" layoutX="50.0" layoutY="13.0" prefHeight="19.0" prefWidth="75.0" text="Teachers" textFill="WHITE">
                                  <font>
-                                    <Font name="Berlin Sans FB" size="17.0" />
+                                    <Font name="Berlin Sans FB" size="16.0" />
                                  </font>
                               </Label>
                            </children>
@@ -129,9 +113,9 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="subjects" layoutX="64.0" layoutY="13.0" text="Subjects" textFill="WHITE">
+                              <Label fx:id="subjects" alignment="CENTER" layoutX="51.0" layoutY="13.0" prefHeight="19.0" prefWidth="74.0" text="Subjects" textFill="WHITE">
                                  <font>
-                                    <Font name="Berlin Sans FB" size="17.0" />
+                                    <Font name="Berlin Sans FB" size="16.0" />
                                  </font>
                               </Label>
                            </children>
@@ -156,9 +140,9 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="grades" layoutX="64.0" layoutY="13.0" text="Grades" textFill="WHITE">
+                              <Label fx:id="grades" alignment="CENTER" layoutX="55.0" layoutY="13.0" prefHeight="19.0" prefWidth="70.0" text="Grades" textFill="WHITE">
                                  <font>
-                                    <Font name="Berlin Sans FB" size="17.0" />
+                                    <Font name="Berlin Sans FB" size="16.0" />
                                  </font>
                               </Label>
                            </children>
@@ -183,9 +167,9 @@
                                     <Font name="Microsoft New Tai Lue Bold" size="10.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="enrollments" layoutX="53.0" layoutY="13.0" text="Enrollments" textFill="WHITE">
+                              <Label fx:id="enrollments" alignment="CENTER" layoutX="44.0" layoutY="13.0" prefHeight="19.0" prefWidth="92.0" text="Enrollments" textFill="WHITE">
                                  <font>
-                                    <Font name="Berlin Sans FB" size="17.0" />
+                                    <Font name="Berlin Sans FB" size="16.0" />
                                  </font>
                               </Label>
                            </children>
@@ -201,7 +185,27 @@
                         </StackPane>
                      </children>
                   </AnchorPane>
+               </children>
+            </FlowPane>
+            <FlowPane layoutX="399.0" prefHeight="600.0" prefWidth="330.0" style="-fx-hgap: 50; -fx-vgap: 30;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <BarChart fx:id="studentsPerGradeLevel" prefHeight="180.0" prefWidth="350.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
                   <PieChart fx:id="countOfGradeEvaluations" labelLineLength="15.0" legendSide="TOP" prefHeight="180.0" prefWidth="350.0" title="Count Of Grade Evaluations" />
+                  <StackedBarChart fx:id="enrollmentsOverTime" prefHeight="180.0" prefWidth="350.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="yAxis" side="LEFT" />
+                    </yAxis>
+                  </StackedBarChart>
                </children>
             </FlowPane>
          </children>

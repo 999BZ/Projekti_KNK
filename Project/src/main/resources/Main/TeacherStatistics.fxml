@@ -5,13 +5,16 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherStatisticsController">
+<AnchorPane prefHeight="450.0" prefWidth="600.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherStatisticsController">
    <children>
-      <BarChart fx:id="averageGradePerSubject" layoutY="14.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.topAnchor="25.0">
+      <BarChart fx:id="averageGradePerSubject" layoutX="-3.0" layoutY="35.0" prefHeight="180.0" prefWidth="400.0" AnchorPane.topAnchor="35.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -19,13 +22,13 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <ProgressBar fx:id="percentageOfStudentsGraded" layoutX="419.0" layoutY="116.0" prefHeight="18.0" prefWidth="154.0" progress="0.0" />
-      <Label layoutX="88.0" layoutY="5.0" text="Average Grade Per Subjects Taught">
+      <ProgressBar fx:id="percentageOfStudentsGraded" layoutX="419.0" layoutY="323.0" prefHeight="18.0" prefWidth="154.0" progress="0.0" />
+      <Label alignment="CENTER" layoutX="35.0" layoutY="4.0" prefHeight="20.0" prefWidth="324.0" text="Average Grade Per Subjects Taught">
          <font>
-            <Font name="Berlin Sans FB" size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
-      <BarChart fx:id="enrollmentsPerClass" layoutY="242.0" prefHeight="200.0" prefWidth="400.0">
+      <BarChart fx:id="enrollmentsPerClass" layoutX="-3.0" layoutY="251.0" prefHeight="180.0" prefWidth="400.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -33,15 +36,42 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <Label layoutX="74.0" layoutY="215.0" text="Students Enrolled Per Each Class Taught">
+      <Label alignment="CENTER" layoutX="44.0" layoutY="215.0" prefHeight="20.0" prefWidth="306.0" text="Students Enrolled Per Each Class Taught">
          <font>
-            <Font name="Berlin Sans FB" size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="400.0" layoutY="146.0" text="Students Graded Percentage">
+      <Label alignment="CENTER" layoutX="430.0" layoutY="351.0" prefHeight="20.0" prefWidth="131.0" text="Students Graded ">
          <font>
-            <Font name="Berlin Sans FB" size="16.0" />
+            <Font size="14.0" />
          </font>
       </Label>
+      <AnchorPane layoutX="426.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="140.0" prefWidth="140.0" styleClass="card">
+         <children>
+            <AnchorPane layoutX="-5.0" layoutY="96.0" prefHeight="46.0" prefWidth="161.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label fx:id="nrOfStudents" alignment="CENTER" layoutX="6.0" layoutY="6.0" prefHeight="34.0" prefWidth="38.0" style="-fx-background-color: #3570ABFF; -fx-background-radius: 10; -fx-label-padding: 8;" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft New Tai Lue Bold" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="users" alignment="CENTER" layoutX="49.0" layoutY="13.0" prefHeight="19.0" prefWidth="84.0" text="Students">
+                     <font>
+                        <Font name="Berlin Sans FB" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <StackPane layoutY="-12.0" prefHeight="104.0" prefWidth="140.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="77.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/users.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

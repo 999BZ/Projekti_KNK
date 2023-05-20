@@ -25,7 +25,7 @@
             </ScrollPane>
             <AnchorPane layoutX="37.0" layoutY="44.0" prefHeight="27.0" prefWidth="725.0">
                <children>
-                  <Button fx:id="clearFilters" alignment="CENTER" layoutX="619.0" mnemonicParsing="false" onAction="#clearFilters" prefHeight="27.0" prefWidth="91.0" styleClass="spec-button" text="View All">
+                  <Button fx:id="clearFilters" alignment="CENTER" layoutX="591.0" mnemonicParsing="false" onAction="#clearFilters" prefHeight="27.0" prefWidth="119.0" styleClass="spec-button" text="View All">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -35,7 +35,7 @@
                      </graphic>
                   </Button>
                   <ChoiceBox fx:id="subjectFilter" layoutX="116.0" layoutY="1.0" prefWidth="150.0" />
-                  <Label fx:id="subject" layoutX="46.0" layoutY="5.0" text="Subject:">
+                  <Label fx:id="subject" alignment="CENTER" layoutX="14.0" layoutY="5.0" prefHeight="18.0" prefWidth="78.0" text="Subject:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

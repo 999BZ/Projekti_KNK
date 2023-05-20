@@ -13,14 +13,14 @@
    <children>
       <StackPane layoutY="-2.0" prefHeight="30.0" prefWidth="302.0">
          <children>
-            <Label fx:id="chooseElectiveSubject" text="Choose Elective Subject:">
+            <Label fx:id="chooseElectiveSubject" alignment="CENTER" prefHeight="23.0" prefWidth="230.0" text="Choose Elective Subject:">
                <font>
                   <Font name="Microsoft New Tai Lue Bold" size="16.0" />
                </font>
             </Label>
          </children>
       </StackPane>
-      <Button fx:id="confirmButton" layoutX="14.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleConfirmButton" prefHeight="22.0" prefWidth="98.0" styleClass="spec-button" text="Confirm">
+      <Button fx:id="confirmButton" alignment="CENTER" layoutX="14.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleConfirmButton" prefHeight="30.0" prefWidth="115.0" styleClass="spec-button" text="Confirm">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -29,7 +29,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="cancelButton" layoutX="204.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="11.0" prefWidth="84.0" styleClass="danger-button" text="Cancel">
+      <Button fx:id="cancelButton" alignment="CENTER" layoutX="185.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="103.0" styleClass="danger-button" text="Cancel">
          <graphic>
             <ImageView blendMode="COLOR_DODGE" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -17,7 +17,7 @@
                      <graphic>
                         <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/subject.png" />
+                              <Image url="@../Images/name.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -32,8 +32,8 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <Label fx:id="subjectName2" alignment="CENTER" layoutX="6.0" prefHeight="28.0" prefWidth="47.0" text="Subject:" />
-                  <Label fx:id="lblGrade" layoutX="6.0" layoutY="51.0" prefHeight="28.0" prefWidth="154.0" text="Grade:                                  " />
+                  <Label fx:id="subjectName2" alignment="CENTER" prefHeight="28.0" prefWidth="58.0" text="Subject:" />
+                  <Label fx:id="lblGrade" alignment="CENTER" layoutX="-1.0" layoutY="51.0" prefHeight="28.0" prefWidth="58.0" text="Grade:  " />
                </children>
             </AnchorPane>
          </children>

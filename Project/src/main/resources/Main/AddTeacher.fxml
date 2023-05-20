@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" prefHeight="550.0" prefWidth="861.0" styleClass="teachers" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterTeachersController">
+<BorderPane fx:id="rootPane" prefHeight="650.0" prefWidth="1000.0" styleClass="teachers" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterTeachersController">
     <center>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../CSS/style.css" BorderPane.alignment="CENTER">
             <children>
@@ -139,7 +139,7 @@
                                 </AnchorPane>
                         <AnchorPane GridPane.rowIndex="16">
                            <children>
-                                    <Button fx:id="register" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" onAction="#registerClick" styleClass="spec-button" text="Register">
+                                    <Button fx:id="register" alignment="CENTER" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" onAction="#registerClick" prefHeight="30.0" prefWidth="102.0" styleClass="spec-button" text="Register">
                                  <graphic>
                                     <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -151,7 +151,7 @@
                         </AnchorPane>
                         <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="16">
                            <children>
-                                    <Button fx:id="reset" layoutX="36.0" layoutY="2.0" mnemonicParsing="false" onAction="#cancelClick" styleClass="spec-button" text="Reset">
+                                    <Button fx:id="reset" alignment="CENTER" layoutX="18.0" layoutY="2.0" mnemonicParsing="false" onAction="#cancelClick" prefHeight="30.0" prefWidth="88.0" styleClass="spec-button" text="Reset">
                                  <graphic>
                                     <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -163,7 +163,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowSpan="6">
                            <children>
-                              <Button fx:id="addProfilePic" layoutX="86.0" layoutY="161.0" mnemonicParsing="false" onAction="#handleImageUploadButton" styleClass="spec-button" text="Add Profile Pic">
+                              <Button fx:id="addProfilePic" alignment="CENTER" layoutX="72.0" layoutY="163.0" mnemonicParsing="false" onAction="#handleImageUploadButton" prefHeight="30.0" prefWidth="146.0" styleClass="spec-button" text="Add Profile Pic">
                                  <graphic>
                                     <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -173,7 +173,7 @@
                                  </graphic>
                               </Button>
                               <StackPane layoutX="91.0" layoutY="61.0" />
-                                    <Label fx:id="regTeacher" layoutX="56.0" prefHeight="43.0" prefWidth="180.0" styleClass="card-header" text="Register a Teacher">
+                                    <Label fx:id="regTeacher" alignment="CENTER" layoutX="50.0" prefHeight="43.0" prefWidth="190.0" styleClass="card-header" text="Register a Teacher">
                                         <font>
                                             <Font name="Microsoft New Tai Lue" size="14.0" />
                                         </font>

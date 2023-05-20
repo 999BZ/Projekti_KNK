@@ -132,7 +132,7 @@ public class AssignSubjectController implements Initializable {
                 }
                 return new SimpleStringProperty(teacher.getName()+ " "+ teacher.getSurname());
             });
-            this.assignedParalel.setCellValueFactory(new PropertyValueFactory<>("parallel"));
+            this.assignedParalel.setCellValueFactory(new PropertyValueFactory<>("paralel"));
             assignedTo.setItems(this.classesList);
         }
     }

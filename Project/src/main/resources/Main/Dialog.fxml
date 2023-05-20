@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="dialogPane" prefHeight="150.0" prefWidth="300.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DialogController">
    <children>
-      <Button fx:id="confirmButton" layoutX="14.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleConfirmButton" prefHeight="22.0" prefWidth="98.0" styleClass="spec-button" text="Confirm">
+      <Button fx:id="confirmButton" alignment="CENTER" layoutX="14.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleConfirmButton" prefHeight="30.0" prefWidth="107.0" styleClass="spec-button" text="Confirm">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -17,7 +17,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="cancelButton" layoutX="202.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="11.0" prefWidth="84.0" styleClass="danger-button" text="Cancel">
+      <Button fx:id="cancelButton" alignment="CENTER" layoutX="192.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="94.0" styleClass="danger-button" text="Cancel">
          <graphic>
             <ImageView blendMode="COLOR_DODGE" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>

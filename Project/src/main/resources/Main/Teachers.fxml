@@ -18,16 +18,16 @@
          <children>
             <TableView fx:id="teachersTable" fixedCellSize="0.0" layoutY="100.0" prefHeight="400.0" prefWidth="750.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <columns>
-                  <TableColumn fx:id="name" prefWidth="94.0" text="Name" />
-                  <TableColumn fx:id="surname" prefWidth="96.0" text="Surname" />
-                  <TableColumn fx:id="birthdate" prefWidth="99.0" text="Birthday" />
-                  <TableColumn fx:id="phone" prefWidth="124.0" text="Phone Number" />
-                  <TableColumn fx:id="email" minWidth="0.0" prefWidth="168.0" text="Email" />
-                  <TableColumn fx:id="address" prefWidth="105.0" text="Address" />
-                  <TableColumn fx:id="gender" prefWidth="63.0" text="Gender" />
+                  <TableColumn fx:id="name" prefWidth="88.0" text="Name" />
+                  <TableColumn fx:id="surname" prefWidth="88.0" text="Surname" />
+                  <TableColumn fx:id="birthdate" prefWidth="88.0" text="Birthday" />
+                  <TableColumn fx:id="phone" prefWidth="88.0" text="Phone Number" />
+                  <TableColumn fx:id="email" minWidth="0.0" prefWidth="200.0" text="Email" />
+                  <TableColumn fx:id="address" prefWidth="125.0" text="Address" />
+                  <TableColumn fx:id="gender" prefWidth="67.0" text="Gender" />
                </columns>
             </TableView>
-            <Button fx:id="addTeacherButton" layoutX="619.0" layoutY="510.0" mnemonicParsing="false" onAction="#goToAddTeachers" prefHeight="30.0" prefWidth="130.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Teacher">
+            <Button fx:id="addTeacherButton" alignment="CENTER" layoutX="621.0" layoutY="510.0" mnemonicParsing="false" onAction="#goToAddTeachers" prefHeight="30.0" prefWidth="129.0" styleClass="spec-button" stylesheets="@../CSS/style.css" text="Add a Teacher">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>

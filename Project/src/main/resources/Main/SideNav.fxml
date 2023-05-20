@@ -15,9 +15,9 @@
    <children>
       <VBox fx:id="navbar" prefHeight="482.0" prefWidth="170.0" styleClass="nav-container" stylesheets="@../CSS/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="102.0" prefWidth="170.0">
+            <AnchorPane prefHeight="150.0" prefWidth="180.0">
                <children>
-                  <ImageView fitHeight="87.0" fitWidth="170.0" layoutX="41.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-0.5999999999999943" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="42.00091400146485" AnchorPane.topAnchor="0.0">
+                  <ImageView fitHeight="87.0" fitWidth="170.0" layoutX="47.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="13.599999999999994" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="45.0">
                      <image>
                         <Image url="@../Images/logo3.png" />
                      </image>
@@ -31,6 +31,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <ChoiceBox fx:id="languagesBox" layoutX="55.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="70.0" />
                </children>
             </AnchorPane>
             <StackPane>
@@ -122,7 +123,6 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ChoiceBox fx:id="languagesBox" layoutX="44.0" layoutY="38.0" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: #0b64ae;" />
                </children>
             </AnchorPane>
          </children>
