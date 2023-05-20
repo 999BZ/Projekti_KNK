@@ -77,6 +77,12 @@ public class StudentsController {
             }
         });
 
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            setAlbanian();
+        } else {
+            setEnglish();
+        }
+
         LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("Albanian")) {
                 setAlbanian();
