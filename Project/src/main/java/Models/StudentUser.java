@@ -10,7 +10,8 @@ public class StudentUser extends User {
     private int Year;
     private int Paralel;
 
-    public StudentUser(int ID, String email, String saltedPassword, String salt, String position, String profileImg, String name, String surname, String birthdate, String phone, String address, int year, int paralel) {
+    private String Gender;
+    public StudentUser(int ID, String email, String saltedPassword, String salt, String position, String profileImg, String name, String surname, String birthdate, String phone, String address, int year, int paralel,String gender) {
         super(ID, email, saltedPassword, salt, position, profileImg);
         Name = name;
         Surname = surname;
@@ -19,6 +20,7 @@ public class StudentUser extends User {
         Address = address;
         Year = year;
         Paralel = paralel;
+        Gender = gender;
     }
 
     public String getName() {
@@ -75,5 +77,13 @@ public class StudentUser extends User {
 
     public void setParalel(int paralel) {
         Paralel = paralel;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String gender) {
+        this.Gender = gender;
     }
 }

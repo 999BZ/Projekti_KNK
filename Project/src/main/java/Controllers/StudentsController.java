@@ -54,6 +54,8 @@ public class StudentsController {
     @FXML
     private TableColumn<StudentUser, String> address;
     @FXML
+    private TableColumn<StudentUser, String> gender;
+    @FXML
     private TextField searchInput;
     @FXML
     private Button addStudentButton;
@@ -102,6 +104,7 @@ public class StudentsController {
             this.email.setCellValueFactory(new PropertyValueFactory<>("Email"));
             this.address.setCellValueFactory(new PropertyValueFactory<>("Address"));
             this.paralel.setCellValueFactory(new PropertyValueFactory<>("Paralel"));
+            this.gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
 
             studentsTable.setItems(studentsList);
 

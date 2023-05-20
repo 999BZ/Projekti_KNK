@@ -18,13 +18,16 @@ public class TeacherUser extends User {
     private String Phone;
     private String Address;
 
-    public TeacherUser(int ID, String email, String saltedPassword, String salt, String position, String profilePic, String name, String surname, String birthdate, String phone, String address) {
+    private String Gender;
+
+    public TeacherUser(int ID, String email, String saltedPassword, String salt, String position, String profilePic, String name, String surname, String birthdate, String phone, String address,String gender) {
         super(ID, email, saltedPassword, salt, position, profilePic);
         Name = name;
         Surname = surname;
         Birthdate = birthdate;
         Phone = phone;
         Address = address;
+        Gender = gender;
     }
 
     public String getName() {
@@ -65,6 +68,14 @@ public class TeacherUser extends User {
 
     public void setAddress(String address) {
         Address = address;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String gender) {
+        Gender = gender;
     }
 
     @Override

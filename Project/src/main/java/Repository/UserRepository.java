@@ -14,7 +14,7 @@ public class UserRepository {
     public static User insert(User user) throws SQLException {
         if(user instanceof StudentUser student){
             String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position, U_ProfileImg) VALUES (?, ?, ?, ?, ?)";
-            String StudentSql="INSERT INTO Students (S_Name, S_Surname, S_Birthdate, S_Phone, S_Address, S_GLevel, S_Paralel, S_UID) VALUES (?, ?, ?, ?, ?,?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
+            String StudentSql="INSERT INTO Students (S_Name, S_Surname, S_Birthdate, S_Phone, S_Address, S_GLevel, S_Paralel, S_UID, S_Gender) VALUES (?, ?, ?, ?, ?,?, ?, (SELECT U_ID FROM Users WHERE Email = ?), ?)";
 
             try(Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement UserStatement = connection.prepareStatement(UserSql)
@@ -35,6 +35,7 @@ public class UserRepository {
                 StudentStatement.setInt(6, student.getYear());
                 StudentStatement.setInt(7,student.getParalel());
                 StudentStatement.setString(8, student.getEmail());
+                StudentStatement.setString(9, student.getGender());
                 StudentStatement.executeUpdate();
 
             }catch (SQLException ex) {
@@ -44,7 +45,7 @@ public class UserRepository {
             return UserRepository.getByEmail(user.getEmail());
         }else if(user instanceof TeacherUser teacher){
             String UserSql = "INSERT INTO Users (Email, Salted_Password, Salt, U_Position,  U_ProfileImg) VALUES (?, ?, ?, ?, ?)";
-            String TeacherSql = "INSERT INTO Teachers (T_Name, T_Surname, T_Birthdate, T_Phone, T_Address, T_UID) VALUES (?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?))";
+            String TeacherSql = "INSERT INTO Teachers (T_Name, T_Surname, T_Birthdate, T_Phone, T_Address, T_UID, T_Gender) VALUES (?, ?, ?, ?, ?, (SELECT U_ID FROM Users WHERE Email = ?), ?)";
 
             try(Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement UserStatement = connection.prepareStatement(UserSql)
@@ -64,6 +65,7 @@ public class UserRepository {
                 TeacherStatement.setString(4, teacher.getPhone());
                 TeacherStatement.setString(5, teacher.getAddress());
                 TeacherStatement.setString(6, teacher.getEmail());
+                TeacherStatement.setString(7,teacher.getGender());
                 TeacherStatement.executeUpdate();
             }catch (SQLException ex) {
                 System.out.println(ex.getMessage());
@@ -142,7 +144,7 @@ public class UserRepository {
     public static User update(User user) throws SQLException {
         if(user instanceof StudentUser student){
             String UserSql = "UPDATE Users set Email=?, U_Position=?, U_ProfileImg=? where U_ID = ?";
-            String StudentSql = "UPDATE Students set S_Name=?, S_Surname=?, S_Birthdate=?, S_Phone=?, S_Address=?, S_GLevel=?, S_Paralel=? where S_UID=?";
+            String StudentSql = "UPDATE Students set S_Name=?, S_Surname=?, S_Birthdate=?, S_Phone=?, S_Address=?, S_GLevel=?, S_Paralel=?, S_Gender=?  where S_UID=?";
 
             try (Connection connection = ConnectionUtil.getConnection();
                  PreparedStatement UserStatement = connection.prepareStatement(UserSql);
@@ -163,7 +165,8 @@ public class UserRepository {
                 StudentStatement.setString(5, student.getAddress());
                 StudentStatement.setInt(6, student.getYear());
                 StudentStatement.setInt(7, student.getParalel());
-                StudentStatement.setInt(8, student.getID());
+                StudentStatement.setString(8, student.getGender());
+                StudentStatement.setInt(9, student.getID());
 
                 StudentStatement.executeUpdate();
 
@@ -174,7 +177,7 @@ public class UserRepository {
             return UserRepository.getByEmail(user.getEmail());
         }else if(user instanceof TeacherUser teacher){
             String UserSql = "UPDATE Users set Email=?, U_ProfileImg=? where U_ID=?";
-            String TeacherSql = "UPDATE Teachers set T_Name=?, T_Surname=?, T_Birthdate=?, T_Phone=?, T_Address=?  where T_UID = ?";
+            String TeacherSql = "UPDATE Teachers set T_Name=?, T_Surname=?, T_Birthdate=?, T_Phone=?, T_Address=?, T_Gender=?  where T_UID = ?";
 
             try(Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement UserStatement = connection.prepareStatement(UserSql)
@@ -191,7 +194,8 @@ public class UserRepository {
                 TeacherStatement.setString(3, teacher.getBirthdate());
                 TeacherStatement.setString(4, teacher.getPhone());
                 TeacherStatement.setString(5, teacher.getAddress());
-                TeacherStatement.setInt(6, teacher.getID());
+                TeacherStatement.setString(6, teacher.getGender());
+                TeacherStatement.setInt(7, teacher.getID());
 
 
                 TeacherStatement.executeUpdate();
@@ -278,9 +282,10 @@ public class UserRepository {
                 String salt = resultSet.getString("salt");
                 String position = resultSet.getString("U_Position");
                 String profileImg = resultSet.getString("U_ProfileImg");
+                String gender = resultSet.getString("T_Gender");
 
 
-                teacher = new TeacherUser(userID, email, saltedPassword, salt, position, profileImg, name, surname, birthdate, phone, address);
+                teacher = new TeacherUser(userID, email, saltedPassword, salt, position, profileImg, name, surname, birthdate, phone, address,gender);
             }
 
             resultSet.close();
@@ -312,9 +317,10 @@ public class UserRepository {
             String salt = resultSet.getString("salt");
             String position = resultSet.getString("U_Position");
             String profileImg = resultSet.getString("U_ProfileImg");
+            String gender = resultSet.getString("S_Gender");
 
 
-            student = new StudentUser(userID, email, saltedPassword, salt, position, profileImg, name, surname, birthdate, phone, address, gradeLvl, paralel);
+            student = new StudentUser(userID, email, saltedPassword, salt, position, profileImg, name, surname, birthdate, phone, address, gradeLvl, paralel,gender);
         }
 
         resultSet.close();

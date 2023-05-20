@@ -52,6 +52,8 @@ public class StudentInfoController implements Initializable {
     @FXML
     private ImageView addressw;
     @FXML
+    private ImageView genderw;
+    @FXML
     private Label w;
 
     @FXML
@@ -67,6 +69,9 @@ public class StudentInfoController implements Initializable {
     private TextField phone;
     @FXML
     private TextField address;
+
+    @FXML
+    private ChoiceBox<String> gender;
     @FXML
     private Spinner<Integer> gradeLvl;
     @FXML
@@ -99,6 +104,7 @@ public class StudentInfoController implements Initializable {
 
     private int S_ID;
     private double average;
+
 
     private String userPosition;
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
@@ -149,6 +155,7 @@ public class StudentInfoController implements Initializable {
         oldImagePath = oldImage.getUrl();
         setEditable(false);
 
+        this.gender.getItems().addAll("M","F");
 
 
 
@@ -177,11 +184,10 @@ public class StudentInfoController implements Initializable {
     }
 
     @FXML
-    private void handleEditButton() throws SQLException {
+    private void handleEditButton() throws SQLException, IOException {
         if (!isEditable) {
             setEditable(true);
         } else {
-            setEditable(false);
 
                 if (selectedFile != null) {
                     imagePath = GeneralUtil.savePhoto(selectedFile);
@@ -211,17 +217,21 @@ public class StudentInfoController implements Initializable {
                             String birthdateValue = tempBirthdateValue.format(formatter);
                             String phoneValue = this.phone.getText();
                             String addressValue = this.address.getText();
+                            String gender = this.gender.getValue();
                             int yearValue = this.gradeLvl.getValue();
                             int paralelValue = this.paralel.getValue();
                             System.out.println("ALL GOOD");
-                            try {
-                                System.out.println("Register -> AuthService");
-                                User user = UserAuthService.updateStudent(student.getID(), nameValue, surnameValue, birthdateValue, phoneValue, addressValue, yearValue,paralelValue, emailValue,"Student", imagePath);
+                            if(GeneralUtil.setDialog("Edit Student's info")){
+                                try {
+                                    System.out.println("Register -> AuthService");
+                                    User user = UserAuthService.updateStudent(student.getID(), nameValue, surnameValue, birthdateValue, phoneValue,gender, addressValue, yearValue,paralelValue, emailValue,"Student", imagePath);
+                                }catch (SQLException sqlException) {
+                                    System.out.println("Student couldn't be updated.");
+                                }
                                 setEditable(false);
-                            }catch (SQLException sqlException) {
-                                System.out.println("Student couldn't be updated.");
+                                w.setVisible(false);
+                                setWarnings(false);
                             }
-
                     }else{
                         System.out.println("Please fill all text fields");
                         w.setVisible(true);
@@ -273,6 +283,7 @@ public class StudentInfoController implements Initializable {
             address.setText(student.getAddress());
             email.setText(student.getEmail());
             this.S_ID = student.getID();
+            this.gender.setValue(student.getGender());
             this.gradesList = FetchData.getAllGrades(this.S_ID);
             for (int i=0;i<this.gradesList.size();i++){
                 System.out.println(gradesList.get(i).getGrade());
@@ -324,6 +335,7 @@ public class StudentInfoController implements Initializable {
         paralel.setDisable(!set);
         updateProfilePic.setVisible(set);
         removeButton.setVisible(set);
+        gender.setDisable(!set);
         if(this.userPosition.equals("Admin")) {
             reset.setVisible(set);
         }
@@ -344,6 +356,7 @@ public class StudentInfoController implements Initializable {
         gradeLvlw.setVisible(set);
         paralelw.setVisible(set);
         addressw.setVisible(set);
+        genderw.setVisible(set);
         w.setVisible(set);
     }
 
@@ -371,6 +384,9 @@ public class StudentInfoController implements Initializable {
         }
         if (this.email.getText().isEmpty()){
             emailw.setVisible(true);
+        }
+        if (this.gender.getValue() == null){
+            genderw.setVisible(true);
         }
     }
     @FXML

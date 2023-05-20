@@ -81,6 +81,12 @@ public class RegisterTeachersController implements Initializable  {
     private String imagePath;
     private ResourceBundle bundle;
 
+    @FXML
+    private ChoiceBox<String> genderChoice;
+
+    @FXML
+    private ImageView genderW;
+
     File selectedFile;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -93,6 +99,7 @@ public class RegisterTeachersController implements Initializable  {
                 setEnglish();
             }
         });
+        genderChoice.getItems().addAll("M","F");
     }
     @FXML
     private void handleImageUploadButton(ActionEvent event) throws IOException {
@@ -100,19 +107,18 @@ public class RegisterTeachersController implements Initializable  {
     }
 
     @FXML
-    private void registerClick(ActionEvent e){
+    private void registerClick(ActionEvent e) throws IOException{
         setWarnings(false);
         if (selectedFile != null) {
             imagePath = GeneralUtil.savePhoto(selectedFile);
         }
 
-
-        String email = this.txtEmail.getText();
-        String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-        if(email.matches(emailRegex)){
-            if(!this.pwdPassword.getText().isEmpty() && !this.txtName.getText().isEmpty() && !this.txtSurname.getText().isEmpty() &&
-                    !(this.DateBirthdate.getValue() == null) && !this.txtPhone.getText().isEmpty() &&
-                    !this.txtAddress.getText().isEmpty()){
+        if(!this.pwdPassword.getText().isEmpty() && !this.txtName.getText().isEmpty() && !this.txtSurname.getText().isEmpty() &&
+                !(this.DateBirthdate.getValue() == null) && !this.txtPhone.getText().isEmpty() &&
+                !this.txtAddress.getText().isEmpty() && this.genderChoice.getValue() != null){
+            String email = this.txtEmail.getText();
+            String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+            if(email.matches(emailRegex)){
                 String password = this.pwdPassword.getText();
                 if(password.length() > 7){
                     String name = this.txtName.getText();
@@ -122,39 +128,42 @@ public class RegisterTeachersController implements Initializable  {
                     String birthdate = tempBirthdate.format(formatter);
                     String phone = this.txtPhone.getText();
                     String address = this.txtAddress.getText();
+                    String gender = this.genderChoice.getValue();
                     System.out.println("ALL GOOD");
-                    try {
-                        System.out.println("Register -> AuthService");
-                        User user = UserAuthService.registerTeacher(name, surname, birthdate, phone, address, email, password,"Teacher",imagePath );
-                        if (user != null){
-                            System.out.println("User Registered");
-                            cancelClick(new ActionEvent());
-                            setWarnings(false);
-                            GeneralUtil.goToFXML("/Main/Teachers.fxml",(Stage) txtName.getScene().getWindow());
-                            
+                    if (GeneralUtil.setDialog("Add the Teacher to the System")) {
+                        try {
+                            System.out.println("Register -> AuthService");
+                            User user = UserAuthService.registerTeacher(name, surname, birthdate, phone,gender,address, email, password,"Teacher",imagePath );
+                            if (user != null){
+                                System.out.println("User Registered");
+                                cancelClick(new ActionEvent());
+                                setWarnings(false);
+                                GeneralUtil.goToFXML("/Main/Teachers.fxml",(Stage) txtName.getScene().getWindow());
+
+                            }
+                        }catch (SQLException sqlException) {
+                            System.out.println("Teacher couldn't register.");
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
                         }
-                    }catch (SQLException sqlException) {
-                        System.out.println("Teacher couldn't register.");
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
                     }
                 }else{
                     System.out.println("Password is too short!");
                     w.setText("Password is too short!");
                 }
             }else{
-                System.out.println("Please fill all text fields");
+                System.out.println("Please check your email and try again!");
+                emailw.setVisible(true);
                 w.setText("Please fill out all required fields");
                 w.setVisible(true);
-               checkWarnings();
-
+                checkWarnings();
             }
         }else{
-            System.out.println("Please check your email and try again!");
-            emailw.setVisible(true);
+            System.out.println("Please fill all text fields");
             w.setText("Please fill out all required fields");
             w.setVisible(true);
-           checkWarnings();
+            checkWarnings();
+
         }
 
 
@@ -168,6 +177,7 @@ public class RegisterTeachersController implements Initializable  {
         this.txtAddress.setText("");
         this.txtEmail.setText("");
         this.pwdPassword.setText("");
+        this.genderChoice.setValue(null);
     }
     public void setWarnings(boolean set){
         birthdayw.setVisible(set);
@@ -177,6 +187,7 @@ public class RegisterTeachersController implements Initializable  {
         emailw.setVisible(set);
         addressw.setVisible(set);
         passwordw.setVisible(set);
+        genderW.setVisible(set);
         w.setVisible(set);
     }
 
@@ -193,15 +204,17 @@ public class RegisterTeachersController implements Initializable  {
         if (this.txtPhone.getText().isEmpty()) {
             phonew.setVisible(true);
         }
-        if (this.txtEmail.getText().isEmpty()) {
+        if (this.txtAddress.getText().isEmpty()) {
             addressw.setVisible(true);
         }
-
-        if (this.txtEmail.getText() == null) {
+        if (this.txtEmail.getText().isEmpty()) {
             emailw.setVisible(true);
         }
         if (this.pwdPassword.getText().isEmpty()) {
             passwordw.setVisible(true);
+        }
+        if (this.genderChoice.getValue() == null) {
+            genderW.setVisible(true);
         }
     }
 

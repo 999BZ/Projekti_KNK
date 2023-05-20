@@ -66,6 +66,8 @@ public class TeachersController {
     @FXML
     private TableColumn<StudentUser, String> address;
     @FXML
+    private TableColumn<StudentUser, String> gender;
+    @FXML
     private TextField searchInput;
     @FXML
     private Button addTeacherButton;
@@ -130,6 +132,7 @@ public class TeachersController {
             this.phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
             this.email.setCellValueFactory(new PropertyValueFactory<>("Email"));
             this.address.setCellValueFactory(new PropertyValueFactory<>("Address"));
+            this.gender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
 
             teachersTable.setItems(teachersList);
 

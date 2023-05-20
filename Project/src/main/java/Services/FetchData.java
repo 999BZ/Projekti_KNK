@@ -15,7 +15,7 @@ public class FetchData {
         ObservableList<TeacherUser> teachersList = FXCollections.observableArrayList();
         try {
             Connection conn = ConnectionUtil.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT  Teachers.T_Name, Teachers.t_Surname, Teachers.T_Birthdate, Teachers.T_Phone, Teachers.T_Address, Users.email,Users.U_ID, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
+            PreparedStatement stmt = conn.prepareStatement("SELECT  Teachers.T_Name, Teachers.t_Surname, Teachers.T_Birthdate, Teachers.T_Phone, Teachers.T_Gender, Teachers.T_Address, Users.email,Users.U_ID, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
                     "FROM Teachers\n" +
                     "INNER JOIN Users ON Teachers.T_UID = Users.U_ID;");
             ResultSet rs = stmt.executeQuery();
@@ -33,8 +33,9 @@ public class FetchData {
                 String salt = rs.getString("salt");
                 String position = rs.getString("u_position");
                 String profile_pics = rs.getString("u_profileimg");
+                String gender = rs.getString("T_Gender");
 
-                TeacherUser teacher = new TeacherUser(id, email, salted_password, salt, position, profile_pics, name, surname, birthdate, phone, address);
+                TeacherUser teacher = new TeacherUser(id, email, salted_password, salt, position, profile_pics, name, surname, birthdate, phone, address,gender);
                 teachersList.add(teacher);
             }
 
@@ -70,8 +71,9 @@ public class FetchData {
                 String salt = rs.getString("salt");
                 String position = rs.getString("u_position");
                 String profile_pics = rs.getString("u_profileimg");
+                String gender = rs.getString("T_Gender");
 
-                TeacherUser teacher = new TeacherUser(id, email, salted_password, salt, position, profile_pics, name, surname, birthdate, phone, address);
+                TeacherUser teacher = new TeacherUser(id, email, salted_password, salt, position, profile_pics, name, surname, birthdate, phone, address,gender);
                 teachersList.add(teacher);
             }
 
@@ -86,7 +88,7 @@ public class FetchData {
         ObservableList<StudentUser> studentsList = FXCollections.observableArrayList();
         try {
             Connection conn = ConnectionUtil.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT Students.S_UID, Students.S_Name, Students.S_Surname, Students.S_Birthdate, Students.S_Phone, Students.S_Address, Students.S_GLevel, Students.S_Paralel, Users.email, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
+            PreparedStatement stmt = conn.prepareStatement("SELECT Students.S_UID, Students.S_Name, Students.S_Surname, Students.S_Gender, Students.S_Birthdate, Students.S_Phone, Students.S_Address, Students.S_GLevel, Students.S_Paralel, Users.email, Users.salted_password, Users.Salt, Users.u_position, Users.u_profileimg\n" +
                     "            FROM Students\n" +
                     "            INNER JOIN Users ON Students.S_UID = Users.U_ID;");
             ResultSet rs = stmt.executeQuery();
@@ -107,9 +109,9 @@ public class FetchData {
                 String salt = rs.getString("salt");
                 String position = rs.getString("u_position");
                 String profile_pic = rs.getString("u_profileimg");
+                String gender = rs.getString("S_Gender");
 
-
-                StudentUser student = new StudentUser(id, email, salted_password, salt, position, profile_pic, name, surname, birthdate, phone, address, year, paralel);
+                StudentUser student = new StudentUser(id, email, salted_password, salt, position, profile_pic, name, surname, birthdate, phone, address, year, paralel,gender);
                 studentsList.add(student);
 
             }
@@ -147,9 +149,9 @@ public class FetchData {
                 String salt = rs.getString("salt");
                 String position = rs.getString("u_position");
                 String profile_pic = rs.getString("u_profileimg");
+                String gender = rs.getString("S_Gender");
 
-
-                StudentUser student = new StudentUser(id, email, salted_password, salt, position, profile_pic, name, surname, birthdate, phone, address, year, paralel);
+                StudentUser student = new StudentUser(id, email, salted_password, salt, position, profile_pic, name, surname, birthdate, phone, address, year, paralel,gender);
                 studentsList.add(student);
 
             }
@@ -209,7 +211,7 @@ public class FetchData {
         ObservableList<TeacherUser> teachersList = FXCollections.observableArrayList();
         Connection conn = ConnectionUtil.getConnection();
         PreparedStatement ps = null;
-        ps = conn.prepareStatement("SELECT T_UID, T_Name, T_Surname, T_Birthdate, T_Surname, T_Birthdate, T_Phone, T_Address, u.email, u.salted_password, u.salt, u.u_position, u.u_profileimg FROM Teachers\n" +
+        ps = conn.prepareStatement("SELECT T_UID, T_Name, T_Surname, T_Birthdate, T_Surname, T_Birthdate, T_Phone, T_Gender, T_Address, u.email, u.salted_password, u.salt, u.u_position, u.u_profileimg FROM Teachers\n" +
                 "                                JOIN Classes ON Teachers.T_UID = Classes.T_ID\n" +
                 "                                JOIN Users u ON u.U_ID = Teachers.T_UID \n" +
                 "                                JOIN Subjects ON Classes.Sb_ID = Subjects.Sb_ID \n" +
@@ -231,8 +233,9 @@ public class FetchData {
                 String salt = rs.getString("salt");
                 String position = rs.getString("u_position");
                 String profile_pics = rs.getString("u_profileimg");
+                String gender = rs.getString("T_Gender");
 
-                TeacherUser teacher = new TeacherUser(id, email, salted_password, salt, position, profile_pics, name, surname, birthdate, phone, address);
+                TeacherUser teacher = new TeacherUser(id, email, salted_password, salt, position, profile_pics, name, surname, birthdate, phone, address,gender);
                 teachersList.add(teacher);
             }
         return teachersList;
@@ -474,8 +477,9 @@ public class FetchData {
                 String salt = rs.getString("Salt");
                 String position = rs.getString("U_Position");
                 String profileImage = rs.getString("U_ProfileImg");
+                String gender = rs.getString("S_Gender");
 
-                student = new StudentUser(id, email, password, salt, position, profileImage, name, surname, birthdate, phone, address, gradeLevel, paralel);
+                student = new StudentUser(id, email, password, salt, position, profileImage, name, surname, birthdate, phone, address, gradeLevel, paralel,gender);
             }
         } catch (SQLException e) {
             System.out.println(e);

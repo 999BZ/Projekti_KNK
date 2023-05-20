@@ -81,6 +81,11 @@ public class RegisterStudentsController implements Initializable {
     private Label regStudent;
     private ResourceBundle bundle;
 
+    @FXML
+    private ChoiceBox<String> genderChoice;
+
+    @FXML
+    private ImageView genderW;
     public void initialize(URL url, ResourceBundle rb) {
         setWarnings(false);
         txtYear.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 12, 0));
@@ -93,6 +98,7 @@ public class RegisterStudentsController implements Initializable {
                 setEnglish();
             }
         });
+        genderChoice.getItems().addAll("M","F");
     }
 
     @FXML
@@ -111,24 +117,16 @@ public class RegisterStudentsController implements Initializable {
     }
     @FXML
     private void registerClick(ActionEvent e) throws IOException {
-        if (GeneralUtil.setDialog("Add the Student to the System")) {
-            registerStudent();
-        }
-    }
-
-    @FXML
-    private void registerStudent(){
-
         if (selectedFile != null) {
             imagePath = GeneralUtil.savePhoto(selectedFile);
         }
 
-        String email = this.txtEmail.getText();
-        String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-        if(email.matches(emailRegex)){
-            if(!this.pwdPassword.getText().isEmpty() && !this.txtName.getText().isEmpty() && !this.txtSurname.getText().isEmpty() &&
-                    !(this.DateBirthdate.getValue() == null) && !this.txtPhone.getText().isEmpty() &&
-                    !this.txtAddress.getText().isEmpty() && this.txtYear.getValue() != 0 && this.txtParalel.getValue() != 0){
+        if(!this.pwdPassword.getText().isEmpty() && !this.txtName.getText().isEmpty() && !this.txtSurname.getText().isEmpty() &&
+                !(this.DateBirthdate.getValue() == null) && !this.txtPhone.getText().isEmpty() &&
+                !this.txtAddress.getText().isEmpty() && this.txtYear.getValue() != 0 && this.txtParalel.getValue() != 0 && this.genderChoice.getValue() != null){
+            String email = this.txtEmail.getText();
+            String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+            if(email.matches(emailRegex)){
                 String password = this.pwdPassword.getText();
                 if(password.length() > 7){
                     String name = this.txtName.getText();
@@ -140,40 +138,45 @@ public class RegisterStudentsController implements Initializable {
                     String address = this.txtAddress.getText();
                     int year = this.txtYear.getValue();
                     int paralel = this.txtParalel.getValue();
+                    String gender = this.genderChoice.getValue();
                     System.out.println("ALL GOOD");
-                    try {
-                        System.out.println("Register -> AuthService");
-                        User user = UserAuthService.registerStudent(name, surname, birthdate, phone, address, year,paralel, email, password, imagePath);
-                        if (user != null){
-                            System.out.println("User Registered");
-                            cancelClick(new ActionEvent());
-                            setWarnings(false);
+                    if (GeneralUtil.setDialog("Add the Student to the System")) {
+                        try {
+                            System.out.println("Register -> AuthService");
+                            User user = UserAuthService.registerStudent(name, surname, birthdate, phone,gender, address, year, paralel, email, password, imagePath);
+                            if (user != null) {
+                                System.out.println("User Registered");
+                                cancelClick(new ActionEvent());
+                                setWarnings(false);
+                            }
+                            GeneralUtil.goToFXML("/Main/Students.fxml", (Stage) txtEmail.getScene().getWindow());
+                        } catch (SQLException sqlException) {
+                            System.out.println("Student couldn't register.");
+                        } catch (IOException t) {
+                            throw new RuntimeException(t);
                         }
-                        GeneralUtil.goToFXML("/Main/Students.fxml", (Stage) txtEmail.getScene().getWindow());
-                    }catch (SQLException sqlException) {
-                        System.out.println("Student couldn't register.");
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
                     }
                 }else{
                     System.out.println("Password is too short!");
                     w.setText("Password is too short!");
+                    setWarnings(false);
                     checkWarnings();
                 }
             }else{
-                System.out.println("Please fill all text fields");
+                System.out.println("Please check your email and try again!");
                 w.setText("Please fill out all required fields");
+                emailw.setVisible(true);
+                setWarnings(false);
                 checkWarnings();
-
+                w.setVisible(true);
             }
         }else{
-            System.out.println("Please check your email and try again!");
+            System.out.println("Please fill all text fields");
             w.setText("Please fill out all required fields");
-            emailw.setVisible(true);
+            setWarnings(false);
             checkWarnings();
+            w.setVisible(true);
         }
-    this.profilePic.setImage(null);
-
     }
     @FXML
     private void cancelClick(ActionEvent e){
@@ -187,6 +190,7 @@ public class RegisterStudentsController implements Initializable {
         this.pwdPassword.setText("");
         this.profilePic.setImage(null);
         this.txtParalel.getValueFactory().setValue(0);
+        this.genderChoice.setValue(null);
     }
 public void checkWarnings(){
     if (this.txtName.getText().isEmpty()) {
@@ -201,8 +205,11 @@ public void checkWarnings(){
     if (this.txtPhone.getText().isEmpty()) {
         phonew.setVisible(true);
     }
-    if (this.txtEmail.getText().isEmpty()) {
+    if (this.txtAddress.getText().isEmpty()) {
         addressw.setVisible(true);
+    }
+    if (this.txtEmail.getText().isEmpty()) {
+        emailw.setVisible(true);
     }
     if (this.txtYear.getValue() == 0) {
         gradeLvlw.setVisible(true);
@@ -212,6 +219,9 @@ public void checkWarnings(){
     }
     if (this.pwdPassword.getText().isEmpty()) {
         passwordw.setVisible(true);
+    }
+    if (this.genderChoice.getValue() == null) {
+        genderW.setVisible(true);
     }
 }
 
@@ -225,6 +235,7 @@ public void checkWarnings(){
         addressw.setVisible(set);
         passwordw.setVisible(set);
         txtParalelw.setVisible(set);
+        genderW.setVisible(set);
         w.setVisible(set);
     }
 

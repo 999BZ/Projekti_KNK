@@ -46,6 +46,8 @@ public class TeacherInfoController implements Initializable {
     @FXML
     private ImageView addressw;
     @FXML
+    private ImageView genderw;
+    @FXML
     private Label w;
     User localTeacher;
     @FXML
@@ -62,6 +64,9 @@ public class TeacherInfoController implements Initializable {
     private DatePicker birthday;
     @FXML
     private TextField email;
+
+    @FXML
+    private ChoiceBox<String> gender;
     @FXML
     private ImageView profilePic;
     @FXML
@@ -86,6 +91,7 @@ public class TeacherInfoController implements Initializable {
     private ObservableList<Subject> subjectsList = FXCollections.observableArrayList();
 
     private int T_ID;
+
 
     @FXML
     private VBox subjectsBox;
@@ -119,6 +125,8 @@ public class TeacherInfoController implements Initializable {
         }
         setEditable(false);
         setWarnings(false);
+
+        this.gender.getItems().addAll("M","F");
     }
     @FXML
     private void handleRemoveButton() throws IOException, SQLException {
@@ -141,7 +149,7 @@ public class TeacherInfoController implements Initializable {
     }
 
     @FXML
-    private void handleEditButton() throws SQLException {
+    private void handleEditButton() throws SQLException, IOException {
         if (!isEditable) {
             setEditable(true);
         } else {
@@ -178,13 +186,17 @@ public class TeacherInfoController implements Initializable {
                     String phoneValue = this.phone.getText();
                     String addressValue = this.address.getText();
                     System.out.println("ALL GOOD");
-                    try {
-                        System.out.println("Register -> AuthService");
-                        User user = UserAuthService.updateTeacher(teacher.getID(), nameValue, surnameValue, birthdateValue, phoneValue, addressValue, emailValue,"Teacher", imagePath);
+                    if(GeneralUtil.setDialog("Edit Teacher's info")){
+                        try {
+                            System.out.println("Register -> AuthService");
+                            User user = UserAuthService.updateTeacher(teacher.getID(), nameValue, surnameValue, birthdateValue, phoneValue,this.gender.getValue(), addressValue, emailValue,"Teacher", imagePath);
+                            setWarnings(false);
+                        }catch (SQLException sqlException) {
+                            System.out.println("Teacher couldn't be updated.");
+                        }
                         setEditable(false);
+                        w.setVisible(false);
                         setWarnings(false);
-                    }catch (SQLException sqlException) {
-                        System.out.println("Teacher couldn't be updated.");
                     }
                 }else{
                     System.out.println("Please fill all text fields");
@@ -222,7 +234,7 @@ public class TeacherInfoController implements Initializable {
             address.setText(teacher.getAddress());
             email.setText(teacher.getEmail());
             this.T_ID = teacher.getID();
-
+            this.gender.setValue(teacher.getGender());
             try {
                 String relativePath = teacher.getProfileImg().replace("src/main/resources", "");
                 InputStream inputStream = getClass().getResourceAsStream(relativePath);
@@ -264,7 +276,7 @@ public class TeacherInfoController implements Initializable {
         updateProfilePic.setVisible(set);
         removeButton.setVisible(set);
         reset.setVisible(set);
-
+        gender.setDisable(!set);
         if(set) {
             editButton.setText("Save");
         }else{
@@ -281,6 +293,7 @@ public class TeacherInfoController implements Initializable {
         emailw.setVisible(set);
         addressw.setVisible(set);
         w.setVisible(set);
+        genderw.setVisible(set);
     }
 
     public void checkWarnings(){
@@ -301,6 +314,9 @@ public class TeacherInfoController implements Initializable {
         }
         if (this.email.getText().isEmpty()){
             emailw.setVisible(true);
+        }
+        if (this.gender.getValue() == null){
+            genderw.setVisible(true);
         }
     }
 

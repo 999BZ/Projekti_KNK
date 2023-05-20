@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -49,11 +51,12 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label fx:id="parentPhone" prefHeight="19.0" prefWidth="154.0" styleClass="profile-info" text="Parent's Phone Number:" GridPane.rowIndex="7" />
                   <Label styleClass="profile-info" text="Grade Leve / Paralel:" GridPane.rowIndex="8" />
-                  <AnchorPane fx:id="imageContainer" prefHeight="286.0" prefWidth="318.0" GridPane.columnSpan="3" GridPane.rowSpan="7">
+                  <AnchorPane fx:id="imageContainer" prefHeight="286.0" prefWidth="318.0" GridPane.columnSpan="3" GridPane.rowSpan="6">
                      <children>
                         <Label fx:id="studentInfo" layoutX="77.0" layoutY="14.0" styleClass="card-header" text="Student Info">
                            <graphic>
@@ -108,7 +111,7 @@
                   <TextField fx:id="phone" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <TextField fx:id="email" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <DatePicker fx:id="birthday" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <TextField fx:id="address" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <TextField fx:id="address" editable="false" prefWidth="121.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                   <ImageView fx:id="phonew" fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="7">
                      <image>
                         <Image url="@../Images/warning.png" />
@@ -140,6 +143,17 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
+                  <ChoiceBox fx:id="gender" prefHeight="25.0" prefWidth="45.0" style="-fx-background-color: white; -fx-padding: -5; -fx-border-color: grey;" styleClass="textInput" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </ChoiceBox>
+                  <Label fx:id="lblGender" styleClass="profile-info" text="Gender:" GridPane.rowIndex="12" />
+                  <ImageView fx:id="genderw" fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="12">
+                     <image>
+                        <Image url="@../Images/warning.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="paralelw" fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="8">
                      <image>
                         <Image url="@../Images/warning.png" />

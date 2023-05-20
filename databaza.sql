@@ -36,6 +36,7 @@ CREATE TABLE Students (
     S_Address VARCHAR(50),
     S_GLevel INT,
     S_Paralel INT,
+    S_Gender VARCHAR(1),
     S_UID INT NOT NULL,
     PRIMARY KEY (S_UID),
     FOREIGN KEY (S_UID) REFERENCES Users(U_ID) ON DELETE CASCADE
@@ -49,6 +50,7 @@ CREATE TABLE Teachers (
     T_Birthdate Date,
     T_Phone VARCHAR(50),
     T_Address VARCHAR(50),
+    T_Gender VARCHAR(1),
     T_UID INT NOT NULL,
     PRIMARY KEY (T_UID),
     FOREIGN KEY (T_UID) REFERENCES Users(U_ID) ON DELETE CASCADE
@@ -115,14 +117,14 @@ CREATE TABLE Grades (
 
 
 -- Truncate all tables in the database
-TRUNCATE TABLE students;
-TRUNCATE TABLE teachers;
-TRUNCATE TABLE subjects;
-TRUNCATE TABLE grades;
-TRUNCATE TABLE enrollments;
-TRUNCATE TABLE users;
-TRUNCATE TABLE admins;
-TRUNCATE TABLE classes;
+-- TRUNCATE TABLE students;
+-- TRUNCATE TABLE teachers;
+-- TRUNCATE TABLE subjects;
+-- TRUNCATE TABLE grades;
+-- TRUNCATE TABLE enrollments;
+-- TRUNCATE TABLE users;
+-- TRUNCATE TABLE admins;
+-- TRUNCATE TABLE classes;
 -- ... add more tables as needed
 
 
