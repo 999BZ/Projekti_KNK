@@ -55,7 +55,7 @@
               </rowConstraints>
                <children>
                   <Label fx:id="parentPhone" prefHeight="19.0" prefWidth="154.0" styleClass="profile-info" text="Parent's Phone Number:" GridPane.rowIndex="7" />
-                  <Label styleClass="profile-info" text="Grade Leve / Paralel:" GridPane.rowIndex="8" />
+                  <Label fx:id="gLevelParalel" styleClass="profile-info" text="Grade Leve / Paralel:" GridPane.rowIndex="8" />
                   <AnchorPane fx:id="imageContainer" prefHeight="286.0" prefWidth="318.0" GridPane.columnSpan="3" GridPane.rowSpan="6">
                      <children>
                         <Label fx:id="studentInfo" layoutX="77.0" layoutY="14.0" styleClass="card-header" text="Student Info">

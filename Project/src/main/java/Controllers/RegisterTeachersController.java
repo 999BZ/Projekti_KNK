@@ -92,6 +92,12 @@ public class RegisterTeachersController implements Initializable  {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setWarnings(false);
 
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            setAlbanian();
+        } else {
+            setEnglish();
+        }
+
         LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("Albanian")) {
                 setAlbanian();

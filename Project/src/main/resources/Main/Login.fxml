@@ -28,12 +28,12 @@
                   <Image url="@../Images/logo3.png" />
                </image>
             </ImageView>
-            <Label fx:id="copyright" alignment="CENTER" layoutX="108.0" layoutY="626.0" prefHeight="20.0" prefWidth="217.0" style="-fx-text-fill: white;" text="Copyright ©. All rights reserved." AnchorPane.bottomAnchor="4.399999999999977">
+            <Label fx:id="copyright" alignment="CENTER" layoutX="59.0" layoutY="626.0" prefHeight="20.0" prefWidth="315.0" style="-fx-text-fill: white;" text="Copyright ©. All rights reserved." AnchorPane.bottomAnchor="4.399999999999977">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="languagesBox" layoutX="176.0" layoutY="426.0" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: #0b64ae;" />
+            <ChoiceBox fx:id="languagesBox" layoutX="176.0" layoutY="426.0" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: #0b64ae; -fx-color: white;" />
          </children>
       </AnchorPane>
    </left>

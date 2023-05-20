@@ -149,13 +149,11 @@ public class AssignSubjectController implements Initializable {
         teacherw.setVisible(false);
         unAssignFunctionallity();
 
-        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.equals("Albanian")) {
-                setAlbanian();
-            } else {
-                setEnglish();
-            }
-        });
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            setAlbanian();
+        } else {
+            setEnglish();
+        }
     }
 
     public void unAssignFunctionallity() {

@@ -29,10 +29,27 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
 public class StudentInfoController implements Initializable {
+    @FXML
+    private Label parentPhone;
+    @FXML
+    private Label gLevelParalel;
+    @FXML
+    private Label lblemail;
+    @FXML
+    private Label lblbirthday;
+    @FXML
+    private Label lbladdress;
+    @FXML
+    private Label lblGender;
+    @FXML
+    private Label studentSubjects;
+    @FXML
+    private Label studentInfo;
     @FXML
     private VBox subjectsBox;
     @FXML
@@ -91,6 +108,8 @@ public class StudentInfoController implements Initializable {
     @FXML
     private Button chooseSubjectButton;
     @FXML
+    private Button statistics;
+    @FXML
     private AnchorPane sidenav;
     @FXML
     private Button reset;
@@ -101,6 +120,7 @@ public class StudentInfoController implements Initializable {
     private String oldImagePath;
     private StudentUser studentUser;
     private ArrayList<Grade> gradesList;
+    private ResourceBundle bundle;
 
     private int S_ID;
     private double average;
@@ -128,6 +148,20 @@ public class StudentInfoController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            setAlbanian();
+        } else {
+            setEnglish();
+        }
+
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                setAlbanian();
+            } else {
+                setEnglish();
+            }
+        });
+
         //get user position
         Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
         this.userPosition = preferences.get("position", null);
@@ -164,21 +198,40 @@ public class StudentInfoController implements Initializable {
 
     @FXML
     private void handleRemoveButton() throws IOException, SQLException {
-
-        if (GeneralUtil.setDialog("Remove the Student from the System")) {
-            UserRepository.delete(localStudent);
-            String relativePath = localStudent.getProfileImg();
-            if(relativePath!=null){
-            File oldImage = new File(relativePath);
-            oldImage.delete();}
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Students.fxml"));
-            try {
-                Parent root = loader.load();
-                Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
-                Stage stage = (Stage) rootPane.getScene().getWindow();
-                stage.setScene(scene);
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            if (GeneralUtil.setDialog("Largo studentin nga sistemi?")) {
+                UserRepository.delete(localStudent);
+                String relativePath = localStudent.getProfileImg();
+                if(relativePath!=null){
+                    File oldImage = new File(relativePath);
+                    oldImage.delete();}
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Students.fxml"));
+                try {
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
+                    Stage stage = (Stage) rootPane.getScene().getWindow();
+                    stage.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            if (GeneralUtil.setDialog("Remove the Student from the System?")) {
+                UserRepository.delete(localStudent);
+                String relativePath = localStudent.getProfileImg();
+                if (relativePath != null) {
+                    File oldImage = new File(relativePath);
+                    oldImage.delete();
+                }
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/Students.fxml"));
+                try {
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root, WindowSizeUtils.windowWidth, WindowSizeUtils.windowHeight);
+                    Stage stage = (Stage) rootPane.getScene().getWindow();
+                    stage.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -340,7 +393,11 @@ public class StudentInfoController implements Initializable {
             reset.setVisible(set);
         }
         if(set) {
-            editButton.setText("Save");
+            if (LanguageUtil.getLanguage().equals("Albanian")){
+                editButton.setText("Ruaj");
+            } else {
+                editButton.setText("Save");
+            }
         }else{
             editButton.setText("Edit or Delete Student");
         }
@@ -394,5 +451,41 @@ public class StudentInfoController implements Initializable {
         GeneralUtil.setChangePassword(this.S_ID);
     }
 
+    public void setAlbanian() {
+        try {
+            Locale locale = new Locale("sq");
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", locale);
 
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void setEnglish() {
+        try {
+            Locale locale = Locale.ENGLISH;
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    private void updateLabels() {
+        parentPhone.setText(bundle.getString("parentPhone") + ":");
+        lblemail.setText(bundle.getString("email") + ":");
+        lblbirthday.setText(bundle.getString("birthdate") + ":");
+        lbladdress.setText(bundle.getString("address") + ":");
+        lblGender.setText(bundle.getString("gender") + ":");
+        removeButton.setText(bundle.getString("remove"));
+        editButton.setText(bundle.getString("editRemoveTeacher"));
+        reset.setText(bundle.getString("reset"));
+        w.setText(bundle.getString("w"));
+        gLevelParalel.setText(bundle.getString("gradeLevelParalel") + ":");
+        studentSubjects.setText(bundle.getString("studentSubjects"));
+        statistics.setText(bundle.getString("statistics"));
+        chooseSubjectButton.setText(bundle.getString("chooseElectiveSubject"));
+        updateProfilePic.setText(bundle.getString("updateProfilePic"));
+    }
 }

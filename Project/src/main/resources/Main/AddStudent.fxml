@@ -106,7 +106,7 @@
                               </ImageView>
                                     </children>
                                 </AnchorPane>
-                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="46.0" text="Year:" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                <Label fx:id="year" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="46.0" text="Year:" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                                 <AnchorPane prefHeight="36.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
                                     <children>
                                         <Spinner fx:id="txtYear" layoutX="18.0" prefHeight="28.0" prefWidth="57.0" />
@@ -213,9 +213,9 @@
                               </StackPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="year" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                        <AnchorPane fx:id="years" GridPane.columnIndex="1" GridPane.rowIndex="11">
                            <children>
-                              <Label fx:id="parallel" alignment="CENTER_RIGHT" layoutX="99.0" layoutY="7.0" prefHeight="18.0" prefWidth="46.0" text="Paralel:" />
+                              <Label fx:id="paralel" alignment="CENTER_RIGHT" layoutX="99.0" layoutY="7.0" prefHeight="18.0" prefWidth="46.0" text="Paralel:" />
                               <Label fx:id="gender" layoutX="185.0" layoutY="8.0" text="Gender:" />
                            </children>
                         </AnchorPane>

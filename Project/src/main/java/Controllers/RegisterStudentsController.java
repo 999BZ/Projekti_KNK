@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class RegisterStudentsController implements Initializable {
     @FXML
-    private Button register;
+    private Button registerBtn;
     @FXML
     private Button reset;
     @FXML
@@ -78,6 +78,12 @@ public class RegisterStudentsController implements Initializable {
     @FXML
     private Label password;
     @FXML
+    private Label year;
+    @FXML
+    private Label paralel;
+    @FXML
+    private Label gender;
+    @FXML
     private Label regStudent;
     private ResourceBundle bundle;
 
@@ -87,6 +93,12 @@ public class RegisterStudentsController implements Initializable {
     @FXML
     private ImageView genderW;
     public void initialize(URL url, ResourceBundle rb) {
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            setAlbanian();
+        } else {
+            setEnglish();
+        }
+
         setWarnings(false);
         txtYear.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 12, 0));
         txtParalel.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 3, 0));
@@ -266,12 +278,15 @@ public void checkWarnings(){
         birthdate.setText(bundle.getString("birthdate") + ":");
         phone.setText(bundle.getString("phone") + ":");
         address.setText(bundle.getString("address") + ":");
+        year.setText(bundle.getString("year") + ":");
+        paralel.setText(bundle.getString("paralel") + ":");
+        gender.setText(bundle.getString("gender") + ":");
         email.setText(bundle.getString("email") + ":");
         password.setText(bundle.getString("password") + ":");
-        register.setText(bundle.getString("register"));
+        registerBtn.setText(bundle.getString("register"));
         reset.setText(bundle.getString("reset"));
         w.setText(bundle.getString("w"));
         addProfilePic.setText(bundle.getString("addProfilePic"));
-        regStudent.setText(bundle.getString("regTeacher"));
+        regStudent.setText(bundle.getString("regStudent"));
     }
 }

@@ -277,7 +277,7 @@ public class SubjectsController implements Initializable {
     }
     private void updateLabels() {
         gradeLevel.setText(bundle.getString("gradeLevel") + ":");
-        teacher.setText(bundle.getString("teacher") + "i:");
+        teacher.setText(bundle.getString("teacher") + ":");
         obligatory.setText(bundle.getString("obligatory") + ":");
         clearFilters.setText(bundle.getString("viewAll"));
         filterButton.setText(bundle.getString("filter"));

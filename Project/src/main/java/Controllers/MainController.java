@@ -338,6 +338,7 @@ public class MainController {
         grades.setText(bundle.getString("grades"));
         users.setText(bundle.getString("users"));
         enrollments.setText(bundle.getString("enrollments"));
+        countOfGradeEvaluations.setTitle(bundle.getString("countOfGradeEvaluations"));
     }
 }
 

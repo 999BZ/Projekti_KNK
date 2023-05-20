@@ -84,6 +84,14 @@ public class TeachersController {
             setEnglish();
         }
 
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                setAlbanian();
+            } else {
+                setEnglish();
+            }
+        });
+
         searchInput.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 teachersList.clear();
@@ -176,6 +184,6 @@ public class TeachersController {
         phone.setText(bundle.getString("phone"));
         address.setText(bundle.getString("address"));
         email.setText(bundle.getString("email"));
-        addTeacherButton.setText(bundle.getString("addStudent"));
+        addTeacherButton.setText(bundle.getString("addTeacher"));
     }
 }

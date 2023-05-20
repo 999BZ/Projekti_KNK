@@ -2,10 +2,7 @@ package Controllers;
 
 import Models.Subject;
 import Repository.SubjectRepository;
-import Services.CardGenUtil;
-import Services.FetchData;
-import Services.GeneralUtil;
-import Services.WindowSizeUtils;
+import Services.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,17 +15,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class SubjectCardController {
     SubjectsController parentController;
     @FXML
     private Label gradeLvl ;
-   @FXML
-   private Label subjectName;
-   @FXML Label subjectInfo;
-   @FXML
-           private Label obligatory;
-   Subject subject;
+    @FXML
+    private Label subjectName;
+    @FXML Label subjectInfo;
+    @FXML
+    private Label obligatory;
+    private ResourceBundle bundle;
+    Subject subject;
 
     public void setData(Subject subject){
         gradeLvl.setText(String.valueOf(subject.getYear()));
@@ -57,10 +56,16 @@ public class SubjectCardController {
     }
     @FXML
     public void removeSubject() throws IOException, SQLException {
-
-        if (GeneralUtil.setDialog("This subject is being removed!")) {
-            SubjectRepository.delete(subject);
-            parentController.clearFilters();
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            if (GeneralUtil.setDialog("Kjo lëndë është duke u fshirë!")) {
+                SubjectRepository.delete(subject);
+                parentController.clearFilters();
+            }
+        } else {
+            if (GeneralUtil.setDialog("This subject is being removed!")) {
+                SubjectRepository.delete(subject);
+                parentController.clearFilters();
+            }
         }
     }
 

@@ -116,6 +116,12 @@ public class AddSubjectController implements Initializable {
         gradeLvlw.setVisible(false);
         subjectGradeLvl.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 12, 0));
 
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            setAlbanian();
+        } else {
+            setEnglish();
+        }
+
         LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("Albanian")) {
                 setAlbanian();
