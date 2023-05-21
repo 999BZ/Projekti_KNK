@@ -16,12 +16,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
+import java.awt.Desktop;
 
 public class SideNavController  implements Initializable{
 
@@ -63,8 +67,15 @@ public class SideNavController  implements Initializable{
         GeneralUtil.goToFXML("/Main/Home.fxml", (Stage) navbar.getScene().getWindow());
     }
     @FXML
-    private void goToHelp() throws IOException {
-        GeneralUtil.goToFXML("/Main/Help.fxml", (Stage) navbar.getScene().getWindow());
+    private void goToHelp(ActionEvent event) throws IOException {
+//        GeneralUtil.goToFXML("/Main/Help_en.html", (Stage) navbar.getScene().getWindow());
+//        File htmlFile = new File("/Main/Help_en.html");
+        // file:///C:/Users/eljon/OneDrive/Documents/GitHub/Projekti_KNK/Project/src/main/resources/Main/Help_en.html
+        try {
+            Desktop.getDesktop().browse(new URI("file:///C:/Users/eljon/OneDrive/Documents/GitHub/Projekti_KNK/Project/src/main/resources/Main/Help_en.html"));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

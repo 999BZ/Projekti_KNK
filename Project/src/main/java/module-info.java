@@ -6,6 +6,7 @@ module com.example.test {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires java.prefs;
+    requires java.desktop;
     opens Models;
 
     opens com.example.test to javafx.fxml;

@@ -147,16 +147,7 @@ public class StudentInfoController implements Initializable {
         statisticsController.setStudent(this.student);
         StatisticStage.showAndWait();
     }
-//    public void handleStatisticsButton() throws IOException {
-//        FXMLLoader loader = new FXMLLoader(GeneralUtil.class.getResource("/Main/TeacherStatistics.fxml"));
-//        AnchorPane statisticsPane = loader.load();
-//        StudentsStatisticsController statisticsController = loader.getController();
-//        Stage StatisticStage = new Stage();
-//        StatisticStage.initModality(Modality.APPLICATION_MODAL);
-//        StatisticStage.setScene(new Scene(statisticsPane));
-//        statisticsController.setStudent(this.student);
-//        StatisticStage.showAndWait();
-//    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (LanguageUtil.getLanguage().equals("Albanian")){
