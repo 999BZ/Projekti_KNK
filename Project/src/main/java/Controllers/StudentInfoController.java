@@ -118,8 +118,11 @@ public class StudentInfoController implements Initializable {
     private boolean isEditable = false;
     private String imagePath;
     private String oldImagePath;
+
     private StudentUser studentUser;
+
     private ArrayList<Grade> gradesList;
+
     private ResourceBundle bundle;
 
     private int S_ID;
@@ -138,12 +141,14 @@ public class StudentInfoController implements Initializable {
     private void handleStatisticsButton(ActionEvent event) throws IOException {
         try {
             this.average = FetchData.getAverageOfGrades(this.S_ID);
-            System.out.println(this.average);
+            this.gradesList = FetchData.getAllGrades(this.S_ID);
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
-        GeneralUtil.getStatistics(this.S_ID,this.average);
+        GeneralUtil.getStatistics(this.S_ID,this.average,this.gradesList);
+
 
     }
     @Override
@@ -337,10 +342,6 @@ public class StudentInfoController implements Initializable {
             email.setText(student.getEmail());
             this.S_ID = student.getID();
             this.gender.setValue(student.getGender());
-            this.gradesList = FetchData.getAllGrades(this.S_ID);
-            for (int i=0;i<this.gradesList.size();i++){
-                System.out.println(gradesList.get(i).getGrade());
-            }
             if (student.getYear() != 0) {
                 gradeLvl.getValueFactory().setValue(student.getYear());            }
             if (student.getParalel() != 0) {
