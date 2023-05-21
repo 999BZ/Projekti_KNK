@@ -483,5 +483,6 @@ public class StudentInfoController implements Initializable {
         statistics.setText(bundle.getString("statistics"));
         chooseSubjectButton.setText(bundle.getString("chooseElectiveSubject"));
         updateProfilePic.setText(bundle.getString("updateProfilePic"));
+        studentInfo.setText(bundle.getString("studentInfo"));
     }
 }

@@ -72,7 +72,11 @@ public class SideNavController  implements Initializable{
 //        File htmlFile = new File("/Main/Help_en.html");
         // file:///C:/Users/eljon/OneDrive/Documents/GitHub/Projekti_KNK/Project/src/main/resources/Main/Help_en.html
         try {
-            Desktop.getDesktop().browse(new URI("file:///C:/Users/eljon/OneDrive/Documents/GitHub/Projekti_KNK/Project/src/main/resources/Main/Help_en.html"));
+            if (LanguageUtil.getLanguage().equals("Albanian")){
+                Desktop.getDesktop().browse(new URI("file:///C:/Users/eljon/OneDrive/Documents/GitHub/Projekti_KNK/Project/src/main/resources/Main/Help_sq.html"));
+            } else {
+                Desktop.getDesktop().browse(new URI("file:///C:/Users/eljon/OneDrive/Documents/GitHub/Projekti_KNK/Project/src/main/resources/Main/Help_en.html"));
+            }
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
