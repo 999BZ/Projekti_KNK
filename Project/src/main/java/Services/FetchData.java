@@ -3,6 +3,7 @@ package Services;
 import Models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -730,29 +731,32 @@ public class FetchData {
             }
         }
     }
-    public static ArrayList<Grade> getAllGrades(int S_ID) {
-        ArrayList<Grade> GradesList = new ArrayList<>();
+    public static XYChart.Series<String,Integer> getAllGrades(int S_ID) {
+        XYChart.Series<String,Integer> series = new XYChart.Series<>();
         try {
             Connection conn = ConnectionUtil.getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * from Grades WHERE S_ID = ?;");
             stmt.setInt(1,S_ID);
             ResultSet rs = stmt.executeQuery();
 
+            int i = 0;
             while (rs.next()) {
+                i++;
                 int id = rs.getInt("G_ID");
                 int std_id= rs.getInt("S_ID");
                 int sbj_id = rs.getInt("Sb_ID");
-                int grade_id = rs.getInt("G_Value");
+                int gradeV = rs.getInt("G_Value");
 
 
-                Grade grade = new Grade(id, std_id, sbj_id,grade_id);
-                GradesList.add(grade);
+                Grade grade = new Grade(id, std_id, sbj_id,gradeV);
+                XYChart.Data<String, Integer> data = new XYChart.Data<>(String.valueOf(i),gradeV);
+                series.getData().add(data);
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
 
-        return GradesList;
+        return series;
     }
 
 

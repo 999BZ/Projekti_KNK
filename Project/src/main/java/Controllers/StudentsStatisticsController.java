@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.Grade;
+import Models.StudentUser;
 import Models.User;
 import Repository.UserRepository;
 import Services.ConnectionUtil;
@@ -27,50 +28,37 @@ import java.util.prefs.Preferences;
 public class StudentsStatisticsController implements Initializable {
 
 
-    private ArrayList<Grade> gradesList;
-
-    public ArrayList<Grade> getGradesList() {
-        return gradesList;
-    }
-
-    public void setGradesList(ArrayList<Grade> gradesList) {
-        this.gradesList = gradesList;
-    }
-
     @FXML
     private Label lblaverage;
 
     @FXML
-    private LineChart<Number,Number> GradesStats;
+    private LineChart<String,Integer> GradesStats;
 
     private Stage dialogStage;
 
     private String position;
 
-    private int U_ID;
+    private StudentUser student;
+
+    public StudentUser getStudent() {
+        return student;
+    }
+
+    public void setStudent(StudentUser student) throws SQLException {
+        this.student = student;
+        Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
+        this.position = preferences.get("position",null);
+        GradesStats.getData().add(FetchData.getAllGrades(this.student.getID()));
+        this.lblaverage.setText(Double.toString(FetchData.getAverageOfGrades(this.student.getID())));
+    }
+
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
-    public void setUserId(int U_ID){this.U_ID=U_ID;}
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
-        this.position = preferences.get("position",null);
-        this.gradesList = FetchData.getAllGrades(this.U_ID);
-        XYChart.Series<Number,Number> dataSeries = new XYChart.Series<>();
-        dataSeries.setName("Data Series");
-        for (int i = 0; i < gradesList.size(); i++) {
-            int data = gradesList.get(i).getGrade();
-            dataSeries.getData().add(new XYChart.Data<>(i, data));
-        }
-        GradesStats.getData().add(dataSeries);
-        if (gradesList.isEmpty()){
-            System.out.println("No grades there");
-        }
 
     }
 

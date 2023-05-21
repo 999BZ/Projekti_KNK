@@ -106,7 +106,6 @@ CREATE TABLE Grades (
 -- SELECT * FROM Gradesgrades
 
 
-
 -- Dummy data for Enrollments table
 -- INSERT INTO Enrollments(S_ID, C_ID, E_Date) VALUES
 -- (1, 1, '2022-08-25'),

@@ -121,8 +121,6 @@ public class StudentInfoController implements Initializable {
 
     private StudentUser studentUser;
 
-    private ArrayList<Grade> gradesList;
-
     private ResourceBundle bundle;
 
     private int S_ID;
@@ -138,19 +136,27 @@ public class StudentInfoController implements Initializable {
     }
 
     @FXML
-    private void handleStatisticsButton(ActionEvent event) throws IOException {
-        try {
-            this.average = FetchData.getAverageOfGrades(this.S_ID);
-            this.gradesList = FetchData.getAllGrades(this.S_ID);
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        GeneralUtil.getStatistics(this.S_ID,this.average,this.gradesList);
-
-
+    private void handleStatisticsButton(ActionEvent event) throws IOException, SQLException {
+        FXMLLoader loader = new FXMLLoader(GeneralUtil.class.getResource("/Main/StudentsStatistics.fxml"));
+        AnchorPane statisticsPane = loader.load();
+        StudentsStatisticsController statisticsController = loader.getController();
+        Stage StatisticStage = new Stage();
+        StatisticStage.initModality(Modality.APPLICATION_MODAL);
+        StatisticStage.setScene(new Scene(statisticsPane));
+        statisticsController.setDialogStage(StatisticStage);
+        statisticsController.setStudent(this.student);
+        StatisticStage.showAndWait();
     }
+//    public void handleStatisticsButton() throws IOException {
+//        FXMLLoader loader = new FXMLLoader(GeneralUtil.class.getResource("/Main/TeacherStatistics.fxml"));
+//        AnchorPane statisticsPane = loader.load();
+//        StudentsStatisticsController statisticsController = loader.getController();
+//        Stage StatisticStage = new Stage();
+//        StatisticStage.initModality(Modality.APPLICATION_MODAL);
+//        StatisticStage.setScene(new Scene(statisticsPane));
+//        statisticsController.setStudent(this.student);
+//        StatisticStage.showAndWait();
+//    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (LanguageUtil.getLanguage().equals("Albanian")){
@@ -195,8 +201,6 @@ public class StudentInfoController implements Initializable {
         setEditable(false);
 
         this.gender.getItems().addAll("M","F");
-
-
 
 
     }

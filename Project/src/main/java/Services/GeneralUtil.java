@@ -96,20 +96,6 @@ public class GeneralUtil {
             e.printStackTrace();
         }
     }
-    public static void getStatistics(int id , double notamesatare, ArrayList<Grade> gradesList) throws IOException {
-        FXMLLoader loader = new FXMLLoader(GeneralUtil.class.getResource("/Main/StudentsStatistics.fxml"));
-        AnchorPane statisticsPane = loader.load();
-        StudentsStatisticsController statisticsController = loader.getController();
-        statisticsController.setLblaverage(Double.toString(notamesatare));
-        statisticsController.setGradesList(gradesList);
-        Stage StatisticStage = new Stage();
-        StatisticStage.initModality(Modality.APPLICATION_MODAL);
-        StatisticStage.setScene(new Scene(statisticsPane));
-        statisticsController.setDialogStage(StatisticStage);
-        statisticsController.setUserId(id);
-        StatisticStage.showAndWait();
-    }
-
 
     public static void colorizeChartDataSeries(XYChart.Series<?,?> series){
         String[] colors = {"#4C72B0", "#55A868", "#C44E52"};

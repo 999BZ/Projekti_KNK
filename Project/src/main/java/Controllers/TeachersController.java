@@ -170,7 +170,7 @@ public class TeachersController {
                 if (event.getClickCount() == 2) { // double click
                     TeacherUser selectedTeacher = teachersTable.getSelectionModel().getSelectedItem();
                     if (selectedTeacher != null) {
-                        showTeacherInfo(teacher);
+                        showTeacherInfo(selectedTeacher);
                     }
                 }
             });
