@@ -144,7 +144,7 @@ public class SubjectsController implements Initializable {
         if (selectedTeacherOption == null && selectedGradeOption == 0 && selectedObligatoryOption == null) {
             query = "SELECT * FROM subjects";
         } else if (selectedTeacherOption != null && selectedGradeOption == 0 && selectedObligatoryOption == null) {
-            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.c_id WHERE c.t_id = ? GROUP BY s.Sb_ID";
+            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ? GROUP BY s.Sb_ID";
         } else if (selectedTeacherOption == null && selectedGradeOption != 0 && selectedObligatoryOption == null) {
             query = "SELECT * FROM subjects WHERE Sb_Glevel = ? GROUP BY subjects.Sb_ID";
         } else if (selectedTeacherOption == null && selectedGradeOption == 0 && selectedObligatoryOption != null) {
@@ -152,7 +152,7 @@ public class SubjectsController implements Initializable {
         } else if (selectedTeacherOption != null && selectedGradeOption != 0 && selectedObligatoryOption == null) {
             query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ? AND s.Sb_GLevel = ? GROUP BY s.Sb_ID";
         } else if (selectedTeacherOption != null && selectedGradeOption == 0 && selectedObligatoryOption != null) {
-            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.c_id WHERE c.t_id = ? AND Sb_Obligatory = ? GROUP BY s.Sb_ID";
+            query = "SELECT s.*, MAX(c.C_ID) FROM subjects s JOIN classes c ON s.sb_id = c.sb_id WHERE c.t_id = ? AND Sb_Obligatory = ? GROUP BY s.Sb_ID";
         } else if (selectedTeacherOption == null && selectedGradeOption != 0 && selectedObligatoryOption != null) {
             query = "SELECT * FROM subjects WHERE Sb_Glevel = ? AND Sb_Obligatory = ? GROUP BY subjects.Sb_ID";
         } else {

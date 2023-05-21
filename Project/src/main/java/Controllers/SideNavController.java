@@ -211,12 +211,12 @@ public class SideNavController  implements Initializable{
 
         languagesBox.setValue(LanguageUtil.getLanguage());
         this.setLanguage(null);
-        languagesBox.getItems().addAll("English", "Albanian");
+        languagesBox.getItems().addAll("En", "Sq");
         languagesBox.setOnAction(this::setLanguage);
     }
 
     public void setLanguage(ActionEvent event) {
-        if (languagesBox.getValue() == "Albanian") {
+        if (languagesBox.getValue() == "Sq") {
             System.out.println(LanguageUtil.getLanguage());
             try {
                 Locale locale = new Locale("sq");
@@ -225,7 +225,7 @@ public class SideNavController  implements Initializable{
             } catch (Exception e) {
                 System.out.println(e);
             }
-            LanguageUtil.setLanguage("Albanian");
+            LanguageUtil.setLanguage("Sq");
         } else {
             System.out.println(LanguageUtil.getLanguage());
             try {
@@ -235,7 +235,7 @@ public class SideNavController  implements Initializable{
             } catch (Exception e) {
                 System.out.println(e);
             }
-            LanguageUtil.setLanguage("English");
+            LanguageUtil.setLanguage("En");
         }
     }
 

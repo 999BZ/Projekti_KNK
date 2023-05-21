@@ -15,9 +15,9 @@
    <children>
       <VBox fx:id="navbar" prefHeight="482.0" prefWidth="170.0" styleClass="nav-container" stylesheets="@../CSS/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="150.0" prefWidth="180.0">
+            <AnchorPane prefHeight="126.0" prefWidth="180.0">
                <children>
-                  <ImageView fitHeight="87.0" fitWidth="170.0" layoutX="47.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="13.599999999999994" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="45.0">
+                  <ImageView fitHeight="128.0" fitWidth="120.0" layoutX="30.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-7.599999999999994" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="14.0">
                      <image>
                         <Image url="@../Images/logo3.png" />
                      </image>
@@ -31,7 +31,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ChoiceBox fx:id="languagesBox" layoutX="55.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="70.0" />
+                  <ChoiceBox fx:id="languagesBox" layoutX="134.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="41.0" />
                </children>
             </AnchorPane>
             <StackPane>

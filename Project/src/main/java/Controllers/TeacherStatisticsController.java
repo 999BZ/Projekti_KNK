@@ -46,7 +46,6 @@ public class TeacherStatisticsController implements Initializable {
 
         //put the data in percentage
         double percentage = getPercentageOfStudentsGraded()/100;
-        System.out.println(percentage);
         percentageOfStudentsGraded.setProgress(percentage);
 
         //put the data in nrOfStudents Label
@@ -137,32 +136,17 @@ public class TeacherStatisticsController implements Initializable {
 
         try {
             Connection conn = ConnectionUtil.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("SELECT\n" +
-                    "    COUNT(*) AS TotalStudents,\n" +
-                    "    COUNT(*) / (SELECT COUNT(*) FROM Students) * 100 AS PercentageGraded\n" +
-                    "FROM\n" +
-                    "    Students\n" +
-                    "WHERE\n" +
-                    "    S_UID IN (\n" +
-                    "        SELECT S_ID\n" +
-                    "        FROM Enrollments\n" +
-                    "        WHERE C_ID IN (\n" +
-                    "            SELECT C_ID\n" +
-                    "            FROM Classes\n" +
-                    "            WHERE T_ID = ?\n" +
-                    "        )\n" +
-                    "    )\n" +
-                    "    AND S_UID IN (\n" +
-                    "        SELECT S_ID\n" +
-                    "        FROM Grades\n" +
-                    "        WHERE Sb_ID IN (\n" +
-                    "            SELECT Sb_ID\n" +
-                    "            FROM Classes\n" +
-                    "            WHERE T_ID = ?\n" +
-                    "        )\n" +
-                    "    );\n");
+            PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(Enrollments.S_ID) AS TotalStudents,\n" +
+                    "       COUNT(Grades.G_ID) AS GradedStudents,\n" +
+                    "       (COUNT(Grades.G_ID) / COUNT(Enrollments.S_ID)) * 100 AS PercentageGraded\n" +
+                    "FROM Enrollments\n" +
+                    "JOIN Classes ON Enrollments.C_ID = Classes.C_ID\n" +
+                    "JOIN Subjects ON Classes.Sb_ID = Subjects.Sb_ID\n" +
+                    "JOIN Teachers ON Classes.T_ID = Teachers.T_UID\n" +
+                    "LEFT JOIN Grades ON Enrollments.S_ID = Grades.S_ID AND Subjects.Sb_ID = Grades.Sb_ID\n" +
+                    "WHERE Teachers.T_UID = ?;\n");
+            System.out.println(this.teacher.getID());
             stmt.setInt(1, this.teacher.getID());
-            stmt.setInt(2, this.teacher.getID());
 
             ResultSet rs = stmt.executeQuery();
 
@@ -177,7 +161,6 @@ public class TeacherStatisticsController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(result);
         return result;
     }
 
