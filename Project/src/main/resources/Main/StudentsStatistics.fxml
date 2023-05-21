@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="314.0" prefWidth="550.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StudentsStatisticsController">
+<AnchorPane prefHeight="314.0" prefWidth="599.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StudentsStatisticsController">
    <children>
-      <LineChart fx:id="GradesStats" layoutX="65.0" layoutY="8.0" legendVisible="false" prefHeight="227.0" prefWidth="420.0" title="Grades">
+      <LineChart fx:id="GradesStats" layoutY="14.0" legendVisible="false" prefHeight="227.0" prefWidth="370.0" title="Grades">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -22,7 +23,7 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <VBox layoutX="175.0" layoutY="242.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0">
+      <VBox layoutX="75.0" layoutY="241.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0">
          <children>
             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="180.0" styleClass="card" stylesheets="@../CSS/style.css">
                <children>
@@ -44,7 +45,7 @@
             </AnchorPane>
          </children>
       </VBox>
-      <StackPane layoutX="375.0" layoutY="245.0" prefHeight="43.0" prefWidth="104.0">
+      <StackPane layoutX="266.0" layoutY="244.0" prefHeight="43.0" prefWidth="104.0">
          <children>
             <Label fx:id="lblaverage" text="Label">
                <font>
@@ -53,5 +54,6 @@
             </Label>
          </children>
       </StackPane>
+      <PieChart fx:id="gradesPieChart" layoutX="385.0" layoutY="21.0" legendVisible="false" prefHeight="272.0" prefWidth="284.0" />
    </children>
 </AnchorPane>

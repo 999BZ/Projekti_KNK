@@ -70,6 +70,8 @@ public class SubjectsController implements Initializable {
     }
 
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (LanguageUtil.getLanguage().equals("Albanian")){

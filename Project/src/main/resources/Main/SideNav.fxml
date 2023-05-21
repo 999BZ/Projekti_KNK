@@ -17,7 +17,7 @@
          <children>
             <AnchorPane prefHeight="126.0" prefWidth="180.0">
                <children>
-                  <ImageView fitHeight="128.0" fitWidth="120.0" layoutX="30.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-7.599999999999994" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="14.0">
+                  <ImageView fitHeight="100.0" fitWidth="102.0" layoutX="40.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="13.400000000000006" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="13.0">
                      <image>
                         <Image url="@../Images/logo3.png" />
                      </image>
@@ -31,7 +31,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ChoiceBox fx:id="languagesBox" layoutX="134.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="41.0" />
+                  <ChoiceBox fx:id="languagesBox" layoutX="133.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="41.0" />
                </children>
             </AnchorPane>
             <StackPane>

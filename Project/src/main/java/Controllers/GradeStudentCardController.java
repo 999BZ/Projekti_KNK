@@ -61,27 +61,38 @@ public class GradeStudentCardController implements Initializable {
 
             gradeValue = gradeChoiceBox.getValue();
             try {
-                if(GeneralUtil.setDialog("Are you sure you want to grade this student with "+gradeValue+"?")) {
                     if (gradeValue != 0) {
-                        try {
-                            gradeObject = new Grade(1, student.getID(), subject.getId(), gradeValue);
-                            GradeRepository.insert(gradeObject);
-                        } catch (SQLException ex) {
-                            throw new RuntimeException(ex);
+                        if(GeneralUtil.setDialog("Grade this student with "+gradeValue+"?")) {
+                            try {
+                                gradeObject = new Grade(1, student.getID(), subject.getId(), gradeValue);
+                                GradeRepository.insert(gradeObject);
+                            } catch (SQLException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            gradeButton.setText("Edit");
+                            gradeButton.setOnAction(ex -> {
+                                editAction();
+                            });
+                            notGraded.setVisible(false);
+                            grade.setVisible(true);
+                            grade.setText(String.valueOf(gradeObject.getGrade()));
                         }
-                        gradeButton.setText("Edit");
-                        gradeButton.setOnAction(ex -> {
-                            editAction();
-                        });
-                        notGraded.setVisible(false);
-                        grade.setVisible(true);
-                        grade.setText(String.valueOf(gradeObject.getGrade()));
+                        else{
+                            grade.setVisible(false);
+                            notGraded.setVisible(true);
+                            gradeButton.setText("Grade");
+                            gradeButton.setOnAction(ex -> {
+                                gradeStudent(ex);
+                            });
+                        }
                     } else {
                         grade.setVisible(false);
                         notGraded.setVisible(true);
                         gradeButton.setText("Grade");
+                        gradeButton.setOnAction(ex -> {
+                            gradeStudent(ex);
+                        });
                     }
-                }
                 gradeChoiceBox.setVisible(false);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
@@ -92,6 +103,7 @@ public class GradeStudentCardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gradeChoiceBox.setItems(optionsGradeValue);
+        gradeChoiceBox.setValue(0);
         gradeChoiceBox.setVisible(false);
 
     }

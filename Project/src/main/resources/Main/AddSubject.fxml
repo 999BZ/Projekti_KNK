@@ -32,7 +32,7 @@
          <children>
             <StackPane GridPane.rowIndex="5">
                <children>
-                  <Button fx:id="addSubject" mnemonicParsing="false" onAction="#handleAddSubject" prefHeight="30.0" prefWidth="119.0" styleClass="spec-button" text="Add Subject">
+                  <Button fx:id="addSubject" alignment="CENTER" mnemonicParsing="false" onAction="#handleAddSubject" prefHeight="30.0" prefWidth="119.0" styleClass="spec-button" text="Add Subject">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -45,7 +45,7 @@
             </StackPane>
             <StackPane GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="80.0" styleClass="danger-button" text="Cancel">
+                  <Button fx:id="cancelButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleCancelButton" prefHeight="30.0" prefWidth="80.0" styleClass="danger-button" text="Cancel">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -58,7 +58,7 @@
             </StackPane>
             <StackPane prefHeight="150.0" prefWidth="312.0" GridPane.columnSpan="2">
                <children>
-                  <Label fx:id="header" prefHeight="28.0" prefWidth="130.0" styleClass="card-header" text="New subject">
+                  <Label fx:id="header" alignment="CENTER" prefHeight="28.0" prefWidth="130.0" styleClass="card-header" text="New subject">
                      <graphic>
                         <ImageView blendMode="COLOR_DODGE" fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                            <image>

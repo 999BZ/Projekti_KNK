@@ -22,18 +22,24 @@
                         </ImageView>
                      </graphic>
                   </Label>
-                  <Label fx:id="gradeValue" alignment="CENTER_RIGHT" layoutX="17.0" layoutY="86.0" prefHeight="38.0" prefWidth="97.0" style="-fx-background-color: #48CAE4;" styleClass="card-header" text="GLvl" textFill="WHITE">
+                  <Label fx:id="gradeValue" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="86.0" prefHeight="38.0" prefWidth="118.0" style="-fx-background-color: #48CAE4;" styleClass="card-header" text="GLvl" textFill="WHITE">
                      <font>
-                        <Font size="11.0" />
+                        <Font name="System Bold" size="11.0" />
                      </font>
                   </Label>
-                  <Label fx:id="gradeLevel" alignment="CENTER" layoutX="24.0" layoutY="91.0" prefHeight="28.0" prefWidth="36.0" style="-fx-background-color: #48CAE4; -fx-padding: 0; -fx-background-color: #144272;" styleClass="card-header" text="GLvl" textFill="WHITE">
+                  <Label fx:id="gradeLevel" alignment="CENTER" layoutX="16.0" layoutY="91.0" prefHeight="28.0" prefWidth="51.0" style="-fx-background-color: #48CAE4; -fx-padding: 0; -fx-background-color: #144272;" styleClass="card-header" text="GLvl" textFill="WHITE">
                      <font>
-                        <Font size="11.0" />
+                        <Font name="System Bold" size="11.0" />
                      </font>
                   </Label>
-                  <Label fx:id="subjectName2" alignment="CENTER" prefHeight="28.0" prefWidth="58.0" text="Subject:" />
-                  <Label fx:id="lblGrade" alignment="CENTER" layoutX="-1.0" layoutY="51.0" prefHeight="28.0" prefWidth="58.0" text="Grade:  " />
+                  <Label fx:id="subjectName2" layoutX="5.0" prefHeight="28.0" prefWidth="58.0" text="Subject:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label fx:id="lblGrade" layoutX="5.0" layoutY="51.0" prefHeight="28.0" prefWidth="73.0" text="Grade:  ">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children>
             </AnchorPane>
          </children>

@@ -660,6 +660,39 @@ public class FetchData {
 
         return enrollmentsList;
     }
+
+    public static ObservableList<Enrollment> searchAllTeacherEnrollments(int ID, String searchString) {
+        ObservableList<Enrollment> enrollmentsList = FXCollections.observableArrayList();
+        try {
+            Connection conn = ConnectionUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT Enrollments.*, Classes.C_ID, Classes.T_ID\n" +
+                    "FROM Enrollments\n" +
+                    "JOIN Classes ON Enrollments.C_ID = Classes.C_ID\n" +
+                    "JOIN Students ON Enrollments.S_ID = Students.S_UID\n" +
+                    "WHERE Classes.T_ID = ?\n" +
+                    "AND (Students.S_Name LIKE ? OR Students.S_Surname LIKE ?);");
+            stmt.setInt(1, ID);
+            stmt.setString(2, "%" + searchString + "%");
+            stmt.setString(3, "%" + searchString + "%");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("E_ID");
+                int classId = rs.getInt("C_ID");
+                int studentId = rs.getInt("S_ID");
+                String date = rs.getDate("E_Date").toLocalDate().toString();
+
+                Enrollment enrollment = new Enrollment(id, studentId, classId, date);
+                enrollmentsList.add(enrollment);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return enrollmentsList;
+    }
+
+
     public static ObservableList<Enrollment> getAllEnrollmentsBySubjectOfTeacher(int subjectId, int teacherId) {
         ObservableList<Enrollment> enrollmentsList = FXCollections.observableArrayList();
         try {

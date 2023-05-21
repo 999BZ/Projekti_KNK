@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -23,6 +24,9 @@ public class GradesController implements Initializable {
 
     @FXML
     private Button clearFilters;
+
+    @FXML
+    private TextField searchInput;
 
 
 
@@ -38,7 +42,7 @@ public class GradesController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         clearFilters.setOnAction(e -> clearFilters());
         subjectFilter.setOnAction(e -> filterGrades());
-
+        searchInput.setOnAction(e -> searchStudents());
         //get user id from preferences
         Preferences preferences = Preferences.userNodeForPackage(LoginController.class);
         this.teacherId = preferences.getInt("userId",0);
@@ -72,6 +76,15 @@ public class GradesController implements Initializable {
         subjectFilter.setValue(null);
         enrollmentsList = FetchData.getAllTeacherEnrollments(teacherId);
         CardGenUtil.gradesToFlowPane(gradesCard,enrollmentsList,this);
+    }
+
+    @FXML
+    public void searchStudents(){
+        if(!searchInput.getText().isEmpty()){
+            enrollmentsList = FetchData.searchAllTeacherEnrollments(this.teacherId, searchInput.getText());
+            gradesCard.getChildren().clear();
+            CardGenUtil.gradesToFlowPane(gradesCard,enrollmentsList,this);
+        }
     }
 
 }

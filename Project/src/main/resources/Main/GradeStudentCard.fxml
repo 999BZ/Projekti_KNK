@@ -14,7 +14,7 @@
    <children>
       <AnchorPane prefHeight="78.0" prefWidth="711.0">
          <children>
-            <AnchorPane layoutX="8.0" layoutY="9.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="704.0" style="-fx-background-color: #B0DAFF;" styleClass="card" stylesheets="@../CSS/style.css">
+            <AnchorPane layoutX="8.0" layoutY="9.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="704.0" styleClass="card" stylesheets="@../CSS/style.css">
                <children>
                   <StackPane layoutX="74.0" layoutY="11.0" prefHeight="43.0" prefWidth="165.0">
                      <children>
