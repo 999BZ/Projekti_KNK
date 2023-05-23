@@ -69,6 +69,7 @@ public class GeneralUtil {
         dialogStage.initModality(Modality.APPLICATION_MODAL);
         dialogStage.setScene(new Scene(dialogPane));
         dialogController.setDialogStage(dialogStage);
+        dialogStage.setResizable(false);
         dialogStage.showAndWait();
 
         return dialogController.isConfirmClicked();
@@ -81,6 +82,7 @@ public class GeneralUtil {
         Stage chPwStage = new Stage();
         chPwStage.initModality(Modality.APPLICATION_MODAL);
         chPwStage.setScene(new Scene(chPwPane));
+        chPwStage.setResizable(false);
         chPwController.setDialogStage(chPwStage);
         chPwController.setUserId(U_ID);
         chPwStage.showAndWait();

@@ -308,6 +308,7 @@ public class TeacherInfoController implements Initializable {
         Stage StatisticStage = new Stage();
         StatisticStage.initModality(Modality.APPLICATION_MODAL);
         StatisticStage.setScene(new Scene(statisticsPane));
+        StatisticStage.setResizable(false);
         statisticsController.setTeacher(this.teacher);
         StatisticStage.showAndWait();
     }

@@ -123,7 +123,7 @@
                   <Font name="Century Gothic Bold" size="14.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="languagesBox" layoutX="178.0" layoutY="610.0" prefHeight="26.0" prefWidth="81.0" style="-fx-color: white;" />
+            <ChoiceBox fx:id="languagesBox" layoutX="178.0" layoutY="610.0" prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: none; -fx-padding: -5;" styleClass="textInput" />
          </children>
       </AnchorPane>
    </center>

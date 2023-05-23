@@ -218,6 +218,7 @@ public class SubjectsController implements Initializable {
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.APPLICATION_MODAL);
         dialogStage.setScene(new Scene(addSubjectPane));
+        dialogStage.setResizable(false);
         subjectController.setAddSubjectsStage(dialogStage);
         dialogStage.showAndWait();
         if(subjectController.getConfimed()){

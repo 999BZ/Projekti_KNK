@@ -35,7 +35,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ChoiceBox fx:id="subjectFilter" layoutX="310.0" layoutY="1.0" prefWidth="150.0" style="-fx-background-color: white; -fx-padding: o;" styleClass="textInput" />
+                  <ChoiceBox fx:id="subjectFilter" layoutX="310.0" layoutY="1.0" prefWidth="150.0" style="-fx-background-color: white; -fx-padding: 0;" styleClass="textInput" />
                   <Label fx:id="subject" alignment="CENTER" layoutX="231.0" layoutY="3.0" prefHeight="18.0" prefWidth="78.0" text="Subject:">
                      <font>
                         <Font name="System Bold" size="12.0" />

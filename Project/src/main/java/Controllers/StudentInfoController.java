@@ -144,6 +144,7 @@ public class StudentInfoController implements Initializable {
         StatisticStage.initModality(Modality.APPLICATION_MODAL);
         StatisticStage.setScene(new Scene(statisticsPane));
         statisticsController.setDialogStage(StatisticStage);
+        StatisticStage.setResizable(false);
         statisticsController.setStudent(this.student);
         StatisticStage.showAndWait();
     }
@@ -366,6 +367,7 @@ public class StudentInfoController implements Initializable {
         Stage dialogStage = new Stage();
         dialogStage.initModality(Modality.APPLICATION_MODAL);
         dialogStage.setScene(new Scene(addSubjectPane));
+        dialogStage.setResizable(false);
         subjectController.setStage(dialogStage);
         subjectController.setParentController(this);
         subjectController.setData(this.student);

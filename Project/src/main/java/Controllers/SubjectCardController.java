@@ -102,6 +102,7 @@ public class SubjectCardController {
         Stage assignStage = new Stage();
         assignStage.initModality(Modality.APPLICATION_MODAL);
         assignStage.setScene(new Scene(assignPane));
+        assignStage.setResizable(false);
         asc.setAssignStage(assignStage);
         assignStage.showAndWait();
     }

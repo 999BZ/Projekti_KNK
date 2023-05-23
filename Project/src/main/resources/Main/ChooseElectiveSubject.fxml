@@ -38,7 +38,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <ChoiceBox fx:id="chooseSubject" layoutX="76.0" layoutY="75.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="chooseSubject" layoutX="76.0" layoutY="75.0" prefWidth="150.0" style="-fx-background-color: none; -fx-padding: 0;" styleClass="textInput" />
       <ImageView fx:id="w" fitHeight="23.0" fitWidth="23.0" layoutX="234.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/warning.png" />

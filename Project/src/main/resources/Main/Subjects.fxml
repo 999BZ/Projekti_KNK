@@ -35,8 +35,8 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ChoiceBox fx:id="teacherFilter" layoutX="197.0" layoutY="-1.0" prefHeight="26.0" prefWidth="134.0" />
-                  <ChoiceBox fx:id="gradeFilter" layoutX="69.0" layoutY="-1.0" onInputMethodTextChanged="#teacherDynamicOptions" prefHeight="26.0" prefWidth="53.0" />
+                  <ChoiceBox fx:id="teacherFilter" layoutX="197.0" layoutY="-1.0" prefHeight="26.0" prefWidth="134.0" style="-fx-background-color: none; -fx-padding: -5;" styleClass="textInput" />
+                  <ChoiceBox fx:id="gradeFilter" layoutX="69.0" layoutY="-1.0" onInputMethodTextChanged="#teacherDynamicOptions" prefHeight="26.0" prefWidth="53.0" style="-fx-background-color: none; -fx-padding: -5;" styleClass="textInput" />
                   <Button fx:id="filterButton" alignment="CENTER" layoutX="648.0" layoutY="-2.0" mnemonicParsing="false" onAction="#filterSubjects" prefHeight="27.0" prefWidth="85.0" styleClass="spec-button" text="Filter">
                      <graphic>
                         <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
@@ -51,7 +51,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="obligatoryFilter" layoutX="421.0" layoutY="-1.0" prefHeight="26.0" prefWidth="111.0" />
+                  <ChoiceBox fx:id="obligatoryFilter" layoutX="421.0" layoutY="-1.0" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: none; -fx-padding: -5;" styleClass="textInput" />
                   <Label fx:id="obligatory" alignment="CENTER" layoutX="331.0" layoutY="4.0" prefHeight="18.0" prefWidth="90.0" text="Obligatory:">
                      <font>
                         <Font name="System Bold" size="12.0" />
