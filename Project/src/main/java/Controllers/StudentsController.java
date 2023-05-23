@@ -65,6 +65,8 @@ public class StudentsController {
     private ChoiceBox<String> paralelChoice;
     @FXML
     private Button addStudentButton;
+    @FXML
+    private Button filterButton;
     private ResourceBundle bundle;
 
     public StudentsController() {
@@ -225,5 +227,9 @@ public class StudentsController {
         year.setText(bundle.getString("year"));
         paralel.setText(bundle.getString("paralel"));
         addStudentButton.setText(bundle.getString("addStudent"));
+        lblLevel.setText(bundle.getString("level"));
+        lblParalel.setText(bundle.getString("paralel"));
+        filterButton.setText(bundle.getString("filter"));
+        gender.setText(bundle.getString("gender"));
     }
 }

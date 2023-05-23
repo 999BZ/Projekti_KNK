@@ -167,7 +167,7 @@ public class AddSubjectController implements Initializable {
         }
     }
     private void updateLabels() {
-        header.setText(bundle.getString("header"));
+        header.setText(bundle.getString("addSubject"));
         subjectNameL.setText(bundle.getString("subjectName") + ":");
         subjectDesc.setText(bundle.getString("subjectDesc") + ":");
         gradeLevel.setText(bundle.getString("gradeLevel") + ":");

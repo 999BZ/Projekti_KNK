@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class SubjectCardController {
@@ -26,6 +28,8 @@ public class SubjectCardController {
     @FXML Label subjectInfo;
     @FXML
     private Label obligatory;
+    @FXML
+    private Button assignButton;
     private ResourceBundle bundle;
     Subject subject;
 
@@ -40,6 +44,23 @@ public class SubjectCardController {
             obligatory.setText("Elective");
         }
         this.subject = subject;
+
+        setLanguage();
+
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            setLanguage();
+        });
+    }
+
+    public void setLanguage(){
+        if (LanguageUtil.getLanguage().equals("Albanian")) {
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", new Locale("sq"));
+        } else {
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", Locale.ENGLISH);
+        }
+
+        obligatory.setText(bundle.getString("obligatory"));
+        assignButton.setText(bundle.getString("assign"));
     }
     @FXML
     public void editSubject() throws IOException, SQLException {

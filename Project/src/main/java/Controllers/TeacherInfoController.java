@@ -330,7 +330,11 @@ public class TeacherInfoController implements Initializable {
                 editButton.setText("Save");
             }
         }else{
-            editButton.setText("Edit or Delete Teacher");
+            if (LanguageUtil.getLanguage().equals("Albanian")){
+                editButton.setText("Ndrysho ose fshij mësuesin");
+            } else {
+                editButton.setText("Edit or Delete Teacher");
+            }
         }
         isEditable = set;
     }

@@ -69,6 +69,10 @@ public class TeachersController {
     private TextField searchInput;
     @FXML
     private Button addTeacherButton;
+    @FXML
+    private Button filterButton;
+    @FXML
+    private Label lblSubject;
 
     @FXML
     private ChoiceBox<String> subjectChoice;
@@ -206,5 +210,8 @@ public class TeachersController {
         address.setText(bundle.getString("address"));
         email.setText(bundle.getString("email"));
         addTeacherButton.setText(bundle.getString("addTeacher"));
+        filterButton.setText(bundle.getString("filter"));
+        lblSubject.setText(bundle.getString("subject"));
+        gender.setText(bundle.getString("gender"));
     }
 }

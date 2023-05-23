@@ -30,6 +30,8 @@ public class AssignSubjectController implements Initializable {
     @FXML
     private Button assignButton;
     @FXML
+    private Button cancelButton;
+    @FXML
     TableColumn<Classe, Void> unAssign;
 
     @FXML
@@ -154,6 +156,14 @@ public class AssignSubjectController implements Initializable {
         } else {
             setEnglish();
         }
+
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                setAlbanian();
+            } else {
+                setEnglish();
+            }
+        });
     }
 
     public void unAssignFunctionallity() {
@@ -222,5 +232,7 @@ public class AssignSubjectController implements Initializable {
         alreadyAssignedTo.setText(bundle.getString("alreadyAssignedTo"));
         assignedTeacher.setText(bundle.getString("teacher"));
         assignedParalel.setText(bundle.getString("paralel"));
+        assignButton.setText(bundle.getString("assign"));
+        cancelButton.setText(bundle.getString("cancel"));
     }
 }

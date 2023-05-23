@@ -1,4 +1,5 @@
 package Controllers;
+import Services.LanguageUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,6 +26,10 @@ public class DialogController {
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
+        if (LanguageUtil.getLanguage().equals("Albanian")) {
+            confirmButton.setText("Konfirmo");
+            cancelButton.setText("Anulo");
+        }
     }
 
     public boolean isConfirmClicked() {

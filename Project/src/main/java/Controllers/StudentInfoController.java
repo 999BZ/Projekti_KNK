@@ -395,7 +395,11 @@ public class StudentInfoController implements Initializable {
                 editButton.setText("Save");
             }
         }else{
-            editButton.setText("Edit or Delete Student");
+            if (LanguageUtil.getLanguage().equals("Albanian")){
+                editButton.setText("Ndrysho ose fshij nxënësin");
+            } else {
+                editButton.setText("Edit or Delete Student");
+            }
         }
         isEditable = set;
     }
@@ -475,7 +479,7 @@ public class StudentInfoController implements Initializable {
         lbladdress.setText(bundle.getString("address") + ":");
         lblGender.setText(bundle.getString("gender") + ":");
         removeButton.setText(bundle.getString("remove"));
-        editButton.setText(bundle.getString("editRemoveTeacher"));
+        editButton.setText(bundle.getString("editRemoveStudent"));
         reset.setText(bundle.getString("reset"));
         w.setText(bundle.getString("w"));
         gLevelParalel.setText(bundle.getString("gradeLevelParalel") + ":");
