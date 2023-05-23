@@ -4,17 +4,20 @@ import Models.Enrollment;
 import Models.Subject;
 import Services.CardGenUtil;
 import Services.FetchData;
+import Services.LanguageUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
@@ -27,9 +30,10 @@ public class GradesController implements Initializable {
 
     @FXML
     private TextField searchInput;
+    @FXML
+    private Label subject;
 
-
-
+    private ResourceBundle bundle;
     @FXML
     private ChoiceBox<Subject> subjectFilter;
     private int teacherId;
@@ -60,6 +64,20 @@ public class GradesController implements Initializable {
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
+
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            setAlbanian();
+        } else {
+            setEnglish();
+        }
+
+        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("Albanian")) {
+                setAlbanian();
+            } else {
+                setEnglish();
+            }
+        });
     }
 
     @FXML
@@ -87,4 +105,29 @@ public class GradesController implements Initializable {
         }
     }
 
+    public void setAlbanian() {
+        try {
+            Locale locale = new Locale("sq");
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void setEnglish() {
+        try {
+            Locale locale = Locale.ENGLISH;
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", locale);
+
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    private void updateLabels() {
+        subject.setText(bundle.getString("subject") + ":");
+        clearFilters.setText(bundle.getString("viewAll"));
+    }
 }

@@ -275,7 +275,13 @@ public class StudentInfoController implements Initializable {
                             int yearValue = this.gradeLvl.getValue();
                             int paralelValue = this.paralel.getValue();
                             System.out.println("ALL GOOD");
-                            if(GeneralUtil.setDialog("Edit Student's info")){
+                            String a;
+                            if(LanguageUtil.getLanguage().equals("Albanian")){
+                                a = "Ndrysho informatat për nxënësin?";
+                            } else {
+                                a = "Edit Student's info?";
+                            }
+                            if(GeneralUtil.setDialog(a)){
                                 try {
                                     System.out.println("Register -> AuthService");
                                     User user = UserAuthService.updateStudent(student.getID(), nameValue, surnameValue, birthdateValue, phoneValue,gender, addressValue, yearValue,paralelValue, emailValue,"Student", imagePath);

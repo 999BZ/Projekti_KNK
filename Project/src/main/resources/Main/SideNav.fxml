@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -32,11 +30,16 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <ChoiceBox fx:id="languagesBox" layoutX="133.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="41.0" style="-fx-background-color: white; -fx-padding: -5;">
-                     <styleClass>
-                        <String fx:value="textInput" />
-                        <String fx:value="choice-box" />
-                     </styleClass></ChoiceBox>
+                  <ImageView fx:id="enButton" fitHeight="26.0" fitWidth="26.0" layoutX="147.0" layoutY="5.0" onMouseClicked="#setEnglish" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/english.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="sqButton" fitHeight="26.0" fitWidth="26.0" layoutX="121.0" layoutY="5.0" onMouseClicked="#setAlbanian" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/albanian.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
             <StackPane>

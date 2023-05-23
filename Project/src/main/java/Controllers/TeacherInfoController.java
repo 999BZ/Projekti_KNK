@@ -268,10 +268,6 @@ public class TeacherInfoController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        for (Subject subject:subjectsList
-        ) {
-            System.out.println(subject.getName());
-        }
         CardGenUtil.subjectsToFlowPaneTeachers(subjectsBox, subjectsList, teacher);
         if (teacher != null) {
             firstname.setText(teacher.getName());

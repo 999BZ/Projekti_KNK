@@ -13,10 +13,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -56,9 +56,6 @@ public class SideNavController  implements Initializable{
     private StackPane gradesPane;
     @FXML
     private ImageView profilePic;
-
-    @FXML
-    private ChoiceBox<String> languagesBox;
 
     private String position;
     private ResourceBundle bundle;
@@ -209,33 +206,10 @@ public class SideNavController  implements Initializable{
             System.out.println("Position: " + this.position);
         }
 
-        languagesBox.setValue(LanguageUtil.getLanguage());
-        this.setLanguage(null);
-        languagesBox.getItems().addAll("English", "Albanian");
-        languagesBox.setOnAction(this::setLanguage);
-    }
-
-    public void setLanguage(ActionEvent event) {
-        if (languagesBox.getValue() == "Albanian") {
-            System.out.println(LanguageUtil.getLanguage());
-            try {
-                Locale locale = new Locale("sq");
-                bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", locale);
-                updateLabels();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-            LanguageUtil.setLanguage("Albanian");
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            setAlbanian();
         } else {
-            System.out.println(LanguageUtil.getLanguage());
-            try {
-                Locale locale = new Locale("en");
-                bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", locale);
-                updateLabels();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-            LanguageUtil.setLanguage("English");
+            setEnglish();
         }
     }
 
@@ -245,5 +219,27 @@ public class SideNavController  implements Initializable{
         subjectsButton.setText(bundle.getString("subjects"));
         gradesButton.setText(bundle.getString("grades"));
         logoutButton.setText(bundle.getString("logout"));
+    }
+
+    public void setEnglish() {
+        try {
+            Locale locale = new Locale("en");
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", locale);
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        LanguageUtil.setLanguage("English");
+    }
+
+    public void setAlbanian() {
+        try {
+            Locale locale = new Locale("sq");
+            bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", locale);
+            updateLabels();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        LanguageUtil.setLanguage("Albanian");
     }
 }

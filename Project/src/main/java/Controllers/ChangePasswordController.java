@@ -126,13 +126,11 @@ public class ChangePasswordController implements Initializable {
             lblOldPassword.setVisible(false);
         }
 
-        LanguageUtil.languageProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.equals("Albanian")) {
-                setAlbanian();
-            } else {
-                setEnglish();
-            }
-        });
+        if (LanguageUtil.getLanguage().equals("Albanian")){
+            setAlbanian();
+        } else {
+            setEnglish();
+        }
     }
 
     public void setAlbanian() {
