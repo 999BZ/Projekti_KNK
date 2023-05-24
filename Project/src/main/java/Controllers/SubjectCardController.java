@@ -38,10 +38,15 @@ public class SubjectCardController {
         subjectInfo.setText(subject.getDescription());
         subjectName.setText(subject.getName());
         if(subject.isObligatory()){
-            obligatory.setText("Obligatory");
+                obligatory.setText("Obligatory");
+
             obligatory.setStyle("-fx-text-fill: #186021; -fx-font-weight: bold;");
         }else{
-            obligatory.setText("Elective");
+            if (LanguageUtil.getLanguage().equals("Albanian")) {
+                obligatory.setText("Zgjedhore");
+            } else {
+                obligatory.setText("Elective");
+            }
         }
         this.subject = subject;
 
@@ -55,11 +60,20 @@ public class SubjectCardController {
     public void setLanguage(){
         if (LanguageUtil.getLanguage().equals("Albanian")) {
             bundle = ResourceBundle.getBundle("Bilinguality.NameTags_sq", new Locale("sq"));
+            if (obligatory.getText().equals("Obligatory")) {
+                obligatory.setText("Obligative");}
+            if (obligatory.getText().equals("Elective")) {
+                obligatory.setText("Zgjedhore");}
         } else {
             bundle = ResourceBundle.getBundle("Bilinguality.NameTags_en", Locale.ENGLISH);
+            if (obligatory.getText().equals("Obligative")) {
+                obligatory.setText("Obligatory");}
+            if (obligatory.getText().equals("Zgjedhore")) {
+                obligatory.setText("Elective");}
         }
 
-        obligatory.setText(bundle.getString("obligatory"));
+//        obligatory.setText(bundle.getString("obligatory"));
+
         assignButton.setText(bundle.getString("assign"));
     }
     @FXML

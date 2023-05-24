@@ -58,7 +58,7 @@
                   <Label fx:id="gLevelParalel" styleClass="profile-info" text="Grade Leve / Paralel:" GridPane.rowIndex="8" />
                   <AnchorPane fx:id="imageContainer" prefHeight="286.0" prefWidth="318.0" GridPane.columnSpan="3" GridPane.rowSpan="6">
                      <children>
-                        <Label fx:id="studentInfo" layoutX="77.0" layoutY="14.0" styleClass="card-header" text="Student Info">
+                        <Label fx:id="studentInfo" alignment="CENTER" layoutX="39.0" layoutY="14.0" prefHeight="42.0" prefWidth="208.0" styleClass="card-header" text="Student Info">
                            <graphic>
                               <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -170,7 +170,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="editButton" layoutX="164.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="30.0" prefWidth="174.0" styleClass="spec-button" text="Edit or Remove Student">
+            <Button fx:id="editButton" layoutX="139.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="30.0" prefWidth="199.0" styleClass="spec-button" text="Edit or Remove Student">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>

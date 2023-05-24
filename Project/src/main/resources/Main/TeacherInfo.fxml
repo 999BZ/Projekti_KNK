@@ -135,7 +135,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="editButton" layoutX="157.0" layoutY="523.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="30.0" prefWidth="170.0" styleClass="spec-button" text="Edit or Remove Teacher">
+            <Button fx:id="editButton" layoutX="137.0" layoutY="523.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="30.0" prefWidth="190.0" styleClass="spec-button" text="Edit or Remove Teacher">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -144,7 +144,7 @@
                   </ImageView>
                </graphic>
             </Button>
-                    <Label fx:id="teacherInfo" layoutX="91.0" layoutY="25.0" styleClass="card-header" text="Teacher Info">
+                    <Label fx:id="teacherInfo" alignment="CENTER" layoutX="52.0" layoutY="24.0" prefHeight="42.0" prefWidth="209.0" styleClass="card-header" text="Teacher Info">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
