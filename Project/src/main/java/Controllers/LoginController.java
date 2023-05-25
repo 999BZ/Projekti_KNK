@@ -46,12 +46,11 @@ public class LoginController implements Initializable{
     @FXML
     private Button cancelButton;
 
-    ;
+
     @FXML
     private ChoiceBox<String> languagesBox;
     boolean isLoginSuccessful = false;
     private ResourceBundle bundle;
-    ActionEvent e;
 
     @FXML
     private void loginClick(ActionEvent e) throws IOException, SQLException {

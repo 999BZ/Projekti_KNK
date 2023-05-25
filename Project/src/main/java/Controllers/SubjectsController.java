@@ -112,8 +112,7 @@ public class SubjectsController implements Initializable {
 
         ObservableList<TeacherUser> teachers = FXCollections.observableArrayList();
         teachers = FetchData.getAllTeachers();
-        for (TeacherUser teacher:teachers
-             ) {
+        for (TeacherUser teacher:teachers) {
             optionsTeacher.add(teacher);
         }
         teacherFilter.setItems(teachers);

@@ -119,7 +119,6 @@ public class StudentsController {
         });
     }
     public void fillTable() throws SQLException {
-
         for (StudentUser student:studentsList) {
             this.name.setCellValueFactory(new PropertyValueFactory<>("Name"));
             this.surname.setCellValueFactory(new PropertyValueFactory<>("Surname"));

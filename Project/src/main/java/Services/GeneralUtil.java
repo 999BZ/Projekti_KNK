@@ -2,8 +2,6 @@ package Services;
 
 import Controllers.ChangePasswordController;
 import Controllers.DialogController;
-import Controllers.StudentsStatisticsController;
-import Models.Grade;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +18,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class GeneralUtil {
@@ -60,6 +57,7 @@ public class GeneralUtil {
         }
         return selectedFile;
     }
+
     public static boolean setDialog(String labelText) throws IOException {
         FXMLLoader loader = new FXMLLoader(GeneralUtil.class.getResource("/Main/Dialog.fxml"));
         AnchorPane dialogPane = loader.load();
@@ -108,8 +106,5 @@ public class GeneralUtil {
                 data.getNode().setStyle("-fx-bar-fill: " + color + ";");
             }
         });
-
     }
-
-
 }

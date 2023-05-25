@@ -13,7 +13,6 @@ import java.sql.SQLException;
 public class GradeRepository {
 
     public static void insert(Grade grade) throws SQLException {
-
         String UserSql = "INSERT INTO Grades  (S_ID, Sb_ID, G_Value) VALUES (?, ?, ?)";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)
@@ -21,16 +20,13 @@ public class GradeRepository {
             statement.setInt(1, grade.getStudentId());
             statement.setInt(2, grade.getSubjectId());
             statement.setInt(3, grade.getGrade());
-
             statement.executeUpdate();
-
         }catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     public static void update(Grade grade) throws SQLException {
-
         String UserSql = "UPDATE  Grades set S_ID=?, Sb_ID=?, G_Value = ? where G_ID = ? ";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)

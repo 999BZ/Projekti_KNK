@@ -2,12 +2,9 @@ package Services;
 
 import Controllers.*;
 import Models.*;
-import Repository.SubjectRepository;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Pagination;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -42,16 +39,17 @@ public class CardGenUtil {
         subjectCards.getChildren().clear();
         subjectCards.getChildren().addAll(pg);
     }
+
     public static void gradesToFlowPane(VBox subjectCards, ObservableList<Enrollment> enrollmentsList, GradesController gc){
         subjectCards.getChildren().clear();
-        for(int i = 0; i<enrollmentsList.size();i++){
+        for (Enrollment enrollment : enrollmentsList) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(CardGenUtil.class.getResource("/Main/GradeStudentCard.fxml"));
 
             try {
                 VBox hBox = fxmlLoader.load();
                 GradeStudentCardController scc = fxmlLoader.getController();
-                scc.setData(FetchData.getStudentFromEnrollment(enrollmentsList.get(i).getId()), FetchData.getSubjectFromEnrollmentId(enrollmentsList.get(i).getId()));
+                scc.setData(FetchData.getStudentFromEnrollment(enrollment.getId()), FetchData.getSubjectFromEnrollmentId(enrollment.getId()));
                 scc.setParentController(gc);
                 subjectCards.getChildren().add(hBox);
             } catch (IOException e) {
@@ -60,44 +58,41 @@ public class CardGenUtil {
                 throw new RuntimeException(e);
             }
         }
-
     }
 
     public static void subjectsToFlowPaneStudents(VBox subjectCards, ObservableList<Subject> subjectsList, StudentUser student){
         subjectCards.getChildren().clear();
-        for(int i = 0; i<subjectsList.size();i++){
+        for (Subject subject : subjectsList) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(CardGenUtil.class.getResource("/Main/StudentSubjectCard.fxml"));
-            System.out.println(subjectsList.get(i).getId());
+            System.out.println(subject.getId());
 
             try {
                 HBox hBox = fxmlLoader.load();
                 StudentSubjectCardController scc = fxmlLoader.getController();
-                scc.setData(subjectsList.get(i), student);
+                scc.setData(subject, student);
                 subjectCards.getChildren().add(hBox);
             } catch (IOException e) {
                 System.out.println(e);
             }
         }
-
     }
 
     public static void subjectsToFlowPaneTeachers(VBox subjectCards, ObservableList<Subject> subjectsList, TeacherUser teacher){
         subjectCards.getChildren().clear();
-        for(int i = 0; i<subjectsList.size();i++){
+        for (Subject subject : subjectsList) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(CardGenUtil.class.getResource("/Main/StudentSubjectCard.fxml"));
-            System.out.println(subjectsList.get(i).getId());
+            System.out.println(subject.getId());
 
             try {
                 HBox hBox = fxmlLoader.load();
                 StudentSubjectCardController scc = fxmlLoader.getController();
-                scc.setData(subjectsList.get(i), teacher);
+                scc.setData(subject, teacher);
                 subjectCards.getChildren().add(hBox);
             } catch (IOException e) {
                 System.out.println(e);
             }
         }
-
     }
 }

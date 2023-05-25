@@ -220,8 +220,6 @@ public class GradeStudentCardController implements Initializable {
                     editAction();
                 });
                 gradeChoiceBox.setVisible(false);
-
-
         });
 
     }

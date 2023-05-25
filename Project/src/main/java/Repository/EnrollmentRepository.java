@@ -14,7 +14,6 @@ import java.time.format.DateTimeFormatter;
 
 public class EnrollmentRepository {
     public static void insert(Enrollment enrollment) throws SQLException {
-
         String UserSql = "INSERT INTO Enrollments (S_ID, C_ID, E_Date) VALUES (?, ?, ?)";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)
@@ -27,16 +26,13 @@ public class EnrollmentRepository {
             statement.setInt(1, enrollment.getStudentId());
             statement.setInt(2, enrollment.getClassId());
             statement.setString(3, formattedDate);
-
             statement.executeUpdate();
-
         }catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     public static void update(Enrollment enrollment) throws SQLException {
-
         String UserSql = "UPDATE  Enrollments set S_ID=?, C_ID=?, E_Date = ? where E_ID = ? ";
         try(Connection connection = ConnectionUtil.getConnection();
             PreparedStatement statement = connection.prepareStatement(UserSql)

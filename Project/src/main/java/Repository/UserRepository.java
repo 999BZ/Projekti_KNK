@@ -87,12 +87,12 @@ public class UserRepository {
 
                 UserStatement.executeUpdate();
 
-                PreparedStatement TeacherStatement = connection.prepareStatement(AdminSql);
-                TeacherStatement.setString(1, admin.getName());
-                TeacherStatement.setString(2, admin.getSurname());
-                TeacherStatement.setString(3, admin.getPhone());
-                TeacherStatement.setString(4, admin.getEmail());
-                TeacherStatement.executeUpdate();
+                PreparedStatement AdminStatement = connection.prepareStatement(AdminSql);
+                AdminStatement.setString(1, admin.getName());
+                AdminStatement.setString(2, admin.getSurname());
+                AdminStatement.setString(3, admin.getPhone());
+                AdminStatement.setString(4, admin.getEmail());
+                AdminStatement.executeUpdate();
             }catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -101,13 +101,12 @@ public class UserRepository {
         }
 
         return null;
-
     }
 
     public static User getByEmail(String Email) throws SQLException {
         String sql = "SELECT * FROM Users WHERE Email = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+            PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, Email);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -125,7 +124,7 @@ public class UserRepository {
     public static User getByID(int  U_ID) throws SQLException {
         String sql = "SELECT * FROM Users WHERE U_ID = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+            PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, U_ID);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -153,7 +152,6 @@ public class UserRepository {
                 UserStatement.setString(1, student.getEmail());
                 UserStatement.setString(2, student.getPosition());
                 UserStatement.setString(3, student.getProfileImg());
-
                 UserStatement.setInt(4, student.getID());
 
                 UserStatement.executeUpdate();
@@ -222,14 +220,12 @@ public class UserRepository {
 
                 UserStatement.executeUpdate();
 
-                PreparedStatement TeacherStatement = connection.prepareStatement(TeacherSql);
-                TeacherStatement.setString(1, admin.getName());
-                TeacherStatement.setString(2, admin.getSurname());
-                TeacherStatement.setString(3, admin.getPhone());
+                PreparedStatement AdminStatement = connection.prepareStatement(TeacherSql);
+                AdminStatement.setString(1, admin.getName());
+                AdminStatement.setString(2, admin.getSurname());
+                AdminStatement.setString(3, admin.getPhone());
                 UserStatement.setInt(4, admin.getID());
-
-
-                TeacherStatement.executeUpdate();
+                AdminStatement.executeUpdate();
             }catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -242,57 +238,51 @@ public class UserRepository {
 
     }
     public static User delete(User user) throws SQLException {
-            String UserSql = "Delete from Users where u_id=?";
+        String UserSql = "Delete from Users where U_ID=?";
 
-            try (Connection connection = ConnectionUtil.getConnection();
-                 PreparedStatement UserStatement = connection.prepareStatement(UserSql)
-            ) {
-                UserStatement.setInt(1, user.getID());
-                UserStatement.executeUpdate();
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
-
-            return UserRepository.getByEmail(user.getEmail());
-
-
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement UserStatement = connection.prepareStatement(UserSql)
+        ) {
+            UserStatement.setInt(1, user.getID());
+            UserStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
 
+        return UserRepository.getByEmail(user.getEmail());
+    }
 
+    public static TeacherUser getTeacherByUserID(int userID) throws SQLException {
+        TeacherUser teacher = null;
+        Connection connection = ConnectionUtil.getConnection();
+        String query = "SELECT T.*, U.* FROM Teachers T " +
+                "INNER JOIN Users U ON T.T_UID = U.U_ID " +
+                "WHERE T.T_UID = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, userID);
 
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            String name = resultSet.getString("T_Name");
+            String surname = resultSet.getString("T_Surname");
+            String birthdate = resultSet.getDate("T_Birthdate").toLocalDate().toString();
+            String phone = resultSet.getString("T_Phone");
+            String address = resultSet.getString("T_Address");
+            String email = resultSet.getString("Email");
+            String saltedPassword = resultSet.getString("salted_password");
+            String salt = resultSet.getString("salt");
+            String position = resultSet.getString("U_Position");
+            String profileImg = resultSet.getString("U_ProfileImg");
+            String gender = resultSet.getString("T_Gender");
 
-        public static TeacherUser getTeacherByUserID(int userID) throws SQLException {
-            TeacherUser teacher = null;
-            Connection connection = ConnectionUtil.getConnection();
-            String query = "SELECT T.*, U.* FROM Teachers T " +
-                    "INNER JOIN Users U ON T.T_UID = U.U_ID " +
-                    "WHERE T.T_UID = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, userID);
-
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                String name = resultSet.getString("T_Name");
-                String surname = resultSet.getString("T_Surname");
-                String birthdate = resultSet.getDate("T_Birthdate").toLocalDate().toString();
-                String phone = resultSet.getString("T_Phone");
-                String address = resultSet.getString("T_Address");
-                String email = resultSet.getString("Email");
-                String saltedPassword = resultSet.getString("salted_password");
-                String salt = resultSet.getString("salt");
-                String position = resultSet.getString("U_Position");
-                String profileImg = resultSet.getString("U_ProfileImg");
-                String gender = resultSet.getString("T_Gender");
-
-
-                teacher = new TeacherUser(userID, email, saltedPassword, salt, position, profileImg, name, surname, birthdate, phone, address,gender);
-            }
-
-            resultSet.close();
-            statement.close();
-
-            return teacher;
+            teacher = new TeacherUser(userID, email, saltedPassword, salt, position, profileImg, name, surname, birthdate, phone, address,gender);
         }
+
+        resultSet.close();
+        statement.close();
+
+        return teacher;
+    }
 
     public static StudentUser getStudentByUserID(int userID) throws SQLException {
         StudentUser student = null;
@@ -328,6 +318,4 @@ public class UserRepository {
 
         return student;
     }
-    }
-
-
+}

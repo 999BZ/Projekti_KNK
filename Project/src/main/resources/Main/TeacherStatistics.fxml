@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="450.0" prefWidth="600.0" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TeacherStatisticsController">
    <children>
       <BarChart fx:id="averageGradePerSubject" layoutX="-3.0" layoutY="35.0" prefHeight="180.0" prefWidth="400.0" AnchorPane.topAnchor="35.0">
@@ -23,7 +22,7 @@
         </yAxis>
       </BarChart>
       <ProgressBar fx:id="percentageOfStudentsGraded" layoutX="419.0" layoutY="323.0" prefHeight="18.0" prefWidth="154.0" progress="0.0" />
-      <Label alignment="CENTER" layoutX="35.0" layoutY="4.0" prefHeight="20.0" prefWidth="324.0" text="Average Grade Per Subjects Taught">
+      <Label fx:id="averageGrade" alignment="CENTER" layoutX="35.0" layoutY="4.0" prefHeight="20.0" prefWidth="324.0" text="Average Grade Per Subjects Taught">
          <font>
             <Font size="14.0" />
          </font>
@@ -36,12 +35,12 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <Label alignment="CENTER" layoutX="44.0" layoutY="215.0" prefHeight="20.0" prefWidth="306.0" text="Students Enrolled Per Each Class Taught">
+      <Label fx:id="studentsEnrolled" alignment="CENTER" layoutX="44.0" layoutY="215.0" prefHeight="20.0" prefWidth="306.0" text="Students Enrolled Per Each Class Taught">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="430.0" layoutY="351.0" prefHeight="20.0" prefWidth="131.0" text="Students Graded ">
+      <Label fx:id="studentsGraded" alignment="CENTER" layoutX="430.0" layoutY="351.0" prefHeight="20.0" prefWidth="131.0" text="Students Graded ">
          <font>
             <Font size="14.0" />
          </font>
